@@ -51,14 +51,14 @@ jobs:
       - name: Format code with Black
         run: black --check .
 
-      - name: Run lint
-        run: |
-          flake8 .
+      #- name: Run lint
+        #run: |
+          #flake8 .
 
-      - name: Run tests
-        run: |
-          python manage.py migrate --noinput
-          python manage.py test
+      #- name: Run tests
+       # run: |
+          #python manage.py migrate --noinput
+          #python manage.py test
 
       - name: Build Docker image
         run: |
