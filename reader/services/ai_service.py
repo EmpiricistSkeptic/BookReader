@@ -11,21 +11,19 @@ class AITeacherService:
 
     def get_system_prompt(self, user_profile: UserProfile) -> str:
         language_names = {
-            'ru': 'русский',
-            'en': 'английский',
-            'es': 'испанский',
-            'fr': 'французский',
-            'de': 'немецкий',
-            'zh': 'китайский',
-            'ja': 'японский',
+            "ru": "русский",
+            "en": "английский",
+            "es": "испанский",
+            "fr": "французский",
+            "de": "немецкий",
+            "zh": "китайский",
+            "ja": "японский",
         }
         native_lang = language_names.get(
-            user_profile.native_language,
-            user_profile.native_language
+            user_profile.native_language, user_profile.native_language
         )
         learning_lang = language_names.get(
-            user_profile.language_to_learn,
-            user_profile.language_to_learn
+            user_profile.language_to_learn, user_profile.language_to_learn
         )
 
         prompt = f"""
@@ -48,25 +46,21 @@ class AITeacherService:
         """
         return textwrap.dedent(prompt).strip()
 
-    def get_conversation_history(
-        self,
-        messages: List[Message]
-    ) -> List[Dict[str, str]]:
-        return [
-            {"role": msg.role, "content": msg.content}
-            for msg in messages[-10:]
-        ]
+    def get_conversation_history(self, messages: List[Message]) -> List[Dict[str, str]]:
+        return [{"role": msg.role, "content": msg.content} for msg in messages[-10:]]
 
     def generate_response(
         self,
         user_profile: UserProfile,
         conversation_messages: List[Message],
-        user_message: str
+        user_message: str,
     ) -> str:
         try:
             system_prompt = self.get_system_prompt(user_profile)
             messages_payload = [{"role": "system", "content": system_prompt}]
-            messages_payload.extend(self.get_conversation_history(conversation_messages))
+            messages_payload.extend(
+                self.get_conversation_history(conversation_messages)
+            )
             messages_payload.append({"role": "user", "content": user_message})
 
             response = self.client.chat.completions.create(
