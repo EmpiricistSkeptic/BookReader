@@ -62,46 +62,54 @@ logger = logging.getLogger(__name__)
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
     return {
-        'refresh': str(refresh),
-        'access': str(refresh.access_token),
+        "refresh": str(refresh),
+        "access": str(refresh.access_token),
     }
 
-@api_view(['POST'])
+
+@api_view(["POST"])
 @permission_classes([AllowAny])
 def register(request):
     serializer = RegisterSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
         tokens = get_tokens_for_user(user)
-        return Response({
-            'user': UserSerializer(user).data,
-            'tokens': tokens,
-            'message': 'Регистрация успешна'
-            }, status=status.HTTP_201_CREATED)
-    return Response({
-            'errors': serializer.errors,
-            'message': 'Ошибка Регистрации'
-            }, status=status.HTTP_400_BAD_REQUEST)
-   
-        
+        return Response(
+            {
+                "user": UserSerializer(user).data,
+                "tokens": tokens,
+                "message": "Регистрация успешна",
+            },
+            status=status.HTTP_201_CREATED,
+        )
+    return Response(
+        {"errors": serializer.errors, "message": "Ошибка Регистрации"},
+        status=status.HTTP_400_BAD_REQUEST,
+    )
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 @permission_classes([AllowAny])
 def login(request):
     serializer = LoginSerializer(data=request.data)
     if serializer.is_valid():
-        user = serializer.validated_data['user']
+        user = serializer.validated_data["user"]
         tokens = get_tokens_for_user(user)
-        return Response({
-            'user': UserSerializer(user).data,
-            'tokens': tokens,
-            'message': 'Вход выполнен успешно'
-            }, status=status.HTTP_200_OK)
-    return Response({
-        'errors': serializer.errors,
-        'message': 'Ошибка входа',
-        }, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {
+                "user": UserSerializer(user).data,
+                "tokens": tokens,
+                "message": "Вход выполнен успешно",
+            },
+            status=status.HTTP_200_OK,
+        )
+    return Response(
+        {
+            "errors": serializer.errors,
+            "message": "Ошибка входа",
+        },
+        status=status.HTTP_400_BAD_REQUEST,
+    )
 
 
 class AuthViewSet(viewsets.GenericViewSet):

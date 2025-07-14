@@ -27,9 +27,8 @@ router.register(r"auth", AuthViewSet, basename="auth")
 
 urlpatterns = [
     path("", include(router.urls)),
-    path('auth/register/', views.register, name='register'),
-    path('auth/login/', views.login, name='login'),
-
+    path("auth/register/", views.register, name="register"),
+    path("auth/login/", views.login, name="login"),
     path("translate/", TranslateView.as_view(), name="translate"),
     path("history/", TranslationHistoryListView.as_view(), name="translation-history"),
     path(
