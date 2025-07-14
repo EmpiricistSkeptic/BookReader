@@ -18,6 +18,8 @@ from .constants import (
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class ChapterListSerializer(serializers.ModelSerializer):
@@ -159,6 +161,47 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username", "email", "first_name", "last_name", "profile"]
         read_only_fields = ["id"]
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, min_length=6)
+
+    class Meta:
+        model = User 
+        fields = ['email', 'password', 'username', 'first_name', 'last_name']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            email=validated_data['email'],
+            username=validated_data.get('username', validated_data['email']),
+            password=validated_data['password'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', '')
+        )
+        return user
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        email = data.get('email')
+        password = data.get('password')
+
+        if email and password:
+            try:
+                user = User.objects.get(email=email)
+                user = authenticate(username=username, password=password)
+                if not user:
+                    raise serializers.ValidationError('Неверный email или пароль')
+            except User.DoesNotExist:
+                raise serializers.ValidationError('Пользователь не найден')
+
+        else:
+            raise serializers.ValidationError('Email и пароль обязательны')
+
+        data['user'] = user
+        return user
 
 
 class GoogleAuthSerializer(serializers.Serializer):

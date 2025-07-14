@@ -4,9 +4,7 @@ services:
   web:
     build: .
     command: >
-      sh -c "python manage.py migrate &&
-             gunicorn bookreader_core.wsgi:application
-             --bind 0.0.0.0:8000"
+      sh -c "python manage.py migrate && gunicorn bookreader_core.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/srv/bookreader
     ports:
