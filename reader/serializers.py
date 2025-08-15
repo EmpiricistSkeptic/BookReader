@@ -8,6 +8,7 @@ from .models import (
     Message,
     Conversation,
     Translation,
+    UserBookProgress,
 )
 from .constants import (
     SUPPORTED_LANGUAGES,
@@ -22,6 +23,65 @@ from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
+class SuggestionRequestSerializer(serializers.Serializer):
+    word = serializers.CharField(min_length=1)
+
+    def validate_word(self, value):
+        if not value:
+            raise serializers.ValidationError(_("Слово не может быть пустым"))
+
+        if not any(c.isalnum() for c in value):
+            raise serializers.ValidationError(
+                _("Слово должно содержать хотя бы несколько символов")
+            )
+        return value
+
+
+class SuggestionResponseSerializer(serializers.Serializer):
+    word = serializers.CharField(
+        help_text="Оригинальное слово, для которого были сгенерированы предложения."
+    )
+    translation = serializers.CharField(
+        help_text="Основной перевод слова, полученный от сервиса."
+    )
+    alternatives = serializers.ListField(
+        child=serializers.CharField(),
+        help_text="Список альтернативных переводов для оригинального слова.",
+    )
+    examples = serializers.ListField(
+        child=serializers.CharField(),
+        help_text="Список предложений-примеров, использующих слово и его перевод.",
+    )
+
+
+class UserBookProgressSerializer(serializers.Serializer):
+    chapter_order = serializers.IntegerField(min_value=1)
+    last_read_page = serializers.IntegerField(min_value=1)
+
+    def validate(self, data):
+        request = self.context.get("request")
+        book = self.context.get("book")
+
+        chapter_order = data.get("chapter_order")
+        last_read_page = data.get("last_read_page")
+        try:
+            chapter = book.chapters.get(order=chapter_order)
+        except Chapter.DoesNotExist:
+            raise serializers.ValidationError(_("Глава не найдена."))
+
+        if chapter.total_pages is None:
+            raise serializers.ValidationError(_("У главы не указано total_pages."))
+
+        if last_read_page > chapter.total_pages:
+            raise serializers.ValidationError(
+                _(
+                    f"Страница {last_read_page} выходит за пределы главы (максимум {chapter.total_pages})."
+                )
+            )
+        data["chapter"] = chapter
+        return data
+
+
 class ChapterListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
@@ -31,12 +91,13 @@ class ChapterListSerializer(serializers.ModelSerializer):
 class ChapterDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
-        fields = ["id", "title", "content", "order"]
+        fields = ["id", "title", "content", "order", "total_pages"]
 
 
 class BookListSerializer(serializers.ModelSerializer):
     chapter_count = serializers.SerializerMethodField()
     cover_url = serializers.SerializerMethodField()
+    user_progress = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
@@ -44,7 +105,6 @@ class BookListSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "description",
-            "cover",
             "cover_url",
             "book_format",
             "authors",
@@ -53,6 +113,7 @@ class BookListSerializer(serializers.ModelSerializer):
             "file_size",
             "uploaded_at",
             "chapter_count",
+            "user_progress",
         ]
 
     def get_chapter_count(self, obj):
@@ -65,12 +126,49 @@ class BookListSerializer(serializers.ModelSerializer):
                 return request.build_absolute_uri(obj.cover.url)
         return None
 
+    def get_user_progress(self, obj):
+        request = self.context.get("request")
+
+        if not request or not request.user.is_authenticated:
+            return None
+
+        user = request.user
+
+        try:
+            progress = UserBookProgress.objects.select_related("chapter").get(
+                user=user, book=obj
+            )
+
+            if not progress.chapter:
+                return None
+
+            total_pages = progress.chapter.total_pages
+            if not total_pages or total_pages <= 0:
+                return {
+                    "last_read_chapter_order": progress.chapter.order,
+                    "last_read_page": progress.last_read_page,
+                    "progress_percentage": 0,
+                }
+
+            last_read_page = progress.last_read_page
+            percentage = (last_read_page / total_pages) * 100
+
+            return {
+                "last_read_chapter_order": progress.chapter.order,
+                "last_read_page": last_read_page,
+                "progress_percentage": round(percentage, 2),
+            }
+
+        except UserBookProgress.DoesNotExist:
+            return None
+
 
 class BookDetailSerializer(serializers.ModelSerializer):
     chapters = ChapterListSerializer(many=True, read_only=True)
     chapter_count = serializers.SerializerMethodField()
     cover_url = serializers.SerializerMethodField()
     user_name = serializers.CharField(source="user.username", read_only=True)
+    user_progress = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
@@ -80,7 +178,6 @@ class BookDetailSerializer(serializers.ModelSerializer):
             "user_name",
             "title",
             "description",
-            "cover",
             "cover_url",
             "book_format",
             "file",
@@ -91,6 +188,7 @@ class BookDetailSerializer(serializers.ModelSerializer):
             "uploaded_at",
             "chapters",
             "chapter_count",
+            "user_progress",
         ]
 
     def get_chapter_count(self, obj):
@@ -102,6 +200,42 @@ class BookDetailSerializer(serializers.ModelSerializer):
             if request:
                 return request.build_absolute_uri(obj.cover.url)
         return None
+
+    def get_user_progress(self, obj):
+        request = self.context.get("request")
+
+        if not request or not request.user.is_authenticated:
+            return None
+
+        user = request.user
+
+        try:
+            progress = UserBookProgress.objects.select_related("chapter").get(
+                user=user, book=obj
+            )
+
+            if not progress.chapter:
+                return None
+
+            total_pages = progress.chapter.total_pages
+            if not total_pages or total_pages <= 0:
+                return {
+                    "last_read_chapter_order": progress.chapter.order,
+                    "last_read_page": progress.last_read_page,
+                    "progress_percentage": 0,
+                }
+
+            last_read_page = progress.last_read_page
+            percentage = (last_read_page / total_pages) * 100
+
+            return {
+                "last_read_chapter_order": progress.chapter.order,
+                "last_read_page": last_read_page,
+                "progress_percentage": round(percentage, 2),
+            }
+
+        except UserBookProgress.DoesNotExist:
+            return None
 
 
 class BookCreateUpdateSerializer(serializers.ModelSerializer):
@@ -126,15 +260,19 @@ class BookCreateUpdateSerializer(serializers.ModelSerializer):
         return value
 
 
-class BookUploadSerializer(serializers.ModelSerializer):
+class BookUploadSerializer(serializers.Serializer):
     file = serializers.FileField()
 
     def validate_file(self, value):
-        if not value.name.lower().endswith((".fb2", ".epub")):
-            raise serializers.ValidationError("Поддерживаются только файлы FB2 и EPUB")
+        allowed_extensions = (".fb2", ".epub", ".zip")
+        if not value.name.lower().endswith(allowed_extensions):
+            raise serializers.ValidationError(
+                "Поддерживаются только форматы FB2, EPUB и ZIP."
+            )
 
-        if value.size > 50 * 1024 * 1024:
-            raise serializers.ValidationError("Размер файла не должен превышать 50MB")
+        if value.size > 50 * 1024 * 1024:  # 50MB
+            raise serializers.ValidationError("Размер файла не должен превышать 50MB.")
+
         return value
 
 
@@ -148,6 +286,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "google_id",
             "avatar_url",
             "is_google_user",
+            "reading_font_size",
+            "reading_theme",
             "created_at",
             "updated_at",
         ]
@@ -183,26 +323,27 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    password = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
     def validate(self, data):
         email = data.get("email")
         password = data.get("password")
+        user = None
 
         if email and password:
             try:
-                user = User.objects.get(email=email)
-                user = authenticate(username=username, password=password)
-                if not user:
-                    raise serializers.ValidationError("Неверный email или пароль")
+                user_obj = User.objects.get(email=email)
+                user = authenticate(username=user_obj.username, password=password)
             except User.DoesNotExist:
-                raise serializers.ValidationError("Пользователь не найден")
+                raise serializers.ValidationError("Неверный email или пароль.")
 
+            if not user:
+                raise serializers.ValidationError("Неверный email или пароль.")
         else:
-            raise serializers.ValidationError("Email и пароль обязательны")
+            raise serializers.ValidationError("Email и пароль обязательны для входа.")
 
         data["user"] = user
-        return user
+        return data
 
 
 class GoogleAuthSerializer(serializers.Serializer):
@@ -223,11 +364,28 @@ class FlashCardSerializer(serializers.ModelSerializer):
             "translation",
             "example",
             "image",
-            "status",
+            "is_learning",
+            "learning_step",
+            "ease_factor",
+            "interval",
+            "repetitions",
+            "next_review",
+            "last_reviewed",
             "created_at",
             "updated_at",
         ]
-        read_only_fields = ["id", "created_at", "updated_at"]
+        read_only_fields = [
+            "id",
+            "created_at",
+            "updated_at",
+            "is_learning",
+            "learning_step",
+            "ease_factor",
+            "interval",
+            "repetitions",
+            "next_review",
+            "last_reviewed",
+        ]
 
 
 class DictionaryEntrySerializer(serializers.ModelSerializer):
@@ -297,15 +455,8 @@ class TranslationRequestSerializer(serializers.Serializer):
             "max_length": _("Текст слишком длинный (максимум 5000 символов)"),
         },
     )
-    target_language = serializers.ChoiceField(
-        choices=SUPPORTED_LANGUAGES,
-        default="ru",
-        help_text=_("Целевой язык перевода (по умолчанию: ru)"),
-    )
-    source_language = serializers.ChoiceField(
-        choices=[("auto", "auto")] + SUPPORTED_LANGUAGES,
-        default="auto",
-        help_text=_("Исходный язык (auto для автоопределения)"),
+    book = serializers.PrimaryKeyRelatedField(
+        queryset=Book.objects.all(), required=True
     )
     context = serializers.CharField(
         required=False,
@@ -314,7 +465,7 @@ class TranslationRequestSerializer(serializers.Serializer):
         help_text=_("Контекст для более точного перевода"),
     )
     service = serializers.ChoiceField(
-        choices=TRANSLATION_SERVICES, default="auto", help_text=_("Сервис для перевода")
+        choices=TRANSLATION_SERVICES, help_text=_("Сервис для перевода")
     )
 
     def validate_text(self, value):
@@ -332,13 +483,22 @@ class TranslationRequestSerializer(serializers.Serializer):
         return value
 
     def validate(self, attrs):
-        if (
-            attrs["source_language"] == attrs["target_language"]
-            and attrs["source_language"] != "auto"
-        ):
+        book = attrs.get("book")
+        target_language = self.context.get("target_language")
+        if not target_language:
             raise serializers.ValidationError(
-                _("Исходный и целевой языки не могут быть одинаковыми")
+                "Не удалось определить целевой язык (target_language)."
             )
+
+        source_language = book.language
+        attrs["source_language"] = source_language
+        attrs["target_language"] = target_language
+
+        if source_language == target_language:
+            raise serializers.ValidationError(
+                f"Исходный язык книги ({source_language}) совпадает с вашим языком для изучения ({target_language})."
+            )
+
         return attrs
 
 
@@ -348,6 +508,9 @@ class TranslationResponseSerializer(serializers.Serializer):
     success = serializers.BooleanField(read_only=True)
     original_text = serializers.CharField(read_only=True)
     translated_text = serializers.CharField(read_only=True)
+    alternatives = serializers.ListField(
+        child=serializers.CharField(), required=False, read_only=True
+    )
     source_language = serializers.CharField(read_only=True)
     target_language = serializers.CharField(read_only=True)
     service = serializers.CharField(read_only=True)
@@ -398,6 +561,7 @@ class TranslationSerializer(serializers.ModelSerializer):
             "context",
             "created_at",
             "updated_at",
+            "alternatives",
         ]
         read_only_fields = ["id", "created_at", "updated_at"]
 

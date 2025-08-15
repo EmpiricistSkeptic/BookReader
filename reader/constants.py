@@ -23,10 +23,10 @@ SUPPORTED_LANGUAGES = [
 ]
 
 TRANSLATION_SERVICES = [
-    ("auto", _("Автоматический выбор")),
     ("deepl", "DeepL"),
+    ("chatgpt", "ChatGPT"),
     ("google", "Google Translate"),
-    ("contextil", "Contextil"),
+    ("microsoft", "Microsoft"),
 ]
 
 LANGUAGE_NAMES = {
@@ -54,7 +54,8 @@ LANGUAGE_NAMES = {
 SERVICE_NAMES = {
     "deepl": "DeepL",
     "google": "Google Translate",
-    "contextil": "Contextil",
+    "microsoft": "Microsoft",
+    "chatgpt": "ChatGPT",
     "auto": _("Автоматический"),
 }
 
@@ -62,4 +63,11 @@ CHATGPT_TRANSLATION_PROMPT_TEMPLATE = (
     "Ты — профессиональный переводчик. "
     "Переводи с {source_language} на {target_language}. "
     "Отвечай только переведённым текстом, без пояснений."
+)
+
+
+CHATGPT_EXAMPLES_PROMPT_TEMPLATE = (
+    "Создай 3 коротких и понятных примера использования слова '{word}' в предложении. "
+    "Слово означает '{translation}'. Ответ верни СТРОГО в формате JSON-массива (JSON array) из трёх строк. "
+    'Например: ["Первый пример.", "Второй пример.", "Третий пример."]'
 )
