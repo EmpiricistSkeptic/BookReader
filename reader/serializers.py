@@ -9,6 +9,7 @@ from .models import (
     Conversation,
     Translation,
     UserBookProgress,
+    DictionaryCategory,
 )
 from .constants import (
     SUPPORTED_LANGUAGES,
@@ -388,11 +389,45 @@ class FlashCardSerializer(serializers.ModelSerializer):
         ]
 
 
+class DictionaryCategorySerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели Категории.
+    Представляет категорию в компактном виде, только самое нужное для фронтенда.
+    """
+    class Meta:
+        model = DictionaryCategory
+        fields = ['name', 'slug']
+
+
 class DictionaryEntrySerializer(serializers.ModelSerializer):
+    """
+    Основной сериализатор для модели Словарной статьи.
+    Использует вложенный DictionaryCategorySerializer для красивого отображения категорий.
+    """
+    # Указываем, что поле 'categories' должно быть обработано с помощью
+    # DictionaryCategorySerializer. many=True, так как у одного слова может
+    # быть много категорий.
+    categories = DictionaryCategorySerializer(many=True, read_only=True)
+
     class Meta:
         model = DictionaryEntry
-        fields = ["id", "word", "translation", "transcription", "language"]
-        read_only_fields = ["id"]
+        # Явно перечисляем поля, которые нужны фронтенду для отображения карточки.
+        # Исключаем служебные поля вроде raw, hits, created_at.
+        fields = [
+            'id',
+            'word',
+            'transcription',
+            'definition',
+            'level',
+            'categories',
+        ]
+
+class DictionaryTranslationResponseSerializer(serializers.Serializer):
+    """
+    Сериализатор для ФОРМАТИРОВАНИЯ ответа с переводом.
+    Также не связан с моделью. Упаковывает результат перевода в JSON.
+    """
+    translation = serializers.CharField(read_only=True)
 
 
 class MessageSerializer(serializers.ModelSerializer):

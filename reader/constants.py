@@ -20,6 +20,7 @@ SUPPORTED_LANGUAGES = [
     ("uk", "uk"),
     ("bg", "bg"),
     ("cs", "cs"),
+    ("id", "id"),
 ]
 
 TRANSLATION_SERVICES = [
@@ -48,6 +49,7 @@ LANGUAGE_NAMES = {
     "uk": _("Украинский"),
     "bg": _("Болгарский"),
     "cs": _("Чешский"),
+    "id": _("Индонезийский"),
     "auto": _("Автоопределение"),
 }
 

@@ -71,6 +71,7 @@ class UserProfile(models.Model):
         ("de", "German"),
         ("zh", "Chinese"),
         ("ja", "Japanese"),
+        ("id", "Indonesian"),
     ]
 
     LEVEL_CHOICES = [

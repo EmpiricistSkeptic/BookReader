@@ -8,9 +8,11 @@ class FlashCardFilter(filters.FilterSet):
     # Он будет принимать true/false и фильтровать карточки "на сегодня"
     is_due = filters.BooleanFilter(method="filter_is_due", label="Is Due for Review")
 
+    is_learning = filters.BooleanFilter(field_name="is_learning")
+
     class Meta:
         model = FlashCard
-        fields = []
+        fields = ['is_due', 'is_learning']
 
     def filter_is_due(self, queryset, name, value):
         # Этот метод вызывается, когда в запросе есть /?is_due=true

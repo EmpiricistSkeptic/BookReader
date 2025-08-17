@@ -28,6 +28,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework.parsers import MultiPartParser
 from django.db import transaction
 from django.db.models import Case, When, F
+from django.db.models.functions import Lower
 import logging
 
 from .models import (
@@ -40,6 +41,7 @@ from .models import (
     Message,
     UserBookProgress,
     Translation,
+    DictionaryCategory,
 )
 from .serializers import (
     BookCreateUpdateSerializer,
@@ -64,6 +66,8 @@ from .serializers import (
     UserBookProgressSerializer,
     SuggestionRequestSerializer,
     SuggestionResponseSerializer,
+    DictionaryTranslationResponseSerializer,
+    DictionaryCategorySerializer,
 )
 from reader.utils.google_auth import GoogleAuthService
 
@@ -204,7 +208,7 @@ class BookViewSet(viewsets.ModelViewSet):
             return BookCreateUpdateSerializer
 
     def get_queryset(self):
-        return Book.objects.filter(user=self.request.user)
+        return Book.objects.filter(user=self.request.user).order_by('-uploaded_at')
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -987,15 +991,75 @@ class UserProfileViewSet(
         return self.request.user.profile
 
 
-class DictionaryEntryViewSet(viewsets.ModelViewSet):
+class DictionaryEntryViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    ViewSet для получения списка словарных статей и выполнения действий над ними.
+    """
+    queryset = DictionaryEntry.objects.prefetch_related('categories').order_by(Lower('word').asc(), 'id')
     serializer_class = DictionaryEntrySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['level', 'categories__slug']
+    search_fields = ['word', 'definition']
 
-    def get_queryset(self):
-        return DictionaryEntry.objects.filter(user=self.request.user)
+    @action(detail=True, methods=['post'], url_path='translate')
+    def translate(self, request, pk=None):
+        """
+        Кастомное действие для перевода конкретного слова.
+        Вызывается по URL: POST /api/dictionary/{pk}/translate/
+        """
+        # 1. Получаем объект словарной статьи
+        entry = self.get_object()
+        word_to_translate = entry.word
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        # 2. Безопасно получаем язык для перевода (target_language)
+        target_language = None
+        # Проверяем, что пользователь аутентифицирован и у него есть профиль
+        if request.user.is_authenticated and hasattr(request.user, 'profile'):
+            target_language = request.user.profile.native_language
+        
+        # Если язык не найден, используем язык по умолчанию.
+        # Это лучше, чем возвращать ошибку.
+        if not target_language:
+            target_language = 'ru'  # Наш "запасной" вариант
+
+        # 3. Определяем исходный язык (source_language)
+        # Так как наш словарь содержит только английские слова, мы указываем это явно.
+        source_language = 'en'
+
+        # 4. Инициализация и вызов вашего сервиса
+        try:
+            translation_service = TranslationService(user=request.user if request.user.is_authenticated else None)
+            print(f"[DEBUG] Пытаюсь перевести: '{word_to_translate}' на язык '{target_language}'")
+            
+            # Вызываем основной метод вашего сервиса с полными данными
+            result = translation_service.translate(
+                text=word_to_translate,
+                target_language=target_language,
+                source_language=source_language, # Передаем явно
+                service='deepl' # или любой другой ваш сервис
+            )
+            print(f"[DEBUG] Ответ от TranslationService: {result}")
+
+            # 5. Форматирование успешного ответа
+            response_data = {'translation': result.get('translated_text', '')}
+            print(f"[DEBUG] Подготовленные данные для ответа: {response_data}")
+            serializer = DictionaryTranslationResponseSerializer(response_data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except TranslationServiceError as e:
+            return Response({"error": f"Ошибка сервиса перевода: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"error": f"Внутренняя ошибка сервера: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+class DictionaryCategoryListView(generics.ListAPIView):
+    """
+    View для получения списка всех категорий словаря.
+    """
+    queryset = DictionaryCategory.objects.all().order_by('name', 'id')
+    serializer_class = DictionaryCategorySerializer
+    permission_classes = [permissions.AllowAny] 
+    pagination_class = None
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
