@@ -5,13 +5,20 @@ from django.utils.text import slugify
 
 from reader.models import DictionaryEntry, DictionaryCategory
 
+
 class Command(BaseCommand):
     help = "Import dictionary CSV into DictionaryEntry. Usage: python manage.py import_dictionary /path/to/file.csv --batch 500 --dry-run"
 
     def add_arguments(self, parser):
         parser.add_argument("csvfile", type=str, help="Path to CSV file")
-        parser.add_argument("--batch", type=int, default=200, help="Report progress every N rows")
-        parser.add_argument("--dry-run", action="store_true", help="Do not write to DB, only validate and report")
+        parser.add_argument(
+            "--batch", type=int, default=200, help="Report progress every N rows"
+        )
+        parser.add_argument(
+            "--dry-run",
+            action="store_true",
+            help="Do not write to DB, only validate and report",
+        )
 
     @transaction.atomic
     def handle(self, *args, **options):
@@ -20,7 +27,11 @@ class Command(BaseCommand):
         is_dry_run = options["dry_run"]
 
         if is_dry_run:
-            self.stdout.write(self.style.WARNING("Running in --dry-run mode. No changes will be saved to the database."))
+            self.stdout.write(
+                self.style.WARNING(
+                    "Running in --dry-run mode. No changes will be saved to the database."
+                )
+            )
 
         created_count = 0
         updated_count = 0
@@ -28,17 +39,19 @@ class Command(BaseCommand):
 
         try:
             # Используем 'with open' для автоматического закрытия файла
-            with open(path, newline='', encoding='utf-8') as f:
+            with open(path, newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
-                
+
                 for i, row in enumerate(reader, start=1):
                     word = (row.get("word") or "").strip()
-                    
+
                     if not word:
                         skipped_count += 1
-                        self.stdout.write(self.style.WARNING(f"Row {i}: Skipped due to empty word."))
+                        self.stdout.write(
+                            self.style.WARNING(f"Row {i}: Skipped due to empty word.")
+                        )
                         continue
-                    
+
                     # Получаем и очищаем данные из строки CSV
                     level = (row.get("level") or "").strip() or None
                     transcription = (row.get("transcription") or "").strip()
@@ -46,7 +59,9 @@ class Command(BaseCommand):
                     raw = (row.get("raw") or "").strip()
                     category_names_raw = (row.get("categories") or "").strip()
 
-                    self.stdout.write(f"--> Processing row {i}: word='{word}', level='{level}'")
+                    self.stdout.write(
+                        f"--> Processing row {i}: word='{word}', level='{level}'"
+                    )
 
                     if is_dry_run:
                         # В режиме dry-run можно добавить больше проверок, если нужно
@@ -60,7 +75,7 @@ class Command(BaseCommand):
                             "transcription": transcription,
                             "definition": definition,
                             "raw": raw,
-                        }
+                        },
                     )
 
                     if created:
@@ -72,16 +87,19 @@ class Command(BaseCommand):
                     if category_names_raw:
                         category_objects = []
                         # Разделяем строку с категориями и убираем лишние пробелы
-                        category_names = [name.strip() for name in category_names_raw.split(";") if name.strip()]
-                        
+                        category_names = [
+                            name.strip()
+                            for name in category_names_raw.split(";")
+                            if name.strip()
+                        ]
+
                         for name in category_names:
                             # Находим или создаем категорию
                             cat, _ = DictionaryCategory.objects.get_or_create(
-                                name=name,
-                                defaults={"slug": slugify(name)[:120]}
+                                name=name, defaults={"slug": slugify(name)[:120]}
                             )
                             category_objects.append(cat)
-                        
+
                         # Привязываем категории к записи. .set() - правильный способ для ManyToMany
                         entry.categories.set(category_objects)
 
@@ -92,13 +110,15 @@ class Command(BaseCommand):
         except FileNotFoundError:
             raise CommandError(f'File not found at: "{path}"')
         except Exception as e:
-            raise CommandError(f'An error occurred: {e}')
+            raise CommandError(f"An error occurred: {e}")
 
         # Финальный отчет
         self.stdout.write(self.style.SUCCESS("-----------------------------"))
         self.stdout.write(self.style.SUCCESS("Import process finished."))
         if is_dry_run:
-            self.stdout.write(self.style.WARNING(f"Dry run complete. Would have processed {i} rows."))
+            self.stdout.write(
+                self.style.WARNING(f"Dry run complete. Would have processed {i} rows.")
+            )
         else:
             self.stdout.write(self.style.SUCCESS(f"Created: {created_count}"))
             self.stdout.write(self.style.SUCCESS(f"Updated: {updated_count}"))

@@ -244,7 +244,9 @@ class TranslationService:
         [ИСПРАВЛЕННАЯ ВЕРСИЯ СОГЛАСНО ДОКУМЕНТАЦИИ]
         """
         logger.info("--- [SERVICE] НАЧАЛО get_suggestions_for_flashcard ---")
-        logger.info(f"[SERVICE] Ищем предложения для слова: '{word}', язык: '{target_language}'")
+        logger.info(
+            f"[SERVICE] Ищем предложения для слова: '{word}', язык: '{target_language}'"
+        )
 
         # Проверка кэша, как и раньше
         cached_suggestions = self._get_suggestions_from_cache(word)
@@ -257,23 +259,33 @@ class TranslationService:
             # --- ШАГ 1: ВЫПОЛНЯЕМ ПОИСК ПО СЛОВАРЮ (lookup) ---
             # Это основной шаг, который дает нам и альтернативы, и основной перевод.
             # Мы НЕ используем больше общий translator.translate().
-            # Важно: для этого шага нужен определенный исходный язык. 
+            # Важно: для этого шага нужен определенный исходный язык.
             # Мы предполагаем, что он определяется на более раннем этапе или по умолчанию 'en'.
             # Для простоты пока захардкодим 'en', но в идеале его нужно определять.
             # !!! ВАЖНО: Если исходный язык может быть не 'en', его нужно определять ДО этого вызова.
             # Пока мы не знаем, как его получить, будем использовать временное решение.
-            
-            # Временное решение для определения языка. В идеале это должно быть в логике до.
-            temp_translation_result = translator.translate(word, target_language, "auto")
-            if not temp_translation_result or not temp_translation_result.get('success'):
-                raise TranslationServiceError("Не удалось определить исходный язык для поиска по словарю.")
-            
-            detected_language = temp_translation_result.get('detected_language')
-            if not detected_language or detected_language in ["und", "unknown"]:
-                raise TranslationServiceError("Не удалось определить исходный язык для поиска по словарю.")
 
-            logger.info(f"[SERVICE] Определен исходный язык: {detected_language}. Вызываем get_alternative_translations (lookup)...")
-            
+            # Временное решение для определения языка. В идеале это должно быть в логике до.
+            temp_translation_result = translator.translate(
+                word, target_language, "auto"
+            )
+            if not temp_translation_result or not temp_translation_result.get(
+                "success"
+            ):
+                raise TranslationServiceError(
+                    "Не удалось определить исходный язык для поиска по словарю."
+                )
+
+            detected_language = temp_translation_result.get("detected_language")
+            if not detected_language or detected_language in ["und", "unknown"]:
+                raise TranslationServiceError(
+                    "Не удалось определить исходный язык для поиска по словарю."
+                )
+
+            logger.info(
+                f"[SERVICE] Определен исходный язык: {detected_language}. Вызываем get_alternative_translations (lookup)..."
+            )
+
             alternatives = translator.get_alternative_translations(
                 text=word,
                 source_language=detected_language,
@@ -282,9 +294,16 @@ class TranslationService:
 
             # --- ПРОВЕРКА РЕЗУЛЬТАТА ПОИСКА ПО СЛОВАРЮ ---
             if not alternatives:
-                logger.warning(f"[SERVICE] Поиск по словарю для '{word}' не дал результатов. Возвращаем пустой ответ.")
+                logger.warning(
+                    f"[SERVICE] Поиск по словарю для '{word}' не дал результатов. Возвращаем пустой ответ."
+                )
                 # Возвращаем только слово, чтобы пользователь мог ввести перевод вручную
-                return {"word": word, "translation": "", "alternatives": [], "examples": []}
+                return {
+                    "word": word,
+                    "translation": "",
+                    "alternatives": [],
+                    "examples": [],
+                }
 
             # --- ШАГ 2: ИЗВЛЕКАЕМ ОСНОВНОЙ ПЕРЕВОД И ПРИМЕРЫ ---
             # Основной перевод - это первый и самый релевантный результат из поиска по словарю.
@@ -292,9 +311,13 @@ class TranslationService:
             translated_text = main_translation_obj.get("text")
 
             if not translated_text:
-                raise TranslationServiceError("Поиск по словарю вернул альтернативу без текста перевода.")
+                raise TranslationServiceError(
+                    "Поиск по словарю вернул альтернативу без текста перевода."
+                )
 
-            logger.info(f"[SERVICE] Основной перевод из словаря: '{translated_text}'. Ищем для него примеры...")
+            logger.info(
+                f"[SERVICE] Основной перевод из словаря: '{translated_text}'. Ищем для него примеры..."
+            )
 
             # Теперь вызываем get_examples с ПРАВИЛЬНЫМИ данными, полученными из ПОИСКА ПО СЛОВАРЮ
             examples = translator.get_examples(
@@ -305,23 +328,34 @@ class TranslationService:
             )
             limited_examples = examples[:3]
 
-            logger.info(f"[SERVICE] Получено примеров: {len(examples)}. Формируем итоговый ответ.")
+            logger.info(
+                f"[SERVICE] Получено примеров: {len(examples)}. Формируем итоговый ответ."
+            )
 
             # --- Финальная сборка ответа ---
             suggestions = {
                 "word": word,
                 "translation": translated_text,
                 # Собираем тексты всех альтернатив, включая основную
-                "alternatives": [alt.get("text") for alt in alternatives if alt.get("text")],
+                "alternatives": [
+                    alt.get("text") for alt in alternatives if alt.get("text")
+                ],
                 "examples": limited_examples,
             }
             self._set_suggestions_to_cache(word, suggestions)
-            logger.info("[SERVICE] --- УСПЕШНОЕ ЗАВЕРШЕНИЕ get_suggestions_for_flashcard ---")
+            logger.info(
+                "[SERVICE] --- УСПЕШНОЕ ЗАВЕРШЕНИЕ get_suggestions_for_flashcard ---"
+            )
             return suggestions
 
         except TranslationServiceError as e:
             logger.error(f"[SERVICE] Перехвачена ошибка TranslationServiceError: {e}")
             raise
         except Exception as e:
-            logger.error(f"[SERVICE] Перехвачена НЕОЖИДАННАЯ ошибка Exception: {e}", exc_info=True)
-            raise TranslationServiceError(f"Внутренняя ошибка при генерации предложений: {str(e)}")
+            logger.error(
+                f"[SERVICE] Перехвачена НЕОЖИДАННАЯ ошибка Exception: {e}",
+                exc_info=True,
+            )
+            raise TranslationServiceError(
+                f"Внутренняя ошибка при генерации предложений: {str(e)}"
+            )

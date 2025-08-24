@@ -24,7 +24,7 @@ router.register(r"profile", UserProfileViewSet, basename="profile")
 router.register(r"dictionary", DictionaryEntryViewSet, basename="dictionary")
 router.register(r"conversations", ConversationViewSet, basename="conversation")
 router.register(r"auth", AuthViewSet, basename="auth")
-router.register(r'dictionary', DictionaryEntryViewSet, basename='dictionary-entry')
+router.register(r"dictionary", DictionaryEntryViewSet, basename="dictionary-entry")
 # router.register(r'users', UserViewSet, basename='users')
 
 
@@ -37,6 +37,5 @@ urlpatterns = [
     path(
         "history/<int:pk>/", TranslationDetailView.as_view(), name="translation-detail"
     ),
-    path('categories/', DictionaryCategoryListView.as_view(), name='category-list'),
-    
+    path("categories/", DictionaryCategoryListView.as_view(), name="category-list"),
 ]

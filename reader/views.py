@@ -208,7 +208,7 @@ class BookViewSet(viewsets.ModelViewSet):
             return BookCreateUpdateSerializer
 
     def get_queryset(self):
-        return Book.objects.filter(user=self.request.user).order_by('-uploaded_at')
+        return Book.objects.filter(user=self.request.user).order_by("-uploaded_at")
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -694,9 +694,7 @@ class BookViewSet(viewsets.ModelViewSet):
         """
         # Собираем достаточно большой фрагмент текста для более точного определения
         # langdetect работает лучше на текстах от 1000 до 3000 символов
-        text_sample = "".join(
-            ch.get("content", "") for ch in chapters_data[:5]
-        )[:3000]
+        text_sample = "".join(ch.get("content", "") for ch in chapters_data[:5])[:3000]
 
         if not text_sample.strip():
             logger.warning("Не удалось извлечь текст для определения языка.")
@@ -771,26 +769,36 @@ class BookViewSet(viewsets.ModelViewSet):
                 def _iter_toc_entries(toc):
                     for entry in toc:
                         if isinstance(entry, (list, tuple)):
-                            if len(entry) >= 1: yield entry[0]
+                            if len(entry) >= 1:
+                                yield entry[0]
                             if len(entry) >= 2 and entry[1]:
-                                for child in _iter_toc_entries(entry[1]): yield child
+                                for child in _iter_toc_entries(entry[1]):
+                                    yield child
                         else:
                             yield entry
 
                 toc_map = {}
                 for node in _iter_toc_entries(book_epub.toc or []):
                     href = getattr(node, "href", None)
-                    if isinstance(node, str) and not href: href = node
+                    if isinstance(node, str) and not href:
+                        href = node
                     title_val = getattr(node, "title", None)
-                    if isinstance(title_val, (list, tuple)) and title_val: title_val = title_val[0]
+                    if isinstance(title_val, (list, tuple)) and title_val:
+                        title_val = title_val[0]
                     if isinstance(title_val, (bytes, bytearray)):
-                        try: title_val = title_val.decode("utf-8", errors="ignore")
-                        except Exception: title_val = str(title_val)
+                        try:
+                            title_val = title_val.decode("utf-8", errors="ignore")
+                        except Exception:
+                            title_val = str(title_val)
                     if isinstance(title_val, str):
-                        title_val = BeautifulSoup(title_val, "lxml").get_text(strip=True)
+                        title_val = BeautifulSoup(title_val, "lxml").get_text(
+                            strip=True
+                        )
                     if href:
                         clean_href = href.split("#")[0]
-                        if clean_href not in toc_map or (title_val and toc_map.get(clean_href) == ""):
+                        if clean_href not in toc_map or (
+                            title_val and toc_map.get(clean_href) == ""
+                        ):
                             toc_map[clean_href] = title_val or ""
                 # --------------------------------------------------------------------------
 
@@ -803,19 +811,25 @@ class BookViewSet(viewsets.ModelViewSet):
                         tag.decompose()
                     text_blocks = [
                         p.get_text(strip=True)
-                        for p in soup.find_all(["p", "h1", "h2", "h3", "h4", "h5", "h6"])
+                        for p in soup.find_all(
+                            ["p", "h1", "h2", "h3", "h4", "h5", "h6"]
+                        )
                     ]
                     chapter_content = "\n\n".join(filter(None, text_blocks))
                     if chapter_content.strip():
                         clean_href = item.get_name().split("#")[0]
-                        chapter_title = toc_map.get(clean_href, f"Глава {chapter_order}")
-                        chapters_data.append({
-                            "title": chapter_title,
-                            "content": chapter_content,
-                            "order": chapter_order,
-                        })
+                        chapter_title = toc_map.get(
+                            clean_href, f"Глава {chapter_order}"
+                        )
+                        chapters_data.append(
+                            {
+                                "title": chapter_title,
+                                "content": chapter_content,
+                                "order": chapter_order,
+                            }
+                        )
                         chapter_order += 1
-                
+
                 # =========================================================================
                 # НОВАЯ УЛУЧШЕННАЯ ЛОГИКА ОПРЕДЕЛЕНИЯ ЯЗЫКА
                 # =========================================================================
@@ -857,7 +871,6 @@ class BookViewSet(viewsets.ModelViewSet):
                     exc_info=True,
                 )
                 raise ValueError(f"Ошибка при парсинге EPUB: {str(e)}")
-
 
     def _save_epub_chapters(self, book, chapters_data):
         """
@@ -995,14 +1008,17 @@ class DictionaryEntryViewSet(viewsets.ReadOnlyModelViewSet):
     """
     ViewSet для получения списка словарных статей и выполнения действий над ними.
     """
-    queryset = DictionaryEntry.objects.prefetch_related('categories').order_by(Lower('word').asc(), 'id')
+
+    queryset = DictionaryEntry.objects.prefetch_related("categories").order_by(
+        Lower("word").asc(), "id"
+    )
     serializer_class = DictionaryEntrySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['level', 'categories__slug']
-    search_fields = ['word', 'definition']
+    filterset_fields = ["level", "categories__slug"]
+    search_fields = ["word", "definition"]
 
-    @action(detail=True, methods=['post'], url_path='translate')
+    @action(detail=True, methods=["post"], url_path="translate")
     def translate(self, request, pk=None):
         """
         Кастомное действие для перевода конкретного слова.
@@ -1015,50 +1031,62 @@ class DictionaryEntryViewSet(viewsets.ReadOnlyModelViewSet):
         # 2. Безопасно получаем язык для перевода (target_language)
         target_language = None
         # Проверяем, что пользователь аутентифицирован и у него есть профиль
-        if request.user.is_authenticated and hasattr(request.user, 'profile'):
+        if request.user.is_authenticated and hasattr(request.user, "profile"):
             target_language = request.user.profile.native_language
-        
+
         # Если язык не найден, используем язык по умолчанию.
         # Это лучше, чем возвращать ошибку.
         if not target_language:
-            target_language = 'ru'  # Наш "запасной" вариант
+            target_language = "ru"  # Наш "запасной" вариант
 
         # 3. Определяем исходный язык (source_language)
         # Так как наш словарь содержит только английские слова, мы указываем это явно.
-        source_language = 'en'
+        source_language = "en"
 
         # 4. Инициализация и вызов вашего сервиса
         try:
-            translation_service = TranslationService(user=request.user if request.user.is_authenticated else None)
-            print(f"[DEBUG] Пытаюсь перевести: '{word_to_translate}' на язык '{target_language}'")
-            
+            translation_service = TranslationService(
+                user=request.user if request.user.is_authenticated else None
+            )
+            print(
+                f"[DEBUG] Пытаюсь перевести: '{word_to_translate}' на язык '{target_language}'"
+            )
+
             # Вызываем основной метод вашего сервиса с полными данными
             result = translation_service.translate(
                 text=word_to_translate,
                 target_language=target_language,
-                source_language=source_language, # Передаем явно
-                service='deepl' # или любой другой ваш сервис
+                source_language=source_language,  # Передаем явно
+                service="deepl",  # или любой другой ваш сервис
             )
             print(f"[DEBUG] Ответ от TranslationService: {result}")
 
             # 5. Форматирование успешного ответа
-            response_data = {'translation': result.get('translated_text', '')}
+            response_data = {"translation": result.get("translated_text", "")}
             print(f"[DEBUG] Подготовленные данные для ответа: {response_data}")
             serializer = DictionaryTranslationResponseSerializer(response_data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         except TranslationServiceError as e:
-            return Response({"error": f"Ошибка сервиса перевода: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": f"Ошибка сервиса перевода: {str(e)}"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         except Exception as e:
-            return Response({"error": f"Внутренняя ошибка сервера: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
+            return Response(
+                {"error": f"Внутренняя ошибка сервера: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+
 class DictionaryCategoryListView(generics.ListAPIView):
     """
     View для получения списка всех категорий словаря.
     """
-    queryset = DictionaryCategory.objects.all().order_by('name', 'id')
+
+    queryset = DictionaryCategory.objects.all().order_by("name", "id")
     serializer_class = DictionaryCategorySerializer
-    permission_classes = [permissions.AllowAny] 
+    permission_classes = [permissions.AllowAny]
     pagination_class = None
 
 

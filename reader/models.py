@@ -264,6 +264,7 @@ class FlashCard(models.Model):
         )
         return cards_updated
 
+
 class DictionaryCategory(models.Model):
     slug = models.SlugField(max_length=120, unique=True)
     name = models.CharField(max_length=200)
@@ -277,15 +278,23 @@ class DictionaryCategory(models.Model):
     def __str__(self):
         return self.name
 
+
 class DictionaryEntry(models.Model):
     CEFR_LEVELS = (
-    ("A1","A1"),("A2","A2"),("B1","B1"),("B2","B2"),("C1","C1"),("C2","C2"),
+        ("A1", "A1"),
+        ("A2", "A2"),
+        ("B1", "B1"),
+        ("B2", "B2"),
+        ("C1", "C1"),
+        ("C2", "C2"),
     )
     word = models.CharField(max_length=200, db_index=True)
     transcription = models.CharField(max_length=200, blank=True)
     definition = models.TextField(blank=True)
     level = models.CharField(max_length=2, choices=CEFR_LEVELS, blank=True, null=True)
-    categories = models.ManyToManyField(DictionaryCategory, blank=True, related_name="entries")
+    categories = models.ManyToManyField(
+        DictionaryCategory, blank=True, related_name="entries"
+    )
     raw = models.TextField(blank=True, help_text="Original raw text from source")
     hits = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -296,6 +305,7 @@ class DictionaryEntry(models.Model):
 
     def __str__(self):
         return f"{self.word}" + (f" ({self.level})" if self.level else "")
+
 
 class Translation(models.Model):
     LANGUAGE_CHOICES = [

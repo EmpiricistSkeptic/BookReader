@@ -362,18 +362,24 @@ class MicrosoftTranslator(BaseTranslator):
             )
 
     def get_examples(
-    self, word: str, translation: str, source_language: str, target_language: str
-) -> list[str]:
+        self, word: str, translation: str, source_language: str, target_language: str
+    ) -> list[str]:
         """
         Получает примеры использования пары "слово-перевод" в контексте предложений.
         [ФИНАЛЬНАЯ ДИАГНОСТИЧЕСКАЯ ВЕРСИЯ]
         """
         logger.info("--- [DEBUG EXAMPLES] ВХОД В GET_EXAMPLES ---")
-        logger.info(f"[DEBUG EXAMPLES] Ищем примеры для пары: word='{word}', translation='{translation}'")
-        logger.info(f"[DEBUG EXAMPLES] Языки: from='{source_language}', to='{target_language}'")
+        logger.info(
+            f"[DEBUG EXAMPLES] Ищем примеры для пары: word='{word}', translation='{translation}'"
+        )
+        logger.info(
+            f"[DEBUG EXAMPLES] Языки: from='{source_language}', to='{target_language}'"
+        )
 
         if not self.api_key or not self.region:
-            raise TranslationServiceError("Microsoft Translator API ключ или регион не настроены")
+            raise TranslationServiceError(
+                "Microsoft Translator API ключ или регион не настроены"
+            )
 
         examples_path = "/dictionary/examples"
         url = self.base_url.replace("/translate", examples_path)
@@ -386,17 +392,23 @@ class MicrosoftTranslator(BaseTranslator):
         params = {"api-version": "3.0", "from": source_language, "to": target_language}
         body = [{"text": word, "translation": translation}]
 
-        logger.info(f"[DEBUG EXAMPLES] Отправляем запрос на URL: {url} с параметрами: {params}")
+        logger.info(
+            f"[DEBUG EXAMPLES] Отправляем запрос на URL: {url} с параметрами: {params}"
+        )
         logger.info(f"[DEBUG EXAMPLES] Тело запроса: {body}")
 
         try:
-            response_data = self._make_request(url, data=body, headers=headers, params=params)
-            
+            response_data = self._make_request(
+                url, data=body, headers=headers, params=params
+            )
+
             # САМАЯ ВАЖНАЯ СТРОКА ДЛЯ ДИАГНОСТИКИ
             logger.info(f"[DEBUG EXAMPLES] СЫРОЙ ОТВЕТ ОТ API: {response_data}")
 
             if not response_data or not response_data[0].get("examples"):
-                logger.warning("[DEBUG EXAMPLES] Ответ пуст или не содержит ключ 'examples'. Возвращаем пустой список [].")
+                logger.warning(
+                    "[DEBUG EXAMPLES] Ответ пуст или не содержит ключ 'examples'. Возвращаем пустой список []."
+                )
                 return []
 
             formatted_examples = []
@@ -404,10 +416,17 @@ class MicrosoftTranslator(BaseTranslator):
                 source_sentence = f"{example['sourcePrefix']}{example['sourceTerm']}{example['sourceSuffix']}"
                 target_sentence = f"{example['targetPrefix']}{example['targetTerm']}{example['targetSuffix']}"
                 formatted_examples.append(f"{source_sentence} -> {target_sentence}")
-            
-            logger.info(f"[DEBUG EXAMPLES] Успешно отформатировано {len(formatted_examples)} примеров. Возвращаем результат.")
+
+            logger.info(
+                f"[DEBUG EXAMPLES] Успешно отформатировано {len(formatted_examples)} примеров. Возвращаем результат."
+            )
             return formatted_examples
-            
+
         except Exception as e:
-            logger.error(f"[DEBUG EXAMPLES] Ошибка при выполнении _make_request: {e}", exc_info=True)
-            raise TranslationServiceError(f"Ошибка получения примеров Microsoft: {str(e)}")
+            logger.error(
+                f"[DEBUG EXAMPLES] Ошибка при выполнении _make_request: {e}",
+                exc_info=True,
+            )
+            raise TranslationServiceError(
+                f"Ошибка получения примеров Microsoft: {str(e)}"
+            )

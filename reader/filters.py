@@ -12,7 +12,7 @@ class FlashCardFilter(filters.FilterSet):
 
     class Meta:
         model = FlashCard
-        fields = ['is_due', 'is_learning']
+        fields = ["is_due", "is_learning"]
 
     def filter_is_due(self, queryset, name, value):
         # Этот метод вызывается, когда в запросе есть /?is_due=true
