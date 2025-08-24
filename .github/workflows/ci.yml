@@ -51,9 +51,9 @@ jobs:
       - name: Format code with Black
         run: black --check .
 
-      #- name: Run lint
-        #run: |
-          #flake8 .
+      - name: Run lint
+        run: |
+          flake8 .
 
       #- name: Run tests
        # run: |
