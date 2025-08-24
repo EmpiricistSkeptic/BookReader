@@ -1,8 +1,10 @@
+import textwrap
+from typing import Dict, List
+
 import openai
 from django.conf import settings
-from ..models import UserProfile, Message
-from typing import Dict, List
-import textwrap
+
+from ..models import Message, UserProfile
 
 
 class AITeacherService:

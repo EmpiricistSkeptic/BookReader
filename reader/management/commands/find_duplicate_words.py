@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db.models import Count
+
 from reader.models import DictionaryEntry  # Убедитесь, что путь к модели верный
 
 

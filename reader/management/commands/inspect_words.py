@@ -1,5 +1,7 @@
 import unicodedata
+
 from django.core.management.base import BaseCommand
+
 from reader.models import DictionaryEntry
 
 

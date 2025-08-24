@@ -1,15 +1,17 @@
-from abc import ABC, abstractmethod
-import requests
-import time
 import json
-import uuid
-from django.conf import settings
-from .exceptions import TranslationServiceError
 import logging
+import time
+import uuid
+from abc import ABC, abstractmethod
+
+import requests
+from django.conf import settings
+
 from .constants import (
-    CHATGPT_TRANSLATION_PROMPT_TEMPLATE,
     CHATGPT_EXAMPLES_PROMPT_TEMPLATE,
+    CHATGPT_TRANSLATION_PROMPT_TEMPLATE,
 )
+from .exceptions import TranslationServiceError
 
 logger = logging.getLogger(__name__)
 

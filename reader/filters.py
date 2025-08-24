@@ -1,6 +1,7 @@
-from django_filters import rest_framework as filters
-from .models import FlashCard
 from django.utils import timezone
+from django_filters import rest_framework as filters
+
+from .models import FlashCard
 
 
 class FlashCardFilter(filters.FilterSet):

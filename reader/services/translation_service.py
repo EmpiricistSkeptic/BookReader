@@ -1,16 +1,18 @@
+import hashlib
+import logging
+import time
+
 from django.core.cache import cache
-from django.utils import timezone
 from django.db import transaction
+from django.utils import timezone
+
+from ..exceptions import TranslationServiceError
 from ..models import Translation
 from ..translator_backends import (
-    DeepLTranslator,
     ChatGPTTranslator,
+    DeepLTranslator,
     MicrosoftTranslator,
 )
-from ..exceptions import TranslationServiceError
-import hashlib
-import time
-import logging
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,10 @@
 import logging
-from google.auth.transport import requests
-from google.oauth2 import id_token
+
 from django.conf import settings
 from django.contrib.auth.models import User
+from google.auth.transport import requests
+from google.oauth2 import id_token
+
 from ..models import UserProfile
 
 logger = logging.getLogger(__name__)

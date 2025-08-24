@@ -1,82 +1,79 @@
-import xml.etree.ElementTree as ET
-import zipfile
 import io
+import logging
 import re
 import tempfile
 import traceback
-from langdetect import detect, LangDetectException
-from bs4 import BeautifulSoup
-import ebooklib
-from ebooklib import epub, ITEM_COVER
-from django.utils import timezone
+import xml.etree.ElementTree as ET
+import zipfile
 
-from rest_framework import viewsets, permissions, status, generics, serializers
+import ebooklib
+from bs4 import BeautifulSoup
+from django.contrib.auth import authenticate
+from django.core.cache import cache
+from django.core.files.base import ContentFile
+from django.db import transaction
+from django.db.models import Case, F, When
+from django.db.models.functions import Lower
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+from django_filters.rest_framework import DjangoFilterBackend
+from ebooklib import ITEM_COVER, epub
+from langdetect import LangDetectException, detect
+from rest_framework import generics, permissions, serializers, status, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.parsers import MultiPartParser
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
-from django.core.cache import cache
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate
-from django.core.files.base import ContentFile
-from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
 
-
-from rest_framework.parsers import MultiPartParser
-from django.db import transaction
-from django.db.models import Case, When, F
-from django.db.models.functions import Lower
-import logging
-
-from .models import (
-    Book,
-    FlashCard,
-    UserProfile,
-    DictionaryEntry,
-    Chapter,
-    Conversation,
-    Message,
-    UserBookProgress,
-    Translation,
-    DictionaryCategory,
-)
-from .serializers import (
-    BookCreateUpdateSerializer,
-    FlashCardSerializer,
-    UserProfileSerializer,
-    DictionaryEntrySerializer,
-    GoogleAuthSerializer,
-    UserSerializer,
-    ChapterDetailSerializer,
-    ChapterListSerializer,
-    BookDetailSerializer,
-    BookListSerializer,
-    BookUploadSerializer,
-    ConversationSerializer,
-    ConversationListSerializer,
-    MessageSerializer,
-    TranslationRequestSerializer,
-    TranslationResponseSerializer,
-    TranslationSerializer,
-    RegisterSerializer,
-    LoginSerializer,
-    UserBookProgressSerializer,
-    SuggestionRequestSerializer,
-    SuggestionResponseSerializer,
-    DictionaryTranslationResponseSerializer,
-    DictionaryCategorySerializer,
-)
-from reader.utils.google_auth import GoogleAuthService
-
+from reader.exceptions import TranslationServiceError
 from reader.services.ai_service import AITeacherService
 from reader.services.translation_service import TranslationService
 from reader.throttles import TranslationThrottle
-from reader.exceptions import TranslationServiceError
+from reader.utils.google_auth import GoogleAuthService
 
 from .filters import FlashCardFilter
+from .models import (
+    Book,
+    Chapter,
+    Conversation,
+    DictionaryCategory,
+    DictionaryEntry,
+    FlashCard,
+    Message,
+    Translation,
+    UserBookProgress,
+    UserProfile,
+)
+from .serializers import (
+    BookCreateUpdateSerializer,
+    BookDetailSerializer,
+    BookListSerializer,
+    BookUploadSerializer,
+    ChapterDetailSerializer,
+    ChapterListSerializer,
+    ConversationListSerializer,
+    ConversationSerializer,
+    DictionaryCategorySerializer,
+    DictionaryEntrySerializer,
+    DictionaryTranslationResponseSerializer,
+    FlashCardSerializer,
+    GoogleAuthSerializer,
+    LoginSerializer,
+    MessageSerializer,
+    RegisterSerializer,
+    SuggestionRequestSerializer,
+    SuggestionResponseSerializer,
+    TranslationRequestSerializer,
+    TranslationResponseSerializer,
+    TranslationSerializer,
+    UserBookProgressSerializer,
+    UserProfileSerializer,
+    UserSerializer,
+)
 
 logger = logging.getLogger(__name__)
 

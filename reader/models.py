@@ -1,16 +1,18 @@
-from django.db import models
+from datetime import timedelta
+
 from django.contrib.auth.models import User
 from django.core.validators import (
+    MaxValueValidator,
     MinLengthValidator,
     MinValueValidator,
-    MaxValueValidator,
 )
-from django.utils.translation import gettext_lazy as _
-from django.utils import timezone
-from datetime import timedelta
+from django.db import models
 from django.db.models import Count, Q
-from .constants import SUPPORTED_LANGUAGES
+from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
+
+from .constants import SUPPORTED_LANGUAGES
 
 
 class Book(models.Model):

@@ -1,9 +1,10 @@
 import csv
+
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django.utils.text import slugify
 
-from reader.models import DictionaryEntry, DictionaryCategory
+from reader.models import DictionaryCategory, DictionaryEntry
 
 
 class Command(BaseCommand):

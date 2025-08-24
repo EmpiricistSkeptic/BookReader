@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.db.models import Count
 from django.db.models.functions import Lower, Trim
+
 from reader.models import DictionaryEntry
 
 

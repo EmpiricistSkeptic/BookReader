@@ -1,27 +1,28 @@
-from rest_framework import serializers
-from .models import (
-    Book,
-    FlashCard,
-    UserProfile,
-    DictionaryEntry,
-    Chapter,
-    Message,
-    Conversation,
-    Translation,
-    UserBookProgress,
-    DictionaryCategory,
-)
-from .constants import (
-    SUPPORTED_LANGUAGES,
-    TRANSLATION_SERVICES,
-    LANGUAGE_NAMES,
-    SERVICE_NAMES,
-)
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from .constants import (
+    LANGUAGE_NAMES,
+    SERVICE_NAMES,
+    SUPPORTED_LANGUAGES,
+    TRANSLATION_SERVICES,
+)
+from .models import (
+    Book,
+    Chapter,
+    Conversation,
+    DictionaryCategory,
+    DictionaryEntry,
+    FlashCard,
+    Message,
+    Translation,
+    UserBookProgress,
+    UserProfile,
+)
 
 
 class SuggestionRequestSerializer(serializers.Serializer):
