@@ -98,7 +98,7 @@ class UserProfile(models.Model):
         max_length=10, choices=LEVEL_CHOICES, help_text="CEFR level, e.g. A1, B2"
     )
     google_id = models.CharField(max_length=100, unique=True, null=True, blank=True)
-    avatar_url = models.ImageField(null=True, blank=True)
+    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
     is_google_user = models.BooleanField(default=False)
     reading_font_size = models.IntegerField(
         default=16, validators=[MinValueValidator(12), MaxValueValidator(28)]
@@ -112,10 +112,18 @@ class UserProfile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s profile"
 
+class ConversationMode(models.TextChoices):
+    DEFAULT = "default", "General Tutor"
+    GRAMMAR = "grammar", "Grammar Lab"
+    ROLEPLAY = "roleplay", "Role Play"
+    CONVERSATION = "conversation", "Conversation Club"
+    WRITING = "writing", "Writing Coach"
+    VOCABULARY = "vocabulary", "Vocabulary Builder"
 
 class Conversation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="conversations")
     title = models.CharField(max_length=200, blank=True)
+    mode = models.CharField(max_length=30, choices=ConversationMode.choices, default=ConversationMode.DEFAULT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -404,3 +412,12 @@ class Translation(models.Model):
         if self.confidence is not None:
             return round(self.confidence * 100, 1)
         return None
+
+
+
+
+
+
+
+
+

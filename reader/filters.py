@@ -20,3 +20,5 @@ class FlashCardFilter(filters.FilterSet):
         if value:
             return queryset.filter(next_review__lte=timezone.now())
         return queryset
+
+

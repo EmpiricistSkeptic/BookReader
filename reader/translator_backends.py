@@ -10,6 +10,9 @@ from django.conf import settings
 from .constants import (
     CHATGPT_EXAMPLES_PROMPT_TEMPLATE,
     CHATGPT_TRANSLATION_PROMPT_TEMPLATE,
+    DEEPSEEK_TRANSLATION_PROMPT_TEMPLATE,
+    DEEPSEEK_EXAMPLES_PROMPT_TEMPLATE,
+    DEEPSEEK_ALTERNATIVES_PROMPT_TEMPLATE
 )
 from .exceptions import TranslationServiceError
 
@@ -79,7 +82,6 @@ class DeepLTranslator(BaseTranslator):
         data = {
             "text": [text],
             "target_lang": target_language.upper(),
-            "auth_key": self.api_key,
             "preserve_formatting": True,
             "formality": "default",
         }
@@ -90,9 +92,15 @@ class DeepLTranslator(BaseTranslator):
         if context:
             data["context"] = context
 
+        headers = {
+            "Authorization": f"DeepL-Auth-Key {self.api_key}",
+            "User-Agent": "BookReaderApp/1.0",
+            "Content-Type": "application/json",
+        }
+
         start_time = time.time()
         try:
-            response_data = self._make_request(self.base_url, data)
+            response_data = self._make_request(self.base_url, data, headers=headers)
 
             if not response_data.get("translations"):
                 raise TranslationServiceError("Пустой ответ от DeepL")
@@ -117,7 +125,7 @@ class DeepLTranslator(BaseTranslator):
             raise TranslationServiceError(f"Ошибка DeepL: {str(e)}")
 
     def get_alternative_translations(
-        self, text: str, target_language: str, source_language: str
+        self, original_text: str, translated_text: str, target_language: str, source_language: str
     ) -> list[dict]:
         logger.info(
             "DeepLTranslator не поддерживает получение альтернативных переводов."
@@ -129,6 +137,199 @@ class DeepLTranslator(BaseTranslator):
     ) -> list[str]:
         logger.info("DeepLTranslator не поддерживает генерацию примеров.")
         return []
+
+
+class DeepSeekTranslator(BaseTranslator):
+    def __init__(self):
+        super().__init__()
+        self.api_key = getattr(settings, "DEEPSEEK_API_KEY", None)
+        self.model = "deepseek-v4-flash"
+        self.base_url = getattr(
+            settings,
+            "DEEPSEEK_BASE_URL",
+            "https://api.deepseek.com/chat/completions"
+        )
+
+        if not self.api_key:
+            logger.warning("DeepSeek API key not configured")
+
+    def _parse_alternatives(self, raw_response: str) -> list[dict]:
+                if not raw_response:
+                    return []
+    
+                content = raw_response.strip()
+                if content.startswith("```"):
+                    content = content.replace("```json", "").replace("```", "").strip()
+                try:
+                    data = json.loads(content)
+                except json.JSONDecodeError:
+                    logger.warning("DeepSeek returned invalid JSON: %s", raw_response)
+                    return []
+    
+                if not isinstance(data, list):
+                    logger.warning("DeepSeek returned non-list JSON: %r", data)
+                    return []
+    
+                result = []
+    
+                for item in data:
+                    if not isinstance(item, dict):
+                        continue
+    
+                    text = item.get("text")
+                    if not isinstance(text, str):
+                        continue
+    
+                    text = text.strip()
+                    if not text:
+                        continue
+    
+                    result.append({"text": text})
+                return result 
+
+    def translate(self, text, target_language, source_language="auto", context=""):
+        if not self.api_key:
+            raise TranslationServiceError("DeepSeek API ключ не найден")
+
+        system_prompt = DEEPSEEK_TRANSLATION_PROMPT_TEMPLATE.format(
+            source_language=(
+                source_language.upper() if source_language != "auto" else "any language"
+            ),
+            target_language=target_language.upper(),
+        )
+        
+        user_content = f"{text}\n\n{context}" if context else text
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_content},
+        ]
+
+        data = {
+            "model": self.model,
+            "messages": messages,
+            "temperature": 0.3,
+            "max_tokens": 4096,
+        }
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+
+        start_time = time.time()
+
+        try:
+            response_data = self._make_request(self.base_url, data, headers=headers)
+            elapsed_ms = round((time.time() - start_time) * 1000, 2)
+            
+            translated_content = response_data["choices"][0]["message"]["content"]
+            
+            return {
+                "success": True,
+                "translated_text": translated_content.strip(),
+                "detected_language": (
+                    source_language if source_language != "auto" else "unknown"
+                ),
+                "service": "deepseek",
+                "confidence": 0.9,
+                "processing_time_ms": elapsed_ms,
+            }
+        except Exception as e:
+            logger.error(f"DeepSeek translation failed: {e}")
+            raise TranslationServiceError(f"Ошибка DeepSeek: {str(e)}")
+
+    def get_alternative_translations(
+        self, 
+        original_text: str,
+        translated_text: str,
+        target_language: str, 
+        source_language: str
+    ) -> list[dict]:
+        if not self.api_key:
+            raise TranslationServiceError("DeepSeek API ключ не найден")
+
+
+        system_prompt = DEEPSEEK_ALTERNATIVES_PROMPT_TEMPLATE
+        user_prompt = f"""
+        Original text: {original_text}
+        Selected translation: {translated_text}
+        Source language: {source_language.upper() if source_language != "auto" else "Any language"}
+        Target language: {target_language.upper()}
+        """.strip()
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+
+        data = {
+            "model": self.model,
+            "messages": messages,
+            "temperature": 0.6,
+            "max_tokens": 400,
+        }
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+        try:
+            response = self._make_request(self.base_url, data, headers=headers)
+            raw_response_data = response["choices"][0]["message"]["content"]
+
+            return self._parse_alternatives(raw_response_data)
+        except Exception as e:
+            logger.error(f"DeepSeek creating alternatives failed: {e}")
+            return []
+                
+                            
+
+    def get_examples(
+        self, word: str, translation: str, source_language: str, target_language: str
+    ) -> list[str]:
+        if not self.api_key:
+            return []
+
+        system_prompt = DEEPSEEK_EXAMPLES_PROMPT_TEMPLATE.format(
+            word=word, translation=translation
+        )
+        user_content = f"{word}\n\n{translation}"
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_content},
+        ]
+
+        data = {
+            "model": self.model,
+            "messages": messages,
+            "temperature": 0.3,
+            "max_tokens": 2048,
+        }
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+
+        try:
+            response_data = self._make_request(self.base_url, data, headers=headers)
+            raw_response_text = response_data["choices"][0]["message"]["content"]
+            
+            try:
+                examples = json.loads(raw_response_text)
+                if not isinstance(examples, list):
+                    return []
+                return examples
+            except json.JSONDecodeError:
+                logger.error(
+                    f"DeepSeek вернул невалидный JSON для примеров: {raw_response_text}"
+                )
+                return []
+        except Exception as e:
+            logger.error(f"DeepSeek creating examples failed: {e}")
+            return []
 
 
 class ChatGPTTranslator(BaseTranslator):

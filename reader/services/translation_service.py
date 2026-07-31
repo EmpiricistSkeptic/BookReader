@@ -12,9 +12,10 @@ from ..translator_backends import (
     ChatGPTTranslator,
     DeepLTranslator,
     MicrosoftTranslator,
+    DeepSeekTranslator,
 )
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("translation")
 
 
 class TranslationService:
@@ -24,6 +25,7 @@ class TranslationService:
         "deepl": DeepLTranslator,
         "chatgpt": ChatGPTTranslator,
         "microsoft": MicrosoftTranslator,
+        "deepseek": DeepSeekTranslator,
     }
 
     def __init__(self, user=None):
@@ -94,23 +96,28 @@ class TranslationService:
             )
 
             if is_single_word and detected_language and detected_language != "unknown":
-                # Безопасно проверяем, поддерживает ли переводчик этот метод
-                if hasattr(translator, "get_alternative_translations"):
-                    try:
-                        # Используем уже определенный язык для точности
-                        alts_from_provider = translator.get_alternative_translations(
-                            text, target_language, detected_language
-                        )
-                        # Форматируем в простой список строк для фронтенда
-                        alternatives = [
-                            alt["text"] for alt in alts_from_provider if alt.get("text")
-                        ]
-                    except Exception as e:
-                        logger.warning(
-                            f"Не удалось получить альтернативные переводы для '{text}': {e}"
-                        )
-                        # Не прерываем основной запрос, просто логируем и продолжаем
-
+                
+                try:
+                    # Используем уже определенный язык для точности
+                    alts_from_provider = translator.get_alternative_translations(
+                        original_text=text,
+                        translated_text=translation_result["translated_text"],
+                        source_language=detected_language,
+                        target_language=target_language,
+                    )
+                    alternatives = [
+                        alt["text"].strip() for alt in alts_from_provider
+                        if isinstance(alt, dict)
+                        and isinstance(alt.get("text"), str)
+                        and alt["text"].strip()
+                    ]                 # Форматируем в простой список строк для фронтенда
+                                        
+                except Exception as e:
+                    logger.warning(
+                        f"Не удалось получить альтернативные переводы для '{text}': {e}"
+                    )
+                # Не прерываем основной запрос, просто логируем и продолжаем
+                
             # --- НОВЫЙ ШАГ 3: Сохраняем все вместе ---
             with transaction.atomic():
                 translation_obj = self._save_translation(
@@ -238,8 +245,6 @@ class TranslationService:
         cache_key = self._genarate_suggestions_cache_key(word)
         cache.set(cache_key, suggestions, timeout=60 * 60 * 24)
 
-    # В файле services/translation_service.py
-
     def get_suggestions_for_flashcard(self, word: str, target_language: str) -> dict:
         """
         Комплексный метод для создания предложений для флеш-карточек.
@@ -361,3 +366,9 @@ class TranslationService:
             raise TranslationServiceError(
                 f"Внутренняя ошибка при генерации предложений: {str(e)}"
             )
+
+        
+        
+
+
+

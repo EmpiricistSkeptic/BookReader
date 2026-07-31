@@ -1,4 +1,5 @@
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.pagination import CursorPagination
 from rest_framework.response import Response
 
 
@@ -19,3 +20,15 @@ class TranslationPagination(PageNumberPagination):
                 "has_previous": self.page.has_previous(),
             }
         )
+    
+class DictionaryPagination(CursorPagination):
+    page_size = 20
+    ordering = ("word_lower", "id")
+    cursor_query_param = "cursor"
+
+
+class MessagesPagination(CursorPagination):
+    page_size = 20
+    ordering = ("timestamp", "id")
+    cursor_query_param = "cursor"
+

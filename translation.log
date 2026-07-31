@@ -1,0 +1,2405 @@
+{"ts":"2026-07-25 13:17:48,569","level":"ERROR","logger":"reader","request_id":"42c2c22ff415","user_id":"-","msg":"DRF error: view=APIRootView path=/api/ method=GET exc=NotAuthenticated()"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 339, in check_permissions
+    self.permission_denied(
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 180, in permission_denied
+    raise exceptions.NotAuthenticated()
+rest_framework.exceptions.NotAuthenticated: Authentication credentials were not provided.
+{"ts":"2026-07-25 13:17:48,943","level":"ERROR","logger":"reader","request_id":"ef92e6d00723","user_id":"-","msg":"DRF error: view=APIRootView path=/api/ method=GET exc=NotAuthenticated()"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 339, in check_permissions
+    self.permission_denied(
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 180, in permission_denied
+    raise exceptions.NotAuthenticated()
+rest_framework.exceptions.NotAuthenticated: Authentication credentials were not provided.
+{"ts":"2026-07-25 14:09:19,002","level":"INFO","logger":"reader.views","request_id":"0b08ec95fdfd","user_id":"-","msg":"Определение языка для книги 'Dorothy and the Wizard in Oz...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-07-25 14:18:05,734","level":"INFO","logger":"reader.views","request_id":"604d3ed8a95e","user_id":"-","msg":"Определение языка для книги 'Le Rouge et le Noir...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-07-25 14:21:41,804","level":"ERROR","logger":"reader","request_id":"10d7633fe2f2","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-25 14:23:44,404","level":"ERROR","logger":"reader","request_id":"1871429d58dd","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-25 14:36:53,853","level":"ERROR","logger":"reader","request_id":"8bcfb99df9e2","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-25 16:38:47,405","level":"ERROR","logger":"reader","request_id":"2d0074e72608","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-25 16:59:58,912","level":"ERROR","logger":"reader","request_id":"d9fae906d1ca","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=PATCH exc=UnsupportedMediaType('application/json')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 66, in update
+    serializer = self.get_serializer(instance, data=request.data, partial=partial)
+                                                    ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+                              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "application/json" in request.
+{"ts":"2026-07-25 17:09:28,762","level":"INFO","logger":"translation","request_id":"531fe58856aa","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'afraid'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'microsoft'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:09:29,289","level":"ERROR","logger":"reader.translator_backends","request_id":"531fe58856aa","user_id":"-","msg":"Request failed: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:09:29,293","level":"ERROR","logger":"reader.translator_backends","request_id":"531fe58856aa","user_id":"-","msg":"Microsoft translation failed: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:09:29,299","level":"ERROR","logger":"translation","request_id":"531fe58856aa","user_id":"-","msg":"Translation failed: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:09:29,303","level":"ERROR","logger":"reader.views","request_id":"531fe58856aa","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:09:56,958","level":"INFO","logger":"translation","request_id":"59dc75f2655b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Wizard'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'microsoft'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:09:57,171","level":"ERROR","logger":"reader.translator_backends","request_id":"59dc75f2655b","user_id":"-","msg":"Request failed: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:09:57,176","level":"ERROR","logger":"reader.translator_backends","request_id":"59dc75f2655b","user_id":"-","msg":"Microsoft translation failed: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:09:57,182","level":"ERROR","logger":"translation","request_id":"59dc75f2655b","user_id":"-","msg":"Translation failed: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:09:57,187","level":"ERROR","logger":"reader.views","request_id":"59dc75f2655b","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=en"}
+{"ts":"2026-07-25 17:10:04,003","level":"INFO","logger":"translation","request_id":"c0101d648053","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'whiskers'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:10:04,334","level":"ERROR","logger":"reader.translator_backends","request_id":"c0101d648053","user_id":"-","msg":"Request failed: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:10:04,341","level":"ERROR","logger":"reader.translator_backends","request_id":"c0101d648053","user_id":"-","msg":"DeepL translation failed: Ошибка запроса к сервису: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:10:04,347","level":"ERROR","logger":"translation","request_id":"c0101d648053","user_id":"-","msg":"Translation failed: Ошибка DeepL: Ошибка запроса к сервису: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:10:04,353","level":"ERROR","logger":"reader.views","request_id":"c0101d648053","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка DeepL: Ошибка запроса к сервису: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:44:00,201","level":"ERROR","logger":"reader","request_id":"690d1937e9e7","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-25 17:44:36,324","level":"INFO","logger":"translation","request_id":"bb1e9dab0be4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'around'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:44:36,680","level":"ERROR","logger":"reader.translator_backends","request_id":"bb1e9dab0be4","user_id":"-","msg":"Request failed: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:44:36,684","level":"ERROR","logger":"reader.translator_backends","request_id":"bb1e9dab0be4","user_id":"-","msg":"DeepL translation failed: Ошибка запроса к сервису: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:44:36,690","level":"ERROR","logger":"translation","request_id":"bb1e9dab0be4","user_id":"-","msg":"Translation failed: Ошибка DeepL: Ошибка запроса к сервису: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:44:36,696","level":"ERROR","logger":"reader.views","request_id":"bb1e9dab0be4","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка DeepL: Ошибка запроса к сервису: 403 Client Error: Forbidden for url: https://api-free.deepl.com/v2/translate"}
+{"ts":"2026-07-25 17:49:54,188","level":"INFO","logger":"translation","request_id":"de9c8bcc5d6a","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'looked'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:49:54,510","level":"ERROR","logger":"reader.translator_backends","request_id":"de9c8bcc5d6a","user_id":"-","msg":"Request failed: 404 Client Error: Not Found for url: https://api-free.deepl.com/"}
+{"ts":"2026-07-25 17:49:54,856","level":"ERROR","logger":"reader.translator_backends","request_id":"de9c8bcc5d6a","user_id":"-","msg":"DeepL translation failed: Ошибка запроса к сервису: 404 Client Error: Not Found for url: https://api-free.deepl.com/"}
+{"ts":"2026-07-25 17:49:54,862","level":"ERROR","logger":"translation","request_id":"de9c8bcc5d6a","user_id":"-","msg":"Translation failed: Ошибка DeepL: Ошибка запроса к сервису: 404 Client Error: Not Found for url: https://api-free.deepl.com/"}
+{"ts":"2026-07-25 17:49:54,866","level":"ERROR","logger":"reader.views","request_id":"de9c8bcc5d6a","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка DeepL: Ошибка запроса к сервису: 404 Client Error: Not Found for url: https://api-free.deepl.com/"}
+{"ts":"2026-07-25 17:55:53,654","level":"INFO","logger":"translation","request_id":"f6caefca8be1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ordered'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:55:54,073","level":"INFO","logger":"translation","request_id":"f6caefca8be1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ordered'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-25 17:55:54,073","level":"INFO","logger":"reader.translator_backends","request_id":"f6caefca8be1","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 17:56:06,044","level":"INFO","logger":"translation","request_id":"3f0109da56e3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'around'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:56:06,405","level":"INFO","logger":"translation","request_id":"3f0109da56e3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'around'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-25 17:56:06,405","level":"INFO","logger":"reader.translator_backends","request_id":"3f0109da56e3","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 17:56:37,314","level":"INFO","logger":"translation","request_id":"bc0131b9e498","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'maisons'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'microsoft'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:56:37,672","level":"ERROR","logger":"reader.translator_backends","request_id":"bc0131b9e498","user_id":"-","msg":"Request failed: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:37,984","level":"ERROR","logger":"reader.translator_backends","request_id":"bc0131b9e498","user_id":"-","msg":"Microsoft translation failed: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:37,988","level":"ERROR","logger":"translation","request_id":"bc0131b9e498","user_id":"-","msg":"Translation failed: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:37,993","level":"ERROR","logger":"reader.views","request_id":"bc0131b9e498","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:43,699","level":"INFO","logger":"translation","request_id":"f0ff51ac64fd","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'marquent'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'microsoft'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:56:43,913","level":"ERROR","logger":"reader.translator_backends","request_id":"f0ff51ac64fd","user_id":"-","msg":"Request failed: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:43,918","level":"ERROR","logger":"reader.translator_backends","request_id":"f0ff51ac64fd","user_id":"-","msg":"Microsoft translation failed: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:43,924","level":"ERROR","logger":"translation","request_id":"f0ff51ac64fd","user_id":"-","msg":"Translation failed: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:43,928","level":"ERROR","logger":"reader.views","request_id":"f0ff51ac64fd","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка Microsoft Translator: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=ru&from=fr"}
+{"ts":"2026-07-25 17:56:49,002","level":"INFO","logger":"translation","request_id":"347f0f0fdd25","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'thousands'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:56:49,733","level":"INFO","logger":"translation","request_id":"347f0f0fdd25","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'thousands'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 17:56:49,733","level":"INFO","logger":"reader.translator_backends","request_id":"347f0f0fdd25","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 17:56:52,184","level":"INFO","logger":"translation","request_id":"5196bf9d4ecd","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'petite'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:56:52,605","level":"INFO","logger":"translation","request_id":"5196bf9d4ecd","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'petite'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 17:56:52,605","level":"INFO","logger":"reader.translator_backends","request_id":"5196bf9d4ecd","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 17:57:49,523","level":"INFO","logger":"translation","request_id":"5181321506a1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'blanches'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:57:49,898","level":"INFO","logger":"translation","request_id":"5181321506a1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'blanches'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 17:57:49,898","level":"INFO","logger":"reader.translator_backends","request_id":"5181321506a1","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 17:58:00,372","level":"INFO","logger":"translation","request_id":"b81bccea8cf0","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'cimes'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:58:00,716","level":"INFO","logger":"translation","request_id":"b81bccea8cf0","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'cimes'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 17:58:00,716","level":"INFO","logger":"reader.translator_backends","request_id":"b81bccea8cf0","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 17:58:07,171","level":"INFO","logger":"translation","request_id":"cf5dee762bf1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Les cimes brisées du Verra se couvrent de neige dès les premiers froids d'octobre.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:58:07,662","level":"INFO","logger":"translation","request_id":"cf5dee762bf1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Les cimes brisées du Verra se couvrent de neige dès les premiers froids d'octobre.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 17:58:41,459","level":"INFO","logger":"translation","request_id":"395206dbad68","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Verrières'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:58:42,010","level":"INFO","logger":"translation","request_id":"395206dbad68","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Verrières'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 17:58:42,010","level":"INFO","logger":"reader.translator_backends","request_id":"395206dbad68","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 17:59:05,668","level":"INFO","logger":"translation","request_id":"4726b0fd8c85","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'étourdi'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 17:59:06,152","level":"INFO","logger":"translation","request_id":"4726b0fd8c85","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'étourdi'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 17:59:06,153","level":"INFO","logger":"reader.translator_backends","request_id":"4726b0fd8c85","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 19:13:56,277","level":"ERROR","logger":"reader","request_id":"7834522fff2f","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-25 19:14:16,328","level":"INFO","logger":"translation","request_id":"1a516b46aa6f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'marteaux'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:14:16,906","level":"ERROR","logger":"reader.translator_backends","request_id":"1a516b46aa6f","user_id":"-","msg":"Request failed: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:14:16,912","level":"ERROR","logger":"reader.translator_backends","request_id":"1a516b46aa6f","user_id":"-","msg":"DeepSeek translation failed: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:14:16,919","level":"ERROR","logger":"translation","request_id":"1a516b46aa6f","user_id":"-","msg":"Translation failed: Ошибка DeepSeek: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:14:16,926","level":"ERROR","logger":"reader.views","request_id":"1a516b46aa6f","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка DeepSeek: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:20:37,772","level":"INFO","logger":"translation","request_id":"d611e7fbeda8","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'pesants'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:20:38,206","level":"ERROR","logger":"reader.translator_backends","request_id":"d611e7fbeda8","user_id":"-","msg":"Request failed: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:20:38,618","level":"ERROR","logger":"reader.translator_backends","request_id":"d611e7fbeda8","user_id":"-","msg":"DeepSeek translation failed: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:20:38,623","level":"ERROR","logger":"translation","request_id":"d611e7fbeda8","user_id":"-","msg":"Translation failed: Ошибка DeepSeek: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:20:38,634","level":"ERROR","logger":"reader.views","request_id":"d611e7fbeda8","user_id":"-","msg":"Unexpected error in translation: Ошибка перевода: Ошибка DeepSeek: Ошибка запроса к сервису: 401 Client Error: Unauthorized for url: https://api.deepseek.com/chat/completions"}
+{"ts":"2026-07-25 19:28:21,816","level":"INFO","logger":"translation","request_id":"d7b413fd792c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'marteaux'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:28:23,258","level":"INFO","logger":"translation","request_id":"d7b413fd792c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'marteaux'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 19:28:23,259","level":"INFO","logger":"reader.translator_backends","request_id":"d7b413fd792c","user_id":"-","msg":"DeepSeekTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 19:28:39,055","level":"INFO","logger":"translation","request_id":"fb9182e1bea6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'torrent'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:28:42,076","level":"INFO","logger":"translation","request_id":"fb9182e1bea6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'torrent'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 19:28:42,076","level":"INFO","logger":"reader.translator_backends","request_id":"fb9182e1bea6","user_id":"-","msg":"DeepSeekTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 19:28:55,666","level":"INFO","logger":"translation","request_id":"e4982ceab2e9","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Chacun de ces marteaux fabrique, chaque jour, je ne sais combien de milliers de clous.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:29:01,193","level":"INFO","logger":"translation","request_id":"e4982ceab2e9","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Chacun de ces marteaux fabrique, chaque jour, je ne sais combien de milliers de clous.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 19:29:12,592","level":"INFO","logger":"translation","request_id":"4f954b7f8c47","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Ce sont de jeunes filles fraîches et jolies qui présentent aux coups de ces marteaux énormes les petits morceaux de fer qui sont rapidement transformés en clous.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:29:14,313","level":"INFO","logger":"translation","request_id":"4f954b7f8c47","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Ce sont de jeunes filles fraîches et jolies qui présentent aux coups de ces marteaux énormes les petits morceaux de fer qui sont rapidement transformés en clous.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 19:29:42,862","level":"INFO","logger":"translation","request_id":"ec33d5a09794","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'le maire.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:29:45,688","level":"INFO","logger":"translation","request_id":"ec33d5a09794","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'le maire.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 19:29:56,963","level":"INFO","logger":"translation","request_id":"0d60930599ec","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Il est chevalier de plusieurs ordres, il a un grand front, un nez aquilin, et au total sa figure ne manque pas d'une certaine régularité: on trouve même, au premier aspect qu'elle réunit à la dignité du maire de village cette sorte d'agrément qui peut encore se rencontrer avec quarante-huit ou cinquante ans.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:29:59,380","level":"INFO","logger":"translation","request_id":"0d60930599ec","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Il est chevalier de plusieurs ordres, il a un grand front, un nez aquilin, et au total sa figure ne manque pas d'une certaine régularité: on trouve même, au premier aspect qu'elle réunit à la dignité du maire de village cette sorte d'agrément qui peut encore se rencontrer avec quarante-huit ou cinquante ans.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-25 19:30:36,798","level":"ERROR","logger":"reader","request_id":"9da0ce0aaf37","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=PATCH exc=UnsupportedMediaType('application/json')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 66, in update
+    serializer = self.get_serializer(instance, data=request.data, partial=partial)
+                                                    ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+                              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "application/json" in request.
+{"ts":"2026-07-25 19:30:51,364","level":"ERROR","logger":"reader","request_id":"241ff069bb79","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=PATCH exc=UnsupportedMediaType('application/json')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 66, in update
+    serializer = self.get_serializer(instance, data=request.data, partial=partial)
+                                                    ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+                              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "application/json" in request.
+{"ts":"2026-07-25 19:30:57,443","level":"ERROR","logger":"reader","request_id":"ed2d971b1b62","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=PATCH exc=UnsupportedMediaType('application/json')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 66, in update
+    serializer = self.get_serializer(instance, data=request.data, partial=partial)
+                                                    ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+                              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "application/json" in request.
+{"ts":"2026-07-25 19:33:57,679","level":"INFO","logger":"translation","request_id":"2a656f063974","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'seldom'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:33:58,056","level":"INFO","logger":"translation","request_id":"2a656f063974","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'seldom'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-25 19:33:58,057","level":"INFO","logger":"reader.translator_backends","request_id":"2a656f063974","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 19:34:56,311","level":"INFO","logger":"translation","request_id":"a3203ff30507","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'quick'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:34:56,714","level":"INFO","logger":"translation","request_id":"a3203ff30507","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'quick'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-25 19:34:56,715","level":"INFO","logger":"reader.translator_backends","request_id":"a3203ff30507","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-25 19:35:02,758","level":"INFO","logger":"translation","request_id":"629447d3b687","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'For they were in the streets of a beautiful emerald-green city, bathed in a grateful green light that was especially pleasing to their eyes, and surrounded by merry faced people in gorgeous green-and-gold costumes of many extraordinary designs.'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-25 19:35:03,399","level":"INFO","logger":"translation","request_id":"629447d3b687","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'For they were in the streets of a beautiful emerald-green city, bathed in a grateful green light that was especially pleasing to their eyes, and surrounded by merry faced people in gorgeous green-and-gold costumes of many extraordinary designs.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-25 20:39:34,628","level":"ERROR","logger":"reader","request_id":"74a806eb1e25","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-25 20:53:06,207","level":"ERROR","logger":"reader","request_id":"c7eed8397625","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 508, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 13:17:16,030","level":"ERROR","logger":"reader","request_id":"27e17d88adc6","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-26 13:17:22,081","level":"ERROR","logger":"reader","request_id":"4576fb4208b9","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 508, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 13:17:42,949","level":"INFO","logger":"translation","request_id":"01e7e53d4640","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'about'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:17:43,315","level":"INFO","logger":"translation","request_id":"01e7e53d4640","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'about'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:17:43,316","level":"INFO","logger":"reader.translator_backends","request_id":"01e7e53d4640","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:17:47,992","level":"INFO","logger":"translation","request_id":"4296bc96abc6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'above'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:17:48,291","level":"INFO","logger":"translation","request_id":"4296bc96abc6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'above'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:17:48,295","level":"INFO","logger":"reader.translator_backends","request_id":"4296bc96abc6","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:18:09,626","level":"INFO","logger":"translation","request_id":"e29dc005e948","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'absolutely'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:18:09,939","level":"INFO","logger":"translation","request_id":"e29dc005e948","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'absolutely'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:18:09,939","level":"INFO","logger":"reader.translator_backends","request_id":"e29dc005e948","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:18:19,176","level":"INFO","logger":"translation","request_id":"082de073896b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'academic'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:18:19,495","level":"INFO","logger":"translation","request_id":"082de073896b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'academic'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:18:19,495","level":"INFO","logger":"reader.translator_backends","request_id":"082de073896b","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:18:36,222","level":"INFO","logger":"translation","request_id":"0c71f36d7105","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'access'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:18:36,530","level":"INFO","logger":"translation","request_id":"0c71f36d7105","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'access'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:18:36,530","level":"INFO","logger":"reader.translator_backends","request_id":"0c71f36d7105","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:18:45,959","level":"INFO","logger":"translation","request_id":"a9bf9bdf8074","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'afford'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:18:46,264","level":"INFO","logger":"translation","request_id":"a9bf9bdf8074","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'afford'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:18:46,265","level":"INFO","logger":"reader.translator_backends","request_id":"a9bf9bdf8074","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:21:02,368","level":"INFO","logger":"translation","request_id":"171b48c8fc06","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'emerald-green'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:21:02,739","level":"INFO","logger":"translation","request_id":"171b48c8fc06","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'emerald-green'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:21:02,739","level":"INFO","logger":"reader.translator_backends","request_id":"171b48c8fc06","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:21:15,402","level":"INFO","logger":"translation","request_id":"d2ae58426c73","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'emerald-green'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:21:17,168","level":"INFO","logger":"translation","request_id":"d2ae58426c73","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'emerald-green'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:21:17,168","level":"INFO","logger":"reader.translator_backends","request_id":"d2ae58426c73","user_id":"-","msg":"DeepSeekTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:21:22,803","level":"INFO","logger":"translation","request_id":"5ebd973941c3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'gorgeous'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:21:25,669","level":"INFO","logger":"translation","request_id":"5ebd973941c3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'gorgeous'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:21:25,670","level":"INFO","logger":"reader.translator_backends","request_id":"5ebd973941c3","user_id":"-","msg":"DeepSeekTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:21:38,052","level":"INFO","logger":"translation","request_id":"a93ed30a7f24","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'cab-horse'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:21:38,400","level":"INFO","logger":"translation","request_id":"a93ed30a7f24","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'cab-horse'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:21:38,400","level":"INFO","logger":"reader.translator_backends","request_id":"a93ed30a7f24","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:26:06,208","level":"ERROR","logger":"reader","request_id":"fb442a1109a5","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 508, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 13:27:02,731","level":"INFO","logger":"translation","request_id":"6435dd746048","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'abroad'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:27:03,072","level":"INFO","logger":"translation","request_id":"6435dd746048","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'abroad'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:27:03,072","level":"INFO","logger":"reader.translator_backends","request_id":"6435dd746048","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:27:08,250","level":"INFO","logger":"translation","request_id":"286ba4420b8e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'absolutely'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:53:24,873","level":"INFO","logger":"translation","request_id":"cbf571ce5f5b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'again'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:53:25,747","level":"INFO","logger":"translation","request_id":"cbf571ce5f5b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'again'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 13:53:25,747","level":"INFO","logger":"reader.translator_backends","request_id":"cbf571ce5f5b","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:55:53,633","level":"INFO","logger":"translation","request_id":"fa52f8b05b85","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'vue'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:55:54,078","level":"INFO","logger":"translation","request_id":"fa52f8b05b85","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'vue'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 13:55:54,079","level":"INFO","logger":"reader.translator_backends","request_id":"fa52f8b05b85","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:56:08,621","level":"INFO","logger":"translation","request_id":"41fdfb1bbc56","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'promenade'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:56:08,946","level":"INFO","logger":"translation","request_id":"41fdfb1bbc56","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'promenade'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 13:56:08,946","level":"INFO","logger":"reader.translator_backends","request_id":"41fdfb1bbc56","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:56:46,629","level":"INFO","logger":"translation","request_id":"0b393f89b0bd","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'sent'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:56:47,305","level":"INFO","logger":"translation","request_id":"0b393f89b0bd","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'sent'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 13:56:47,305","level":"INFO","logger":"reader.translator_backends","request_id":"0b393f89b0bd","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 13:57:00,495","level":"INFO","logger":"translation","request_id":"a714ac439163","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'On sent enfin que le talent de cet homme-là se borne à se faire payer bien exactement ce qu'on lui doit, et à payer lui-même le plus tard possible quand il doit.'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-26 13:57:05,578","level":"INFO","logger":"translation","request_id":"a714ac439163","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'On sent enfin que le talent de cet homme-là se borne à se faire payer bien exactement ce qu'on lui doit, et à payer lui-même le plus tard possible quand il doit.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 13:57:48,641","level":"ERROR","logger":"reader","request_id":"89b11857db67","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=PATCH exc=UnsupportedMediaType('application/json')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 66, in update
+    serializer = self.get_serializer(instance, data=request.data, partial=partial)
+                                                    ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+                              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "application/json" in request.
+{"ts":"2026-07-26 13:58:06,993","level":"ERROR","logger":"reader","request_id":"2d567e2dc16d","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=PATCH exc=UnsupportedMediaType('application/json')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 66, in update
+    serializer = self.get_serializer(instance, data=request.data, partial=partial)
+                                                    ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+                              ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "application/json" in request.
+{"ts":"2026-07-26 13:59:18,712","level":"ERROR","logger":"reader","request_id":"9eb421e6c835","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 508, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 14:02:45,129","level":"ERROR","logger":"reader","request_id":"0e083a70dcfb","user_id":"-","msg":"DRF error: view=DictionaryEntryViewSet path=/api/dictionary/ method=GET exc=Throttled(872.3014845848083)"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 422, in initial
+    self.check_throttles(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 377, in check_throttles
+    self.throttled(request, duration)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 187, in throttled
+    raise exceptions.Throttled(wait)
+rest_framework.exceptions.Throttled: Request was throttled. Expected available in 873 seconds.
+{"ts":"2026-07-26 14:09:20,074","level":"ERROR","logger":"reader","request_id":"de008679e525","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=Throttled(477.35634183883667)"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 422, in initial
+    self.check_throttles(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 377, in check_throttles
+    self.throttled(request, duration)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 187, in throttled
+    raise exceptions.Throttled(wait)
+rest_framework.exceptions.Throttled: Request was throttled. Expected available in 478 seconds.
+{"ts":"2026-07-26 14:09:21,000","level":"ERROR","logger":"reader","request_id":"38018aa11ea7","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/2/chapter_content/ method=GET exc=Throttled(476.42973709106445)"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 422, in initial
+    self.check_throttles(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 377, in check_throttles
+    self.throttled(request, duration)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 187, in throttled
+    raise exceptions.Throttled(wait)
+rest_framework.exceptions.Throttled: Request was throttled. Expected available in 477 seconds.
+{"ts":"2026-07-26 14:09:38,249","level":"ERROR","logger":"reader","request_id":"97ea58af34f9","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/2/update_progress/ method=POST exc=Throttled(459.1804885864258)"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 422, in initial
+    self.check_throttles(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 377, in check_throttles
+    self.throttled(request, duration)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 187, in throttled
+    raise exceptions.Throttled(wait)
+rest_framework.exceptions.Throttled: Request was throttled. Expected available in 460 seconds.
+{"ts":"2026-07-26 14:10:15,232","level":"ERROR","logger":"reader","request_id":"947f909be265","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=Throttled(422.19771361351013)"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 422, in initial
+    self.check_throttles(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 377, in check_throttles
+    self.throttled(request, duration)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 187, in throttled
+    raise exceptions.Throttled(wait)
+rest_framework.exceptions.Throttled: Request was throttled. Expected available in 423 seconds.
+{"ts":"2026-07-26 14:29:06,191","level":"ERROR","logger":"reader","request_id":"d2445c33022f","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-26 14:32:19,745","level":"INFO","logger":"translation","request_id":"cd212d4f79a5","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: '"Gid-dap!" cried the boy, and at the word Jim slowly trotted into the courtyard and drew the buggy along the jewelled driveway to the great entrance of the royal palace.'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 14:32:20,350","level":"INFO","logger":"translation","request_id":"cd212d4f79a5","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: '"Gid-dap!" cried the boy, and at the word Jim slowly trotted into the courtyard and drew the buggy along the jewelled driveway to the great entrance of the royal palace.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 14:33:14,559","level":"ERROR","logger":"reader","request_id":"25e4f7226c13","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 508, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 14:34:40,022","level":"ERROR","logger":"reader","request_id":"d5072a85b658","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 508, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 14:36:40,375","level":"INFO","logger":"translation","request_id":"7649d840dc05","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'admit'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 14:36:40,715","level":"INFO","logger":"translation","request_id":"7649d840dc05","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'admit'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 14:36:40,716","level":"INFO","logger":"reader.translator_backends","request_id":"7649d840dc05","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 14:36:42,573","level":"INFO","logger":"translation","request_id":"78f8bcba5034","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'advanced'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 14:36:42,856","level":"INFO","logger":"translation","request_id":"78f8bcba5034","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'advanced'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 14:36:42,856","level":"INFO","logger":"reader.translator_backends","request_id":"78f8bcba5034","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 15:31:39,553","level":"ERROR","logger":"reader","request_id":"d10e309d4273","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-26 15:32:18,832","level":"ERROR","logger":"reader","request_id":"7fbb67b882bd","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 508, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 16:31:42,405","level":"ERROR","logger":"reader","request_id":"efd0db2167ef","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-26 16:54:43,747","level":"INFO","logger":"translation","request_id":"f84fc5ee6628","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ah'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:54:44,151","level":"INFO","logger":"translation","request_id":"f84fc5ee6628","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ah'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:54:44,151","level":"INFO","logger":"reader.translator_backends","request_id":"f84fc5ee6628","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:54:46,852","level":"INFO","logger":"translation","request_id":"95142f396fad","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'against'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:54:47,140","level":"INFO","logger":"translation","request_id":"95142f396fad","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'against'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:54:47,140","level":"INFO","logger":"reader.translator_backends","request_id":"95142f396fad","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:54:53,796","level":"INFO","logger":"translation","request_id":"a04fd8c97811","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'advertising'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:54:54,106","level":"INFO","logger":"translation","request_id":"a04fd8c97811","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'advertising'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:54:54,106","level":"INFO","logger":"reader.translator_backends","request_id":"a04fd8c97811","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:55:00,376","level":"INFO","logger":"translation","request_id":"12bd7468da00","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'advertisement'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:55:00,681","level":"INFO","logger":"translation","request_id":"12bd7468da00","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'advertisement'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:55:00,681","level":"INFO","logger":"reader.translator_backends","request_id":"12bd7468da00","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:55:24,636","level":"INFO","logger":"translation","request_id":"42b58f1f2846","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'achieve'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:55:24,977","level":"INFO","logger":"translation","request_id":"42b58f1f2846","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'achieve'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:55:24,978","level":"INFO","logger":"reader.translator_backends","request_id":"42b58f1f2846","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:55:30,900","level":"INFO","logger":"translation","request_id":"5c493fb40101","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'act'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:55:31,234","level":"INFO","logger":"translation","request_id":"5c493fb40101","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'act'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:55:31,235","level":"INFO","logger":"reader.translator_backends","request_id":"5c493fb40101","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:57:17,993","level":"INFO","logger":"translation","request_id":"01d4cad5a4c6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ability'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:57:18,326","level":"INFO","logger":"translation","request_id":"01d4cad5a4c6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ability'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:57:18,326","level":"INFO","logger":"reader.translator_backends","request_id":"01d4cad5a4c6","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:57:20,663","level":"INFO","logger":"translation","request_id":"77e26ff84f41","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'able'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:57:20,966","level":"INFO","logger":"translation","request_id":"77e26ff84f41","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'able'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:57:20,966","level":"INFO","logger":"reader.translator_backends","request_id":"77e26ff84f41","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 16:57:22,773","level":"INFO","logger":"translation","request_id":"8633cc2d1f4d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'about'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:57:25,024","level":"INFO","logger":"translation","request_id":"594f36303d76","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'abroad'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:57:48,419","level":"INFO","logger":"translation","request_id":"0abcf7f05278","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'action'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 16:57:48,743","level":"INFO","logger":"translation","request_id":"0abcf7f05278","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'action'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 16:57:48,744","level":"INFO","logger":"reader.translator_backends","request_id":"0abcf7f05278","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 17:32:46,630","level":"ERROR","logger":"reader","request_id":"06ce20189a6e","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-26 17:33:25,736","level":"INFO","logger":"translation","request_id":"d25b7502cf0e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'about'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:33:27,422","level":"INFO","logger":"translation","request_id":"c7adbdaace10","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'above'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:33:32,523","level":"INFO","logger":"translation","request_id":"f6693c4accff","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ability'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:34:01,053","level":"INFO","logger":"translation","request_id":"9513548c6449","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'airport'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:34:01,433","level":"INFO","logger":"translation","request_id":"9513548c6449","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'airport'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 17:34:01,433","level":"INFO","logger":"reader.translator_backends","request_id":"9513548c6449","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 17:34:08,401","level":"INFO","logger":"translation","request_id":"1099a0976dbb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'air'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:34:08,710","level":"INFO","logger":"translation","request_id":"1099a0976dbb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'air'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 17:34:08,711","level":"INFO","logger":"reader.translator_backends","request_id":"1099a0976dbb","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 17:52:06,088","level":"INFO","logger":"translation","request_id":"f95e6d57a4fc","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'advise'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:52:06,466","level":"INFO","logger":"translation","request_id":"f95e6d57a4fc","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'advise'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 17:52:06,466","level":"INFO","logger":"reader.translator_backends","request_id":"f95e6d57a4fc","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 17:52:21,083","level":"INFO","logger":"translation","request_id":"f7de775625f2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'afternoon'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:52:21,384","level":"INFO","logger":"translation","request_id":"f7de775625f2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'afternoon'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 17:52:21,384","level":"INFO","logger":"reader.translator_backends","request_id":"f7de775625f2","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 17:52:54,940","level":"INFO","logger":"translation","request_id":"331351ce7be0","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'analysis'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 17:52:55,273","level":"INFO","logger":"translation","request_id":"331351ce7be0","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'analysis'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-26 17:52:55,273","level":"INFO","logger":"reader.translator_backends","request_id":"331351ce7be0","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 17:57:51,055","level":"ERROR","logger":"reader","request_id":"90d1fa72656a","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/ method=GET exc=AttributeError("'Conversation' object has no attribute 'last_message_created_at'")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/serializers.py", line 510, in get_last_message
+    if not obj.last_message_created_at:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Conversation' object has no attribute 'last_message_created_at'. Did you mean: 'latest_message_created_at'?
+{"ts":"2026-07-26 19:27:20,495","level":"ERROR","logger":"reader","request_id":"3def9654e69d","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-26 19:58:56,802","level":"INFO","logger":"translation","request_id":"8cede43c26e7","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'pesants'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 19:58:57,153","level":"INFO","logger":"translation","request_id":"8cede43c26e7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'pesants'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 19:58:57,153","level":"INFO","logger":"reader.translator_backends","request_id":"8cede43c26e7","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 19:59:35,660","level":"INFO","logger":"translation","request_id":"6d598d8c778b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'voyageur'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 19:59:35,996","level":"INFO","logger":"translation","request_id":"6d598d8c778b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'voyageur'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 19:59:35,996","level":"INFO","logger":"reader.translator_backends","request_id":"6d598d8c778b","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 19:59:39,965","level":"INFO","logger":"translation","request_id":"bf666135a013","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'instants'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 19:59:40,261","level":"INFO","logger":"translation","request_id":"bf666135a013","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'instants'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 19:59:40,261","level":"INFO","logger":"reader.translator_backends","request_id":"bf666135a013","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 19:59:44,383","level":"INFO","logger":"translation","request_id":"f702731428b3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'colline'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 19:59:44,693","level":"INFO","logger":"translation","request_id":"f702731428b3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'colline'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 19:59:44,693","level":"INFO","logger":"reader.translator_backends","request_id":"f702731428b3","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 19:59:49,705","level":"INFO","logger":"translation","request_id":"98f86465c3ab","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'd'agrément'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 19:59:50,016","level":"INFO","logger":"translation","request_id":"98f86465c3ab","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'd'agrément'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 19:59:50,016","level":"INFO","logger":"reader.translator_backends","request_id":"98f86465c3ab","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:27:25,125","level":"ERROR","logger":"reader","request_id":"6694c5f072f9","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/6/send_message/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-26 20:28:13,302","level":"INFO","logger":"translation","request_id":"fa961e68d844","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'assourdit'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:13,703","level":"INFO","logger":"translation","request_id":"fa961e68d844","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'assourdit'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 20:28:13,703","level":"INFO","logger":"reader.translator_backends","request_id":"fa961e68d844","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:28:27,536","level":"INFO","logger":"translation","request_id":"84a77ce0ea13","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'voyageur'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:34,099","level":"INFO","logger":"translation","request_id":"7d1ecabbdc1d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'cent'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:34,407","level":"INFO","logger":"translation","request_id":"7d1ecabbdc1d","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'cent'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 20:28:34,407","level":"INFO","logger":"reader.translator_backends","request_id":"7d1ecabbdc1d","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:28:38,954","level":"INFO","logger":"translation","request_id":"593d45f5bc2e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'grande'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:39,250","level":"INFO","logger":"translation","request_id":"593d45f5bc2e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'grande'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 20:28:39,251","level":"INFO","logger":"reader.translator_backends","request_id":"593d45f5bc2e","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:28:43,108","level":"INFO","logger":"translation","request_id":"a696fbe932b7","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'enfin'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:43,425","level":"INFO","logger":"translation","request_id":"a696fbe932b7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'enfin'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 20:28:43,425","level":"INFO","logger":"reader.translator_backends","request_id":"a696fbe932b7","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:28:46,603","level":"INFO","logger":"translation","request_id":"032437306f44","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'bientôt'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:46,924","level":"INFO","logger":"translation","request_id":"032437306f44","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'bientôt'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 20:28:46,924","level":"INFO","logger":"reader.translator_backends","request_id":"032437306f44","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:28:52,231","level":"INFO","logger":"translation","request_id":"fc78236d1cfb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'plaisir'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:52,566","level":"INFO","logger":"translation","request_id":"fc78236d1cfb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'plaisir'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 20:28:52,566","level":"INFO","logger":"reader.translator_backends","request_id":"fc78236d1cfb","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:28:54,080","level":"INFO","logger":"translation","request_id":"afcb397b2a76","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Au-delà'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:28:54,376","level":"INFO","logger":"translation","request_id":"afcb397b2a76","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Au-delà'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-26 20:28:54,376","level":"INFO","logger":"reader.translator_backends","request_id":"afcb397b2a76","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-26 20:28:55,701","level":"INFO","logger":"translation","request_id":"90a75d7dd238","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Au-delà'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-26 20:29:13,855","level":"ERROR","logger":"reader","request_id":"5eeef1586464","user_id":"-","msg":"DRF error: view=TranslateView path=/api/translate/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='Исходный язык книги (en) совпадает с вашим языком для изучения (en).', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 1216, in create
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='Исходный язык книги (en) совпадает с вашим языком для изучения (en).', code='invalid')]}
+{"ts":"2026-07-26 20:30:05,941","level":"INFO","logger":"reader.views","request_id":"301c82de4d9d","user_id":"-","msg":"Определение языка для книги 'The Velveteen Rabbit...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-07-27 15:28:46,304","level":"ERROR","logger":"reader","request_id":"69cd9a83ace3","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-27 15:29:28,033","level":"INFO","logger":"reader.views","request_id":"f89a93960bdc","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-07-27 15:29:45,625","level":"INFO","logger":"reader.views","request_id":"7be479151fd0","user_id":"-","msg":"Определение языка для книги 'A Collection of Beatrix Potter...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-07-27 15:32:26,909","level":"ERROR","logger":"reader","request_id":"a787851cf029","user_id":"-","msg":"DRF error: view=TranslateView path=/api/translate/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='Исходный язык книги (en) совпадает с вашим языком для изучения (en).', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 1216, in create
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='Исходный язык книги (en) совпадает с вашим языком для изучения (en).', code='invalid')]}
+{"ts":"2026-07-27 15:34:45,068","level":"INFO","logger":"translation","request_id":"9745f1157e2c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ability'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:34:45,426","level":"INFO","logger":"translation","request_id":"9745f1157e2c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ability'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:34:45,426","level":"INFO","logger":"reader.translator_backends","request_id":"9745f1157e2c","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:34:47,748","level":"INFO","logger":"translation","request_id":"ee9f2a3882eb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'able'
+Целевой язык (входящий): 'en'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:34:48,014","level":"INFO","logger":"translation","request_id":"ee9f2a3882eb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'able'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:34:48,015","level":"INFO","logger":"reader.translator_backends","request_id":"ee9f2a3882eb","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:35:31,370","level":"INFO","logger":"translation","request_id":"53b176028805","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'about'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:35:31,763","level":"INFO","logger":"translation","request_id":"53b176028805","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'about'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:35:31,763","level":"INFO","logger":"reader.translator_backends","request_id":"53b176028805","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:35:35,408","level":"INFO","logger":"translation","request_id":"b7ec65209189","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'above'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:35:35,741","level":"INFO","logger":"translation","request_id":"b7ec65209189","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'above'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:35:35,741","level":"INFO","logger":"reader.translator_backends","request_id":"b7ec65209189","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:35:41,810","level":"INFO","logger":"translation","request_id":"ef71ef61940c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'absolutely'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:35:42,275","level":"INFO","logger":"translation","request_id":"ef71ef61940c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'absolutely'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:35:42,276","level":"INFO","logger":"reader.translator_backends","request_id":"ef71ef61940c","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:35:45,194","level":"INFO","logger":"translation","request_id":"4b57423ca38f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'academic'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:35:45,527","level":"INFO","logger":"translation","request_id":"4b57423ca38f","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'academic'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:35:45,527","level":"INFO","logger":"reader.translator_backends","request_id":"4b57423ca38f","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:35:49,510","level":"INFO","logger":"translation","request_id":"473e7abcf2dd","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'accept'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:35:49,833","level":"INFO","logger":"translation","request_id":"473e7abcf2dd","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'accept'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:35:49,833","level":"INFO","logger":"reader.translator_backends","request_id":"473e7abcf2dd","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:45:02,091","level":"INFO","logger":"translation","request_id":"ff16acd6dced","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'above'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:45:09,423","level":"INFO","logger":"translation","request_id":"06545071253a","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'add'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:45:09,813","level":"INFO","logger":"translation","request_id":"06545071253a","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'add'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:45:09,813","level":"INFO","logger":"reader.translator_backends","request_id":"06545071253a","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:45:12,653","level":"INFO","logger":"translation","request_id":"e20b2e8ea104","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'addition'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:45:13,000","level":"INFO","logger":"translation","request_id":"e20b2e8ea104","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'addition'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:45:13,001","level":"INFO","logger":"reader.translator_backends","request_id":"e20b2e8ea104","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:46:55,028","level":"INFO","logger":"translation","request_id":"125fd7a3f3fb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'actually'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:46:55,382","level":"INFO","logger":"translation","request_id":"125fd7a3f3fb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'actually'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:46:55,382","level":"INFO","logger":"reader.translator_backends","request_id":"125fd7a3f3fb","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:47:04,224","level":"INFO","logger":"translation","request_id":"678395bf78e8","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'advertisement'
+Целевой язык (входящий): 'fr'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:47:04,653","level":"INFO","logger":"translation","request_id":"678395bf78e8","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'advertisement'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-27 15:47:04,653","level":"INFO","logger":"reader.translator_backends","request_id":"678395bf78e8","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:56:52,245","level":"INFO","logger":"translation","request_id":"496c32a52ac3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'habilidades'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'es'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:56:52,638","level":"INFO","logger":"translation","request_id":"496c32a52ac3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'habilidades'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'es'."}
+{"ts":"2026-07-27 15:56:52,638","level":"INFO","logger":"reader.translator_backends","request_id":"496c32a52ac3","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-27 15:56:59,800","level":"INFO","logger":"translation","request_id":"072b2c82931a","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'horario'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'es'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:57:01,981","level":"INFO","logger":"translation","request_id":"072b2c82931a","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'horario'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'es'."}
+{"ts":"2026-07-27 15:57:01,981","level":"WARNING","logger":"translation","request_id":"072b2c82931a","user_id":"-","msg":"Не удалось получить альтернативные переводы для 'horario': name 'DEEPSEEK_ALTERNATIVES_PROMPT_TEMPLATE' is not defined"}
+{"ts":"2026-07-27 15:57:10,491","level":"INFO","logger":"translation","request_id":"964956a42546","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: '«Lo único que oigo es que llego a casa demasiado tarde y que estoy trabajando demasiado –dice Tim exasperado–.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'es'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-27 15:57:12,616","level":"INFO","logger":"translation","request_id":"964956a42546","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: '«Lo único que oigo es que llego a casa demasiado tarde y que estoy trabajando demasiado –dice Tim exasperado–.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'es'."}
+{"ts":"2026-07-27 16:31:03,249","level":"ERROR","logger":"reader","request_id":"36c21654a172","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-27 19:56:57,118","level":"ERROR","logger":"reader","request_id":"dcb03342935e","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-27 21:20:12,463","level":"ERROR","logger":"reader","request_id":"4b97c28eccd9","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-27 21:29:14,894","level":"ERROR","logger":"reader","request_id":"b7c00e72fa60","user_id":"-","msg":"Unhandled error: view=ConversationViewSet path=/api/conversations/14/send_message/ method=POST exc=FieldError("Cannot resolve keyword 'created_at' into field. Choices are: content, conversation, conversation_id, id, role, timestamp")"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 1164, in send_message
+    messages = list(conversation.messages.order_by("created_at"))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 1718, in order_by
+    obj.query.add_ordering(*field_names)
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/sql/query.py", line 2288, in add_ordering
+    self.names_to_path(item.split(LOOKUP_SEP), self.model._meta)
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1802, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'created_at' into field. Choices are: content, conversation, conversation_id, id, role, timestamp
+{"ts":"2026-07-27 22:36:06,771","level":"ERROR","logger":"reader","request_id":"1b72b4236c0f","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-28 00:27:58,603","level":"ERROR","logger":"reader","request_id":"b8b3f19f32b7","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-28 00:45:52,174","level":"INFO","logger":"translation","request_id":"a9291483ead2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'able'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-28 00:45:52,671","level":"INFO","logger":"translation","request_id":"a9291483ead2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'able'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-28 00:45:52,671","level":"INFO","logger":"reader.translator_backends","request_id":"a9291483ead2","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-28 01:01:31,927","level":"INFO","logger":"translation","request_id":"4b7d44b1b66b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'parecía'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'es'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-28 01:01:32,632","level":"INFO","logger":"translation","request_id":"4b7d44b1b66b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'parecía'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'es'."}
+{"ts":"2026-07-28 01:01:32,633","level":"INFO","logger":"reader.translator_backends","request_id":"4b7d44b1b66b","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-28 01:02:34,440","level":"INFO","logger":"translation","request_id":"50d2947284e7","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'activity'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-28 01:02:34,812","level":"INFO","logger":"translation","request_id":"50d2947284e7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'activity'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-28 01:02:34,812","level":"INFO","logger":"reader.translator_backends","request_id":"50d2947284e7","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-28 01:08:39,202","level":"INFO","logger":"translation","request_id":"49e2b8587b23","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ability'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-28 01:08:39,587","level":"INFO","logger":"translation","request_id":"49e2b8587b23","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ability'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-28 01:08:39,587","level":"INFO","logger":"reader.translator_backends","request_id":"49e2b8587b23","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-28 01:09:02,493","level":"INFO","logger":"translation","request_id":"178a14e848e5","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'below'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-28 01:09:02,896","level":"INFO","logger":"translation","request_id":"178a14e848e5","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'below'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-28 01:09:02,896","level":"INFO","logger":"reader.translator_backends","request_id":"178a14e848e5","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-28 01:09:15,033","level":"INFO","logger":"translation","request_id":"3acc538d06db","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'better'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-28 01:09:15,410","level":"INFO","logger":"translation","request_id":"3acc538d06db","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'better'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-28 01:09:15,411","level":"INFO","logger":"reader.translator_backends","request_id":"3acc538d06db","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-30 18:37:33,617","level":"ERROR","logger":"reader","request_id":"49806987f494","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-30 18:38:55,518","level":"INFO","logger":"translation","request_id":"31f6e4da2f80","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'rougit'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 18:38:55,914","level":"INFO","logger":"translation","request_id":"31f6e4da2f80","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'rougit'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 18:38:55,914","level":"INFO","logger":"reader.translator_backends","request_id":"31f6e4da2f80","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-07-30 18:39:59,150","level":"INFO","logger":"translation","request_id":"9aeaf30174fa","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Par exemple, cette scie à bois, dont la position singulière sur la rive du Doubs vous a frappé en entrant à Verrières, et où vous avez remarqué le nom de SOREL, écrit en caractères gigantesques sur une planche qui domine le toit, elle occupait, il y a six ans, l'espace sur lequel on élève en ce moment le mur de la quatrième terrasse des jardins de M.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 18:39:59,939","level":"INFO","logger":"translation","request_id":"9aeaf30174fa","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Par exemple, cette scie à bois, dont la position singulière sur la rive du Doubs vous a frappé en entrant à Verrières, et où vous avez remarqué le nom de SOREL, écrit en caractères gigantesques sur une planche qui domine le toit, elle occupait, il y a six ans, l'espace sur lequel on élève en ce moment le mur de la quatrième terrasse des jardins de M.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 18:40:15,793","level":"INFO","logger":"translation","request_id":"c07ce5e13804","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'de Rênal, remplis de murs, sont encore admirés parce qu'il a acheté au poids de l'or certains petits morceaux de terrain qu'ils occupent.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 18:40:16,361","level":"INFO","logger":"translation","request_id":"c07ce5e13804","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'de Rênal, remplis de murs, sont encore admirés parce qu'il a acheté au poids de l'or certains petits morceaux de terrain qu'ils occupent.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 19:31:46,722","level":"INFO","logger":"translation","request_id":"b18ae8bda7ab","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'petite'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:31:48,867","level":"INFO","logger":"translation","request_id":"b18ae8bda7ab","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'petite'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 19:32:04,981","level":"INFO","logger":"translation","request_id":"50236011f34e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'rouges'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:32:08,322","level":"INFO","logger":"translation","request_id":"50236011f34e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'rouges'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 19:32:38,496","level":"INFO","logger":"translation","request_id":"a61cf5faae3c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'châtaigniers'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:32:41,182","level":"INFO","logger":"translation","request_id":"a61cf5faae3c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'châtaigniers'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 19:33:01,470","level":"INFO","logger":"translation","request_id":"bddd4f67363c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'quelques'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:33:03,056","level":"INFO","logger":"translation","request_id":"bddd4f67363c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'quelques'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 19:33:16,935","level":"INFO","logger":"translation","request_id":"57927854bb28","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Espagnols'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:33:18,533","level":"INFO","logger":"translation","request_id":"57927854bb28","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Espagnols'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 19:33:31,754","level":"INFO","logger":"translation","request_id":"49c933a1db0c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'maintenant'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:33:32,203","level":"INFO","logger":"translation","request_id":"49c933a1db0c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'maintenant'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-07-30 19:33:32,203","level":"WARNING","logger":"translation","request_id":"49c933a1db0c","user_id":"-","msg":"Не удалось получить альтернативные переводы для 'maintenant': DeepLTranslator.get_alternative_translations() got an unexpected keyword argument 'original_text'"}
+{"ts":"2026-07-30 19:36:31,091","level":"ERROR","logger":"reader","request_id":"9511e330b314","user_id":"-","msg":"DRF error: view=TranslateView path=/api/translate/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='Исходный язык книги (es) совпадает с вашим языком для изучения (es).', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 1220, in create
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='Исходный язык книги (es) совпадает с вашим языком для изучения (es).', code='invalid')]}
+{"ts":"2026-07-30 19:36:35,281","level":"ERROR","logger":"reader","request_id":"a0d34967c6d6","user_id":"-","msg":"DRF error: view=TranslateView path=/api/translate/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='Исходный язык книги (es) совпадает с вашим языком для изучения (es).', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 1220, in create
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='Исходный язык книги (es) совпадает с вашим языком для изучения (es).', code='invalid')]}
+{"ts":"2026-07-30 19:37:54,667","level":"ERROR","logger":"reader","request_id":"f4c577764000","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/4/update_progress/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-30 19:38:13,080","level":"INFO","logger":"translation","request_id":"003498900bf1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'nothing'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:38:13,473","level":"INFO","logger":"translation","request_id":"003498900bf1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'nothing'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 19:38:13,474","level":"WARNING","logger":"translation","request_id":"003498900bf1","user_id":"-","msg":"Не удалось получить альтернативные переводы для 'nothing': DeepLTranslator.get_alternative_translations() got an unexpected keyword argument 'original_text'"}
+{"ts":"2026-07-30 19:38:31,510","level":"INFO","logger":"translation","request_id":"656a7f547c42","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'beyond'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:38:31,822","level":"INFO","logger":"translation","request_id":"656a7f547c42","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'beyond'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 19:38:31,822","level":"WARNING","logger":"translation","request_id":"656a7f547c42","user_id":"-","msg":"Не удалось получить альтернативные переводы для 'beyond': DeepLTranslator.get_alternative_translations() got an unexpected keyword argument 'original_text'"}
+{"ts":"2026-07-30 19:38:38,416","level":"INFO","logger":"translation","request_id":"69cd9d6fb1d2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'underneath'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:38:40,041","level":"INFO","logger":"translation","request_id":"69cd9d6fb1d2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'underneath'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 19:40:27,548","level":"INFO","logger":"translation","request_id":"382b0bfe8851","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'turned'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:40:31,846","level":"INFO","logger":"translation","request_id":"382b0bfe8851","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'turned'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 19:40:51,325","level":"INFO","logger":"translation","request_id":"60742541be27","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'McGregor caught sight of him at the corner, but Peter did not care.'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 19:40:53,365","level":"INFO","logger":"translation","request_id":"60742541be27","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'McGregor caught sight of him at the corner, but Peter did not care.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 19:58:13,079","level":"INFO","logger":"translation","request_id":"c6f28444ace5","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ability'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 20:15:40,984","level":"INFO","logger":"translation","request_id":"779637302755","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'underneath'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 20:15:45,523","level":"INFO","logger":"translation","request_id":"cb4308460489","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'flopped'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 20:15:48,310","level":"INFO","logger":"translation","request_id":"cb4308460489","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'flopped'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 20:16:16,472","level":"INFO","logger":"translation","request_id":"9c5ba0ef1408","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'His mother put him to bed, and made some camomile tea; and she gave a
+dose of it to Peter!'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 20:16:18,562","level":"INFO","logger":"translation","request_id":"9c5ba0ef1408","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'His mother put him to bed, and made some camomile tea; and she gave a
+dose of it to Peter!'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 20:51:32,206","level":"ERROR","logger":"reader","request_id":"7c6362411309","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-30 22:24:23,847","level":"ERROR","logger":"reader","request_id":"4e22daa587a0","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-30 23:32:54,773","level":"ERROR","logger":"reader","request_id":"69076759b815","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-30 23:54:49,266","level":"INFO","logger":"reader.views","request_id":"0a9519386c6e","user_id":"-","msg":"Определение языка для книги 'Determined...': По содержимому: en, Из метаданных: en-US, Итоговый: en"}
+{"ts":"2026-07-30 23:55:53,865","level":"INFO","logger":"translation","request_id":"75e2ab00e52a","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'first'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-07-30 23:55:54,261","level":"INFO","logger":"translation","request_id":"75e2ab00e52a","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'first'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-30 23:55:54,261","level":"WARNING","logger":"translation","request_id":"75e2ab00e52a","user_id":"-","msg":"Не удалось получить альтернативные переводы для 'first': DeepLTranslator.get_alternative_translations() got an unexpected keyword argument 'original_text'"}
+{"ts":"2026-07-30 23:56:31,332","level":"INFO","logger":"translation","request_id":"fd7eb459f9fd","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'indeterminism'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-07-30 23:56:32,544","level":"INFO","logger":"translation","request_id":"fd7eb459f9fd","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'indeterminism'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-07-31 00:32:58,048","level":"ERROR","logger":"reader","request_id":"757e23e7f449","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/25/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-07-31 15:12:23,295","level":"ERROR","logger":"reader","request_id":"800a9c56d150","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}

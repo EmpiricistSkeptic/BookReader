@@ -1,10 +1,32 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 from dotenv import load_dotenv
 
 load_dotenv()
+
+SENTRY_DSN = os.getenv("SENTRY_DSN", "")
+SENTRY_ENV = os.getenv("SENTRY_ENV", "development")
+
+if SENTRY_DSN:
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+
+        integrations=[
+            DjangoIntegration(),
+            LoggingIntegration(level=None, event_level="ERROR"),
+        ],
+
+        traces_sample_rate=0.2,
+        send_default_pii=True,
+        environment=SENTRY_ENV,
+        release="bookreader@1.0.0",
+    )
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -18,7 +40,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "changeme")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DJANGO_DEBUG", "false") == True
+DEBUG = os.getenv("DJANGO_DEBUG", "false") == "True"
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
@@ -38,6 +60,9 @@ MICROSOFT_TRANSLATOR_KEY = os.getenv("MICROSOFT_TRANSLATOR_KEY")
 MICROSOFT_TRANSLATOR_REGION = os.getenv("MICROSOFT_TRANSLATOR_REGION")
 MICROSOFT_TRANSLATOR_BASE_URL = os.getenv("MICROSOFT_TRANSLATOR_BASE_URL")
 
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL")
+
 
 # Application definition
 
@@ -50,9 +75,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_filters",
     "rest_framework",
+    "rest_framework_extensions",
     "rest_framework_simplejwt",
     "reader",
     "corsheaders",
+    "drf_spectacular",
 ]
 
 
@@ -63,6 +90,8 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "EXCEPTION_HANDLER": "bookreader_core.exceptions.custom_exception_handler",
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
@@ -74,10 +103,21 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {
-        "anon": "10/hour",
+        "anon": "50/hour",
         "user": "1000/hour",
         "translation": "100/hour",
     },
+}
+
+REST_FRAMEWORK_EXTENSIONS = {
+    "DEFAULT_USE_CACHE": "default",
+    "DEFAULT_CACHE_RESPONSE_TIMEOUT": 60 * 10,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "My api",
+    "DESCRIPTION": "Documentation for the mobile app",
+    "VERSION": "1.0.0",
 }
 
 CACHES = {
@@ -119,6 +159,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "bookreader_core.middleware.request_context.RequestContextMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -194,6 +235,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -203,18 +247,69 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "filters": {
+        "request_context": {
+            "()": "bookreader_core.logging.filters.RequestContextFilter",
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "%(asctime)s [%(levelname)s] %(name)s [%(request_id)s %(user_id)s] %(message)s"
+        },
+        "file_json": {
+            "format": '{"ts":"%(asctime)s","level":"%(levelname)s","logger":"%(name)s",'
+                      '"request_id":"%(request_id)s","user_id":"%(user_id)s","msg":"%(message)s"}'
+        },
+    },
     "handlers": {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
             "filename": "translation.log",
+            "formatter": "file_json",
+            "filters": ["request_context"],
+        },
+        "translation_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "translation.log",
+            "formatter": "file_json",
+            "filters": ["request_context"],
+        },
+        "ai_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "ai_service.log",
+            "formatter": "file_json",
+            "filters": ["request_context"],
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "verbose",
+            "filters": ["request_context"],
         },
     },
     "loggers": {
-        "translation": {
-            "handlers": ["file"],
-            "level": "INFO",
-            "propagate": True,
+        "reader": {
+        "handlers": ["file", "console"],
+        "level": "INFO",
+        "propagate": False,
         },
-    },
+        "translation": {
+            "handlers": ["translation_file", "console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "ai_service": {
+            "handlers": ["ai_file", "console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "reader.openapi_extensions": {
+            "handlers": ["console"], 
+            "level": "INFO",
+            "propagate": False,
+        },
+    }
 }

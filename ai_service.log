@@ -1,0 +1,31 @@
+{"ts":"2026-07-26 19:27:43,168","level":"ERROR","logger":"ai_service","request_id":"0916905a47ea","user_id":"-","msg":"An error occurred during generating response for user_id: 1"}
+Traceback (most recent call last):
+  File "/srv/bookreader/reader/services/ai_service.py", line 71, in generate_response
+    response = self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/openai.py", line 482, in _sentry_patched_create_sync
+    return _execute_sync(f, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/openai.py", line 468, in _execute_sync
+    raise e from None
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/openai.py", line 465, in _execute_sync
+    result = f(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/openai/_utils/_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1087, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/openai/_base_client.py", line 1249, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/openai/_base_client.py", line 1037, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-******************************************************************************************MRP>. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'code': 'invalid_api_key', 'param': None}, 'status': 401}
+{"ts":"2026-07-27 21:39:00,697","level":"ERROR","logger":"ai_service","request_id":"9786586f0f4d","user_id":"-","msg":"Unexpected error in AITeacherService: AITeacherService.build_system_prompt() takes 3 positional arguments but 4 were given"}
+Traceback (most recent call last):
+  File "/srv/bookreader/reader/services/ai_service.py", line 72, in generate_response
+    system_prompt = self.build_system_prompt(conversation, user_profile, mode_config)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AITeacherService.build_system_prompt() takes 3 positional arguments but 4 were given

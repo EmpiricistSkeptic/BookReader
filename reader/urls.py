@@ -12,8 +12,6 @@ from .views import (
     TranslationDetailView,
     TranslationHistoryListView,
     UserProfileViewSet,
-    login,
-    register,
 )
 
 router = DefaultRouter()
@@ -29,8 +27,6 @@ router.register(r"dictionary", DictionaryEntryViewSet, basename="dictionary-entr
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("auth/register/", register, name="register"),
-    path("auth/login/", login, name="login"),
     path("translate/", TranslateView.as_view(), name="translate"),
     path("history/", TranslationHistoryListView.as_view(), name="translation-history"),
     path(

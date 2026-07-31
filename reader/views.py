@@ -12,7 +12,7 @@ from django.contrib.auth import authenticate
 from django.core.cache import cache
 from django.core.files.base import ContentFile
 from django.db import transaction
-from django.db.models import Case, F, When
+from django.db.models import Case, F, When, Count, OuterRef, Subquery
 from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -23,11 +23,14 @@ from langdetect import LangDetectException, detect
 from rest_framework import generics, permissions, serializers, status, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.parsers import MultiPartParser
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework_extensions.cache.mixins import CacheResponseMixin
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 from rest_framework_simplejwt.tokens import RefreshToken
+from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.types import OpenApiTypes
 
 from reader.exceptions import TranslationServiceError
 from reader.services.ai_service import AITeacherService
@@ -35,6 +38,7 @@ from reader.services.translation_service import TranslationService
 from reader.throttles import TranslationThrottle
 from reader.utils.google_auth import GoogleAuthService
 
+from .pagination import DictionaryPagination, MessagesPagination
 from .filters import FlashCardFilter
 from .models import (
     Book,
@@ -57,6 +61,7 @@ from .serializers import (
     ChapterListSerializer,
     ConversationListSerializer,
     ConversationSerializer,
+    CreateConversationSerializer,
     DictionaryCategorySerializer,
     DictionaryEntrySerializer,
     DictionaryTranslationResponseSerializer,
@@ -64,6 +69,7 @@ from .serializers import (
     GoogleAuthSerializer,
     LoginSerializer,
     MessageSerializer,
+    SendMessageSerializer,
     RegisterSerializer,
     SuggestionRequestSerializer,
     SuggestionResponseSerializer,
@@ -73,72 +79,70 @@ from .serializers import (
     UserBookProgressSerializer,
     UserProfileSerializer,
     UserSerializer,
+    UserProfileWriteSerializer,
 )
 
 logger = logging.getLogger(__name__)
-
-
-def get_tokens_for_user(user):
-    refresh = RefreshToken.for_user(user)
-    return {
-        "refresh": str(refresh),
-        "access": str(refresh.access_token),
-    }
-
-
-@api_view(["POST"])
-@permission_classes([AllowAny])
-def register(request):
-    serializer = RegisterSerializer(data=request.data)
-    if serializer.is_valid():
-        user = serializer.save()
-        tokens = get_tokens_for_user(user)
-        return Response(
-            {
-                "user": UserSerializer(user).data,
-                "tokens": tokens,
-                "message": "Регистрация успешна",
-            },
-            status=status.HTTP_201_CREATED,
-        )
-    return Response(
-        {"errors": serializer.errors, "message": "Ошибка Регистрации"},
-        status=status.HTTP_400_BAD_REQUEST,
-    )
-
-
-@api_view(["POST"])
-@permission_classes([AllowAny])
-def login(request):
-    serializer = LoginSerializer(data=request.data)
-    if serializer.is_valid():
-        user = serializer.validated_data["user"]
-        tokens = get_tokens_for_user(user)
-        return Response(
-            {
-                "user": UserSerializer(user).data,
-                "tokens": tokens,
-                "message": "Вход выполнен успешно",
-            },
-            status=status.HTTP_200_OK,
-        )
-    return Response(
-        {
-            "errors": serializer.errors,
-            "message": "Ошибка входа",
-        },
-        status=status.HTTP_400_BAD_REQUEST,
-    )
 
 
 class AuthViewSet(viewsets.GenericViewSet):
     """ViewSet для авторизации"""
 
     permission_classes = [AllowAny]
+    serializer_class = GoogleAuthSerializer
+
+    @staticmethod 
+    def get_tokens_for_user(user):
+        refresh = RefreshToken.for_user(user)
+        return {
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+        }
+    
+    @action(detail=False, methods=['post'], serializer_class=RegisterSerializer)
+    def register(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            tokens = self.get_tokens_for_user(user)
+            return Response(
+                {
+                    "user": UserSerializer(user).data,
+                    "tokens": tokens,
+                    "message": "Регистрация успешна",
+                },
+                status=status.HTTP_201_CREATED,
+            )
+        return Response(
+            {"errors": serializer.errors, "message": "Ошибка Регистрации"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+    
+    @action(detail=False, methods=['post'], serializer_class=LoginSerializer)
+    def login(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data["user"]
+            tokens = self.get_tokens_for_user(user)
+            return Response(
+                {
+                    "user": UserSerializer(user).data,
+                    "tokens": tokens,
+                    "message": "Вход выполнен успешно",
+                },
+                status=status.HTTP_200_OK,
+            )
+        return Response(
+            {
+                "errors": serializer.errors,
+                "message": "Ошибка входа",
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
     @action(detail=False, methods=["post"], url_path="google")
     def google_auth(self, request):
-        serializer = GoogleAuthSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if not serializer.is_valid():
             return Response(
                 {"error": "Invalid data", "details": serializer.errors},
@@ -193,6 +197,7 @@ class AuthViewSet(viewsets.GenericViewSet):
 class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookCreateUpdateSerializer
     permission_classes = [permissions.IsAuthenticated]
+    lookup_value_regex = '[0-9]+'
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -205,7 +210,12 @@ class BookViewSet(viewsets.ModelViewSet):
             return BookCreateUpdateSerializer
 
     def get_queryset(self):
-        return Book.objects.filter(user=self.request.user).order_by("-uploaded_at")
+        if getattr(self, 'swagger_fake_view', False):
+            return Book.objects.none()
+        user_queryset = Book.objects.filter(user=self.request.user)
+        annotate_queryset = user_queryset.annotate(chapter_count=Count("chapters"))
+        return annotate_queryset.order_by("-uploaded_at")
+
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -361,7 +371,16 @@ class BookViewSet(viewsets.ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        url_path="chapters/(?P<chapter_pk>[^/.]+)/update_total_pages",
+        url_path="chapters/(?P<chapter_pk>[0-9]+)/update_total_pages",
+    )
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name='chapter_pk',
+                type=OpenApiTypes.INT,
+                location=OpenApiParameter.PATH
+            )
+        ]
     )
     def update_chapter_total_pages(self, request, pk=None, chapter_pk=None):
         """
@@ -723,9 +742,6 @@ class BookViewSet(viewsets.ModelViewSet):
                 if book_epub.get_metadata("DC", "title"):
                     title = book_epub.get_metadata("DC", "title")[0][0]
 
-                # =========================================================================
-                # Защита от пустых (None) значений в метаданных (без изменений)
-                # =========================================================================
                 raw_authors = book_epub.get_metadata("DC", "creator")
                 authors_list = (
                     [author[0] for author in raw_authors if author and author[0]]
@@ -895,6 +911,9 @@ class FlashCardViewSet(viewsets.ModelViewSet):
     ordering = ["next_review"]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return FlashCard.objects.none()
+
         queryset = FlashCard.objects.filter(user=self.request.user)
 
         queryset = queryset.annotate(
@@ -969,11 +988,6 @@ class FlashCardViewSet(viewsets.ModelViewSet):
             response_serializer = SuggestionResponseSerializer(data=suggestions_data)
             response_serializer.is_valid(raise_exception=True)
             return Response(response_serializer.data, status=status.HTTP_200_OK)
-        except TranslationServiceError as e:
-            logger.error(f"Ошибка сервиса предложений: {e}")
-            return Response(
-                {"error": str(e)}, status=status.HTTP_503_SERVICE_UNAVAILABLE
-            )
         except Exception as e:
             tb_str = traceback.format_exc()
 
@@ -990,27 +1004,48 @@ class FlashCardViewSet(viewsets.ModelViewSet):
 
 
 class UserProfileViewSet(
-    viewsets.GenericViewSet,
     viewsets.mixins.RetrieveModelMixin,
     viewsets.mixins.UpdateModelMixin,
+    viewsets.GenericViewSet,
 ):
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
     serializer_class = UserProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
+    lookup_value_regex = '[0-9]+'
 
+    def get_serializer_class(self):
+        if self.action in ['update', 'partial_update']:
+            return UserProfileWriteSerializer
+        return super().get_serializer_class()
+    
     def get_object(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return UserProfile.objects.none()
         return self.request.user.profile
 
+    def partial_update(self, request, *args, **kwargs):
+        super().partial_update(request, *args, **kwargs)
 
-class DictionaryEntryViewSet(viewsets.ReadOnlyModelViewSet):
+        serializer = UserProfileSerializer(
+            self.get_object(),
+            context={"request": request},
+        )
+        return Response(serializer.data)
+
+
+class DictionaryEntryViewSet(CacheResponseMixin, viewsets.ReadOnlyModelViewSet):
     """
     ViewSet для получения списка словарных статей и выполнения действий над ними.
+    Используется CacheResponseMixin для демонстрации кэширования API-ответов.
+    Кэшируется только GET-запросы (list/retrieve).
     """
 
-    queryset = DictionaryEntry.objects.prefetch_related("categories").order_by(
-        Lower("word").asc(), "id"
+    queryset = DictionaryEntry.objects.prefetch_related("categories").annotate(word_lower=Lower("word")).order_by(
+        ("word_lower"), "id"
     )
     serializer_class = DictionaryEntrySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    pagination_class = DictionaryPagination
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ["level", "categories__slug"]
     search_fields = ["word", "definition"]
@@ -1021,26 +1056,18 @@ class DictionaryEntryViewSet(viewsets.ReadOnlyModelViewSet):
         Кастомное действие для перевода конкретного слова.
         Вызывается по URL: POST /api/dictionary/{pk}/translate/
         """
-        # 1. Получаем объект словарной статьи
         entry = self.get_object()
         word_to_translate = entry.word
 
-        # 2. Безопасно получаем язык для перевода (target_language)
         target_language = None
-        # Проверяем, что пользователь аутентифицирован и у него есть профиль
         if request.user.is_authenticated and hasattr(request.user, "profile"):
             target_language = request.user.profile.native_language
 
-        # Если язык не найден, используем язык по умолчанию.
-        # Это лучше, чем возвращать ошибку.
         if not target_language:
-            target_language = "ru"  # Наш "запасной" вариант
+            target_language = "ru" 
 
-        # 3. Определяем исходный язык (source_language)
-        # Так как наш словарь содержит только английские слова, мы указываем это явно.
         source_language = "en"
 
-        # 4. Инициализация и вызов вашего сервиса
         try:
             translation_service = TranslationService(
                 user=request.user if request.user.is_authenticated else None
@@ -1049,26 +1076,19 @@ class DictionaryEntryViewSet(viewsets.ReadOnlyModelViewSet):
                 f"[DEBUG] Пытаюсь перевести: '{word_to_translate}' на язык '{target_language}'"
             )
 
-            # Вызываем основной метод вашего сервиса с полными данными
             result = translation_service.translate(
                 text=word_to_translate,
                 target_language=target_language,
-                source_language=source_language,  # Передаем явно
-                service="deepl",  # или любой другой ваш сервис
+                source_language=source_language,
+                service="deepl",
             )
             print(f"[DEBUG] Ответ от TranslationService: {result}")
 
-            # 5. Форматирование успешного ответа
             response_data = {"translation": result.get("translated_text", "")}
             print(f"[DEBUG] Подготовленные данные для ответа: {response_data}")
             serializer = DictionaryTranslationResponseSerializer(response_data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        except TranslationServiceError as e:
-            return Response(
-                {"error": f"Ошибка сервиса перевода: {str(e)}"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
         except Exception as e:
             return Response(
                 {"error": f"Внутренняя ошибка сервера: {str(e)}"},
@@ -1089,24 +1109,45 @@ class DictionaryCategoryListView(generics.ListAPIView):
 
 class ConversationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
+    lookup_value_regex = '[0-9]+'
+    pagination_class = MessagesPagination
 
     def get_queryset(self):
-        return Conversation.objects.filter(user=self.request.user)
+        if getattr(self, 'swagger_fake_view', False):
+            return Book.objects.none()
+        user_queryset = Conversation.objects.filter(user=self.request.user)
+        last_message = Message.objects.filter(
+            conversation=OuterRef("pk")
+        ).order_by("-timestamp")
+        annotate_queryset = user_queryset.annotate(messages_count=Count("messages"), 
+                                                   last_message_text=Subquery(last_message.values("content")[:1]),
+                                                   last_message_created_at=Subquery(last_message.values("timestamp")[:1]))
+        return annotate_queryset.order_by("-last_message_created_at")
 
     def get_serializer_class(self):
         if self.action == "list":
             return ConversationListSerializer
-        else:
-            return ConversationSerializer
+        
+        if self.action == "create":
+            return CreateConversationSerializer
+        
+        return ConversationSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    @extend_schema(
+            request=SendMessageSerializer,
+            summary="Send message",
+            description="Create a message from user, recieved a response from AI and return both messages"
+    )
     @action(detail=True, methods=["post"])
     def send_message(self, request, pk=None):
 
         conversation = self.get_object()
-        user_message = request.data.get("message", "").strip()
+        serializer = SendMessageSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user_message = serializer.validated_data["message"]
 
         if not user_message:
             return Response(
@@ -1121,12 +1162,12 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 conversation=conversation, role="user", content=user_message
             )
 
-            messages = list(conversation.messages.all())
+            messages = list(conversation.messages.order_by("timestamp"))
 
             ai_service = AITeacherService()
 
             ai_response = ai_service.generate_response(
-                user_profile, messages[:-1], user_message
+               conversation, user_profile, messages[:-1], user_message
             )
 
             ai_msg = Message.objects.create(
@@ -1152,11 +1193,6 @@ class ConversationViewSet(viewsets.ModelViewSet):
                     "error": "Профиль пользователя не найден. Создайте профиль перед началом разговора."
                 },
                 status=status.HTTP_400_BAD_REQUEST,
-            )
-        except Exception as e:
-            return Response(
-                {"error": f"Произошла ошибка: {str(e)}"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
 
@@ -1197,12 +1233,6 @@ class TranslateView(generics.CreateAPIView):
             response_serializer = TranslationResponseSerializer(result)
             return Response(response_serializer.data, status=status.HTTP_200_OK)
 
-        except TranslationServiceError as e:
-            logger.error(f"Translation service error: {e}")
-            return Response(
-                {"success": False, "error": str(e)},
-                status=status.HTTP_503_SERVICE_UNAVAILABLE,
-            )
         except Exception as e:
             logger.error(f"Unexpected error in translation: {e}")
             return Response(
@@ -1215,13 +1245,15 @@ class TranslationHistoryListView(generics.ListAPIView):
     serializer_class = TranslationSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ["translation_service", "target_language", "source_language"]
+    filterset_fields = ["translator_service", "target_language", "source_language"]
     search_fields = ["original_text", "translated_text"]
     ordering_fields = ["created_at"]
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        return Translation.objects.filter(user=self.request.user).select_related()
+        if getattr(self, 'swagger_fake_view', False):
+            return Translation.objects.none()
+        return Translation.objects.filter(user=self.request.user)
 
 
 class TranslationDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -1229,4 +1261,6 @@ class TranslationDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Book.objects.none()
         return Translation.objects.filter(user=self.request.user)

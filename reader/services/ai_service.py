@@ -1,25 +1,39 @@
 import textwrap
+import logging
+import requests
 from typing import Dict, List
 
-import openai
 from django.conf import settings
 
-from ..models import Message, UserProfile
+from ..models import Message, UserProfile, Conversation
+from ..exceptions import AIServiceError
 
+from .config import AI_MODES
+from .prompts.base import BASE_PROMPT
+
+
+logger = logging.getLogger("ai_service")
 
 class AITeacherService:
     def __init__(self):
-        self.client = openai.OpenAI(api_key=settings.OPENAI_API_KEY)
+        self.api_key = getattr(settings, "DEEPSEEK_API_KEY", None)
+        self.base_url = getattr(settings, "DEEPSEEK_BASE_URL", "https://api.deepseek.com/chat/completions")
+        self.model = "deepseek-v4-flash"
+        self.session = requests.Session()
 
-    def get_system_prompt(self, user_profile: UserProfile) -> str:
+    def build_system_prompt(
+        self,
+        user_profile: UserProfile,
+        mode_config,
+    ) -> str:
         language_names = {
-            "ru": "русский",
-            "en": "английский",
-            "es": "испанский",
-            "fr": "французский",
-            "de": "немецкий",
-            "zh": "китайский",
-            "ja": "японский",
+            "ru": "russian",
+            "en": "english",
+            "es": "spanish",
+            "fr": "french",
+            "de": "german",
+            "zh": "chinese",
+            "ja": "japanese",
         }
         native_lang = language_names.get(
             user_profile.native_language, user_profile.native_language
@@ -27,51 +41,75 @@ class AITeacherService:
         learning_lang = language_names.get(
             user_profile.language_to_learn, user_profile.language_to_learn
         )
+        current_level = getattr(user_profile, "current_level", "Intermediate (B1)")
 
-        prompt = f"""
-        Ты - опытный преподаватель иностранных языков и искусственный интеллект‑помощник.
 
-        Информация о студенте:
-        - Родной язык: {native_lang}
-        - Изучаемый язык: {learning_lang}
-        - Уровень владения: {user_profile.current_level}
+        system_prompt = BASE_PROMPT.format(
+            native_lang=native_lang,
 
-        Твоя задача:
-        1. Помогать изучать {learning_lang}
-        2. Отвечать на вопросы понятно и структурированно
-        3. Давать примеры и упражнения
-        4. Исправлять ошибки деликатно
-        5. Адаптировать сложность объяснений под уровень {user_profile.current_level}
-        6. При необходимости переводить на {native_lang} сложные концепции
+            learning_lang=learning_lang,
 
-        Стиль общения: дружелюбный, терпеливый, мотивирующий.
-        """
-        return textwrap.dedent(prompt).strip()
+            current_level=current_level,
+        )
+
+        if mode_config.prompt:
+            system_prompt += "\n\n" + mode_config.prompt
+        
+        return system_prompt
 
     def get_conversation_history(self, messages: List[Message]) -> List[Dict[str, str]]:
         return [{"role": msg.role, "content": msg.content} for msg in messages[-10:]]
 
     def generate_response(
         self,
+        conversation: Conversation,
         user_profile: UserProfile,
         conversation_messages: List[Message],
         user_message: str,
     ) -> str:
         try:
-            system_prompt = self.get_system_prompt(user_profile)
+            mode_config = AI_MODES[conversation.mode]
+            system_prompt = self.build_system_prompt(user_profile, mode_config)
             messages_payload = [{"role": "system", "content": system_prompt}]
             messages_payload.extend(
                 self.get_conversation_history(conversation_messages)
             )
             messages_payload.append({"role": "user", "content": user_message})
 
-            response = self.client.chat.completions.create(
-                model="gpt-4o",
-                messages=messages_payload,
-                max_tokens=1000,
-                temperature=0.7,
-            )
-            return response.choices[0].message.content.strip()
+            data = {
+                "model": self.model,
+                "messages": messages_payload,
+                "max_tokens": 2000,
+                "temperature": mode_config.temperature,
+            }
 
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+            }
+
+            response = self.session.post(
+                self.base_url,
+                json=data,
+                headers=headers,
+                timeout=(5, 25)
+            )
+            response.raise_for_status()
+            result = response.json()
+            return result["choices"][0]["message"]["content"].strip()
+
+        except requests.exceptions.Timeout:
+            logger.error(f"DeepSeek API timeout for user_id: {getattr(user_profile, 'user_id', 'N/A')}")
+            raise AIServiceError("Превышено время ожидания ответа от ИИ. Попробуйте еще раз.")
+            
+        except requests.exceptions.RequestException as e:
+            logger.exception(f"HTTP error during AI generation: {e}")
+            raise AIServiceError("Ошибка связи с сервером ИИ. Попробуйте позже.")
+            
+        except (KeyError, IndexError) as e:
+            logger.exception(f"Unexpected response format from DeepSeek API: {e}")
+            raise AIServiceError("Получен некорректный ответ от ИИ.")
+            
         except Exception as e:
-            return f"Извините, произошла ошибка при обработке вашего запроса: {e}"
+            logger.exception(f"Unexpected error in AITeacherService: {e}")
+            raise AIServiceError("Произошла непредвиденная ошибка при обработке запроса.")

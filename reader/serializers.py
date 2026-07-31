@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
+from drf_spectacular.utils import extend_schema_field
+
 
 from .constants import (
     LANGUAGE_NAMES,
@@ -97,7 +99,7 @@ class ChapterDetailSerializer(serializers.ModelSerializer):
 
 
 class BookListSerializer(serializers.ModelSerializer):
-    chapter_count = serializers.SerializerMethodField()
+    chapter_count = serializers.IntegerField(read_only=True)
     cover_url = serializers.SerializerMethodField()
     user_progress = serializers.SerializerMethodField()
 
@@ -118,17 +120,14 @@ class BookListSerializer(serializers.ModelSerializer):
             "user_progress",
         ]
 
-    def get_chapter_count(self, obj):
-        return obj.chapters.count() if hasattr(obj, "chapters") else 0
-
-    def get_cover_url(self, obj):
+    def get_cover_url(self, obj: Book) -> str | None:
         if obj.cover:
             request = self.context.get("request")
             if request:
                 return request.build_absolute_uri(obj.cover.url)
         return None
 
-    def get_user_progress(self, obj):
+    def get_user_progress(self, obj) -> int | None:
         request = self.context.get("request")
 
         if not request or not request.user.is_authenticated:
@@ -167,7 +166,7 @@ class BookListSerializer(serializers.ModelSerializer):
 
 class BookDetailSerializer(serializers.ModelSerializer):
     chapters = ChapterListSerializer(many=True, read_only=True)
-    chapter_count = serializers.SerializerMethodField()
+    chapter_count = serializers.IntegerField(read_only=True)
     cover_url = serializers.SerializerMethodField()
     user_name = serializers.CharField(source="user.username", read_only=True)
     user_progress = serializers.SerializerMethodField()
@@ -193,17 +192,14 @@ class BookDetailSerializer(serializers.ModelSerializer):
             "user_progress",
         ]
 
-    def get_chapter_count(self, obj):
-        return obj.chapters.count() if hasattr(obj, "chapters") else 0
-
-    def get_cover_url(self, obj):
+    def get_cover_url(self, obj: Book) -> str | None:
         if obj.cover:
             request = self.context.get("request")
             if request:
                 return request.build_absolute_uri(obj.cover.url)
         return None
 
-    def get_user_progress(self, obj):
+    def get_user_progress(self, obj) -> int | None:
         request = self.context.get("request")
 
         if not request or not request.user.is_authenticated:
@@ -238,9 +234,14 @@ class BookDetailSerializer(serializers.ModelSerializer):
 
         except UserBookProgress.DoesNotExist:
             return None
-
+        
+    
+@extend_schema_field({'type': 'string', 'format': 'binary'})
+class BinaryFileField(serializers.FileField):
+    pass
 
 class BookCreateUpdateSerializer(serializers.ModelSerializer):
+    cover = BinaryFileField(required=False, allow_null=True)
     class Meta:
         model = Book
         fields = [
@@ -263,7 +264,7 @@ class BookCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class BookUploadSerializer(serializers.Serializer):
-    file = serializers.FileField()
+    file = BinaryFileField()
 
     def validate_file(self, value):
         allowed_extensions = (".fb2", ".epub", ".zip")
@@ -278,7 +279,9 @@ class BookUploadSerializer(serializers.Serializer):
         return value
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class UserProfileWriteSerializer(serializers.ModelSerializer):
+    avatar = BinaryFileField(required=False, allow_null=True)
+
     class Meta:
         model = UserProfile
         fields = [
@@ -286,6 +289,26 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "language_to_learn",
             "current_level",
             "google_id",
+            "avatar",
+            "is_google_user",
+            "reading_font_size",
+            "reading_theme",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = ["created_at", "updated_at"]
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    avatar_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserProfile
+        fields = [
+            "native_language",
+            "language_to_learn",
+            "current_level",
+            "google_id",
+            "avatar",
             "avatar_url",
             "is_google_user",
             "reading_font_size",
@@ -294,6 +317,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
         read_only_fields = ["created_at", "updated_at"]
+
+
+    def get_avatar_url(self, obj: UserProfile)  -> str | None:
+        if obj.avatar and hasattr(obj.avatar, "url"):
+            request = self.context.get('request')
+            url = obj.avatar.url
+            return request.build_absolute_uri(url) if request else url
+        return None
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -435,33 +466,40 @@ class DictionaryTranslationResponseSerializer(serializers.Serializer):
     translation = serializers.CharField(read_only=True)
 
 
+class SendMessageSerializer(serializers.Serializer):
+    message = serializers.CharField(max_length=4000, allow_blank=False, trim_whitespace=True)
+
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ["id", "role", "content", "timestamp"]
 
+class CreateConversationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Conversation
+        fields = ["id", "mode"]
+
 
 class ConversationSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True, read_only=True)
-    messages_count = serializers.SerializerMethodField()
+    messages_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Conversation
         fields = [
             "id",
             "title",
+            "mode",
             "created_at",
             "updated_at",
             "messages",
             "messages_count",
         ]
 
-    def get_messages_count(self, obj):
-        return obj.messages.count()
-
 
 class ConversationListSerializer(serializers.ModelSerializer):
-    messages_count = serializers.SerializerMethodField()
+    messages_count = serializers.IntegerField(read_only=True)
     last_message = serializers.SerializerMethodField()
 
     class Meta:
@@ -469,18 +507,21 @@ class ConversationListSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "title",
+            "mode",
             "created_at",
             "updated_at",
             "messages_count",
             "last_message",
         ]
 
-    def get_messages_count(self, obj):
-        return obj.messages.count()
-
-    def get_last_message(self, obj):
-        last_msg = obj.messages.last()
-        return MessageSerializer(last_msg).data if last_msg else None
+    def get_last_message(self, obj: Conversation) -> dict | None:
+        if not obj.last_message_created_at:
+            return None
+        
+        return {
+            "text": obj.last_message_text,
+            "created_at": obj.last_message_created_at,
+        }
 
 
 class TranslationRequestSerializer(serializers.Serializer):
@@ -605,11 +646,14 @@ class TranslationSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ["id", "created_at", "updated_at"]
 
-    def get_source_language_name(self, obj):
+    def get_source_language_name(self, obj) -> str:
         return LANGUAGE_NAMES.get(obj.source_language, obj.source_language)
 
-    def get_target_language_name(self, obj):
+    def get_target_language_name(self, obj) -> str:
         return LANGUAGE_NAMES.get(obj.target_language, obj.target_language)
 
-    def get_service_name(self, obj):
+    def get_service_name(self, obj) -> str:
         return SERVICE_NAMES.get(obj.translator_service, obj.translator_service)
+
+
+
