@@ -55,7 +55,7 @@ class BaseTranslator(ABC):
         """
         try:
             response = self.session.post(
-                url, json=data, headers=headers, params=params, timeout=10
+                url, json=data, headers=headers, params=params, timeout=(5, 30)
             )
             response.raise_for_status()
             return response.json()
@@ -185,6 +185,7 @@ class DeepSeekTranslator(BaseTranslator):
                         continue
     
                     result.append({"text": text})
+                logger.info(f"Parser result{result}")
                 return result 
 
     def translate(self, text, target_language, source_language="auto", context=""):
@@ -210,6 +211,9 @@ class DeepSeekTranslator(BaseTranslator):
             "messages": messages,
             "temperature": 0.3,
             "max_tokens": 4096,
+            "thinking": {
+                "type": "disabled"
+            }
         }
 
         headers = {
@@ -249,6 +253,8 @@ class DeepSeekTranslator(BaseTranslator):
         if not self.api_key:
             raise TranslationServiceError("DeepSeek API ключ не найден")
 
+        logger.info(f"Recieved: {original_text} and {translated_text} for it")
+
 
         system_prompt = DEEPSEEK_ALTERNATIVES_PROMPT_TEMPLATE
         user_prompt = f"""
@@ -267,7 +273,10 @@ class DeepSeekTranslator(BaseTranslator):
             "model": self.model,
             "messages": messages,
             "temperature": 0.6,
-            "max_tokens": 400,
+            "max_tokens": 1000,
+            "thinking": {
+                "type": "disabled"
+            }
         }
 
         headers = {
@@ -276,6 +285,7 @@ class DeepSeekTranslator(BaseTranslator):
         }
         try:
             response = self._make_request(self.base_url, data, headers=headers)
+            logger.info(f"Raw response form Ai {response}")
             raw_response_data = response["choices"][0]["message"]["content"]
 
             return self._parse_alternatives(raw_response_data)

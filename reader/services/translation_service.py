@@ -65,6 +65,7 @@ class TranslationService:
                     "timestamp": timezone.now(),
                 }
             )
+            logger.info(f"Cached result: {cached_result}")
             return cached_result
 
         # ИЗМЕНЕНО: Поиск в БД также будет возвращать объект с альтернативами, если они сохранены
@@ -74,6 +75,7 @@ class TranslationService:
         if db_result:
             result = self._format_db_result(db_result, start_time)
             cache.set(cache_key, result, timeout=3600)
+            logger.info(f"Db result: {result}")
             return result
 
         try:
@@ -83,6 +85,7 @@ class TranslationService:
             translation_result = translator.translate(
                 text, target_language, source_language, context
             )
+            logger.info(f"New translation: {translation_result}")
 
             # --- НОВЫЙ ШАГ 2: Получаем альтернативные переводы, если это возможно ---
             alternatives = []
@@ -111,6 +114,7 @@ class TranslationService:
                         and isinstance(alt.get("text"), str)
                         and alt["text"].strip()
                     ]                 # Форматируем в простой список строк для фронтенда
+                    logger.info(f"Found {len(alternatives)} alternatives for {text}: {alternatives}")
                                         
                 except Exception as e:
                     logger.warning(

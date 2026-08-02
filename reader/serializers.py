@@ -482,7 +482,6 @@ class CreateConversationSerializer(serializers.ModelSerializer):
 
 
 class ConversationSerializer(serializers.ModelSerializer):
-    messages = MessageSerializer(many=True, read_only=True)
     messages_count = serializers.IntegerField(read_only=True)
 
     class Meta:
@@ -493,7 +492,6 @@ class ConversationSerializer(serializers.ModelSerializer):
             "mode",
             "created_at",
             "updated_at",
-            "messages",
             "messages_count",
         ]
 

@@ -243,10 +243,8 @@ class BookViewSet(viewsets.ModelViewSet):
         # ШАГ 1: Валидация входных данных через исправленный сериализатор
         # get_serializer_class должен вернуть BookUploadSerializer для этого action
         upload_serializer = self.get_serializer(data=request.data)
-        try:
-            upload_serializer.is_valid(raise_exception=True)
-        except serializers.ValidationError as e:
-            return Response(e.detail, status=status.HTTP_400_BAD_REQUEST)
+        upload_serializer.is_valid(raise_exception=True)
+        
 
         # Теперь мы уверены, что файл прошел валидацию
         uploaded_file = upload_serializer.validated_data["file"]
@@ -1110,7 +1108,6 @@ class DictionaryCategoryListView(generics.ListAPIView):
 class ConversationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     lookup_value_regex = '[0-9]+'
-    pagination_class = MessagesPagination
 
     def get_queryset(self):
         if getattr(self, 'swagger_fake_view', False):
@@ -1162,7 +1159,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 conversation=conversation, role="user", content=user_message
             )
 
-            messages = list(conversation.messages.order_by("timestamp"))
+            messages = list(conversation.messages.order_by("timestamp", "id"))
 
             ai_service = AITeacherService()
 
@@ -1194,6 +1191,30 @@ class ConversationViewSet(viewsets.ModelViewSet):
                 },
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+    @action(detail=True, methods=["get"])
+    def messages(self, request, pk=None):
+        conversation = self.get_object()
+        queryset = conversation.messages.order_by("-timestamp", "-id")
+
+        print("=" * 70)
+        print("FULL QUERYSET")
+        for m in queryset:
+            print(m.id, m.timestamp, m.content[:20])
+        print("=" * 70)
+
+        paginator = MessagesPagination()
+
+        page = paginator.paginate_queryset(queryset, request, view=self)
+        if page is not None:
+            serializer = MessageSerializer(page, many=True)
+            return paginator.get_paginated_response(serializer.data)
+
+        serializer = MessageSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+        
+
 
 
 class TranslateView(generics.CreateAPIView):

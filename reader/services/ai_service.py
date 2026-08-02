@@ -75,13 +75,18 @@ class AITeacherService:
                 self.get_conversation_history(conversation_messages)
             )
             messages_payload.append({"role": "user", "content": user_message})
+            logger.info(f"Messages_payload: {messages_payload}")
 
             data = {
                 "model": self.model,
                 "messages": messages_payload,
                 "max_tokens": 2000,
                 "temperature": mode_config.temperature,
+                "thinking": {
+                    "type": "disabled"
+                }
             }
+            logger.info(f"Payload: {data}")
 
             headers = {
                 "Authorization": f"Bearer {self.api_key}",
@@ -92,10 +97,11 @@ class AITeacherService:
                 self.base_url,
                 json=data,
                 headers=headers,
-                timeout=(5, 25)
+                timeout=(5, 60)
             )
             response.raise_for_status()
             result = response.json()
+            logger.info(f"Raw resulf from AI: {result}")
             return result["choices"][0]["message"]["content"].strip()
 
         except requests.exceptions.Timeout:

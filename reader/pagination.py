@@ -29,6 +29,6 @@ class DictionaryPagination(CursorPagination):
 
 class MessagesPagination(CursorPagination):
     page_size = 20
-    ordering = ("timestamp", "id")
+    ordering = ("-timestamp", "-id")
     cursor_query_param = "cursor"
 
