@@ -173,3 +173,4 @@ webencodings==0.5.1
 websocket-client==1.8.0
 django-storages
 boto3
+dj-database-url

@@ -4,6 +4,7 @@ from pathlib import Path
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
+import dj_database_url
 
 from dotenv import load_dotenv
 
@@ -203,15 +204,24 @@ WSGI_APPLICATION = "bookreader_core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#DATABASES = {
+    #"default": {
+        #"ENGINE": "django.db.backends.postgresql",
+        #"HOST": os.getenv("DB_HOST", "db"),
+        #"PORT": os.getenv("DB_PORT", 5432),
+        #"NAME": os.getenv("DB_NAME", "postgres"),
+        #"USER": os.getenv("DB_USER", "postgres"),
+        #"PASSWORD": os.getenv("DB_PASSWORD", "postgres"),
+    #}
+#}
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.getenv("DB_HOST", "db"),
-        "PORT": os.getenv("DB_PORT", 5432),
-        "NAME": os.getenv("DB_NAME", "postgres"),
-        "USER": os.getenv("DB_USER", "postgres"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "postgres"),
-    }
+    "default": dj_database_url.config(
+        default=os.getenv(
+            "DATABASE_URL",
+            "postgres://postgres:postgres@db:5432/postgres",
+        )
+    )
 }
 
 
