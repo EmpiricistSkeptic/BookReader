@@ -4725,3 +4725,1285 @@ rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string=
 "}
 {"ts":"2026-08-02 14:03:59,985","level":"INFO","logger":"translation","request_id":"07369a7e8998","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Когда Питер замечает, что Линда оживлённо болтает с ужасно красивым мужчиной, мужчиной с густой шевелюрой, у него внутри всё переворачивается.', 'detected_language': 'es', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1404.07}"}
 {"ts":"2026-08-02 14:03:59,985","level":"INFO","logger":"translation","request_id":"07369a7e8998","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Cuando Peter observa que Linda está charlando muy atenta con un hombre terriblemente apuesto, un hombre con mucho pelo, se le retuerce el estómago.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'es'."}
+{"ts":"2026-08-02 14:08:39,898","level":"INFO","logger":"translation","request_id":"a1f747d33466","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'stuck'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-02 14:08:40,988","level":"INFO","logger":"translation","request_id":"a1f747d33466","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'застрял', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1063.8}"}
+{"ts":"2026-08-02 14:08:40,989","level":"INFO","logger":"translation","request_id":"a1f747d33466","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'stuck'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-08-02 14:08:40,989","level":"INFO","logger":"reader.translator_backends","request_id":"a1f747d33466","user_id":"-","msg":"Recieved: stuck and застрял for it"}
+{"ts":"2026-08-02 14:08:42,348","level":"INFO","logger":"reader.translator_backends","request_id":"a1f747d33466","user_id":"-","msg":"Raw response form Ai {'id': 'f085ab29-7a7a-42cb-bcca-58222eef4633', 'object': 'chat.completion', 'created': 1785679721, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "застрявший"\n    },\n    {\n        "text": "застревает"\n    },\n    {\n        "text": "заклинило"\n    },\n    {\n        "text": "увяз"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 56, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-02 14:08:42,348","level":"INFO","logger":"reader.translator_backends","request_id":"a1f747d33466","user_id":"-","msg":"Parser result[{'text': 'застрявший'}, {'text': 'застревает'}, {'text': 'заклинило'}, {'text': 'увяз'}]"}
+{"ts":"2026-08-02 14:08:42,348","level":"INFO","logger":"translation","request_id":"a1f747d33466","user_id":"-","msg":"Found 4 alternatives for stuck: ['застрявший', 'застревает', 'заклинило', 'увяз']"}
+{"ts":"2026-08-02 14:29:42,073","level":"WARNING","logger":"reader.views","request_id":"86bc1244b376","user_id":"-","msg":"Не удалось определить язык по содержимому (LangDetectException)."}
+{"ts":"2026-08-02 14:29:42,076","level":"INFO","logger":"reader.views","request_id":"86bc1244b376","user_id":"-","msg":"Определение языка для книги 'Determined...': По содержимому: None, Из метаданных: en-US, Итоговый: en-US"}
+{"ts":"2026-08-02 14:31:27,045","level":"INFO","logger":"translation","request_id":"f71fb6704f81","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'seamless'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en-US'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-02 14:31:28,110","level":"INFO","logger":"translation","request_id":"f71fb6704f81","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'бесшовный', 'detected_language': 'en-US', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1038.32}"}
+{"ts":"2026-08-02 14:31:28,111","level":"INFO","logger":"translation","request_id":"f71fb6704f81","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'seamless'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en-US'."}
+{"ts":"2026-08-02 14:31:28,111","level":"INFO","logger":"reader.translator_backends","request_id":"f71fb6704f81","user_id":"-","msg":"Recieved: seamless and бесшовный for it"}
+{"ts":"2026-08-02 14:31:29,404","level":"INFO","logger":"reader.translator_backends","request_id":"f71fb6704f81","user_id":"-","msg":"Raw response form Ai {'id': 'f91d8308-0e85-4585-8adf-88a0709ef44f', 'object': 'chat.completion', 'created': 1785681088, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "цельный"\n    },\n    {\n        "text": "непрерывный"\n    },\n    {\n        "text": "плавный"\n    },\n    {\n        "text": "гладкий"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 54, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-02 14:31:29,404","level":"INFO","logger":"reader.translator_backends","request_id":"f71fb6704f81","user_id":"-","msg":"Parser result[{'text': 'цельный'}, {'text': 'непрерывный'}, {'text': 'плавный'}, {'text': 'гладкий'}]"}
+{"ts":"2026-08-02 14:31:29,405","level":"INFO","logger":"translation","request_id":"f71fb6704f81","user_id":"-","msg":"Found 4 alternatives for seamless: ['цельный', 'непрерывный', 'плавный', 'гладкий']"}
+{"ts":"2026-08-02 14:57:31,313","level":"ERROR","logger":"reader","request_id":"8ed5b46f418d","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/7/update_progress/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-08-02 14:59:27,543","level":"INFO","logger":"translation","request_id":"64ef7b4304d2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'diminished'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en-US'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-02 14:59:28,473","level":"INFO","logger":"translation","request_id":"64ef7b4304d2","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'уменьшенный', 'detected_language': 'en-US', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 920.06}"}
+{"ts":"2026-08-02 14:59:28,473","level":"INFO","logger":"translation","request_id":"64ef7b4304d2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'diminished'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en-US'."}
+{"ts":"2026-08-02 14:59:28,473","level":"INFO","logger":"reader.translator_backends","request_id":"64ef7b4304d2","user_id":"-","msg":"Recieved: diminished and уменьшенный for it"}
+{"ts":"2026-08-02 14:59:29,657","level":"INFO","logger":"reader.translator_backends","request_id":"64ef7b4304d2","user_id":"-","msg":"Raw response form Ai {'id': 'af23a1cf-784f-49d9-b20f-8031632ea3f3', 'object': 'chat.completion', 'created': 1785682769, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "ослабленный"\n    },\n    {\n        "text": "сниженный"\n    },\n    {\n        "text": "убавленный"\n    },\n    {\n        "text": "притуплённый"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 57, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-02 14:59:29,658","level":"INFO","logger":"reader.translator_backends","request_id":"64ef7b4304d2","user_id":"-","msg":"Parser result[{'text': 'ослабленный'}, {'text': 'сниженный'}, {'text': 'убавленный'}, {'text': 'притуплённый'}]"}
+{"ts":"2026-08-02 14:59:29,658","level":"INFO","logger":"translation","request_id":"64ef7b4304d2","user_id":"-","msg":"Found 4 alternatives for diminished: ['ослабленный', 'сниженный', 'убавленный', 'притуплённый']"}
+{"ts":"2026-08-02 15:00:55,068","level":"INFO","logger":"translation","request_id":"09fff2a52afc","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'One of the students is dubious about the extent to which we lack free will: “Sure, if there’s major damage to this part of the brain, if you have a mutation in this or that gene, free will is diminished, but it just seems so hard to accept that it applies to everyday, normal behavior.” I’ve been at this juncture in this discussion many times, and I’ve come to recognize that there is a significant likelihood that this studentwill now carry out a particular behavior—they will lean forward, pick up a pen on my desk, hold it up in the air and say to me, with great emphasis, “There, I just decided to pick up this pen—are you telling me that was completely out of my control?”'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en-US'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-02 15:00:57,539","level":"INFO","logger":"translation","request_id":"09fff2a52afc","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Один из студентов сомневается в том, насколько у нас отсутствует свобода воли: «Конечно, если есть серьёзное повреждение этой части мозга, если есть мутация в том или ином гене, свобода воли ослабевает, но просто так трудно принять, что это относится к повседневному, нормальному поведению». Я много раз оказывался на этом этапе в подобных обсуждениях и научился понимать, что с высокой вероятностью этот студент сейчас совершит определённое действие — он наклонится вперёд, возьмёт ручку с моего стола, поднимет её в воздух и скажет мне с большим нажимом: «Вот, я только что решил взять эту ручку — вы хотите сказать, что это было совершенно вне моего контроля?»', 'detected_language': 'en-US', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 2462.24}"}
+{"ts":"2026-08-02 15:00:57,539","level":"INFO","logger":"translation","request_id":"09fff2a52afc","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'One of the students is dubious about the extent to which we lack free will: “Sure, if there’s major damage to this part of the brain, if you have a mutation in this or that gene, free will is diminished, but it just seems so hard to accept that it applies to everyday, normal behavior.” I’ve been at this juncture in this discussion many times, and I’ve come to recognize that there is a significant likelihood that this studentwill now carry out a particular behavior—they will lean forward, pick up a pen on my desk, hold it up in the air and say to me, with great emphasis, “There, I just decided to pick up this pen—are you telling me that was completely out of my control?”'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en-US'."}
+{"ts":"2026-08-02 15:01:06,627","level":"INFO","logger":"translation","request_id":"5b9c2c865dc4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'now'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en-US'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-02 15:01:07,657","level":"INFO","logger":"translation","request_id":"5b9c2c865dc4","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'сейчас', 'detected_language': 'en-US', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1020.95}"}
+{"ts":"2026-08-02 15:01:07,658","level":"INFO","logger":"translation","request_id":"5b9c2c865dc4","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'now'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en-US'."}
+{"ts":"2026-08-02 15:01:07,658","level":"INFO","logger":"reader.translator_backends","request_id":"5b9c2c865dc4","user_id":"-","msg":"Recieved: now and сейчас for it"}
+{"ts":"2026-08-02 15:01:09,044","level":"INFO","logger":"reader.translator_backends","request_id":"5b9c2c865dc4","user_id":"-","msg":"Raw response form Ai {'id': 'ee740397-0cd7-43ac-8b5f-5564c2114573', 'object': 'chat.completion', 'created': 1785682868, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "теперь"\n    },\n    {\n        "text": "в настоящее время"\n    },\n    {\n        "text": "нынче"\n    },\n    {\n        "text": "в данный момент"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 53, 'total_tokens': 196, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-02 15:01:09,045","level":"INFO","logger":"reader.translator_backends","request_id":"5b9c2c865dc4","user_id":"-","msg":"Parser result[{'text': 'теперь'}, {'text': 'в настоящее время'}, {'text': 'нынче'}, {'text': 'в данный момент'}]"}
+{"ts":"2026-08-02 15:01:09,045","level":"INFO","logger":"translation","request_id":"5b9c2c865dc4","user_id":"-","msg":"Found 4 alternatives for now: ['теперь', 'в настоящее время', 'нынче', 'в данный момент']"}
+{"ts":"2026-08-02 15:33:55,498","level":"INFO","logger":"reader.views","request_id":"e8cfcaee9086","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-08-02 15:33:55,500","level":"ERROR","logger":"reader.views","request_id":"e8cfcaee9086","user_id":"-","msg":"Ошибка при парсинге EPUB из временного файла: name 'cover_content' is not defined"}
+Traceback (most recent call last):
+  File "/srv/bookreader/reader/views.py", line 862, in _parse_epub_content
+    "cover_content": cover_content,
+                     ^^^^^^^^^^^^^
+NameError: name 'cover_content' is not defined. Did you mean: 'file_content'?
+{"ts":"2026-08-02 15:33:55,819","level":"ERROR","logger":"reader.views","request_id":"e8cfcaee9086","user_id":"-","msg":"Ошибка формата или обработки файла: Ошибка при парсинге EPUB: name 'cover_content' is not defined"}
+{"ts":"2026-08-02 15:39:38,386","level":"INFO","logger":"reader.views","request_id":"6048dc2777e6","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-08-02 15:40:05,795","level":"INFO","logger":"reader.views","request_id":"9409ac8065a7","user_id":"-","msg":"Определение языка для книги 'Determined...': По содержимому: en, Из метаданных: en-US, Итоговый: en"}
+{"ts":"2026-08-02 15:40:15,966","level":"INFO","logger":"reader.views","request_id":"d3d6a547d438","user_id":"-","msg":"Определение языка для книги 'Le Rouge et le Noir...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 15:40:25,550","level":"INFO","logger":"reader.views","request_id":"994849e1726d","user_id":"-","msg":"Определение языка для книги 'La dame aux camélias...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 15:40:38,034","level":"INFO","logger":"reader.views","request_id":"125ba996ee85","user_id":"-","msg":"Определение языка для книги 'A Collection of Beatrix Potter...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:40:46,179","level":"INFO","logger":"reader.views","request_id":"2a62df898bde","user_id":"-","msg":"Определение языка для книги 'Winnie-the-Pooh...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:40:54,494","level":"INFO","logger":"reader.views","request_id":"9318fd996b35","user_id":"-","msg":"Определение языка для книги 'The Velveteen Rabbit...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:41:22,815","level":"INFO","logger":"reader.views","request_id":"271b39e5c792","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-08-02 15:48:10,363","level":"WARNING","logger":"reader.views","request_id":"f6bb03f47057","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-08-02 15:48:10,979","level":"INFO","logger":"reader.views","request_id":"f6bb03f47057","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-08-02 15:48:26,561","level":"INFO","logger":"reader.views","request_id":"6d3a1168788e","user_id":"-","msg":"EPUB cover found via filename fallback (@public@vhost@g@gutenberg@html@files@22566@22566-h@images@imgcover.jpg)"}
+{"ts":"2026-08-02 15:48:26,682","level":"INFO","logger":"reader.views","request_id":"6d3a1168788e","user_id":"-","msg":"Определение языка для книги 'Dorothy and the Wizard in Oz...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:48:35,198","level":"INFO","logger":"reader.views","request_id":"ff0746f786fd","user_id":"-","msg":"EPUB cover found via filename fallback (@export@sunsite@users@gutenbackend@cache@epub@11757@11757-cover.png)"}
+{"ts":"2026-08-02 15:48:35,235","level":"INFO","logger":"reader.views","request_id":"ff0746f786fd","user_id":"-","msg":"Определение языка для книги 'The Velveteen Rabbit...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:48:42,848","level":"INFO","logger":"reader.views","request_id":"4e0ba14b308c","user_id":"-","msg":"EPUB cover found via filename fallback (cover1.jpg)"}
+{"ts":"2026-08-02 15:48:42,982","level":"INFO","logger":"reader.views","request_id":"4e0ba14b308c","user_id":"-","msg":"Определение языка для книги 'Winnie-the-Pooh...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:48:49,640","level":"INFO","logger":"reader.views","request_id":"bd83b3a65028","user_id":"-","msg":"EPUB cover found via filename fallback (2161256161870214244_582-cover.png)"}
+{"ts":"2026-08-02 15:48:49,719","level":"INFO","logger":"reader.views","request_id":"bd83b3a65028","user_id":"-","msg":"Определение языка для книги 'A Collection of Beatrix Potter...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:48:58,631","level":"INFO","logger":"reader.views","request_id":"3ef1e92ea9f1","user_id":"-","msg":"EPUB cover found via ITEM_COVER"}
+{"ts":"2026-08-02 15:48:58,792","level":"INFO","logger":"reader.views","request_id":"3ef1e92ea9f1","user_id":"-","msg":"Определение языка для книги 'La dame aux camélias...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 15:49:05,560","level":"WARNING","logger":"reader.views","request_id":"10db24ae5016","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-08-02 15:49:05,849","level":"INFO","logger":"reader.views","request_id":"10db24ae5016","user_id":"-","msg":"Определение языка для книги 'Le Rouge et le Noir...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 15:49:25,589","level":"INFO","logger":"reader.views","request_id":"954ee70c133e","user_id":"-","msg":"EPUB cover found via ITEM_COVER"}
+{"ts":"2026-08-02 15:49:26,980","level":"INFO","logger":"reader.views","request_id":"954ee70c133e","user_id":"-","msg":"Определение языка для книги 'Determined...': По содержимому: en, Из метаданных: en-US, Итоговый: en"}
+{"ts":"2026-08-02 15:56:23,972","level":"INFO","logger":"reader.views","request_id":"eb89d1ce31ec","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 15:56:23,973","level":"INFO","logger":"reader.views","request_id":"eb89d1ce31ec","user_id":"-","msg":"EPUB images: ['Images/Abrazame_fuerte.jpg']"}
+{"ts":"2026-08-02 15:56:23,974","level":"WARNING","logger":"reader.views","request_id":"eb89d1ce31ec","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-08-02 15:56:24,586","level":"INFO","logger":"reader.views","request_id":"eb89d1ce31ec","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-08-02 15:56:34,352","level":"INFO","logger":"reader.views","request_id":"823cc10465cb","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 15:56:34,353","level":"INFO","logger":"reader.views","request_id":"823cc10465cb","user_id":"-","msg":"EPUB images: ['@public@vhost@g@gutenberg@html@files@22566@22566-h@images@imgcover.jpg']"}
+{"ts":"2026-08-02 15:56:34,353","level":"INFO","logger":"reader.views","request_id":"823cc10465cb","user_id":"-","msg":"EPUB cover found via filename fallback (@public@vhost@g@gutenberg@html@files@22566@22566-h@images@imgcover.jpg)"}
+{"ts":"2026-08-02 15:56:34,480","level":"INFO","logger":"reader.views","request_id":"823cc10465cb","user_id":"-","msg":"Определение языка для книги 'Dorothy and the Wizard in Oz...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:56:40,456","level":"INFO","logger":"reader.views","request_id":"ca7e75097563","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 15:56:40,456","level":"INFO","logger":"reader.views","request_id":"ca7e75097563","user_id":"-","msg":"EPUB images: ['@export@sunsite@users@gutenbackend@cache@epub@11757@11757-cover.png']"}
+{"ts":"2026-08-02 15:56:40,457","level":"INFO","logger":"reader.views","request_id":"ca7e75097563","user_id":"-","msg":"EPUB cover found via filename fallback (@export@sunsite@users@gutenbackend@cache@epub@11757@11757-cover.png)"}
+{"ts":"2026-08-02 15:56:40,493","level":"INFO","logger":"reader.views","request_id":"ca7e75097563","user_id":"-","msg":"Определение языка для книги 'The Velveteen Rabbit...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:56:45,837","level":"INFO","logger":"reader.views","request_id":"02365e5d5c6d","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 15:56:45,837","level":"INFO","logger":"reader.views","request_id":"02365e5d5c6d","user_id":"-","msg":"EPUB images: ['cover1.jpg', 'cover.jpg']"}
+{"ts":"2026-08-02 15:56:45,838","level":"INFO","logger":"reader.views","request_id":"02365e5d5c6d","user_id":"-","msg":"EPUB cover found via filename fallback (cover1.jpg)"}
+{"ts":"2026-08-02 15:56:45,955","level":"INFO","logger":"reader.views","request_id":"02365e5d5c6d","user_id":"-","msg":"Определение языка для книги 'Winnie-the-Pooh...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:56:51,289","level":"INFO","logger":"reader.views","request_id":"7902438df090","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 15:56:51,289","level":"INFO","logger":"reader.views","request_id":"7902438df090","user_id":"-","msg":"EPUB images: ['2161256161870214244_582-cover.png']"}
+{"ts":"2026-08-02 15:56:51,289","level":"INFO","logger":"reader.views","request_id":"7902438df090","user_id":"-","msg":"EPUB cover found via filename fallback (2161256161870214244_582-cover.png)"}
+{"ts":"2026-08-02 15:56:51,371","level":"INFO","logger":"reader.views","request_id":"7902438df090","user_id":"-","msg":"Определение языка для книги 'A Collection of Beatrix Potter...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-08-02 15:57:00,077","level":"INFO","logger":"reader.views","request_id":"fee230e73473","user_id":"-","msg":"EPUB cover found via ITEM_COVER"}
+{"ts":"2026-08-02 15:57:00,241","level":"INFO","logger":"reader.views","request_id":"fee230e73473","user_id":"-","msg":"Определение языка для книги 'La dame aux camélias...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 15:57:05,802","level":"INFO","logger":"reader.views","request_id":"47551920df8d","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 15:57:05,802","level":"INFO","logger":"reader.views","request_id":"47551920df8d","user_id":"-","msg":"EPUB images: []"}
+{"ts":"2026-08-02 15:57:05,802","level":"WARNING","logger":"reader.views","request_id":"47551920df8d","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-08-02 15:57:06,091","level":"INFO","logger":"reader.views","request_id":"47551920df8d","user_id":"-","msg":"Определение языка для книги 'Le Rouge et le Noir...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 16:00:07,624","level":"ERROR","logger":"reader","request_id":"c9cbb30663a9","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/24/ method=DELETE exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-08-02 16:00:16,583","level":"INFO","logger":"reader.views","request_id":"e54d215e7f77","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 16:00:16,584","level":"INFO","logger":"reader.views","request_id":"e54d215e7f77","user_id":"-","msg":"Image: Images/Abrazame_fuerte.jpg | media_type=image/jpeg | id=Abrazame_fuerte.jpg"}
+{"ts":"2026-08-02 16:00:16,584","level":"INFO","logger":"reader.views","request_id":"e54d215e7f77","user_id":"-","msg":"EPUB images: ['Images/Abrazame_fuerte.jpg']"}
+{"ts":"2026-08-02 16:00:16,584","level":"WARNING","logger":"reader.views","request_id":"e54d215e7f77","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-08-02 16:00:17,155","level":"INFO","logger":"reader.views","request_id":"e54d215e7f77","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-08-02 16:05:33,236","level":"INFO","logger":"reader.views","request_id":"5fac3ebea280","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 16:05:33,238","level":"INFO","logger":"reader.views","request_id":"5fac3ebea280","user_id":"-","msg":"EPUB images: []"}
+{"ts":"2026-08-02 16:05:33,238","level":"WARNING","logger":"reader.views","request_id":"5fac3ebea280","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-08-02 16:05:33,563","level":"INFO","logger":"reader.views","request_id":"5fac3ebea280","user_id":"-","msg":"Определение языка для книги 'Le Rouge et le Noir...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 17:19:44,202","level":"ERROR","logger":"reader","request_id":"4c47fa0c1f06","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-08-02 17:55:34,078","level":"ERROR","logger":"reader.views","request_id":"46e6bc2cfb9d","user_id":"-","msg":"Ошибка формата или обработки файла: Ошибка при парсинге FB2: 'cover_filename'"}
+{"ts":"2026-08-02 18:03:39,631","level":"INFO","logger":"reader.views","request_id":"69845c69f95d","user_id":"-","msg":"FB2 coverpage image: <Element '{http://www.gribuser.ru/xml/fictionbook/2.0}image' at 0x7146f81d9940>"}
+{"ts":"2026-08-02 18:03:39,643","level":"INFO","logger":"reader.views","request_id":"69845c69f95d","user_id":"-","msg":"FB2 cover href: #img_0"}
+{"ts":"2026-08-02 18:03:39,643","level":"INFO","logger":"reader.views","request_id":"69845c69f95d","user_id":"-","msg":"FB2 binaries: [('img_0', 'image/jpeg')]"}
+{"ts":"2026-08-02 18:03:39,645","level":"INFO","logger":"reader.views","request_id":"69845c69f95d","user_id":"-","msg":"FB2 cover found: id=img_0 filename=img_0.jpeg size=12307"}
+{"ts":"2026-08-02 18:08:01,680","level":"INFO","logger":"reader.views","request_id":"372d7c71afac","user_id":"-","msg":"FB2 coverpage image: <Element '{http://www.gribuser.ru/xml/fictionbook/2.0}image' at 0x7ba4773dd940>"}
+{"ts":"2026-08-02 18:08:01,681","level":"INFO","logger":"reader.views","request_id":"372d7c71afac","user_id":"-","msg":"FB2 cover href: #img_0"}
+{"ts":"2026-08-02 18:08:01,682","level":"INFO","logger":"reader.views","request_id":"372d7c71afac","user_id":"-","msg":"FB2 binaries: [('img_0', 'image/jpeg')]"}
+{"ts":"2026-08-02 18:08:01,683","level":"INFO","logger":"reader.views","request_id":"372d7c71afac","user_id":"-","msg":"FB2 cover found: id=img_0 filename=img_0.jpeg size=12307"}
+{"ts":"2026-08-02 18:09:11,079","level":"INFO","logger":"reader.views","request_id":"72e5bea90618","user_id":"-","msg":"FB2 coverpage image: None"}
+{"ts":"2026-08-02 18:09:53,263","level":"INFO","logger":"reader.views","request_id":"4127ed7d020b","user_id":"-","msg":"FB2 coverpage image: None"}
+{"ts":"2026-08-02 18:15:55,597","level":"INFO","logger":"reader.views","request_id":"129a66010194","user_id":"-","msg":"FB2 coverpage image: <Element '{http://www.gribuser.ru/xml/fictionbook/2.0}image' at 0x7ba47746f830>"}
+{"ts":"2026-08-02 18:15:55,598","level":"INFO","logger":"reader.views","request_id":"129a66010194","user_id":"-","msg":"FB2 cover href: #_1000028511.jpg"}
+{"ts":"2026-08-02 18:15:55,599","level":"INFO","logger":"reader.views","request_id":"129a66010194","user_id":"-","msg":"FB2 binaries: [('_1000028511.jpg', 'image/jpeg')]"}
+{"ts":"2026-08-02 18:15:55,599","level":"INFO","logger":"reader.views","request_id":"129a66010194","user_id":"-","msg":"FB2 cover found: id=_1000028511.jpg filename=_1000028511.jpg size=23256"}
+{"ts":"2026-08-02 18:16:02,819","level":"INFO","logger":"reader.views","request_id":"447f0055069c","user_id":"-","msg":"FB2 coverpage image: <Element '{http://www.gribuser.ru/xml/fictionbook/2.0}image' at 0x7ba477465990>"}
+{"ts":"2026-08-02 18:16:02,819","level":"INFO","logger":"reader.views","request_id":"447f0055069c","user_id":"-","msg":"FB2 cover href: #cover7.jpg"}
+{"ts":"2026-08-02 18:16:02,820","level":"INFO","logger":"reader.views","request_id":"447f0055069c","user_id":"-","msg":"FB2 binaries: [('cover7.jpg', 'image/jpeg')]"}
+{"ts":"2026-08-02 18:16:02,825","level":"INFO","logger":"reader.views","request_id":"447f0055069c","user_id":"-","msg":"FB2 cover found: id=cover7.jpg filename=cover7.jpg size=360017"}
+{"ts":"2026-08-02 23:05:32,424","level":"ERROR","logger":"reader","request_id":"ba54a5c9a52f","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-08-02 23:05:34,014","level":"ERROR","logger":"reader","request_id":"ca1890d5bd2a","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=AuthenticationFailed('User not found')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 130, in get_user
+    user = self.user_model.objects.get(**{api_settings.USER_ID_FIELD: user_id})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 132, in get_user
+    raise AuthenticationFailed(_("User not found"), code="user_not_found")
+rest_framework_simplejwt.exceptions.AuthenticationFailed: {'detail': ErrorDetail(string='User not found', code='authentication_failed'), 'code': ErrorDetail(string='user_not_found', code='authentication_failed')}
+{"ts":"2026-08-02 23:05:41,367","level":"ERROR","logger":"reader","request_id":"210e71a10adb","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=AuthenticationFailed('User not found')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 130, in get_user
+    user = self.user_model.objects.get(**{api_settings.USER_ID_FIELD: user_id})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 132, in get_user
+    raise AuthenticationFailed(_("User not found"), code="user_not_found")
+rest_framework_simplejwt.exceptions.AuthenticationFailed: {'detail': ErrorDetail(string='User not found', code='authentication_failed'), 'code': ErrorDetail(string='user_not_found', code='authentication_failed')}
+{"ts":"2026-08-02 23:05:42,063","level":"ERROR","logger":"reader","request_id":"8eba0b457682","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=AuthenticationFailed('User not found')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 130, in get_user
+    user = self.user_model.objects.get(**{api_settings.USER_ID_FIELD: user_id})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 132, in get_user
+    raise AuthenticationFailed(_("User not found"), code="user_not_found")
+rest_framework_simplejwt.exceptions.AuthenticationFailed: {'detail': ErrorDetail(string='User not found', code='authentication_failed'), 'code': ErrorDetail(string='user_not_found', code='authentication_failed')}
+{"ts":"2026-08-02 23:12:19,003","level":"INFO","logger":"reader.views","request_id":"860f50385224","user_id":"-","msg":"EPUB cover found via ITEM_COVER"}
+{"ts":"2026-08-02 23:12:19,681","level":"INFO","logger":"reader.views","request_id":"860f50385224","user_id":"-","msg":"Определение языка для книги 'La dame aux camélias...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-08-02 23:12:43,732","level":"INFO","logger":"reader.views","request_id":"d2fc171cbe15","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-08-02 23:12:43,732","level":"INFO","logger":"reader.views","request_id":"d2fc171cbe15","user_id":"-","msg":"Image: Images/Abrazame_fuerte.jpg | media_type=image/jpeg | id=Abrazame_fuerte.jpg"}
+{"ts":"2026-08-02 23:12:43,733","level":"INFO","logger":"reader.views","request_id":"d2fc171cbe15","user_id":"-","msg":"EPUB images: ['Images/Abrazame_fuerte.jpg']"}
+{"ts":"2026-08-02 23:12:43,733","level":"WARNING","logger":"reader.views","request_id":"d2fc171cbe15","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-08-02 23:12:43,869","level":"INFO","logger":"reader.views","request_id":"d2fc171cbe15","user_id":"-","msg":"Определение языка для книги 'Abrázame fuerte...': По содержимому: es, Из метаданных: ar-SA, Итоговый: es"}
+{"ts":"2026-08-02 23:12:56,886","level":"INFO","logger":"reader.views","request_id":"5252bab04229","user_id":"-","msg":"FB2 coverpage image: <Element '{http://www.gribuser.ru/xml/fictionbook/2.0}image' at 0x75cbb58665c0>"}
+{"ts":"2026-08-02 23:12:56,887","level":"INFO","logger":"reader.views","request_id":"5252bab04229","user_id":"-","msg":"FB2 cover href: #cover7.jpg"}
+{"ts":"2026-08-02 23:12:56,887","level":"INFO","logger":"reader.views","request_id":"5252bab04229","user_id":"-","msg":"FB2 binaries: [('cover7.jpg', 'image/jpeg')]"}
+{"ts":"2026-08-02 23:12:56,890","level":"INFO","logger":"reader.views","request_id":"5252bab04229","user_id":"-","msg":"FB2 cover found: id=cover7.jpg filename=cover7.jpg size=360017"}
+{"ts":"2026-08-02 23:16:18,438","level":"INFO","logger":"reader.views","request_id":"9b71950130a4","user_id":"-","msg":"FB2 coverpage image: <Element '{http://www.gribuser.ru/xml/fictionbook/2.0}image' at 0x7504098f7100>"}
+{"ts":"2026-08-02 23:16:18,439","level":"INFO","logger":"reader.views","request_id":"9b71950130a4","user_id":"-","msg":"FB2 cover href: #img_0"}
+{"ts":"2026-08-02 23:16:18,439","level":"INFO","logger":"reader.views","request_id":"9b71950130a4","user_id":"-","msg":"FB2 binaries: [('img_0', 'image/jpeg')]"}
+{"ts":"2026-08-02 23:16:18,440","level":"INFO","logger":"reader.views","request_id":"9b71950130a4","user_id":"-","msg":"FB2 cover found: id=img_0 filename=img_0.jpeg size=12307"}
+{"ts":"2026-08-02 23:16:19,460","level":"INFO","logger":"reader.views","request_id":"9b71950130a4","user_id":"-","msg":"Book file name: books/John_F_Kennedy-Anne_Collins.fb2"}
+{"ts":"2026-08-02 23:16:19,462","level":"INFO","logger":"reader.views","request_id":"9b71950130a4","user_id":"-","msg":"Book file URL: https://71af5c03970ff8d7a7b3ed12fa3fa567.r2.cloudflarestorage.com/book-reader-storage/books/John_F_Kennedy-Anne_Collins.fb2?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ebc6457ac9e4ab6ef3382090b3394603%2F20260802%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260802T231619Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=63c3d9bad4edb54e2ed3a856550fc3e8bed45b3f5a8e3203e69d36828936218a"}
+{"ts":"2026-08-03 13:16:30,215","level":"ERROR","logger":"reader","request_id":"e8140028fb35","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 332, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 330, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-08-03 13:19:13,027","level":"INFO","logger":"translation","request_id":"e041a1288f2a","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'soupçonner'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:19:13,936","level":"INFO","logger":"translation","request_id":"e041a1288f2a","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'подозревать', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 884.57}"}
+{"ts":"2026-08-03 13:19:13,937","level":"INFO","logger":"translation","request_id":"e041a1288f2a","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'soupçonner'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:19:13,937","level":"INFO","logger":"reader.translator_backends","request_id":"e041a1288f2a","user_id":"-","msg":"Recieved: soupçonner and подозревать for it"}
+{"ts":"2026-08-03 13:19:14,981","level":"INFO","logger":"reader.translator_backends","request_id":"e041a1288f2a","user_id":"-","msg":"Raw response form Ai {'id': '07eb2188-6472-4683-9f7f-0ce9fec9e248', 'object': 'chat.completion', 'created': 1785763154, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "подозревать"\n    },\n    {\n        "text": "предполагать"\n    },\n    {\n        "text": "догадываться"\n    },\n    {\n        "text": "сомневаться"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 57, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:19:14,982","level":"INFO","logger":"reader.translator_backends","request_id":"e041a1288f2a","user_id":"-","msg":"Parser result[{'text': 'подозревать'}, {'text': 'предполагать'}, {'text': 'догадываться'}, {'text': 'сомневаться'}]"}
+{"ts":"2026-08-03 13:19:14,982","level":"INFO","logger":"translation","request_id":"e041a1288f2a","user_id":"-","msg":"Found 4 alternatives for soupçonner: ['подозревать', 'предполагать', 'догадываться', 'сомневаться']"}
+{"ts":"2026-08-03 13:19:45,194","level":"INFO","logger":"translation","request_id":"7326995a7c6e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'émue'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:19:46,034","level":"INFO","logger":"translation","request_id":"7326995a7c6e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'растроганная', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 833.55}"}
+{"ts":"2026-08-03 13:19:46,035","level":"INFO","logger":"translation","request_id":"7326995a7c6e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'émue'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:19:46,035","level":"INFO","logger":"reader.translator_backends","request_id":"7326995a7c6e","user_id":"-","msg":"Recieved: émue and растроганная for it"}
+{"ts":"2026-08-03 13:19:47,273","level":"INFO","logger":"reader.translator_backends","request_id":"7326995a7c6e","user_id":"-","msg":"Raw response form Ai {'id': '8e91c7d9-9a2a-4139-8ce4-9708b08383c7', 'object': 'chat.completion', 'created': 1785763186, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "тронутая"\n    },\n    {\n        "text": "взволнованная"\n    },\n    {\n        "text": "растроганный"\n    },\n    {\n        "text": "растроганное"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 60, 'total_tokens': 207, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:19:47,273","level":"INFO","logger":"reader.translator_backends","request_id":"7326995a7c6e","user_id":"-","msg":"Parser result[{'text': 'тронутая'}, {'text': 'взволнованная'}, {'text': 'растроганный'}, {'text': 'растроганное'}]"}
+{"ts":"2026-08-03 13:19:47,273","level":"INFO","logger":"translation","request_id":"7326995a7c6e","user_id":"-","msg":"Found 4 alternatives for émue: ['тронутая', 'взволнованная', 'растроганный', 'растроганное']"}
+{"ts":"2026-08-03 13:19:54,505","level":"INFO","logger":"translation","request_id":"12db8cee69ee","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'étonnée'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:19:55,457","level":"INFO","logger":"translation","request_id":"12db8cee69ee","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'удивлённая', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 944.59}"}
+{"ts":"2026-08-03 13:19:55,458","level":"INFO","logger":"translation","request_id":"12db8cee69ee","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'étonnée'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:19:55,458","level":"INFO","logger":"reader.translator_backends","request_id":"12db8cee69ee","user_id":"-","msg":"Recieved: étonnée and удивлённая for it"}
+{"ts":"2026-08-03 13:19:56,746","level":"INFO","logger":"reader.translator_backends","request_id":"12db8cee69ee","user_id":"-","msg":"Raw response form Ai {'id': 'ebf5d3a6-b356-4558-a6f7-b77a0ad2679b', 'object': 'chat.completion', 'created': 1785763195, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "изумлённая"\n    },\n    {\n        "text": "поражённая"\n    },\n    {\n        "text": "ошеломлённая"\n    },\n    {\n        "text": "встревоженная"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 60, 'total_tokens': 208, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:19:56,747","level":"INFO","logger":"reader.translator_backends","request_id":"12db8cee69ee","user_id":"-","msg":"Parser result[{'text': 'изумлённая'}, {'text': 'поражённая'}, {'text': 'ошеломлённая'}, {'text': 'встревоженная'}]"}
+{"ts":"2026-08-03 13:19:56,747","level":"INFO","logger":"translation","request_id":"12db8cee69ee","user_id":"-","msg":"Found 4 alternatives for étonnée: ['изумлённая', 'поражённая', 'ошеломлённая', 'встревоженная']"}
+{"ts":"2026-08-03 13:20:37,232","level":"INFO","logger":"translation","request_id":"8c25541298fa","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'persécuteriez'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:20:38,402","level":"INFO","logger":"translation","request_id":"8c25541298fa","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'вы бы преследовали', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1162.83}"}
+{"ts":"2026-08-03 13:20:38,403","level":"INFO","logger":"translation","request_id":"8c25541298fa","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'persécuteriez'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:20:38,403","level":"INFO","logger":"reader.translator_backends","request_id":"8c25541298fa","user_id":"-","msg":"Recieved: persécuteriez and вы бы преследовали for it"}
+{"ts":"2026-08-03 13:20:39,550","level":"INFO","logger":"reader.translator_backends","request_id":"8c25541298fa","user_id":"-","msg":"Raw response form Ai {'id': '8add0d3e-6894-4f8d-b545-d562f4f531c0', 'object': 'chat.completion', 'created': 1785763239, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "вы бы травили"\n    },\n    {\n        "text": "вы бы гнали"\n    },\n    {\n        "text": "вы бы мучили"\n    },\n    {\n        "text": "вы бы притесняли"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 150, 'completion_tokens': 63, 'total_tokens': 213, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 150}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:20:39,550","level":"INFO","logger":"reader.translator_backends","request_id":"8c25541298fa","user_id":"-","msg":"Parser result[{'text': 'вы бы травили'}, {'text': 'вы бы гнали'}, {'text': 'вы бы мучили'}, {'text': 'вы бы притесняли'}]"}
+{"ts":"2026-08-03 13:20:39,550","level":"INFO","logger":"translation","request_id":"8c25541298fa","user_id":"-","msg":"Found 4 alternatives for persécuteriez: ['вы бы травили', 'вы бы гнали', 'вы бы мучили', 'вы бы притесняли']"}
+{"ts":"2026-08-03 13:20:53,633","level":"INFO","logger":"translation","request_id":"1e7d444ce612","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'grandirais'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:20:54,653","level":"INFO","logger":"translation","request_id":"1e7d444ce612","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'вырос бы', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1013.72}"}
+{"ts":"2026-08-03 13:20:54,653","level":"INFO","logger":"translation","request_id":"1e7d444ce612","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'grandirais'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:20:54,653","level":"INFO","logger":"reader.translator_backends","request_id":"1e7d444ce612","user_id":"-","msg":"Recieved: grandirais and вырос бы for it"}
+{"ts":"2026-08-03 13:20:55,783","level":"INFO","logger":"reader.translator_backends","request_id":"1e7d444ce612","user_id":"-","msg":"Raw response form Ai {'id': '8c6741e4-781a-415b-b060-56833a15a76e', 'object': 'chat.completion', 'created': 1785763255, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "стал бы выше"\n    },\n    {\n        "text": "подрос бы"\n    },\n    {\n        "text": "увеличился бы"\n    },\n    {\n        "text": "развился бы"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 58, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:20:55,784","level":"INFO","logger":"reader.translator_backends","request_id":"1e7d444ce612","user_id":"-","msg":"Parser result[{'text': 'стал бы выше'}, {'text': 'подрос бы'}, {'text': 'увеличился бы'}, {'text': 'развился бы'}]"}
+{"ts":"2026-08-03 13:20:55,784","level":"INFO","logger":"translation","request_id":"1e7d444ce612","user_id":"-","msg":"Found 4 alternatives for grandirais: ['стал бы выше', 'подрос бы', 'увеличился бы', 'развился бы']"}
+{"ts":"2026-08-03 13:21:29,687","level":"INFO","logger":"translation","request_id":"0000b14730cd","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'l'exécution'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:21:30,582","level":"INFO","logger":"translation","request_id":"0000b14730cd","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'казнь', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 887.12}"}
+{"ts":"2026-08-03 13:21:30,582","level":"INFO","logger":"translation","request_id":"0000b14730cd","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'l'exécution'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:21:30,583","level":"INFO","logger":"reader.translator_backends","request_id":"0000b14730cd","user_id":"-","msg":"Recieved: l'exécution and казнь for it"}
+{"ts":"2026-08-03 13:21:31,676","level":"INFO","logger":"reader.translator_backends","request_id":"0000b14730cd","user_id":"-","msg":"Raw response form Ai {'id': '4737dc3a-4b96-47dd-9274-07e1cd31e302', 'object': 'chat.completion', 'created': 1785763291, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "исполнение"\n    },\n    {\n        "text": "осуществление"\n    },\n    {\n        "text": "выполнение"\n    },\n    {\n        "text": "приведение в исполнение"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 56, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:21:31,677","level":"INFO","logger":"reader.translator_backends","request_id":"0000b14730cd","user_id":"-","msg":"Parser result[{'text': 'исполнение'}, {'text': 'осуществление'}, {'text': 'выполнение'}, {'text': 'приведение в исполнение'}]"}
+{"ts":"2026-08-03 13:21:31,677","level":"INFO","logger":"translation","request_id":"0000b14730cd","user_id":"-","msg":"Found 4 alternatives for l'exécution: ['исполнение', 'осуществление', 'выполнение', 'приведение в исполнение']"}
+{"ts":"2026-08-03 13:22:29,273","level":"INFO","logger":"translation","request_id":"654f2ebef0b9","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'tardera'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:22:30,177","level":"INFO","logger":"translation","request_id":"654f2ebef0b9","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'задержится', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 891.35}"}
+{"ts":"2026-08-03 13:22:30,177","level":"INFO","logger":"translation","request_id":"654f2ebef0b9","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'tardera'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:22:30,177","level":"INFO","logger":"reader.translator_backends","request_id":"654f2ebef0b9","user_id":"-","msg":"Recieved: tardera and задержится for it"}
+{"ts":"2026-08-03 13:22:31,204","level":"INFO","logger":"reader.translator_backends","request_id":"654f2ebef0b9","user_id":"-","msg":"Raw response form Ai {'id': '9a09438b-935b-4802-8b78-06937df34ff6', 'object': 'chat.completion', 'created': 1785763350, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "запоздает"\n    },\n    {\n        "text": "опоздает"\n    },\n    {\n        "text": "замедлится"\n    },\n    {\n        "text": "будет медлить"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 58, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:22:31,205","level":"INFO","logger":"reader.translator_backends","request_id":"654f2ebef0b9","user_id":"-","msg":"Parser result[{'text': 'запоздает'}, {'text': 'опоздает'}, {'text': 'замедлится'}, {'text': 'будет медлить'}]"}
+{"ts":"2026-08-03 13:22:31,205","level":"INFO","logger":"translation","request_id":"654f2ebef0b9","user_id":"-","msg":"Found 4 alternatives for tardera: ['запоздает', 'опоздает', 'замедлится', 'будет медлить']"}
+{"ts":"2026-08-03 13:22:49,503","level":"INFO","logger":"translation","request_id":"f5a3ba9260a2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'santé'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:22:50,405","level":"INFO","logger":"translation","request_id":"f5a3ba9260a2","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'здоровье', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 894.36}"}
+{"ts":"2026-08-03 13:22:50,405","level":"INFO","logger":"translation","request_id":"f5a3ba9260a2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'santé'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:22:50,405","level":"INFO","logger":"reader.translator_backends","request_id":"f5a3ba9260a2","user_id":"-","msg":"Recieved: santé and здоровье for it"}
+{"ts":"2026-08-03 13:22:51,432","level":"INFO","logger":"reader.translator_backends","request_id":"f5a3ba9260a2","user_id":"-","msg":"Raw response form Ai {'id': '2296c29c-91ae-4743-aa71-0c9578c8f719', 'object': 'chat.completion', 'created': 1785763370, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "самочувствие"\n    },\n    {\n        "text": "здравие"\n    },\n    {\n        "text": "состояние здоровья"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 45, 'total_tokens': 188, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:22:51,433","level":"INFO","logger":"reader.translator_backends","request_id":"f5a3ba9260a2","user_id":"-","msg":"Parser result[{'text': 'самочувствие'}, {'text': 'здравие'}, {'text': 'состояние здоровья'}]"}
+{"ts":"2026-08-03 13:22:51,433","level":"INFO","logger":"translation","request_id":"f5a3ba9260a2","user_id":"-","msg":"Found 3 alternatives for santé: ['самочувствие', 'здравие', 'состояние здоровья']"}
+{"ts":"2026-08-03 13:23:18,328","level":"INFO","logger":"translation","request_id":"a68a88773930","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'grâce'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:23:19,302","level":"INFO","logger":"translation","request_id":"a68a88773930","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'спасибо', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 968.01}"}
+{"ts":"2026-08-03 13:23:19,303","level":"INFO","logger":"translation","request_id":"a68a88773930","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'grâce'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:23:19,303","level":"INFO","logger":"reader.translator_backends","request_id":"a68a88773930","user_id":"-","msg":"Recieved: grâce and спасибо for it"}
+{"ts":"2026-08-03 13:23:20,319","level":"INFO","logger":"reader.translator_backends","request_id":"a68a88773930","user_id":"-","msg":"Raw response form Ai {'id': '8df43411-20a5-49de-b182-9aa232d35b66', 'object': 'chat.completion', 'created': 1785763399, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "благодарю"\n    },\n    {\n        "text": "благодарность"\n    },\n    {\n        "text": "спасибо за"\n    },\n    {\n        "text": "милость"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 59, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:23:20,319","level":"INFO","logger":"reader.translator_backends","request_id":"a68a88773930","user_id":"-","msg":"Parser result[{'text': 'благодарю'}, {'text': 'благодарность'}, {'text': 'спасибо за'}, {'text': 'милость'}]"}
+{"ts":"2026-08-03 13:23:20,320","level":"INFO","logger":"translation","request_id":"a68a88773930","user_id":"-","msg":"Found 4 alternatives for grâce: ['благодарю', 'благодарность', 'спасибо за', 'милость']"}
+{"ts":"2026-08-03 13:23:32,309","level":"INFO","logger":"translation","request_id":"6b763c0dea6e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'épuisée'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:23:33,313","level":"INFO","logger":"translation","request_id":"6b763c0dea6e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'измученная', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 998.1}"}
+{"ts":"2026-08-03 13:23:33,313","level":"INFO","logger":"translation","request_id":"6b763c0dea6e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'épuisée'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:23:33,313","level":"INFO","logger":"reader.translator_backends","request_id":"6b763c0dea6e","user_id":"-","msg":"Recieved: épuisée and измученная for it"}
+{"ts":"2026-08-03 13:23:34,457","level":"INFO","logger":"reader.translator_backends","request_id":"6b763c0dea6e","user_id":"-","msg":"Raw response form Ai {'id': '2ee5ce38-3b86-4b49-a913-b404c5aa1002', 'object': 'chat.completion', 'created': 1785763413, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "истощённая"\n    },\n    {\n        "text": "обессиленная"\n    },\n    {\n        "text": "вымотанная"\n    },\n    {\n        "text": "изнурённая"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 59, 'total_tokens': 206, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:23:34,457","level":"INFO","logger":"reader.translator_backends","request_id":"6b763c0dea6e","user_id":"-","msg":"Parser result[{'text': 'истощённая'}, {'text': 'обессиленная'}, {'text': 'вымотанная'}, {'text': 'изнурённая'}]"}
+{"ts":"2026-08-03 13:23:34,458","level":"INFO","logger":"translation","request_id":"6b763c0dea6e","user_id":"-","msg":"Found 4 alternatives for épuisée: ['истощённая', 'обессиленная', 'вымотанная', 'изнурённая']"}
+{"ts":"2026-08-03 13:23:45,652","level":"INFO","logger":"translation","request_id":"ba97498838aa","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'd'âme'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:23:46,800","level":"INFO","logger":"translation","request_id":"ba97498838aa","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'души', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1139.44}"}
+{"ts":"2026-08-03 13:23:46,800","level":"INFO","logger":"translation","request_id":"ba97498838aa","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'd'âme'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:23:46,800","level":"INFO","logger":"reader.translator_backends","request_id":"ba97498838aa","user_id":"-","msg":"Recieved: d'âme and души for it"}
+{"ts":"2026-08-03 13:23:48,068","level":"INFO","logger":"reader.translator_backends","request_id":"ba97498838aa","user_id":"-","msg":"Raw response form Ai {'id': '90f85610-2007-4f8c-9be6-c2d9e179e141', 'object': 'chat.completion', 'created': 1785763427, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "духа"\n    },\n    {\n        "text": "сердца"\n    },\n    {\n        "text": "душевного"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 40, 'total_tokens': 186, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:23:48,068","level":"INFO","logger":"reader.translator_backends","request_id":"ba97498838aa","user_id":"-","msg":"Parser result[{'text': 'духа'}, {'text': 'сердца'}, {'text': 'душевного'}]"}
+{"ts":"2026-08-03 13:23:48,068","level":"INFO","logger":"translation","request_id":"ba97498838aa","user_id":"-","msg":"Found 3 alternatives for d'âme: ['духа', 'сердца', 'душевного']"}
+{"ts":"2026-08-03 13:25:50,109","level":"INFO","logger":"translation","request_id":"2a87718971d6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'rappellerai'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:25:50,857","level":"INFO","logger":"translation","request_id":"2a87718971d6","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'напомню', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 740.63}"}
+{"ts":"2026-08-03 13:25:50,857","level":"INFO","logger":"translation","request_id":"2a87718971d6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'rappellerai'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:25:50,857","level":"INFO","logger":"reader.translator_backends","request_id":"2a87718971d6","user_id":"-","msg":"Recieved: rappellerai and напомню for it"}
+{"ts":"2026-08-03 13:25:52,003","level":"INFO","logger":"reader.translator_backends","request_id":"2a87718971d6","user_id":"-","msg":"Raw response form Ai {'id': 'cd762225-2c77-4cce-8a5c-ff2defa4ed36', 'object': 'chat.completion', 'created': 1785763551, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "припомню"\n    },\n    {\n        "text": "напомню снова"\n    },\n    {\n        "text": "буду напоминать"\n    },\n    {\n        "text": "воскрешу в памяти"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 61, 'total_tokens': 207, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:25:52,003","level":"INFO","logger":"reader.translator_backends","request_id":"2a87718971d6","user_id":"-","msg":"Parser result[{'text': 'припомню'}, {'text': 'напомню снова'}, {'text': 'буду напоминать'}, {'text': 'воскрешу в памяти'}]"}
+{"ts":"2026-08-03 13:25:52,004","level":"INFO","logger":"translation","request_id":"2a87718971d6","user_id":"-","msg":"Found 4 alternatives for rappellerai: ['припомню', 'напомню снова', 'буду напоминать', 'воскрешу в памяти']"}
+{"ts":"2026-08-03 13:26:15,970","level":"INFO","logger":"translation","request_id":"5ddf3a4c9d2a","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'récompensé'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:26:16,915","level":"INFO","logger":"translation","request_id":"5ddf3a4c9d2a","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'награждённый', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 940.23}"}
+{"ts":"2026-08-03 13:26:16,915","level":"INFO","logger":"translation","request_id":"5ddf3a4c9d2a","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'récompensé'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:26:16,916","level":"INFO","logger":"reader.translator_backends","request_id":"5ddf3a4c9d2a","user_id":"-","msg":"Recieved: récompensé and награждённый for it"}
+{"ts":"2026-08-03 13:26:18,240","level":"INFO","logger":"reader.translator_backends","request_id":"5ddf3a4c9d2a","user_id":"-","msg":"Raw response form Ai {'id': 'cd9bac10-f7fb-4934-9297-12aa34a0c383', 'object': 'chat.completion', 'created': 1785763577, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "вознаграждённый"\n    },\n    {\n        "text": "удостоенный"\n    },\n    {\n        "text": "отмеченный"\n    },\n    {\n        "text": "премированный"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 149, 'completion_tokens': 59, 'total_tokens': 208, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 149}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:26:18,240","level":"INFO","logger":"reader.translator_backends","request_id":"5ddf3a4c9d2a","user_id":"-","msg":"Parser result[{'text': 'вознаграждённый'}, {'text': 'удостоенный'}, {'text': 'отмеченный'}, {'text': 'премированный'}]"}
+{"ts":"2026-08-03 13:26:18,241","level":"INFO","logger":"translation","request_id":"5ddf3a4c9d2a","user_id":"-","msg":"Found 4 alternatives for récompensé: ['вознаграждённый', 'удостоенный', 'отмеченный', 'премированный']"}
+{"ts":"2026-08-03 13:26:31,394","level":"INFO","logger":"translation","request_id":"094f10fd7e33","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'outrage'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:26:32,276","level":"INFO","logger":"translation","request_id":"094f10fd7e33","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'возмущение', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 874.86}"}
+{"ts":"2026-08-03 13:26:32,276","level":"INFO","logger":"translation","request_id":"094f10fd7e33","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'outrage'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:26:32,277","level":"INFO","logger":"reader.translator_backends","request_id":"094f10fd7e33","user_id":"-","msg":"Recieved: outrage and возмущение for it"}
+{"ts":"2026-08-03 13:26:33,470","level":"INFO","logger":"reader.translator_backends","request_id":"094f10fd7e33","user_id":"-","msg":"Raw response form Ai {'id': '5be47c6e-0da1-4241-921a-8e4bfc73cccc', 'object': 'chat.completion', 'created': 1785763592, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "негодование"\n    },\n    {\n        "text": "возмутительный поступок"\n    },\n    {\n        "text": "оскорбление"\n    },\n    {\n        "text": "гнев"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 58, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:26:33,470","level":"INFO","logger":"reader.translator_backends","request_id":"094f10fd7e33","user_id":"-","msg":"Parser result[{'text': 'негодование'}, {'text': 'возмутительный поступок'}, {'text': 'оскорбление'}, {'text': 'гнев'}]"}
+{"ts":"2026-08-03 13:26:33,470","level":"INFO","logger":"translation","request_id":"094f10fd7e33","user_id":"-","msg":"Found 4 alternatives for outrage: ['негодование', 'возмутительный поступок', 'оскорбление', 'гнев']"}
+{"ts":"2026-08-03 13:26:39,581","level":"INFO","logger":"translation","request_id":"982cfaa86463","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'chassé'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:26:40,437","level":"INFO","logger":"translation","request_id":"982cfaa86463","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'изгнанный', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 849.67}"}
+{"ts":"2026-08-03 13:26:40,438","level":"INFO","logger":"translation","request_id":"982cfaa86463","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'chassé'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:26:40,438","level":"INFO","logger":"reader.translator_backends","request_id":"982cfaa86463","user_id":"-","msg":"Recieved: chassé and изгнанный for it"}
+{"ts":"2026-08-03 13:26:41,570","level":"INFO","logger":"reader.translator_backends","request_id":"982cfaa86463","user_id":"-","msg":"Raw response form Ai {'id': '588ea1b2-5938-425e-88a6-7d4722d3730f', 'object': 'chat.completion', 'created': 1785763601, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "выгнанный"\n    },\n    {\n        "text": "прогнанный"\n    },\n    {\n        "text": "уволенный"\n    },\n    {\n        "text": "отвергнутый"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 58, 'total_tokens': 205, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:26:41,571","level":"INFO","logger":"reader.translator_backends","request_id":"982cfaa86463","user_id":"-","msg":"Parser result[{'text': 'выгнанный'}, {'text': 'прогнанный'}, {'text': 'уволенный'}, {'text': 'отвергнутый'}]"}
+{"ts":"2026-08-03 13:26:41,571","level":"INFO","logger":"translation","request_id":"982cfaa86463","user_id":"-","msg":"Found 4 alternatives for chassé: ['выгнанный', 'прогнанный', 'уволенный', 'отвергнутый']"}
+{"ts":"2026-08-03 13:26:51,335","level":"INFO","logger":"translation","request_id":"4b4add8ee367","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'mourante'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:26:52,362","level":"INFO","logger":"translation","request_id":"4b4add8ee367","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'умирающая', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1021.72}"}
+{"ts":"2026-08-03 13:26:52,363","level":"INFO","logger":"translation","request_id":"4b4add8ee367","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'mourante'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:26:52,363","level":"INFO","logger":"reader.translator_backends","request_id":"4b4add8ee367","user_id":"-","msg":"Recieved: mourante and умирающая for it"}
+{"ts":"2026-08-03 13:26:53,476","level":"INFO","logger":"reader.translator_backends","request_id":"4b4add8ee367","user_id":"-","msg":"Raw response form Ai {'id': 'dc0271df-d981-4ac3-bb28-e43f313af35b', 'object': 'chat.completion', 'created': 1785763612, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "угасающая"\n    },\n    {\n        "text": "гибнущая"\n    },\n    {\n        "text": "затухающая"\n    },\n    {\n        "text": "при смерти"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 56, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:26:53,476","level":"INFO","logger":"reader.translator_backends","request_id":"4b4add8ee367","user_id":"-","msg":"Parser result[{'text': 'угасающая'}, {'text': 'гибнущая'}, {'text': 'затухающая'}, {'text': 'при смерти'}]"}
+{"ts":"2026-08-03 13:26:53,477","level":"INFO","logger":"translation","request_id":"4b4add8ee367","user_id":"-","msg":"Found 4 alternatives for mourante: ['угасающая', 'гибнущая', 'затухающая', 'при смерти']"}
+{"ts":"2026-08-03 13:27:08,871","level":"INFO","logger":"translation","request_id":"50036a530b7f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'insensée'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:27:10,050","level":"INFO","logger":"translation","request_id":"50036a530b7f","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'бессмысленная', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1168.66}"}
+{"ts":"2026-08-03 13:27:10,050","level":"INFO","logger":"translation","request_id":"50036a530b7f","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'insensée'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:27:10,051","level":"INFO","logger":"reader.translator_backends","request_id":"50036a530b7f","user_id":"-","msg":"Recieved: insensée and бессмысленная for it"}
+{"ts":"2026-08-03 13:27:11,335","level":"INFO","logger":"reader.translator_backends","request_id":"50036a530b7f","user_id":"-","msg":"Raw response form Ai {'id': '9289c034-05a8-4646-bf5f-525a55adf01e', 'object': 'chat.completion', 'created': 1785763630, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "безрассудная"\n    },\n    {\n        "text": "нелепая"\n    },\n    {\n        "text": "абсурдная"\n    },\n    {\n        "text": "бездумная"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 59, 'total_tokens': 206, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:27:11,336","level":"INFO","logger":"reader.translator_backends","request_id":"50036a530b7f","user_id":"-","msg":"Parser result[{'text': 'безрассудная'}, {'text': 'нелепая'}, {'text': 'абсурдная'}, {'text': 'бездумная'}]"}
+{"ts":"2026-08-03 13:27:11,336","level":"INFO","logger":"translation","request_id":"50036a530b7f","user_id":"-","msg":"Found 4 alternatives for insensée: ['безрассудная', 'нелепая', 'абсурдная', 'бездумная']"}
+{"ts":"2026-08-03 13:27:16,816","level":"INFO","logger":"translation","request_id":"d9b3595184a9","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'cru'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:27:17,776","level":"INFO","logger":"translation","request_id":"d9b3595184a9","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Кру.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 953.62}"}
+{"ts":"2026-08-03 13:27:17,777","level":"INFO","logger":"translation","request_id":"d9b3595184a9","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'cru'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:27:17,777","level":"INFO","logger":"reader.translator_backends","request_id":"d9b3595184a9","user_id":"-","msg":"Recieved: cru and Кру. for it"}
+{"ts":"2026-08-03 13:27:19,075","level":"INFO","logger":"reader.translator_backends","request_id":"d9b3595184a9","user_id":"-","msg":"Raw response form Ai {'id': '6a5e267d-85f0-4abe-a735-a4c065431348', 'object': 'chat.completion', 'created': 1785763638, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "сырой"\n    },\n    {\n        "text": "необработанный"\n    },\n    {\n        "text": "грубый"\n    },\n    {\n        "text": "жестокий"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 54, 'total_tokens': 197, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:27:19,075","level":"INFO","logger":"reader.translator_backends","request_id":"d9b3595184a9","user_id":"-","msg":"Parser result[{'text': 'сырой'}, {'text': 'необработанный'}, {'text': 'грубый'}, {'text': 'жестокий'}]"}
+{"ts":"2026-08-03 13:27:19,075","level":"INFO","logger":"translation","request_id":"d9b3595184a9","user_id":"-","msg":"Found 4 alternatives for cru: ['сырой', 'необработанный', 'грубый', 'жестокий']"}
+{"ts":"2026-08-03 13:27:50,940","level":"INFO","logger":"translation","request_id":"64f5beef8a1d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'auprès'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:27:52,880","level":"INFO","logger":"translation","request_id":"64f5beef8a1d","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'рядом с', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1933.92}"}
+{"ts":"2026-08-03 13:27:52,880","level":"INFO","logger":"translation","request_id":"64f5beef8a1d","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'auprès'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:27:52,881","level":"INFO","logger":"reader.translator_backends","request_id":"64f5beef8a1d","user_id":"-","msg":"Recieved: auprès and рядом с for it"}
+{"ts":"2026-08-03 13:27:53,940","level":"INFO","logger":"reader.translator_backends","request_id":"64f5beef8a1d","user_id":"-","msg":"Raw response form Ai {'id': 'f24af04c-c954-487a-90f7-37fac8c1f4ec', 'object': 'chat.completion', 'created': 1785763673, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "возле"\n    },\n    {\n        "text": "около"\n    },\n    {\n        "text": "у"\n    },\n    {\n        "text": "при"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 48, 'total_tokens': 191, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:27:53,940","level":"INFO","logger":"reader.translator_backends","request_id":"64f5beef8a1d","user_id":"-","msg":"Parser result[{'text': 'возле'}, {'text': 'около'}, {'text': 'у'}, {'text': 'при'}]"}
+{"ts":"2026-08-03 13:27:53,941","level":"INFO","logger":"translation","request_id":"64f5beef8a1d","user_id":"-","msg":"Found 4 alternatives for auprès: ['возле', 'около', 'у', 'при']"}
+{"ts":"2026-08-03 13:28:07,508","level":"INFO","logger":"translation","request_id":"e001cd0ea62e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'm'a-t-on'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:28:08,599","level":"INFO","logger":"translation","request_id":"e001cd0ea62e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Мне ли', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1084.0}"}
+{"ts":"2026-08-03 13:28:08,599","level":"INFO","logger":"translation","request_id":"e001cd0ea62e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'm'a-t-on'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:28:08,599","level":"INFO","logger":"reader.translator_backends","request_id":"e001cd0ea62e","user_id":"-","msg":"Recieved: m'a-t-on and Мне ли for it"}
+{"ts":"2026-08-03 13:28:09,902","level":"INFO","logger":"reader.translator_backends","request_id":"e001cd0ea62e","user_id":"-","msg":"Raw response form Ai {'id': '97071b2f-0ec0-4fb9-b64a-0ac1a248ea3c', 'object': 'chat.completion', 'created': 1785763689, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "меня ли"\n    },\n    {\n        "text": "разве мне"\n    },\n    {\n        "text": "неужели меня"\n    },\n    {\n        "text": "мне же"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 56, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:28:09,903","level":"INFO","logger":"reader.translator_backends","request_id":"e001cd0ea62e","user_id":"-","msg":"Parser result[{'text': 'меня ли'}, {'text': 'разве мне'}, {'text': 'неужели меня'}, {'text': 'мне же'}]"}
+{"ts":"2026-08-03 13:28:09,903","level":"INFO","logger":"translation","request_id":"e001cd0ea62e","user_id":"-","msg":"Found 4 alternatives for m'a-t-on: ['меня ли', 'разве мне', 'неужели меня', 'мне же']"}
+{"ts":"2026-08-03 13:28:18,706","level":"INFO","logger":"translation","request_id":"eb887ce6a652","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'et
+s'est chargée, m'a-t-on dit, de lui apprendre le motif de mon départ.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:28:19,747","level":"INFO","logger":"translation","request_id":"eb887ce6a652","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'и\nвзяла на себя, как мне сказали, задачу сообщить ему причину моего отъезда.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1034.52}"}
+{"ts":"2026-08-03 13:28:19,747","level":"INFO","logger":"translation","request_id":"eb887ce6a652","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'et
+s'est chargée, m'a-t-on dit, de lui apprendre le motif de mon départ.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:28:32,952","level":"INFO","logger":"translation","request_id":"e11901f40732","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'motif'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:28:34,222","level":"INFO","logger":"translation","request_id":"e11901f40732","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'мотив', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1263.15}"}
+{"ts":"2026-08-03 13:28:34,222","level":"INFO","logger":"translation","request_id":"e11901f40732","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'motif'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:28:34,223","level":"INFO","logger":"reader.translator_backends","request_id":"e11901f40732","user_id":"-","msg":"Recieved: motif and мотив for it"}
+{"ts":"2026-08-03 13:28:35,447","level":"INFO","logger":"reader.translator_backends","request_id":"e11901f40732","user_id":"-","msg":"Raw response form Ai {'id': '02206ab4-ef81-4d35-8e64-15a9fce7dd7f', 'object': 'chat.completion', 'created': 1785763714, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "причина"\n    },\n    {\n        "text": "повод"\n    },\n    {\n        "text": "тема"\n    },\n    {\n        "text": "лейтмотив"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 52, 'total_tokens': 195, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:28:35,448","level":"INFO","logger":"reader.translator_backends","request_id":"e11901f40732","user_id":"-","msg":"Parser result[{'text': 'причина'}, {'text': 'повод'}, {'text': 'тема'}, {'text': 'лейтмотив'}]"}
+{"ts":"2026-08-03 13:28:35,448","level":"INFO","logger":"translation","request_id":"e11901f40732","user_id":"-","msg":"Found 4 alternatives for motif: ['причина', 'повод', 'тема', 'лейтмотив']"}
+{"ts":"2026-08-03 13:28:52,375","level":"INFO","logger":"translation","request_id":"244993604ead","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'passe-temps'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:28:54,423","level":"INFO","logger":"translation","request_id":"244993604ead","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'хобби', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 2038.79}"}
+{"ts":"2026-08-03 13:28:54,423","level":"INFO","logger":"translation","request_id":"244993604ead","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'passe-temps'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:28:54,423","level":"INFO","logger":"reader.translator_backends","request_id":"244993604ead","user_id":"-","msg":"Recieved: passe-temps and хобби for it"}
+{"ts":"2026-08-03 13:28:55,541","level":"INFO","logger":"reader.translator_backends","request_id":"244993604ead","user_id":"-","msg":"Raw response form Ai {'id': '0e7fa40e-9289-458f-80b5-1f7a0420645c', 'object': 'chat.completion', 'created': 1785763734, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "увлечение"\n    },\n    {\n        "text": "любимое занятие"\n    },\n    {\n        "text": "занятие по душе"\n    },\n    {\n        "text": "развлечение"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 59, 'total_tokens': 205, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:28:55,541","level":"INFO","logger":"reader.translator_backends","request_id":"244993604ead","user_id":"-","msg":"Parser result[{'text': 'увлечение'}, {'text': 'любимое занятие'}, {'text': 'занятие по душе'}, {'text': 'развлечение'}]"}
+{"ts":"2026-08-03 13:28:55,541","level":"INFO","logger":"translation","request_id":"244993604ead","user_id":"-","msg":"Found 4 alternatives for passe-temps: ['увлечение', 'любимое занятие', 'занятие по душе', 'развлечение']"}
+{"ts":"2026-08-03 13:29:26,617","level":"INFO","logger":"translation","request_id":"81323f566c00","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ouvrent'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:29:27,756","level":"INFO","logger":"translation","request_id":"81323f566c00","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'открывают', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1132.69}"}
+{"ts":"2026-08-03 13:29:27,756","level":"INFO","logger":"translation","request_id":"81323f566c00","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ouvrent'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:29:27,757","level":"INFO","logger":"reader.translator_backends","request_id":"81323f566c00","user_id":"-","msg":"Recieved: ouvrent and открывают for it"}
+{"ts":"2026-08-03 13:29:29,094","level":"INFO","logger":"reader.translator_backends","request_id":"81323f566c00","user_id":"-","msg":"Raw response form Ai {'id': 'f2e7ffa7-7363-4b67-a5e5-0a9f2b469b5f', 'object': 'chat.completion', 'created': 1785763767, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "открывают (они)"\n    },\n    {\n        "text": "раскрывают"\n    },\n    {\n        "text": "отворяют"\n    },\n    {\n        "text": "отпирают"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 58, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:29:29,094","level":"INFO","logger":"reader.translator_backends","request_id":"81323f566c00","user_id":"-","msg":"Parser result[{'text': 'открывают (они)'}, {'text': 'раскрывают'}, {'text': 'отворяют'}, {'text': 'отпирают'}]"}
+{"ts":"2026-08-03 13:29:29,095","level":"INFO","logger":"translation","request_id":"81323f566c00","user_id":"-","msg":"Found 4 alternatives for ouvrent: ['открывают (они)', 'раскрывают', 'отворяют', 'отпирают']"}
+{"ts":"2026-08-03 13:29:34,642","level":"INFO","logger":"translation","request_id":"56e8e119759d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'bourse'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:29:35,426","level":"INFO","logger":"translation","request_id":"56e8e119759d","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'биржа', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 776.1}"}
+{"ts":"2026-08-03 13:29:35,427","level":"INFO","logger":"translation","request_id":"56e8e119759d","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'bourse'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:29:35,427","level":"INFO","logger":"reader.translator_backends","request_id":"56e8e119759d","user_id":"-","msg":"Recieved: bourse and биржа for it"}
+{"ts":"2026-08-03 13:29:36,475","level":"INFO","logger":"reader.translator_backends","request_id":"56e8e119759d","user_id":"-","msg":"Raw response form Ai {'id': '28e7990e-699c-4110-ad9b-35b103b0766d', 'object': 'chat.completion', 'created': 1785763775, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "фондовый рынок"\n    },\n    {\n        "text": "стипендия"\n    },\n    {\n        "text": "кошелёк"\n    },\n    {\n        "text": "сумка"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 57, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:29:36,475","level":"INFO","logger":"reader.translator_backends","request_id":"56e8e119759d","user_id":"-","msg":"Parser result[{'text': 'фондовый рынок'}, {'text': 'стипендия'}, {'text': 'кошелёк'}, {'text': 'сумка'}]"}
+{"ts":"2026-08-03 13:29:36,476","level":"INFO","logger":"translation","request_id":"56e8e119759d","user_id":"-","msg":"Found 4 alternatives for bourse: ['фондовый рынок', 'стипендия', 'кошелёк', 'сумка']"}
+{"ts":"2026-08-03 13:29:55,442","level":"INFO","logger":"translation","request_id":"f65e0d6b0cdb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'craignait'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:29:56,291","level":"INFO","logger":"translation","request_id":"f65e0d6b0cdb","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'боялся', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 842.27}"}
+{"ts":"2026-08-03 13:29:56,291","level":"INFO","logger":"translation","request_id":"f65e0d6b0cdb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'craignait'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:29:56,292","level":"INFO","logger":"reader.translator_backends","request_id":"f65e0d6b0cdb","user_id":"-","msg":"Recieved: craignait and боялся for it"}
+{"ts":"2026-08-03 13:29:57,363","level":"INFO","logger":"reader.translator_backends","request_id":"f65e0d6b0cdb","user_id":"-","msg":"Raw response form Ai {'id': '9a78f2be-0767-4bd1-80de-3280c5883aa9', 'object': 'chat.completion', 'created': 1785763796, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "опасался"\n    },\n    {\n        "text": "страшился"\n    },\n    {\n        "text": "пугался"\n    },\n    {\n        "text": "трепетал"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 56, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:29:57,363","level":"INFO","logger":"reader.translator_backends","request_id":"f65e0d6b0cdb","user_id":"-","msg":"Parser result[{'text': 'опасался'}, {'text': 'страшился'}, {'text': 'пугался'}, {'text': 'трепетал'}]"}
+{"ts":"2026-08-03 13:29:57,364","level":"INFO","logger":"translation","request_id":"f65e0d6b0cdb","user_id":"-","msg":"Found 4 alternatives for craignait: ['опасался', 'страшился', 'пугался', 'трепетал']"}
+{"ts":"2026-08-03 13:31:23,529","level":"INFO","logger":"translation","request_id":"92cf4ffe6544","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'tuer'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:31:24,574","level":"INFO","logger":"translation","request_id":"92cf4ffe6544","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'убить', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1037.26}"}
+{"ts":"2026-08-03 13:31:24,574","level":"INFO","logger":"translation","request_id":"92cf4ffe6544","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'tuer'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:31:24,574","level":"INFO","logger":"reader.translator_backends","request_id":"92cf4ffe6544","user_id":"-","msg":"Recieved: tuer and убить for it"}
+{"ts":"2026-08-03 13:31:25,646","level":"INFO","logger":"reader.translator_backends","request_id":"92cf4ffe6544","user_id":"-","msg":"Raw response form Ai {'id': '22cbcbdc-f2c5-41a7-bc5c-f45c68c516f8', 'object': 'chat.completion', 'created': 1785763885, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "убивать"\n    },\n    {\n        "text": "зарезать"\n    },\n    {\n        "text": "умертвить"\n    },\n    {\n        "text": "ликвидировать"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 56, 'total_tokens': 200, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:31:25,646","level":"INFO","logger":"reader.translator_backends","request_id":"92cf4ffe6544","user_id":"-","msg":"Parser result[{'text': 'убивать'}, {'text': 'зарезать'}, {'text': 'умертвить'}, {'text': 'ликвидировать'}]"}
+{"ts":"2026-08-03 13:31:25,646","level":"INFO","logger":"translation","request_id":"92cf4ffe6544","user_id":"-","msg":"Found 4 alternatives for tuer: ['убивать', 'зарезать', 'умертвить', 'ликвидировать']"}
+{"ts":"2026-08-03 13:31:30,916","level":"INFO","logger":"translation","request_id":"406bc20b7660","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'C'eût'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:31:32,090","level":"INFO","logger":"translation","request_id":"406bc20b7660","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Было бы', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1168.16}"}
+{"ts":"2026-08-03 13:31:32,090","level":"INFO","logger":"translation","request_id":"406bc20b7660","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'C'eût'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:31:32,090","level":"INFO","logger":"reader.translator_backends","request_id":"406bc20b7660","user_id":"-","msg":"Recieved: C'eût and Было бы for it"}
+{"ts":"2026-08-03 13:31:33,454","level":"INFO","logger":"reader.translator_backends","request_id":"406bc20b7660","user_id":"-","msg":"Raw response form Ai {'id': 'df4c3f29-4e9a-4be3-a7c8-35af9f96c7cb', 'object': 'chat.completion', 'created': 1785763892, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "Имело бы"\n    },\n    {\n        "text": "Было б"\n    },\n    {\n        "text": "Случилось бы"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 45, 'total_tokens': 191, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:31:33,455","level":"INFO","logger":"reader.translator_backends","request_id":"406bc20b7660","user_id":"-","msg":"Parser result[{'text': 'Имело бы'}, {'text': 'Было б'}, {'text': 'Случилось бы'}]"}
+{"ts":"2026-08-03 13:31:33,456","level":"INFO","logger":"translation","request_id":"406bc20b7660","user_id":"-","msg":"Found 3 alternatives for C'eût: ['Имело бы', 'Было б', 'Случилось бы']"}
+{"ts":"2026-08-03 13:31:44,941","level":"INFO","logger":"translation","request_id":"b90d1e0b6d76","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'charger'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:31:45,772","level":"INFO","logger":"translation","request_id":"b90d1e0b6d76","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'заряжать', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 824.56}"}
+{"ts":"2026-08-03 13:31:45,773","level":"INFO","logger":"translation","request_id":"b90d1e0b6d76","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'charger'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:31:45,773","level":"INFO","logger":"reader.translator_backends","request_id":"b90d1e0b6d76","user_id":"-","msg":"Recieved: charger and заряжать for it"}
+{"ts":"2026-08-03 13:31:46,885","level":"INFO","logger":"reader.translator_backends","request_id":"b90d1e0b6d76","user_id":"-","msg":"Raw response form Ai {'id': '8c98dce0-3fdc-47d2-b312-93e9c4f1360c', 'object': 'chat.completion', 'created': 1785763906, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "загружать"\n    },\n    {\n        "text": "подзаряжать"\n    },\n    {\n        "text": "наполнять"\n    },\n    {\n        "text": "вменять"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 55, 'total_tokens': 198, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:31:46,886","level":"INFO","logger":"reader.translator_backends","request_id":"b90d1e0b6d76","user_id":"-","msg":"Parser result[{'text': 'загружать'}, {'text': 'подзаряжать'}, {'text': 'наполнять'}, {'text': 'вменять'}]"}
+{"ts":"2026-08-03 13:31:46,886","level":"INFO","logger":"translation","request_id":"b90d1e0b6d76","user_id":"-","msg":"Found 4 alternatives for charger: ['загружать', 'подзаряжать', 'наполнять', 'вменять']"}
+{"ts":"2026-08-03 13:33:05,735","level":"INFO","logger":"translation","request_id":"30fbf1b761ba","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'éternels'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:33:06,899","level":"INFO","logger":"translation","request_id":"30fbf1b761ba","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'вечные', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1146.77}"}
+{"ts":"2026-08-03 13:33:06,900","level":"INFO","logger":"translation","request_id":"30fbf1b761ba","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'éternels'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:33:06,900","level":"INFO","logger":"reader.translator_backends","request_id":"30fbf1b761ba","user_id":"-","msg":"Recieved: éternels and вечные for it"}
+{"ts":"2026-08-03 13:33:08,093","level":"INFO","logger":"reader.translator_backends","request_id":"30fbf1b761ba","user_id":"-","msg":"Raw response form Ai {'id': 'caab7274-336a-4e60-ac3a-280533d52252', 'object': 'chat.completion', 'created': 1785763987, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "бессмертные"\n    },\n    {\n        "text": "неизменные"\n    },\n    {\n        "text": "вековечные"\n    },\n    {\n        "text": "постоянные"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 57, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:33:08,094","level":"INFO","logger":"reader.translator_backends","request_id":"30fbf1b761ba","user_id":"-","msg":"Parser result[{'text': 'бессмертные'}, {'text': 'неизменные'}, {'text': 'вековечные'}, {'text': 'постоянные'}]"}
+{"ts":"2026-08-03 13:33:08,094","level":"INFO","logger":"translation","request_id":"30fbf1b761ba","user_id":"-","msg":"Found 4 alternatives for éternels: ['бессмертные', 'неизменные', 'вековечные', 'постоянные']"}
+{"ts":"2026-08-03 13:33:18,816","level":"INFO","logger":"translation","request_id":"ea1f51eacf52","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'm'envahissait'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:33:19,660","level":"INFO","logger":"translation","request_id":"ea1f51eacf52","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'охватывало меня', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 831.69}"}
+{"ts":"2026-08-03 13:33:19,661","level":"INFO","logger":"translation","request_id":"ea1f51eacf52","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'm'envahissait'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:33:19,661","level":"INFO","logger":"reader.translator_backends","request_id":"ea1f51eacf52","user_id":"-","msg":"Recieved: m'envahissait and охватывало меня for it"}
+{"ts":"2026-08-03 13:33:20,895","level":"INFO","logger":"reader.translator_backends","request_id":"ea1f51eacf52","user_id":"-","msg":"Raw response form Ai {'id': '90b00b68-9567-4f63-977e-8e81319b7366', 'object': 'chat.completion', 'created': 1785764000, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "меня охватывало"\n    },\n    {\n        "text": "заполняло меня"\n    },\n    {\n        "text": "овладевало мной"\n    },\n    {\n        "text": "пронизывало меня"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 152, 'completion_tokens': 66, 'total_tokens': 218, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 152}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:33:20,896","level":"INFO","logger":"reader.translator_backends","request_id":"ea1f51eacf52","user_id":"-","msg":"Parser result[{'text': 'меня охватывало'}, {'text': 'заполняло меня'}, {'text': 'овладевало мной'}, {'text': 'пронизывало меня'}]"}
+{"ts":"2026-08-03 13:33:20,896","level":"INFO","logger":"translation","request_id":"ea1f51eacf52","user_id":"-","msg":"Found 4 alternatives for m'envahissait: ['меня охватывало', 'заполняло меня', 'овладевало мной', 'пронизывало меня']"}
+{"ts":"2026-08-03 13:33:28,153","level":"INFO","logger":"translation","request_id":"766ca3624bbf","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'pâle'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:33:29,089","level":"INFO","logger":"translation","request_id":"766ca3624bbf","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'бледный', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 923.9}"}
+{"ts":"2026-08-03 13:33:29,090","level":"INFO","logger":"translation","request_id":"766ca3624bbf","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'pâle'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:33:29,091","level":"INFO","logger":"reader.translator_backends","request_id":"766ca3624bbf","user_id":"-","msg":"Recieved: pâle and бледный for it"}
+{"ts":"2026-08-03 13:33:31,117","level":"INFO","logger":"reader.translator_backends","request_id":"766ca3624bbf","user_id":"-","msg":"Raw response form Ai {'id': '4aefc0c5-ba41-4487-bd02-3d2a805a5485', 'object': 'chat.completion', 'created': 1785764010, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "бледноватый"\n    },\n    {\n        "text": "бесцветный"\n    },\n    {\n        "text": "тусклый"\n    },\n    {\n        "text": "блеклый"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 56, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:33:31,118","level":"INFO","logger":"reader.translator_backends","request_id":"766ca3624bbf","user_id":"-","msg":"Parser result[{'text': 'бледноватый'}, {'text': 'бесцветный'}, {'text': 'тусклый'}, {'text': 'блеклый'}]"}
+{"ts":"2026-08-03 13:33:31,119","level":"INFO","logger":"translation","request_id":"766ca3624bbf","user_id":"-","msg":"Found 4 alternatives for pâle: ['бледноватый', 'бесцветный', 'тусклый', 'блеклый']"}
+{"ts":"2026-08-03 13:33:32,845","level":"INFO","logger":"translation","request_id":"c69cf15c8604","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'maigre'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:33:33,648","level":"INFO","logger":"translation","request_id":"c69cf15c8604","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'худой', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 785.67}"}
+{"ts":"2026-08-03 13:33:33,649","level":"INFO","logger":"translation","request_id":"c69cf15c8604","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'maigre'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:33:33,649","level":"INFO","logger":"reader.translator_backends","request_id":"c69cf15c8604","user_id":"-","msg":"Recieved: maigre and худой for it"}
+{"ts":"2026-08-03 13:33:34,934","level":"INFO","logger":"reader.translator_backends","request_id":"c69cf15c8604","user_id":"-","msg":"Raw response form Ai {'id': '652293d6-331b-4ae6-9928-d0871026e830', 'object': 'chat.completion', 'created': 1785764013, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "тощий"\n    },\n    {\n        "text": "сухопарый"\n    },\n    {\n        "text": "худощавый"\n    },\n    {\n        "text": "исхудалый"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 57, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:33:34,935","level":"INFO","logger":"reader.translator_backends","request_id":"c69cf15c8604","user_id":"-","msg":"Parser result[{'text': 'тощий'}, {'text': 'сухопарый'}, {'text': 'худощавый'}, {'text': 'исхудалый'}]"}
+{"ts":"2026-08-03 13:33:34,936","level":"INFO","logger":"translation","request_id":"c69cf15c8604","user_id":"-","msg":"Found 4 alternatives for maigre: ['тощий', 'сухопарый', 'худощавый', 'исхудалый']"}
+{"ts":"2026-08-03 13:33:35,032","level":"INFO","logger":"translation","request_id":"47ba6ae9c09c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'maigre'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:33:35,034","level":"INFO","logger":"translation","request_id":"47ba6ae9c09c","user_id":"-","msg":"Cached result: {'success': True, 'original_text': 'maigre', 'translated_text': 'худой', 'alternatives': ['тощий', 'сухопарый', 'худощавый', 'исхудалый'], 'source_language': 'fr', 'target_language': 'ru', 'service': 'deepseek', 'confidence': 0.9, 'cached': True, 'timestamp': datetime.datetime(2026, 8, 3, 13, 33, 35, 34258, tzinfo=datetime.timezone.utc), 'processing_time_ms': 1.62, 'from_cache': True}"}
+{"ts":"2026-08-03 13:34:00,086","level":"INFO","logger":"translation","request_id":"c250e89155dd","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Voilà le passé jusqu'à hier.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:34:01,350","level":"INFO","logger":"translation","request_id":"c250e89155dd","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Вот прошлое вплоть до вчерашнего дня.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1245.97}"}
+{"ts":"2026-08-03 13:34:01,351","level":"INFO","logger":"translation","request_id":"c250e89155dd","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Voilà le passé jusqu'à hier.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:34:48,485","level":"INFO","logger":"translation","request_id":"c2a985f9b05e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'prise'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:34:49,420","level":"INFO","logger":"translation","request_id":"c2a985f9b05e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'взятие', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 917.7}"}
+{"ts":"2026-08-03 13:34:49,420","level":"INFO","logger":"translation","request_id":"c2a985f9b05e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'prise'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:34:49,421","level":"INFO","logger":"reader.translator_backends","request_id":"c2a985f9b05e","user_id":"-","msg":"Recieved: prise and взятие for it"}
+{"ts":"2026-08-03 13:34:50,695","level":"INFO","logger":"reader.translator_backends","request_id":"c2a985f9b05e","user_id":"-","msg":"Raw response form Ai {'id': '60f15347-e4e8-4f34-b096-2740c358e5a7', 'object': 'chat.completion', 'created': 1785764090, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "захват"\n    },\n    {\n        "text": "взятие (приз)"\n    },\n    {\n        "text": "добыча"\n    },\n    {\n        "text": "приз"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 55, 'total_tokens': 198, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:34:50,696","level":"INFO","logger":"reader.translator_backends","request_id":"c2a985f9b05e","user_id":"-","msg":"Parser result[{'text': 'захват'}, {'text': 'взятие (приз)'}, {'text': 'добыча'}, {'text': 'приз'}]"}
+{"ts":"2026-08-03 13:34:50,697","level":"INFO","logger":"translation","request_id":"c2a985f9b05e","user_id":"-","msg":"Found 4 alternatives for prise: ['захват', 'взятие (приз)', 'добыча', 'приз']"}
+{"ts":"2026-08-03 13:35:07,827","level":"INFO","logger":"translation","request_id":"121806020894","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'vaguement'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:35:08,943","level":"INFO","logger":"translation","request_id":"121806020894","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'смутно', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1100.12}"}
+{"ts":"2026-08-03 13:35:08,943","level":"INFO","logger":"translation","request_id":"121806020894","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'vaguement'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:35:08,944","level":"INFO","logger":"reader.translator_backends","request_id":"121806020894","user_id":"-","msg":"Recieved: vaguement and смутно for it"}
+{"ts":"2026-08-03 13:35:10,058","level":"INFO","logger":"reader.translator_backends","request_id":"121806020894","user_id":"-","msg":"Raw response form Ai {'id': '2cfec205-157c-45f1-a9b0-e213c74c204d', 'object': 'chat.completion', 'created': 1785764109, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "неясно"\n    },\n    {\n        "text": "слегка"\n    },\n    {\n        "text": "отдалённо"\n    },\n    {\n        "text": "смутным образом"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 57, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:35:10,058","level":"INFO","logger":"reader.translator_backends","request_id":"121806020894","user_id":"-","msg":"Parser result[{'text': 'неясно'}, {'text': 'слегка'}, {'text': 'отдалённо'}, {'text': 'смутным образом'}]"}
+{"ts":"2026-08-03 13:35:10,059","level":"INFO","logger":"translation","request_id":"121806020894","user_id":"-","msg":"Found 4 alternatives for vaguement: ['неясно', 'слегка', 'отдалённо', 'смутным образом']"}
+{"ts":"2026-08-03 13:35:17,787","level":"INFO","logger":"translation","request_id":"120c7050d287","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'vaguement'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:35:17,789","level":"INFO","logger":"translation","request_id":"120c7050d287","user_id":"-","msg":"Cached result: {'success': True, 'original_text': 'vaguement', 'translated_text': 'смутно', 'alternatives': ['неясно', 'слегка', 'отдалённо', 'смутным образом'], 'source_language': 'fr', 'target_language': 'ru', 'service': 'deepseek', 'confidence': 0.9, 'cached': True, 'timestamp': datetime.datetime(2026, 8, 3, 13, 35, 17, 789053, tzinfo=datetime.timezone.utc), 'processing_time_ms': 1.32, 'from_cache': True}"}
+{"ts":"2026-08-03 13:35:42,926","level":"INFO","logger":"translation","request_id":"1ee4b1aaeb7d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'cesse'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:35:43,893","level":"INFO","logger":"translation","request_id":"1ee4b1aaeb7d","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'прекрати', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 958.27}"}
+{"ts":"2026-08-03 13:35:43,893","level":"INFO","logger":"translation","request_id":"1ee4b1aaeb7d","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'cesse'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:35:43,893","level":"INFO","logger":"reader.translator_backends","request_id":"1ee4b1aaeb7d","user_id":"-","msg":"Recieved: cesse and прекрати for it"}
+{"ts":"2026-08-03 13:35:45,028","level":"INFO","logger":"reader.translator_backends","request_id":"1ee4b1aaeb7d","user_id":"-","msg":"Raw response form Ai {'id': '2ff571f4-e15c-4c2d-a81d-42b03a06070c', 'object': 'chat.completion', 'created': 1785764144, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "перестань"\n    },\n    {\n        "text": "остановись"\n    },\n    {\n        "text": "хватит"\n    },\n    {\n        "text": "брось"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 54, 'total_tokens': 198, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:35:45,028","level":"INFO","logger":"reader.translator_backends","request_id":"1ee4b1aaeb7d","user_id":"-","msg":"Parser result[{'text': 'перестань'}, {'text': 'остановись'}, {'text': 'хватит'}, {'text': 'брось'}]"}
+{"ts":"2026-08-03 13:35:45,028","level":"INFO","logger":"translation","request_id":"1ee4b1aaeb7d","user_id":"-","msg":"Found 4 alternatives for cesse: ['перестань', 'остановись', 'хватит', 'брось']"}
+{"ts":"2026-08-03 13:36:06,493","level":"INFO","logger":"translation","request_id":"78a5934023bc","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'poitrine'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:36:07,443","level":"INFO","logger":"translation","request_id":"78a5934023bc","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'грудь', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 942.44}"}
+{"ts":"2026-08-03 13:36:07,443","level":"INFO","logger":"translation","request_id":"78a5934023bc","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'poitrine'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:36:07,443","level":"INFO","logger":"reader.translator_backends","request_id":"78a5934023bc","user_id":"-","msg":"Recieved: poitrine and грудь for it"}
+{"ts":"2026-08-03 13:36:08,440","level":"INFO","logger":"reader.translator_backends","request_id":"78a5934023bc","user_id":"-","msg":"Raw response form Ai {'id': '254102c0-a7ca-4d04-975e-d855a470f0f1', 'object': 'chat.completion', 'created': 1785764167, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "грудная клетка"\n    },\n    {\n        "text": "грудка"\n    },\n    {\n        "text": "передняя часть туловища"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 46, 'total_tokens': 191, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:36:08,440","level":"INFO","logger":"reader.translator_backends","request_id":"78a5934023bc","user_id":"-","msg":"Parser result[{'text': 'грудная клетка'}, {'text': 'грудка'}, {'text': 'передняя часть туловища'}]"}
+{"ts":"2026-08-03 13:36:08,441","level":"INFO","logger":"translation","request_id":"78a5934023bc","user_id":"-","msg":"Found 3 alternatives for poitrine: ['грудная клетка', 'грудка', 'передняя часть туловища']"}
+{"ts":"2026-08-03 13:36:20,016","level":"INFO","logger":"translation","request_id":"1128a5d24b15","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'fenêtre'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:36:20,953","level":"INFO","logger":"translation","request_id":"1128a5d24b15","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'окно', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 931.52}"}
+{"ts":"2026-08-03 13:36:20,953","level":"INFO","logger":"translation","request_id":"1128a5d24b15","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'fenêtre'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:36:20,953","level":"INFO","logger":"reader.translator_backends","request_id":"1128a5d24b15","user_id":"-","msg":"Recieved: fenêtre and окно for it"}
+{"ts":"2026-08-03 13:36:22,081","level":"INFO","logger":"reader.translator_backends","request_id":"1128a5d24b15","user_id":"-","msg":"Raw response form Ai {'id': 'fe320a48-6084-4019-818d-c6a0e852cc54', 'object': 'chat.completion', 'created': 1785764181, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "окошко"\n    },\n    {\n        "text": "форточка"\n    },\n    {\n        "text": "витрина"\n    },\n    {\n        "text": "оконце"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 54, 'total_tokens': 198, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:36:22,081","level":"INFO","logger":"reader.translator_backends","request_id":"1128a5d24b15","user_id":"-","msg":"Parser result[{'text': 'окошко'}, {'text': 'форточка'}, {'text': 'витрина'}, {'text': 'оконце'}]"}
+{"ts":"2026-08-03 13:36:22,081","level":"INFO","logger":"translation","request_id":"1128a5d24b15","user_id":"-","msg":"Found 4 alternatives for fenêtre: ['окошко', 'форточка', 'витрина', 'оконце']"}
+{"ts":"2026-08-03 13:36:36,229","level":"INFO","logger":"translation","request_id":"092341c00284","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'laquelle'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:36:37,024","level":"INFO","logger":"translation","request_id":"092341c00284","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'который', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 788.0}"}
+{"ts":"2026-08-03 13:36:37,024","level":"INFO","logger":"translation","request_id":"092341c00284","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'laquelle'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:36:37,024","level":"INFO","logger":"reader.translator_backends","request_id":"092341c00284","user_id":"-","msg":"Recieved: laquelle and который for it"}
+{"ts":"2026-08-03 13:36:37,974","level":"INFO","logger":"reader.translator_backends","request_id":"092341c00284","user_id":"-","msg":"Raw response form Ai {'id': 'd266746f-9e72-415a-a0f8-c1df06d588de', 'object': 'chat.completion', 'created': 1785764197, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "которая"\n    },\n    {\n        "text": "какая"\n    },\n    {\n        "text": "что"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 142, 'completion_tokens': 37, 'total_tokens': 179, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 142}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:36:37,975","level":"INFO","logger":"reader.translator_backends","request_id":"092341c00284","user_id":"-","msg":"Parser result[{'text': 'которая'}, {'text': 'какая'}, {'text': 'что'}]"}
+{"ts":"2026-08-03 13:36:37,975","level":"INFO","logger":"translation","request_id":"092341c00284","user_id":"-","msg":"Found 3 alternatives for laquelle: ['которая', 'какая', 'что']"}
+{"ts":"2026-08-03 13:36:54,203","level":"INFO","logger":"translation","request_id":"fce83dd7e4fc","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'insouciants'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:36:55,159","level":"INFO","logger":"translation","request_id":"fce83dd7e4fc","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'беззаботные', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 947.24}"}
+{"ts":"2026-08-03 13:36:55,159","level":"INFO","logger":"translation","request_id":"fce83dd7e4fc","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'insouciants'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:36:55,159","level":"INFO","logger":"reader.translator_backends","request_id":"fce83dd7e4fc","user_id":"-","msg":"Recieved: insouciants and беззаботные for it"}
+{"ts":"2026-08-03 13:36:56,395","level":"INFO","logger":"reader.translator_backends","request_id":"fce83dd7e4fc","user_id":"-","msg":"Raw response form Ai {'id': '0551ab4d-1dbe-40a7-9566-eae7d2367447', 'object': 'chat.completion', 'created': 1785764215, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "беспечные"\n    },\n    {\n        "text": "легкомысленные"\n    },\n    {\n        "text": "бездумные"\n    },\n    {\n        "text": "безмятежные"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 59, 'total_tokens': 207, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:36:56,396","level":"INFO","logger":"reader.translator_backends","request_id":"fce83dd7e4fc","user_id":"-","msg":"Parser result[{'text': 'беспечные'}, {'text': 'легкомысленные'}, {'text': 'бездумные'}, {'text': 'безмятежные'}]"}
+{"ts":"2026-08-03 13:36:56,396","level":"INFO","logger":"translation","request_id":"fce83dd7e4fc","user_id":"-","msg":"Found 4 alternatives for insouciants: ['беспечные', 'легкомысленные', 'бездумные', 'безмятежные']"}
+{"ts":"2026-08-03 13:37:47,375","level":"INFO","logger":"translation","request_id":"d1c73b9f2b3e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'maudissez'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:37:48,308","level":"INFO","logger":"translation","request_id":"d1c73b9f2b3e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'проклинайте', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 926.47}"}
+{"ts":"2026-08-03 13:37:48,309","level":"INFO","logger":"translation","request_id":"d1c73b9f2b3e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'maudissez'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:37:48,309","level":"INFO","logger":"reader.translator_backends","request_id":"d1c73b9f2b3e","user_id":"-","msg":"Recieved: maudissez and проклинайте for it"}
+{"ts":"2026-08-03 13:37:49,620","level":"INFO","logger":"reader.translator_backends","request_id":"d1c73b9f2b3e","user_id":"-","msg":"Raw response form Ai {'id': 'a59c4bc1-f733-49ed-9b33-65073a46ae6b', 'object': 'chat.completion', 'created': 1785764268, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "прокляните"\n    },\n    {\n        "text": "кляните"\n    },\n    {\n        "text": "проклинайте же"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 44, 'total_tokens': 190, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:37:49,621","level":"INFO","logger":"reader.translator_backends","request_id":"d1c73b9f2b3e","user_id":"-","msg":"Parser result[{'text': 'прокляните'}, {'text': 'кляните'}, {'text': 'проклинайте же'}]"}
+{"ts":"2026-08-03 13:37:49,621","level":"INFO","logger":"translation","request_id":"d1c73b9f2b3e","user_id":"-","msg":"Found 3 alternatives for maudissez: ['прокляните', 'кляните', 'проклинайте же']"}
+{"ts":"2026-08-03 13:38:09,819","level":"INFO","logger":"translation","request_id":"a1b8f416509f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Mais c'est le hasard seul qui fait cet
+abandon, j'en suis sûr, car si vous étiez à Paris, vous ne quitteriez
+pas mon chevet et ma chambre.»'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:38:11,218","level":"INFO","logger":"translation","request_id":"a1b8f416509f","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Но это лишь случайность заставляет вас так меня покидать, я в этом уверен, ведь если бы вы были в Париже, вы бы не отходили от моего изголовья и моей комнаты.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1392.33}"}
+{"ts":"2026-08-03 13:38:11,218","level":"INFO","logger":"translation","request_id":"a1b8f416509f","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Mais c'est le hasard seul qui fait cet
+abandon, j'en suis sûr, car si vous étiez à Paris, vous ne quitteriez
+pas mon chevet et ma chambre.»'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:39:10,566","level":"INFO","logger":"translation","request_id":"0d5ae546cd2e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: '«J'apprends à l'instant que vous êtes malade.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:39:11,627","level":"INFO","logger":"translation","request_id":"0d5ae546cd2e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Я только что узнал, что вы больны.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1052.43}"}
+{"ts":"2026-08-03 13:39:11,627","level":"INFO","logger":"translation","request_id":"0d5ae546cd2e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: '«J'apprends à l'instant que vous êtes malade.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:39:44,000","level":"INFO","logger":"translation","request_id":"a035fc1090a6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'peiné'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:39:45,022","level":"INFO","logger":"translation","request_id":"a035fc1090a6","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'боль', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1010.93}"}
+{"ts":"2026-08-03 13:39:45,022","level":"INFO","logger":"translation","request_id":"a035fc1090a6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'peiné'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:39:45,022","level":"INFO","logger":"reader.translator_backends","request_id":"a035fc1090a6","user_id":"-","msg":"Recieved: peiné and боль for it"}
+{"ts":"2026-08-03 13:39:46,300","level":"INFO","logger":"reader.translator_backends","request_id":"a035fc1090a6","user_id":"-","msg":"Raw response form Ai {'id': '0ba99fb5-7ba8-4af2-aae3-22e49ece3ad5', 'object': 'chat.completion', 'created': 1785764385, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "страдание"\n    },\n    {\n        "text": "мука"\n    },\n    {\n        "text": "горе"\n    },\n    {\n        "text": "скорбь"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 51, 'total_tokens': 195, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:39:46,300","level":"INFO","logger":"reader.translator_backends","request_id":"a035fc1090a6","user_id":"-","msg":"Parser result[{'text': 'страдание'}, {'text': 'мука'}, {'text': 'горе'}, {'text': 'скорбь'}]"}
+{"ts":"2026-08-03 13:39:46,301","level":"INFO","logger":"translation","request_id":"a035fc1090a6","user_id":"-","msg":"Found 4 alternatives for peiné: ['страдание', 'мука', 'горе', 'скорбь']"}
+{"ts":"2026-08-03 13:39:54,848","level":"INFO","logger":"translation","request_id":"5f46e8ad5caf","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'prompt'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:39:55,922","level":"INFO","logger":"translation","request_id":"5f46e8ad5caf","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Хорошо, я профессиональный переводчик. Пожалуйста, предоставьте текст на французском языке, который нужно перевести на русский.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1066.14}"}
+{"ts":"2026-08-03 13:39:55,922","level":"INFO","logger":"translation","request_id":"5f46e8ad5caf","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'prompt'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:39:55,923","level":"INFO","logger":"reader.translator_backends","request_id":"5f46e8ad5caf","user_id":"-","msg":"Recieved: prompt and Хорошо, я профессиональный переводчик. Пожалуйста, предоставьте текст на французском языке, который нужно перевести на русский. for it"}
+{"ts":"2026-08-03 13:39:57,506","level":"INFO","logger":"reader.translator_backends","request_id":"5f46e8ad5caf","user_id":"-","msg":"Raw response form Ai {'id': 'fe6efd8b-b0f4-4228-aa88-9f7e7a3a7e03', 'object': 'chat.completion', 'created': 1785764396, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "Отлично, я профессиональный переводчик. Пожалуйста, предоставьте текст на французском, который нужно перевести на русский."\n    },\n    {\n        "text": "Ладно, я профессиональный переводчик. Пожалуйста, дайте текст на французском языке для перевода на русский."\n    },\n    {\n        "text": "Хорошо, я профессиональный переводчик. Пожалуйста, пришлите текст на французском языке, который требуется перевести на русский."\n    },\n    {\n        "text": "Согласен, я профессиональный переводчик. Пожалуйста, укажите текст на французском языке для перевода на русский."\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 173, 'completion_tokens': 164, 'total_tokens': 337, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 173}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:39:57,507","level":"INFO","logger":"reader.translator_backends","request_id":"5f46e8ad5caf","user_id":"-","msg":"Parser result[{'text': 'Отлично, я профессиональный переводчик. Пожалуйста, предоставьте текст на французском, который нужно перевести на русский.'}, {'text': 'Ладно, я профессиональный переводчик. Пожалуйста, дайте текст на французском языке для перевода на русский.'}, {'text': 'Хорошо, я профессиональный переводчик. Пожалуйста, пришлите текст на французском языке, который требуется перевести на русский.'}, {'text': 'Согласен, я профессиональный переводчик. Пожалуйста, укажите текст на французском языке для перевода на русский.'}]"}
+{"ts":"2026-08-03 13:39:57,507","level":"INFO","logger":"translation","request_id":"5f46e8ad5caf","user_id":"-","msg":"Found 4 alternatives for prompt: ['Отлично, я профессиональный переводчик. Пожалуйста, предоставьте текст на французском, который нужно перевести на русский.', 'Ладно, я профессиональный переводчик. Пожалуйста, дайте текст на французском языке для перевода на русский.', 'Хорошо, я профессиональный переводчик. Пожалуйста, пришлите текст на французском языке, который требуется перевести на русский.', 'Согласен, я профессиональный переводчик. Пожалуйста, укажите текст на французском языке для перевода на русский.']"}
+{"ts":"2026-08-03 13:41:36,462","level":"INFO","logger":"translation","request_id":"d4b2775f371e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'rétablissement'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:41:37,347","level":"INFO","logger":"translation","request_id":"d4b2775f371e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'восстановление', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 876.44}"}
+{"ts":"2026-08-03 13:41:37,348","level":"INFO","logger":"translation","request_id":"d4b2775f371e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'rétablissement'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:41:37,348","level":"INFO","logger":"reader.translator_backends","request_id":"d4b2775f371e","user_id":"-","msg":"Recieved: rétablissement and восстановление for it"}
+{"ts":"2026-08-03 13:41:38,444","level":"INFO","logger":"reader.translator_backends","request_id":"d4b2775f371e","user_id":"-","msg":"Raw response form Ai {'id': '1dec9bc4-861b-4b70-a002-9871208fe399', 'object': 'chat.completion', 'created': 1785764498, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "выздоровление"\n    },\n    {\n        "text": "восстановление (после болезни)"\n    },\n    {\n        "text": "реабилитация"\n    },\n    {\n        "text": "возобновление"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 62, 'total_tokens': 207, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:41:38,444","level":"INFO","logger":"reader.translator_backends","request_id":"d4b2775f371e","user_id":"-","msg":"Parser result[{'text': 'выздоровление'}, {'text': 'восстановление (после болезни)'}, {'text': 'реабилитация'}, {'text': 'возобновление'}]"}
+{"ts":"2026-08-03 13:41:38,444","level":"INFO","logger":"translation","request_id":"d4b2775f371e","user_id":"-","msg":"Found 4 alternatives for rétablissement: ['выздоровление', 'восстановление (после болезни)', 'реабилитация', 'возобновление']"}
+{"ts":"2026-08-03 13:42:35,792","level":"INFO","logger":"translation","request_id":"303d3d3c3cf1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'papier'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:42:36,703","level":"INFO","logger":"translation","request_id":"303d3d3c3cf1","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'бумага', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 903.81}"}
+{"ts":"2026-08-03 13:42:36,703","level":"INFO","logger":"translation","request_id":"303d3d3c3cf1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'papier'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:42:36,704","level":"INFO","logger":"reader.translator_backends","request_id":"303d3d3c3cf1","user_id":"-","msg":"Recieved: papier and бумага for it"}
+{"ts":"2026-08-03 13:42:37,779","level":"INFO","logger":"reader.translator_backends","request_id":"303d3d3c3cf1","user_id":"-","msg":"Raw response form Ai {'id': 'cba07c74-08d1-40f0-8c79-5a8cd7e9bc29', 'object': 'chat.completion', 'created': 1785764557, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "бумажный лист"\n    },\n    {\n        "text": "документ"\n    },\n    {\n        "text": "писчая бумага"\n    },\n    {\n        "text": "лист бумаги"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 58, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:42:37,779","level":"INFO","logger":"reader.translator_backends","request_id":"303d3d3c3cf1","user_id":"-","msg":"Parser result[{'text': 'бумажный лист'}, {'text': 'документ'}, {'text': 'писчая бумага'}, {'text': 'лист бумаги'}]"}
+{"ts":"2026-08-03 13:42:37,779","level":"INFO","logger":"translation","request_id":"303d3d3c3cf1","user_id":"-","msg":"Found 4 alternatives for papier: ['бумажный лист', 'документ', 'писчая бумага', 'лист бумаги']"}
+{"ts":"2026-08-03 13:43:05,475","level":"INFO","logger":"translation","request_id":"e674346587c4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'bonnement'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:43:06,314","level":"INFO","logger":"translation","request_id":"e674346587c4","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'подписка', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 831.01}"}
+{"ts":"2026-08-03 13:43:06,315","level":"INFO","logger":"translation","request_id":"e674346587c4","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'bonnement'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:43:06,315","level":"INFO","logger":"reader.translator_backends","request_id":"e674346587c4","user_id":"-","msg":"Recieved: bonnement and подписка for it"}
+{"ts":"2026-08-03 13:43:07,324","level":"INFO","logger":"reader.translator_backends","request_id":"e674346587c4","user_id":"-","msg":"Raw response form Ai {'id': '502f99a0-1af7-4d5d-b637-7a8e0fc69cc3', 'object': 'chat.completion', 'created': 1785764587, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "абонемент"\n    },\n    {\n        "text": "оформление подписки"\n    },\n    {\n        "text": "подписной взнос"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 47, 'total_tokens': 192, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:43:07,325","level":"INFO","logger":"reader.translator_backends","request_id":"e674346587c4","user_id":"-","msg":"Parser result[{'text': 'абонемент'}, {'text': 'оформление подписки'}, {'text': 'подписной взнос'}]"}
+{"ts":"2026-08-03 13:43:07,325","level":"INFO","logger":"translation","request_id":"e674346587c4","user_id":"-","msg":"Found 3 alternatives for bonnement: ['абонемент', 'оформление подписки', 'подписной взнос']"}
+{"ts":"2026-08-03 13:44:54,214","level":"INFO","logger":"translation","request_id":"e9f1b4a57cc4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'étrennes'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:44:55,114","level":"INFO","logger":"translation","request_id":"e9f1b4a57cc4","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'подарки', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 892.5}"}
+{"ts":"2026-08-03 13:44:55,115","level":"INFO","logger":"translation","request_id":"e9f1b4a57cc4","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'étrennes'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:44:55,115","level":"INFO","logger":"reader.translator_backends","request_id":"e9f1b4a57cc4","user_id":"-","msg":"Recieved: étrennes and подарки for it"}
+{"ts":"2026-08-03 13:44:56,269","level":"INFO","logger":"reader.translator_backends","request_id":"e9f1b4a57cc4","user_id":"-","msg":"Raw response form Ai {'id': '2e0c0bae-6733-4e87-b892-07635a028458', 'object': 'chat.completion', 'created': 1785764695, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "подарки на Новый год"\n    },\n    {\n        "text": "новогодние подарки"\n    },\n    {\n        "text": "праздничные дары"\n    },\n    {\n        "text": "рождественские подарки"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 71, 'total_tokens': 217, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:44:56,269","level":"INFO","logger":"reader.translator_backends","request_id":"e9f1b4a57cc4","user_id":"-","msg":"Parser result[{'text': 'подарки на Новый год'}, {'text': 'новогодние подарки'}, {'text': 'праздничные дары'}, {'text': 'рождественские подарки'}]"}
+{"ts":"2026-08-03 13:44:56,269","level":"INFO","logger":"translation","request_id":"e9f1b4a57cc4","user_id":"-","msg":"Found 4 alternatives for étrennes: ['подарки на Новый год', 'новогодние подарки', 'праздничные дары', 'рождественские подарки']"}
+{"ts":"2026-08-03 13:45:08,992","level":"INFO","logger":"translation","request_id":"e97babadbd4f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'quelques'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:45:09,959","level":"INFO","logger":"translation","request_id":"e97babadbd4f","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'несколько', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 959.91}"}
+{"ts":"2026-08-03 13:45:09,960","level":"INFO","logger":"translation","request_id":"e97babadbd4f","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'quelques'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:45:09,960","level":"INFO","logger":"reader.translator_backends","request_id":"e97babadbd4f","user_id":"-","msg":"Recieved: quelques and несколько for it"}
+{"ts":"2026-08-03 13:45:10,947","level":"INFO","logger":"reader.translator_backends","request_id":"e97babadbd4f","user_id":"-","msg":"Raw response form Ai {'id': '4e8e07ae-64a0-4e89-9c46-9b84abcccf61', 'object': 'chat.completion', 'created': 1785764710, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "пара"\n    },\n    {\n        "text": "некоторые"\n    },\n    {\n        "text": "немного"\n    },\n    {\n        "text": "несколько из"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 142, 'completion_tokens': 51, 'total_tokens': 193, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 142}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:45:10,948","level":"INFO","logger":"reader.translator_backends","request_id":"e97babadbd4f","user_id":"-","msg":"Parser result[{'text': 'пара'}, {'text': 'некоторые'}, {'text': 'немного'}, {'text': 'несколько из'}]"}
+{"ts":"2026-08-03 13:45:10,949","level":"INFO","logger":"translation","request_id":"e97babadbd4f","user_id":"-","msg":"Found 4 alternatives for quelques: ['пара', 'некоторые', 'немного', 'несколько из']"}
+{"ts":"2026-08-03 13:45:48,806","level":"INFO","logger":"translation","request_id":"7472741838b1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'aumône'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:45:49,596","level":"INFO","logger":"translation","request_id":"7472741838b1","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'милостыня', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 776.82}"}
+{"ts":"2026-08-03 13:45:49,597","level":"INFO","logger":"translation","request_id":"7472741838b1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'aumône'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:45:49,597","level":"INFO","logger":"reader.translator_backends","request_id":"7472741838b1","user_id":"-","msg":"Recieved: aumône and милостыня for it"}
+{"ts":"2026-08-03 13:45:51,612","level":"INFO","logger":"reader.translator_backends","request_id":"7472741838b1","user_id":"-","msg":"Raw response form Ai {'id': 'ccc17520-969a-4b18-afb1-ea5c314e6e4b', 'object': 'chat.completion', 'created': 1785764750, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "подаяние"\n    },\n    {\n        "text": "пожертвование"\n    },\n    {\n        "text": "даяние"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 44, 'total_tokens': 191, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:45:51,612","level":"INFO","logger":"reader.translator_backends","request_id":"7472741838b1","user_id":"-","msg":"Parser result[{'text': 'подаяние'}, {'text': 'пожертвование'}, {'text': 'даяние'}]"}
+{"ts":"2026-08-03 13:45:51,613","level":"INFO","logger":"translation","request_id":"7472741838b1","user_id":"-","msg":"Found 3 alternatives for aumône: ['подаяние', 'пожертвование', 'даяние']"}
+{"ts":"2026-08-03 13:46:30,687","level":"INFO","logger":"translation","request_id":"ea4bad727efc","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Il faisait un temps magnifique.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:46:31,633","level":"INFO","logger":"translation","request_id":"ea4bad727efc","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Стояла великолепная погода.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 937.86}"}
+{"ts":"2026-08-03 13:46:31,633","level":"INFO","logger":"translation","request_id":"ea4bad727efc","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Il faisait un temps magnifique.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:46:40,691","level":"INFO","logger":"translation","request_id":"8d30a112be45","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'eût'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:46:41,647","level":"INFO","logger":"translation","request_id":"8d30a112be45","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'был бы (имел бы)', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 947.78}"}
+{"ts":"2026-08-03 13:46:41,648","level":"INFO","logger":"translation","request_id":"8d30a112be45","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'eût'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:46:41,648","level":"INFO","logger":"reader.translator_backends","request_id":"8d30a112be45","user_id":"-","msg":"Recieved: eût and был бы (имел бы) for it"}
+{"ts":"2026-08-03 13:46:42,750","level":"INFO","logger":"reader.translator_backends","request_id":"8d30a112be45","user_id":"-","msg":"Raw response form Ai {'id': '34efff5d-00ea-4b76-9990-aea2c474afa0', 'object': 'chat.completion', 'created': 1785764802, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "имел бы"\n    },\n    {\n        "text": "обладал бы"\n    },\n    {\n        "text": "был бы (в сослагательном наклонении)"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 149, 'completion_tokens': 51, 'total_tokens': 200, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 149}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:46:42,751","level":"INFO","logger":"reader.translator_backends","request_id":"8d30a112be45","user_id":"-","msg":"Parser result[{'text': 'имел бы'}, {'text': 'обладал бы'}, {'text': 'был бы (в сослагательном наклонении)'}]"}
+{"ts":"2026-08-03 13:46:42,751","level":"INFO","logger":"translation","request_id":"8d30a112be45","user_id":"-","msg":"Found 3 alternatives for eût: ['имел бы', 'обладал бы', 'был бы (в сослагательном наклонении)']"}
+{"ts":"2026-08-03 13:47:48,223","level":"INFO","logger":"translation","request_id":"64d7296dea76","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'étonné'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:47:49,010","level":"INFO","logger":"translation","request_id":"64d7296dea76","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'удивлённый', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 779.21}"}
+{"ts":"2026-08-03 13:47:49,010","level":"INFO","logger":"translation","request_id":"64d7296dea76","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'étonné'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:47:49,010","level":"INFO","logger":"reader.translator_backends","request_id":"64d7296dea76","user_id":"-","msg":"Recieved: étonné and удивлённый for it"}
+{"ts":"2026-08-03 13:47:50,051","level":"INFO","logger":"reader.translator_backends","request_id":"64d7296dea76","user_id":"-","msg":"Raw response form Ai {'id': 'db7f989e-170b-4819-8481-0278e93f9153', 'object': 'chat.completion', 'created': 1785764869, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "поражённый"\n    },\n    {\n        "text": "изумлённый"\n    },\n    {\n        "text": "ошеломлённый"\n    },\n    {\n        "text": "пораженный"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 58, 'total_tokens': 206, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:47:50,051","level":"INFO","logger":"reader.translator_backends","request_id":"64d7296dea76","user_id":"-","msg":"Parser result[{'text': 'поражённый'}, {'text': 'изумлённый'}, {'text': 'ошеломлённый'}, {'text': 'пораженный'}]"}
+{"ts":"2026-08-03 13:47:50,052","level":"INFO","logger":"translation","request_id":"64d7296dea76","user_id":"-","msg":"Found 4 alternatives for étonné: ['поражённый', 'изумлённый', 'ошеломлённый', 'пораженный']"}
+{"ts":"2026-08-03 13:48:52,235","level":"INFO","logger":"translation","request_id":"a34713e2ec8f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'autrefois'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:48:53,223","level":"INFO","logger":"translation","request_id":"a34713e2ec8f","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'когда-то', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 980.77}"}
+{"ts":"2026-08-03 13:48:53,223","level":"INFO","logger":"translation","request_id":"a34713e2ec8f","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'autrefois'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:48:53,224","level":"INFO","logger":"reader.translator_backends","request_id":"a34713e2ec8f","user_id":"-","msg":"Recieved: autrefois and когда-то for it"}
+{"ts":"2026-08-03 13:48:54,255","level":"INFO","logger":"reader.translator_backends","request_id":"a34713e2ec8f","user_id":"-","msg":"Raw response form Ai {'id': 'f3920d77-1700-49d1-b020-8ca6973ce08e', 'object': 'chat.completion', 'created': 1785764934, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "некогда"\n    },\n    {\n        "text": "в прошлом"\n    },\n    {\n        "text": "прежде"\n    },\n    {\n        "text": "раньше"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 53, 'total_tokens': 199, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:48:54,255","level":"INFO","logger":"reader.translator_backends","request_id":"a34713e2ec8f","user_id":"-","msg":"Parser result[{'text': 'некогда'}, {'text': 'в прошлом'}, {'text': 'прежде'}, {'text': 'раньше'}]"}
+{"ts":"2026-08-03 13:48:54,256","level":"INFO","logger":"translation","request_id":"a34713e2ec8f","user_id":"-","msg":"Found 4 alternatives for autrefois: ['некогда', 'в прошлом', 'прежде', 'раньше']"}
+{"ts":"2026-08-03 13:52:52,686","level":"INFO","logger":"translation","request_id":"0024c4607381","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'brûlent'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:52:53,752","level":"INFO","logger":"translation","request_id":"0024c4607381","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'горят', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1060.05}"}
+{"ts":"2026-08-03 13:52:53,753","level":"INFO","logger":"translation","request_id":"0024c4607381","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'brûlent'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:52:53,753","level":"INFO","logger":"reader.translator_backends","request_id":"0024c4607381","user_id":"-","msg":"Recieved: brûlent and горят for it"}
+{"ts":"2026-08-03 13:52:54,760","level":"INFO","logger":"reader.translator_backends","request_id":"0024c4607381","user_id":"-","msg":"Raw response form Ai {'id': '2c1586b6-2c58-4cbe-910b-0eb88c61dfde', 'object': 'chat.completion', 'created': 1785765174, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "сгорают"\n    },\n    {\n        "text": "пылают"\n    },\n    {\n        "text": "жгут"\n    },\n    {\n        "text": "обжигают"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 56, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:52:54,760","level":"INFO","logger":"reader.translator_backends","request_id":"0024c4607381","user_id":"-","msg":"Parser result[{'text': 'сгорают'}, {'text': 'пылают'}, {'text': 'жгут'}, {'text': 'обжигают'}]"}
+{"ts":"2026-08-03 13:52:54,761","level":"INFO","logger":"translation","request_id":"0024c4607381","user_id":"-","msg":"Found 4 alternatives for brûlent: ['сгорают', 'пылают', 'жгут', 'обжигают']"}
+{"ts":"2026-08-03 13:56:28,132","level":"INFO","logger":"translation","request_id":"23038b258904","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'reviendrez-vous'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:56:28,920","level":"INFO","logger":"translation","request_id":"23038b258904","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Вернётесь ли вы?', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 781.96}"}
+{"ts":"2026-08-03 13:56:28,921","level":"INFO","logger":"translation","request_id":"23038b258904","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'reviendrez-vous'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:56:28,921","level":"INFO","logger":"reader.translator_backends","request_id":"23038b258904","user_id":"-","msg":"Recieved: reviendrez-vous and Вернётесь ли вы? for it"}
+{"ts":"2026-08-03 13:56:29,966","level":"INFO","logger":"reader.translator_backends","request_id":"23038b258904","user_id":"-","msg":"Raw response form Ai {'id': '282cdd65-1d7d-44a4-be3a-7f97a5ecbb78', 'object': 'chat.completion', 'created': 1785765389, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "Вы вернётесь?"\n    },\n    {\n        "text": "Вернётесь?"\n    },\n    {\n        "text": "Вы возвратитесь?"\n    },\n    {\n        "text": "Возвратитесь ли вы?"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 151, 'completion_tokens': 62, 'total_tokens': 213, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 151}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:56:29,967","level":"INFO","logger":"reader.translator_backends","request_id":"23038b258904","user_id":"-","msg":"Parser result[{'text': 'Вы вернётесь?'}, {'text': 'Вернётесь?'}, {'text': 'Вы возвратитесь?'}, {'text': 'Возвратитесь ли вы?'}]"}
+{"ts":"2026-08-03 13:56:29,967","level":"INFO","logger":"translation","request_id":"23038b258904","user_id":"-","msg":"Found 4 alternatives for reviendrez-vous: ['Вы вернётесь?', 'Вернётесь?', 'Вы возвратитесь?', 'Возвратитесь ли вы?']"}
+{"ts":"2026-08-03 13:56:47,441","level":"INFO","logger":"translation","request_id":"31d4d0ff7103","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'guérirais'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-08-03 13:56:48,445","level":"INFO","logger":"translation","request_id":"31d4d0ff7103","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'вылечил бы', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 996.34}"}
+{"ts":"2026-08-03 13:56:48,445","level":"INFO","logger":"translation","request_id":"31d4d0ff7103","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'guérirais'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-08-03 13:56:48,446","level":"INFO","logger":"reader.translator_backends","request_id":"31d4d0ff7103","user_id":"-","msg":"Recieved: guérirais and вылечил бы for it"}
+{"ts":"2026-08-03 13:56:49,565","level":"INFO","logger":"reader.translator_backends","request_id":"31d4d0ff7103","user_id":"-","msg":"Raw response form Ai {'id': '3c09611e-f248-4a6c-a1bc-34b0ab10016f', 'object': 'chat.completion', 'created': 1785765408, 'model': 'deepseek-v4-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "излечил бы"\n    },\n    {\n        "text": "вылечила бы"\n    },\n    {\n        "text": "исцелил бы"\n    },\n    {\n        "text": "залечил бы"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 62, 'total_tokens': 210, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'fp_a18b46594c_prod0820_fp8_kvcache_20260402'}"}
+{"ts":"2026-08-03 13:56:49,565","level":"INFO","logger":"reader.translator_backends","request_id":"31d4d0ff7103","user_id":"-","msg":"Parser result[{'text': 'излечил бы'}, {'text': 'вылечила бы'}, {'text': 'исцелил бы'}, {'text': 'залечил бы'}]"}
+{"ts":"2026-08-03 13:56:49,566","level":"INFO","logger":"translation","request_id":"31d4d0ff7103","user_id":"-","msg":"Found 4 alternatives for guérirais: ['излечил бы', 'вылечила бы', 'исцелил бы', 'залечил бы']"}

@@ -5,6 +5,8 @@ import tempfile
 import traceback
 import xml.etree.ElementTree as ET
 import zipfile
+import base64
+import binascii
 
 import ebooklib
 from bs4 import BeautifulSoup
@@ -317,7 +319,7 @@ class BookViewSet(viewsets.ModelViewSet):
                 file_size=len(file_content),
             )
 
-            if book_format == "EPUB" and book_data.get("cover_content"):
+            if book_data.get("cover_content"):
                 book.cover.save(
                     book_data["cover_filename"],
                     ContentFile(book_data["cover_content"]),
@@ -326,6 +328,8 @@ class BookViewSet(viewsets.ModelViewSet):
 
             book.file.save(original_filename, ContentFile(file_content), save=False)
             book.save()
+            logger.info("Book file name: %s", book.file.name)
+            logger.info("Book file URL: %s", book.file.url)
 
             # --- ШАГ 5: Сохранение глав ---
             if book_format == "FB2":
@@ -485,22 +489,18 @@ class BookViewSet(viewsets.ModelViewSet):
             # Извлекаем главы
             book_data["chapters"] = self._extract_fb2_chapters(root, namespace)
 
-            if not book_data.get("language"):
-                text_sample = ""
-                for chapter in book_data.get("chapters", []):
-                    text_sample += chapter.get("content", []) + "\n"
-                    if len(text_sample) > 2000:
-                        break
+            title_info = root.find(
+                ".//fb:title-info" if namespace else ".//title-info", namespace
+            )
+            cover_content, cover_filename = self._extract_fb2_cover(root, namespace, title_info)
 
-                text_sample = text_sample[:2000]
-                if text_sample.strip():
-                    try:
-                        detected_language = detect(text_sample)
-                        book_data["language"] = detected_language
-                    except LangDetectException:
-                        book_data["language"] = "unknown"
-                else:
-                    book_data["language"] = "unknown"
+            book_data["cover_content"] = cover_content
+            book_data["cover_filename"] = cover_filename
+
+
+            if not book_data.get("language"):
+                detected_language = self._detect_language_from_content(book_data.get("chapters", []))
+                book_data["language"] = detected_language or "unknown"
 
             return book_data
 
@@ -606,6 +606,81 @@ class BookViewSet(viewsets.ModelViewSet):
             },
         }
 
+    def _extract_fb2_cover(self, root, namespace, title_info):
+        """
+        ДОБАВЛЕНО. В исходном коде извлечение обложки для FB2 отсутствовало
+        полностью, поэтому у FB2-книг обложка никогда не сохранялась.
+ 
+        В FB2 обложка задаётся ссылкой:
+            <title-info><coverpage><image xlink:href="#cover.jpg"/></coverpage></title-info>
+        а сами байты картинки лежат в отдельном элементе на верхнем уровне:
+            <binary id="cover.jpg" content-type="image/jpeg">base64...</binary>
+        Нужно найти ссылку, вытащить id, найти binary с этим id и
+        декодировать base64.
+        """
+        if title_info is None:
+            return None, None
+ 
+        image_path = "fb:coverpage/fb:image" if namespace else "coverpage/image"
+        coverpage_image = title_info.find(image_path, namespace)
+        logger.info("FB2 coverpage image: %s", coverpage_image)
+        if coverpage_image is None:
+            return None, None
+ 
+        xlink_href_attr = "{http://www.w3.org/1999/xlink}href"
+        href = (
+            coverpage_image.get(xlink_href_attr)
+            or coverpage_image.get("href")
+            or coverpage_image.get("l:href")
+        )
+        logger.info("FB2 cover href: %s", href)
+        if not href:
+            return None, None
+ 
+        cover_id = href.lstrip("#").strip()
+        if not cover_id:
+            return None, None
+ 
+        binary_path = ".//fb:binary" if namespace else ".//binary"
+        binaries = root.findall(binary_path, namespace)
+        logger.info(
+            "FB2 binaries: %s",
+            [
+                (
+                    b.get("id"),
+                    b.get("content-type")
+                )
+                for b in binaries
+            ]
+        )
+        for binary_elem in binaries:
+            if binary_elem.get("id") != cover_id:
+                continue
+ 
+            if not binary_elem.text:
+                return None, None
+ 
+            try:
+                cover_bytes = base64.b64decode(binary_elem.text.strip())
+            except (binascii.Error, ValueError):
+                logger.warning(
+                    f"Не удалось декодировать обложку FB2 (id={cover_id})"
+                )
+                return None, None
+ 
+            content_type = binary_elem.get("content-type", "image/jpeg")
+            ext = content_type.split("/")[-1] if "/" in content_type else "jpg"
+            filename = cover_id if "." in cover_id else f"{cover_id}.{ext}"
+            logger.info(
+                "FB2 cover found: id=%s filename=%s size=%d",
+                cover_id,
+                filename,
+                len(cover_bytes),
+            )
+            return cover_bytes, filename
+ 
+        return None, None
+
     def _extract_fb2_chapters(self, root, namespace):
         """
         Извлечение глав из FB2
@@ -708,7 +783,7 @@ class BookViewSet(viewsets.ModelViewSet):
         """
         # Собираем достаточно большой фрагмент текста для более точного определения
         # langdetect работает лучше на текстах от 1000 до 3000 символов
-        text_sample = "".join(ch.get("content", "") for ch in chapters_data[:5])[:3000]
+        text_sample = "\n".join(ch.get("content", "") for ch in chapters_data[:5])[:3000]
 
         if not text_sample.strip():
             logger.warning("Не удалось извлечь текст для определения языка.")
@@ -724,6 +799,53 @@ class BookViewSet(viewsets.ModelViewSet):
                 "Не удалось определить язык по содержимому (LangDetectException)."
             )
             return None
+
+    def _extract_epub_cover(self, book_epub):
+        # 1. EPUB3: properties="cover-image"
+        cover_items = list(book_epub.get_items_of_type(ITEM_COVER))
+        if cover_items:
+            logger.info("EPUB cover found via ITEM_COVER")
+
+            item = cover_items[0]
+            return item.get_content(), item.get_name().split("/")[-1]
+
+        # 2. EPUB2: <meta name="cover" content="item-id">
+        meta_cover = book_epub.get_metadata("OPF", "cover")
+        logger.info(f"OPF cover metadata: {meta_cover}")
+        if meta_cover:
+            cover_data = meta_cover[0][1]
+            cover_id = cover_data.get("content")
+
+            if cover_id:
+                item = book_epub.get_item_with_id(cover_id)
+                if item:
+                    logger.info(f"EPUB cover found via OPF metadata (id={cover_id})")
+                    return item.get_content(), item.get_name().split("/")[-1]
+
+        images = list(book_epub.get_items_of_type(ebooklib.ITEM_IMAGE))
+        for img in images:
+            logger.info(
+                "Image: %s | media_type=%s | id=%s",
+                img.get_name(),
+                img.media_type,
+                img.id,
+            )
+
+        logger.info(
+            "EPUB images: %s",
+            [img.get_name() for img in images]
+        )
+
+        for item in images:
+            if "cover" in item.get_name().lower():
+                logger.info(
+                    f"EPUB cover found via filename fallback ({item.get_name()})"
+                )
+                return item.get_content(), item.get_name().split("/")[-1]
+
+        logger.warning("EPUB cover not found")
+        return None, None
+
 
     def _parse_epub_content(self, file_content):
         """
@@ -767,14 +889,7 @@ class BookViewSet(viewsets.ModelViewSet):
                     else None
                 )
 
-                cover_content, cover_filename = (None, None)
-                cover_items = book_epub.get_items_of_type(ITEM_COVER)
-                try:
-                    cover_item = next(cover_items)
-                    cover_content = cover_item.get_content()
-                    cover_filename = cover_item.get_name().split("/")[-1]
-                except StopIteration:
-                    pass
+                cover_content, cover_filename = self._extract_epub_cover(book_epub)
 
                 # ------------------ БЕЗОПАСНЫЙ ОБХОД TOC (без изменений) ------------------
                 def _iter_toc_entries(toc):
@@ -821,7 +936,7 @@ class BookViewSet(viewsets.ModelViewSet):
                     for tag in soup(["script", "style"]):
                         tag.decompose()
                     text_blocks = [
-                        p.get_text(strip=True)
+                        p.get_text(separator=" ", strip=True)
                         for p in soup.find_all(
                             ["p", "h1", "h2", "h3", "h4", "h5", "h6"]
                         )
@@ -841,10 +956,6 @@ class BookViewSet(viewsets.ModelViewSet):
                         )
                         chapter_order += 1
 
-                # =========================================================================
-                # НОВАЯ УЛУЧШЕННАЯ ЛОГИКА ОПРЕДЕЛЕНИЯ ЯЗЫКА
-                # =========================================================================
-                # Шаг 1: Всегда пытаемся определить язык по реальному содержимому книги
                 detected_language = self._detect_language_from_content(chapters_data)
 
                 # Шаг 2: Выбираем итоговый язык на основе приоритетов
@@ -1196,12 +1307,6 @@ class ConversationViewSet(viewsets.ModelViewSet):
     def messages(self, request, pk=None):
         conversation = self.get_object()
         queryset = conversation.messages.order_by("-timestamp", "-id")
-
-        print("=" * 70)
-        print("FULL QUERYSET")
-        for m in queryset:
-            print(m.id, m.timestamp, m.content[:20])
-        print("=" * 70)
 
         paginator = MessagesPagination()
 

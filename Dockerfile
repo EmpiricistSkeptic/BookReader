@@ -24,5 +24,6 @@ RUN pip install --upgrade pip --root-user-action=ignore \
 # Копируем весь проект в /srv/bookreader
 COPY . .
 
-# Точка входа
-CMD ["gunicorn", "bookreader_core.wsgi:application", "--bind", "0.0.0.0:8000"]
+RUN chmod +x start.sh
+
+CMD ["sh", "start.sh"]

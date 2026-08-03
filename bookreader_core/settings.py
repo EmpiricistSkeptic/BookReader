@@ -40,7 +40,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "changeme")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DJANGO_DEBUG", "false") == "True"
+DEBUG = os.getenv("DJANGO_DEBUG", "false").lower() == "true"
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
@@ -63,6 +63,11 @@ MICROSOFT_TRANSLATOR_BASE_URL = os.getenv("MICROSOFT_TRANSLATOR_BASE_URL")
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL")
 
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
+
 
 # Application definition
 
@@ -80,6 +85,7 @@ INSTALLED_APPS = [
     "reader",
     "corsheaders",
     "drf_spectacular",
+    "storages",
 ]
 
 
@@ -120,15 +126,24 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
 }
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": f"redis://{os.getenv('REDIS_HOST','redis')}:{os.getenv('REDIS_PORT', 6379)}/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
+REDIS_URL = os.getenv("REDIS_URL")
+
+if os.getenv("REDIS_URL"):
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            },
+        }
     }
-}
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        }
+    }
 
 
 SIMPLE_JWT = {
@@ -155,6 +170,7 @@ CORS_ALLOW_CREDENTIALS = True
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -233,16 +249,51 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+USE_R2 = all([
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY,
+    AWS_STORAGE_BUCKET_NAME,
+    AWS_S3_ENDPOINT_URL,
+])
+
+if USE_R2:
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "access_key": AWS_ACCESS_KEY_ID,
+                "secret_key": AWS_SECRET_ACCESS_KEY,
+                "bucket_name": AWS_STORAGE_BUCKET_NAME,
+                "endpoint_url": AWS_S3_ENDPOINT_URL,
+                "region_name": "auto",
+                "default_acl": None,
+                "file_overwrite": False,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+if DEBUG:
+    reader_handlers = ["reader_file", "console"]
+    translation_handlers = ["translation_file", "console"]
+    ai_handlers = ["ai_file", "console"]
+else:
+    reader_handlers = ["console"]
+    translation_handlers = ["console"]
+    ai_handlers = ["console"]
 
 LOGGING = {
     "version": 1,
@@ -262,10 +313,10 @@ LOGGING = {
         },
     },
     "handlers": {
-        "file": {
+        "reader_file": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": "translation.log",
+            "filename": "reader.log",
             "formatter": "file_json",
             "filters": ["request_context"],
         },
@@ -292,17 +343,17 @@ LOGGING = {
     },
     "loggers": {
         "reader": {
-        "handlers": ["file", "console"],
+        "handlers": reader_handlers,
         "level": "INFO",
         "propagate": False,
         },
         "translation": {
-            "handlers": ["translation_file", "console"],
+            "handlers": translation_handlers,
             "level": "INFO",
             "propagate": False,
         },
         "ai_service": {
-            "handlers": ["ai_file", "console"],
+            "handlers": ai_handlers,
             "level": "INFO",
             "propagate": False,
         },
