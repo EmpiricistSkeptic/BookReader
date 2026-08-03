@@ -20,12 +20,28 @@ class Command(BaseCommand):
             action="store_true",
             help="Do not write to DB, only validate and report",
         )
+        parser.add_argument(
+            "--force",
+            action="store_true",
+            help="Re-import even if DictionaryEntry table already has data",
+        )
 
     @transaction.atomic
     def handle(self, *args, **options):
         path = options["csvfile"]
         batch_size = options["batch"]
         is_dry_run = options["dry_run"]
+        is_force = options["force"]
+
+        # Пропускаем, если данные уже есть, если явно не передан --force.
+        if not is_force and DictionaryEntry.objects.exists():
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "DictionaryEntry already populated, skipping import "
+                    "(use --force to re-import)."
+                )
+            )
+            return
 
         if is_dry_run:
             self.stdout.write(
