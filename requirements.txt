@@ -12,6 +12,7 @@ beautifulsoup4==4.13.3
 requests==2.32.3
 google-auth==2.40.3
 google-auth-oauthlib==1.2.2
+pillow==11.1.0
 django-storages
 boto3
 dj-database-url
