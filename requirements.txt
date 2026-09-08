@@ -9,6 +9,7 @@ EbookLib==0.20
 lxml==6.0.2
 langdetect==1.0.9
 beautifulsoup4==4.13.3
+requests==2.32.3
 django-storages
 boto3
 dj-database-url
