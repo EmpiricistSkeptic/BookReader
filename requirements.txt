@@ -5,6 +5,10 @@ djangorestframework-simplejwt
 drf-extensions==0.8.0
 django-cors-headers
 drf-spectacular
+EbookLib==0.20
+lxml==6.0.2
+langdetect==1.0.9
+beautifulsoup4==4.13.3
 django-storages
 boto3
 dj-database-url
