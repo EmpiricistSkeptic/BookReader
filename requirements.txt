@@ -2,7 +2,7 @@ Django
 djangorestframework
 django-filter
 djangorestframework-simplejwt
-djangorestframework-extensions
+drf-extensions==0.8.0
 django-cors-headers
 drf-spectacular
 django-storages
