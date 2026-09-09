@@ -29,7 +29,7 @@ from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_extensions.cache.mixins import CacheResponseMixin
 from rest_framework.response import Response
-from rest_framework.throttling import UserRateThrottle
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework_simplejwt.tokens import RefreshToken
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
@@ -37,7 +37,7 @@ from drf_spectacular.types import OpenApiTypes
 from reader.exceptions import TranslationServiceError
 from reader.services.ai_service import AITeacherService
 from reader.services.translation_service import TranslationService
-from reader.throttles import TranslationThrottle
+from reader.throttles import TranslationThrottle, AuthThrottle
 from reader.utils.google_auth import GoogleAuthService
 
 from .pagination import DictionaryPagination, MessagesPagination
@@ -92,6 +92,11 @@ class AuthViewSet(viewsets.GenericViewSet):
 
     permission_classes = [AllowAny]
     serializer_class = GoogleAuthSerializer
+
+    def get_throttles(self):
+        if self.action in ["register", "login"]:
+            return [AuthThrottle()]
+        return [AnonRateThrottle()]
 
     @staticmethod 
     def get_tokens_for_user(user):
