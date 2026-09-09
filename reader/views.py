@@ -221,7 +221,7 @@ class BookViewSet(viewsets.ModelViewSet):
             return Book.objects.none()
         user_queryset = Book.objects.filter(user=self.request.user)
         annotate_queryset = user_queryset.annotate(chapter_count=Count("chapters"))
-        return annotate_queryset.order_by("-uploaded_at")
+        return annotate_queryset.order_by("-updated_at")
 
 
     def perform_create(self, serializer):
