@@ -36,7 +36,7 @@ class Book(models.Model):
     )
     file_size = models.PositiveIntegerField(null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
