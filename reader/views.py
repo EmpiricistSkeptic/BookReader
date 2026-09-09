@@ -217,11 +217,30 @@ class BookViewSet(viewsets.ModelViewSet):
             return BookCreateUpdateSerializer
 
     def get_queryset(self):
-        if getattr(self, 'swagger_fake_view', False):
+        if getattr(self, "swagger_fake_view", False):
             return Book.objects.none()
-        user_queryset = Book.objects.filter(user=self.request.user)
-        annotate_queryset = user_queryset.annotate(chapter_count=Count("chapters"))
-        return annotate_queryset.order_by("-updated_at")
+
+        last_read_subquery = (
+            UserBookProgress.objects
+            .filter(
+                user=self.request.user,
+                book=OuterRef("pk"),
+            )
+            .values("last_read")[:1]
+        )
+
+        return (
+            Book.objects
+            .filter(user=self.request.user)
+            .annotate(
+                chapter_count=Count("chapters"),
+                user_last_read=Subquery(last_read_subquery),
+            )
+            .order_by(
+                F("user_last_read").desc(nulls_last=True),
+                "-uploaded_at",
+            )
+        )
 
 
     def perform_create(self, serializer):
