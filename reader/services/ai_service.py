@@ -18,7 +18,7 @@ class AITeacherService:
     def __init__(self):
         self.api_key = getattr(settings, "DEEPSEEK_API_KEY", None)
         self.base_url = getattr(settings, "DEEPSEEK_BASE_URL", "https://api.deepseek.com/chat/completions")
-        self.model = "deepseek-v4-flash"
+        self.model = "deepseek-flash"
         self.session = requests.Session()
 
     def build_system_prompt(

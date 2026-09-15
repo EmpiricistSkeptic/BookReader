@@ -143,7 +143,7 @@ class DeepSeekTranslator(BaseTranslator):
     def __init__(self):
         super().__init__()
         self.api_key = getattr(settings, "DEEPSEEK_API_KEY", None)
-        self.model = "deepseek-v4-flash"
+        self.model = "deepseek-flash"
         self.base_url = getattr(
             settings,
             "DEEPSEEK_BASE_URL",
