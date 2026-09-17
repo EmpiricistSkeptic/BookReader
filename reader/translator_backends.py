@@ -517,7 +517,7 @@ class MicrosoftTranslator(BaseTranslator):
             raise TranslationServiceError(f"Ошибка Microsoft Translator: {str(e)}")
 
     def get_alternative_translations(
-        self, text: str, target_language: str, source_language: str
+        self, original_text: str, translated_text: str, target_language: str, source_language: str
     ) -> list[dict]:
         """
         Получает альтернативные переводы с помощью функции "Поиск по словарю" (Dictionary Lookup).
@@ -543,7 +543,7 @@ class MicrosoftTranslator(BaseTranslator):
 
         params = {"api-version": "3.0", "from": source_language, "to": target_language}
 
-        body = [{"text": text}]
+        body = [{"text": original_text}]
 
         try:
             response_data = self._make_request(
