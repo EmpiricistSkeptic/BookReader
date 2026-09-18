@@ -22,7 +22,7 @@ from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 from ebooklib import ITEM_COVER, epub
 from langdetect import LangDetectException, detect
-from rest_framework import generics, permissions, serializers, status, viewsets
+from rest_framework import generics, permissions, serializers, status, viewsets, mixins
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
@@ -37,7 +37,7 @@ from drf_spectacular.types import OpenApiTypes
 from reader.exceptions import TranslationServiceError
 from reader.services.ai_service import AITeacherService
 from reader.services.translation_service import TranslationService
-from reader.throttles import TranslationThrottle, AuthThrottle
+from reader.throttles import TranslationThrottle, AuthThrottle, WordAnalysisThrottle
 from reader.utils.google_auth import GoogleAuthService
 
 from .pagination import DictionaryPagination, MessagesPagination
@@ -82,7 +82,10 @@ from .serializers import (
     UserProfileSerializer,
     UserSerializer,
     UserProfileWriteSerializer,
+    WordAnalysisSerializer,
 )
+
+from .services.word_analysis.analyze_service import WordAnalysisService
 
 logger = logging.getLogger(__name__)
 
@@ -1343,13 +1346,52 @@ class ConversationViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
         
-
-
-
-class TranslateView(generics.CreateAPIView):
+class TranslationViewSet(mixins.CreateModelMixin,
+        mixins.ListModelMixin,
+        mixins.RetrieveModelMixin,
+        mixins.DestroyModelMixin,
+        viewsets.GenericViewSet,
+    ):
     serializer_class = TranslationRequestSerializer
     permission_classes = [IsAuthenticated]
-    throttle_classes = [TranslationThrottle, UserRateThrottle]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ["translator_service", "target_language", "source_language"]
+    search_fields = ["original_text", "translated_text"]
+    ordering_fields = ["created_at"]
+    ordering = ["-created_at"]
+
+    def get_throttles(self):
+        if self.action == "create":
+            throttle_classes = [
+                TranslationThrottle,
+                UserRateThrottle,
+            ]
+
+        elif self.action == "word_analysis":
+            throttle_classes = [
+                WordAnalysisThrottle,
+                UserRateThrottle,
+            ]
+
+        else:
+            throttle_classes = []
+
+        return [throttle() for throttle in throttle_classes]
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return TranslationRequestSerializer
+        return TranslationSerializer
+
+    def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Translation.objects.none()
+
+        return (
+            Translation.objects
+            .filter(user=self.request.user)
+            .select_related("word_analysis")
+        )
 
     def create(self, request, *args, **kwargs):
         try:
@@ -1390,27 +1432,18 @@ class TranslateView(generics.CreateAPIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
+    @action(detail=True, methods=["post"], url_path="word-analysis")
+    def word_analysis(self, request, pk=None):
+        translation = self.get_object()
 
-class TranslationHistoryListView(generics.ListAPIView):
-    serializer_class = TranslationSerializer
-    permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ["translator_service", "target_language", "source_language"]
-    search_fields = ["original_text", "translated_text"]
-    ordering_fields = ["created_at"]
-    ordering = ["-created_at"]
+        analysis = WordAnalysisService().get_or_generate(
+            translation=translation
+        )
 
-    def get_queryset(self):
-        if getattr(self, 'swagger_fake_view', False):
-            return Translation.objects.none()
-        return Translation.objects.filter(user=self.request.user)
+        serializer = WordAnalysisSerializer(analysis)
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK,
+        )
 
 
-class TranslationDetailView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = TranslationSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        if getattr(self, 'swagger_fake_view', False):
-            return Book.objects.none()
-        return Translation.objects.filter(user=self.request.user)

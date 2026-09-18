@@ -24,6 +24,7 @@ from .models import (
     Translation,
     UserBookProgress,
     UserProfile,
+    WordAnalysis
 )
 
 
@@ -617,6 +618,24 @@ class TranslationResponseSerializer(serializers.Serializer):
 
         return data
 
+class WordAnalysisSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WordAnalysis
+        fields = [
+            "id",
+            "lemma",
+            "ipa",
+            "part_of_speech",
+            "grammar",
+            "explanation",
+            "synonyms",
+            "examples",
+            "etymology",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = ["id", "created_at", "updated_at"]
+
 
 class TranslationSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Translation"""
@@ -624,6 +643,7 @@ class TranslationSerializer(serializers.ModelSerializer):
     source_language_name = serializers.SerializerMethodField()
     target_language_name = serializers.SerializerMethodField()
     service_name = serializers.SerializerMethodField()
+    word_analysis = WordAnalysisSerializer(read_only=True, allow_null=True)
 
     class Meta:
         model = Translation
@@ -641,6 +661,7 @@ class TranslationSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "alternatives",
+            "word_analysis",
         ]
         read_only_fields = ["id", "created_at", "updated_at"]
 
@@ -652,6 +673,4 @@ class TranslationSerializer(serializers.ModelSerializer):
 
     def get_service_name(self, obj) -> str:
         return SERVICE_NAMES.get(obj.translator_service, obj.translator_service)
-
-
 

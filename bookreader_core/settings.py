@@ -114,6 +114,7 @@ REST_FRAMEWORK = {
         "user": "1000/hour",
         "translation": "100/hour",
         "auth": "5/min",
+        "word_analysis": "50/hour",
     },
 }
 

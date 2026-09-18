@@ -6,3 +6,6 @@ class TranslationThrottle(UserRateThrottle):
 
 class AuthThrottle(AnonRateThrottle):
     scope = "auth"
+
+class WordAnalysisThrottle(UserRateThrottle):
+    scope = "word_analysis"

@@ -414,8 +414,29 @@ class Translation(models.Model):
             return round(self.confidence * 100, 1)
         return None
 
+class WordAnalysis(models.Model):
+    translation = models.OneToOneField(
+        Translation,
+        on_delete=models.CASCADE,
+        related_name="word_analysis",
+    )
 
+    lemma = models.CharField(max_length=255, blank=True)
+    ipa = models.CharField(max_length=255, blank=True)
+    part_of_speech = models.CharField(max_length=50, blank=True)
 
+    grammar = models.JSONField(default=dict, blank=True)
+
+    explanation = models.TextField(blank=True)
+
+    synonyms = models.JSONField(default=list, blank=True)
+
+    examples = models.JSONField(default=list, blank=True)
+
+    etymology = models.TextField(blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 

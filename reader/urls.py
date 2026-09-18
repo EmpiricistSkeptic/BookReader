@@ -8,9 +8,7 @@ from .views import (
     DictionaryCategoryListView,
     DictionaryEntryViewSet,
     FlashCardViewSet,
-    TranslateView,
-    TranslationDetailView,
-    TranslationHistoryListView,
+    TranslationViewSet,
     UserProfileViewSet,
 )
 
@@ -20,6 +18,7 @@ router.register(r"flashcards", FlashCardViewSet, basename="flashcard")
 router.register(r"profile", UserProfileViewSet, basename="profile")
 router.register(r"dictionary", DictionaryEntryViewSet, basename="dictionary")
 router.register(r"conversations", ConversationViewSet, basename="conversation")
+router.register(r"translations", TranslationViewSet, basename="translation")
 router.register(r"auth", AuthViewSet, basename="auth")
 router.register(r"dictionary", DictionaryEntryViewSet, basename="dictionary-entry")
 # router.register(r'users', UserViewSet, basename='users')
@@ -27,10 +26,5 @@ router.register(r"dictionary", DictionaryEntryViewSet, basename="dictionary-entr
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("translate/", TranslateView.as_view(), name="translate"),
-    path("history/", TranslationHistoryListView.as_view(), name="translation-history"),
-    path(
-        "history/<int:pk>/", TranslationDetailView.as_view(), name="translation-detail"
-    ),
     path("categories/", DictionaryCategoryListView.as_view(), name="category-list"),
 ]
