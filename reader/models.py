@@ -344,6 +344,7 @@ class Translation(models.Model):
         ("deepl", "DeepL"),
         ("chatgpt", "ChatGPT"),
         ("microsoft", "Microsoft"),
+        ("deepseek", "DeepSeek"),
     ]
 
     user = models.ForeignKey(

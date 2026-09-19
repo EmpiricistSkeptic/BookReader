@@ -1387,11 +1387,20 @@ class TranslationViewSet(mixins.CreateModelMixin,
         if getattr(self, "swagger_fake_view", False):
             return Translation.objects.none()
 
-        return (
+        queryset = (
             Translation.objects
             .filter(user=self.request.user)
             .select_related("word_analysis")
         )
+
+        has_analysis = self.request.query_params.get("has_analysis")
+
+        if has_analysis == "true":
+            queryset = queryset.filter(word_analysis__isnull=False)
+        elif has_analysis == "false":
+            queryset = queryset.filter(word_analysis__isnull=True)
+
+        return queryset
 
     def create(self, request, *args, **kwargs):
         try:
