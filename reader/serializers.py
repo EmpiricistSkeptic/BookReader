@@ -585,6 +585,7 @@ class TranslationRequestSerializer(serializers.Serializer):
 class TranslationResponseSerializer(serializers.Serializer):
     """Сериализатор для ответа с переводом"""
 
+    id = serializers.IntegerField(read_only=True)
     success = serializers.BooleanField(read_only=True)
     original_text = serializers.CharField(read_only=True)
     translated_text = serializers.CharField(read_only=True)

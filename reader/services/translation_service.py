@@ -142,6 +142,7 @@ class TranslationService:
                 start_time,
                 alternatives,
             )
+            result["id"] = translation_obj.id
 
             cache.set(cache_key, result, timeout=3600)
 
@@ -199,6 +200,7 @@ class TranslationService:
     # ИЗМЕНЕНО: Метод теперь извлекает 'alternatives' из объекта модели
     def _format_db_result(self, translation_obj, start_time):
         return {
+            "id": translation_obj.id,
             "success": True,
             "original_text": translation_obj.original_text,
             "translated_text": translation_obj.translated_text,
