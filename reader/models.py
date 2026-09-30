@@ -397,6 +397,7 @@ class Translation(models.Model):
             models.Index(fields=["user", "created_at"]),
             models.Index(fields=["user", "target_language"]),
             models.Index(fields=["user", "translator_service"]),
+            models.Index(fields=["user", "source_language"], name="tr_user_srclang_idx"),
         ]
         unique_together = [
             "user",

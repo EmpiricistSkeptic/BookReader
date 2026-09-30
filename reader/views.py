@@ -15,7 +15,7 @@ from django.core.cache import cache
 from django.core.files.base import ContentFile
 from django.db import transaction
 from django.db.models import Case, F, When, Count, OuterRef, Subquery
-from django.db.models.functions import Lower
+from django.db.models.functions import Lower, Length
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -83,9 +83,12 @@ from .serializers import (
     UserSerializer,
     UserProfileWriteSerializer,
     WordAnalysisSerializer,
+    KnownWordsQuerySerializer,
 )
 
 from .services.word_analysis.analyze_service import WordAnalysisService
+
+from .utils.text_utils import normalize_word
 
 logger = logging.getLogger(__name__)
 
@@ -1345,7 +1348,8 @@ class ConversationViewSet(viewsets.ModelViewSet):
         serializer = MessageSerializer(queryset, many=True)
         return Response(serializer.data)
 
-        
+RAW_TEXT_MAX_LEN = 200
+
 class TranslationViewSet(mixins.CreateModelMixin,
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
@@ -1455,4 +1459,35 @@ class TranslationViewSet(mixins.CreateModelMixin,
             status=status.HTTP_200_OK,
         )
 
+    @action(detail=False, methods=["get"], url_path="known-words")
+    def known_words(self, request):
+        """
+        Уникальные слова, которые пользователь ранее переводил
+        на языке (source_language) указанной книги.
+        GET /translations/known-words/?book_id=123  ->  ["beautiful", "house", "make"]
+        """
+        params = KnownWordsQuerySerializer(data=request.query_params)
+        params.is_valid(raise_exception=True)
+
+        book = get_object_or_404(
+            Book.objects.only("id", "language"),
+            pk=params.validated_data["book_id"],
+            user=request.user,
+        )
+
+        raw_texts = (
+            Translation.objects.filter(
+                user=request.user,
+                source_language=book.language,
+            )
+            .annotate(text_len=Length("original_text"))
+            .filter(text_len__lte=RAW_TEXT_MAX_LEN)
+            .order_by()  # сбрасываем Meta.ordering, иначе distinct() не сработает
+            .values_list("original_text", flat=True)
+            .distinct()
+            .iterator(chunk_size=2000)
+        )
+
+        words = {w for t in raw_texts if (w := normalize_word(t))}
+        return Response(sorted(words))
 

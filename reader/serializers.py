@@ -27,6 +27,9 @@ from .models import (
     WordAnalysis
 )
 
+class KnownWordsQuerySerializer(serializers.Serializer):
+    book_id = serializers.IntegerField(min_value=1)
+
 
 class SuggestionRequestSerializer(serializers.Serializer):
     word = serializers.CharField(min_length=1)
