@@ -6766,3 +6766,233 @@ pas mon chevet et ma chambre.»'. is_single_word: False. translation_result со
 {"ts":"2026-09-30 18:56:38,466","level":"INFO","logger":"translation","request_id":"03be9ca986eb","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'включая', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 875.07}"}
 {"ts":"2026-09-30 18:56:38,466","level":"INFO","logger":"translation","request_id":"03be9ca986eb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'including'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
 {"ts":"2026-09-30 18:56:39,528","level":"INFO","logger":"translation","request_id":"03be9ca986eb","user_id":"-","msg":"Found 4 alternatives for including: ['в том числе', 'включающий', 'с включением', 'включительно']"}
+{"ts":"2026-09-30 21:57:43,806","level":"INFO","logger":"translation","request_id":"664451907068","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'But can I really conceive this?'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 21:57:44,924","level":"INFO","logger":"translation","request_id":"664451907068","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Но могу ли я действительно это помыслить?', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1079.62}"}
+{"ts":"2026-09-30 21:57:44,924","level":"INFO","logger":"translation","request_id":"664451907068","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'But can I really conceive this?'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 21:57:54,723","level":"INFO","logger":"translation","request_id":"7386421471e3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'But can I really conceive this?'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 21:57:54,761","level":"INFO","logger":"translation","request_id":"7386421471e3","user_id":"-","msg":"Db result: {'id': 57, 'success': True, 'original_text': 'But can I really conceive this?', 'translated_text': 'Но могу ли я действительно это помыслить?', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 9, 30, 21, 57, 54, 761160, tzinfo=datetime.timezone.utc), 'processing_time_ms': 37.42}"}
+{"ts":"2026-09-30 22:09:43,297","level":"INFO","logger":"translation","request_id":"d71b02000709","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'weakness'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:09:44,041","level":"INFO","logger":"translation","request_id":"d71b02000709","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'слабость', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 725.8}"}
+{"ts":"2026-09-30 22:09:44,041","level":"INFO","logger":"translation","request_id":"d71b02000709","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'weakness'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:09:45,151","level":"INFO","logger":"translation","request_id":"d71b02000709","user_id":"-","msg":"Found 5 alternatives for weakness: ['слабое место', 'недостаток', 'уязвимость', 'немощь', 'бессилие']"}
+{"ts":"2026-09-30 22:09:49,228","level":"INFO","logger":"translation","request_id":"86ae839ae5aa","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'zombies'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:09:49,909","level":"INFO","logger":"translation","request_id":"86ae839ae5aa","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'зомби', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 666.91}"}
+{"ts":"2026-09-30 22:09:49,909","level":"INFO","logger":"translation","request_id":"86ae839ae5aa","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'zombies'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:09:50,741","level":"INFO","logger":"translation","request_id":"86ae839ae5aa","user_id":"-","msg":"Found 3 alternatives for zombies: ['живые мертвецы', 'ходячие мертвецы', 'нежить']"}
+{"ts":"2026-09-30 22:09:55,171","level":"INFO","logger":"translation","request_id":"5867d037e8df","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'imagine'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:09:55,872","level":"INFO","logger":"translation","request_id":"5867d037e8df","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'представь', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 685.04}"}
+{"ts":"2026-09-30 22:09:55,872","level":"INFO","logger":"translation","request_id":"5867d037e8df","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'imagine'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:09:56,598","level":"INFO","logger":"translation","request_id":"5867d037e8df","user_id":"-","msg":"Found 4 alternatives for imagine: ['вообрази', 'представьте себе', 'вообразите', 'представь себе']"}
+{"ts":"2026-09-30 22:10:19,383","level":"INFO","logger":"translation","request_id":"e2782d475884","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'most likely'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:10:20,333","level":"INFO","logger":"translation","request_id":"e2782d475884","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'скорее всего', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 934.75}"}
+{"ts":"2026-09-30 22:10:20,333","level":"INFO","logger":"translation","request_id":"e2782d475884","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'most likely'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:10:59,193","level":"INFO","logger":"translation","request_id":"9bed840c00c1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'This is a way of'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:10:59,881","level":"INFO","logger":"translation","request_id":"9bed840c00c1","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Это способ', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 673.56}"}
+{"ts":"2026-09-30 22:10:59,881","level":"INFO","logger":"translation","request_id":"9bed840c00c1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'This is a way of'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:12:08,771","level":"INFO","logger":"translation","request_id":"0f9e5d68d297","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'These explanations should'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:12:09,464","level":"INFO","logger":"translation","request_id":"0f9e5d68d297","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Эти объяснения должны', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 678.59}"}
+{"ts":"2026-09-30 22:12:09,465","level":"INFO","logger":"translation","request_id":"0f9e5d68d297","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'These explanations should'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:15:52,299","level":"INFO","logger":"translation","request_id":"52f837b4dd56","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'In short,'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:15:52,875","level":"INFO","logger":"translation","request_id":"52f837b4dd56","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Короче говоря,', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 564.15}"}
+{"ts":"2026-09-30 22:15:52,875","level":"INFO","logger":"translation","request_id":"52f837b4dd56","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'In short,'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:16:14,942","level":"INFO","logger":"translation","request_id":"667d91978f26","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'underlying'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:16:15,841","level":"INFO","logger":"translation","request_id":"667d91978f26","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'лежащий в основе', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 886.99}"}
+{"ts":"2026-09-30 22:16:15,841","level":"INFO","logger":"translation","request_id":"667d91978f26","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'underlying'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:16:16,722","level":"INFO","logger":"translation","request_id":"667d91978f26","user_id":"-","msg":"Found 5 alternatives for underlying: ['основополагающий', 'базовый', 'основной', 'подспудный', 'глубинный']"}
+{"ts":"2026-09-30 22:16:23,401","level":"INFO","logger":"translation","request_id":"5ecd162919d4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'underlying'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:16:23,416","level":"INFO","logger":"translation","request_id":"5ecd162919d4","user_id":"-","msg":"Db result: {'id': 65, 'success': True, 'original_text': 'underlying', 'translated_text': 'лежащий в основе', 'alternatives': ['основополагающий', 'базовый', 'основной', 'подспудный', 'глубинный'], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 9, 30, 22, 16, 23, 416706, tzinfo=datetime.timezone.utc), 'processing_time_ms': 15.14}"}
+{"ts":"2026-09-30 22:24:41,922","level":"INFO","logger":"translation","request_id":"eec4e9483bc9","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'These explanations should'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:24:41,938","level":"INFO","logger":"translation","request_id":"eec4e9483bc9","user_id":"-","msg":"Db result: {'id': 63, 'success': True, 'original_text': 'These explanations should', 'translated_text': 'Эти объяснения должны', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 9, 30, 22, 24, 41, 938163, tzinfo=datetime.timezone.utc), 'processing_time_ms': 15.79}"}
+{"ts":"2026-09-30 22:24:51,874","level":"INFO","logger":"translation","request_id":"c871615f2508","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'In short,'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:24:51,890","level":"INFO","logger":"translation","request_id":"c871615f2508","user_id":"-","msg":"Db result: {'id': 64, 'success': True, 'original_text': 'In short,', 'translated_text': 'Короче говоря,', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 9, 30, 22, 24, 51, 889947, tzinfo=datetime.timezone.utc), 'processing_time_ms': 15.37}"}
+{"ts":"2026-09-30 22:25:22,176","level":"INFO","logger":"translation","request_id":"ab94bdf66dad","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'a particular pattern of brain activity'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:25:23,000","level":"INFO","logger":"translation","request_id":"ab94bdf66dad","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'определённая картина активности мозга', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 809.46}"}
+{"ts":"2026-09-30 22:25:23,001","level":"INFO","logger":"translation","request_id":"ab94bdf66dad","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'a particular pattern of brain activity'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:26:30,601","level":"INFO","logger":"translation","request_id":"e3a0f4106a21","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'enable us to predict'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:26:31,552","level":"INFO","logger":"translation","request_id":"e3a0f4106a21","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'позволяют нам предсказывать', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 939.26}"}
+{"ts":"2026-09-30 22:26:31,552","level":"INFO","logger":"translation","request_id":"e3a0f4106a21","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'enable us to predict'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:26:39,049","level":"INFO","logger":"translation","request_id":"da27980bd72d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'This means explaining why a particular'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:26:39,818","level":"INFO","logger":"translation","request_id":"da27980bd72d","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Это означает объяснение того, почему конкретный', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 754.02}"}
+{"ts":"2026-09-30 22:26:39,819","level":"INFO","logger":"translation","request_id":"da27980bd72d","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'This means explaining why a particular'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:30:51,024","level":"INFO","logger":"translation","request_id":"2915ab9303e8","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'These explanations should'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:30:51,039","level":"INFO","logger":"translation","request_id":"2915ab9303e8","user_id":"-","msg":"Db result: {'id': 63, 'success': True, 'original_text': 'These explanations should', 'translated_text': 'Эти объяснения должны', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 9, 30, 22, 30, 51, 39622, tzinfo=datetime.timezone.utc), 'processing_time_ms': 15.34}"}
+{"ts":"2026-09-30 22:35:55,701","level":"INFO","logger":"translation","request_id":"653bfcad5890","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'experiences will occur,'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:35:56,620","level":"INFO","logger":"translation","request_id":"653bfcad5890","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'опыт будет происходить,', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 900.11}"}
+{"ts":"2026-09-30 22:35:56,621","level":"INFO","logger":"translation","request_id":"653bfcad5890","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'experiences will occur,'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:36:02,880","level":"INFO","logger":"translation","request_id":"fdf0eba64d5f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'predict'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:36:03,561","level":"INFO","logger":"translation","request_id":"fdf0eba64d5f","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'предсказать', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 665.64}"}
+{"ts":"2026-09-30 22:36:03,561","level":"INFO","logger":"translation","request_id":"fdf0eba64d5f","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'predict'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:36:04,488","level":"INFO","logger":"translation","request_id":"fdf0eba64d5f","user_id":"-","msg":"Found 4 alternatives for predict: ['предвидеть', 'прогнозировать', 'предугадать', 'предрекать']"}
+{"ts":"2026-09-30 22:36:54,992","level":"INFO","logger":"translation","request_id":"31d3f44d7874","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'why it has the phenomenological properties'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:36:55,954","level":"INFO","logger":"translation","request_id":"31d3f44d7874","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'почему оно обладает феноменологическими свойствами', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 947.11}"}
+{"ts":"2026-09-30 22:36:55,954","level":"INFO","logger":"translation","request_id":"31d3f44d7874","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'why it has the phenomenological properties'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-09-30 22:37:08,983","level":"INFO","logger":"translation","request_id":"709ac9e8edf8","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'why it has the phenomenological properties'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-09-30 22:37:09,007","level":"INFO","logger":"translation","request_id":"709ac9e8edf8","user_id":"-","msg":"Db result: {'id': 102, 'success': True, 'original_text': 'why it has the phenomenological properties', 'translated_text': 'почему оно обладает феноменологическими свойствами', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 9, 30, 22, 37, 9, 7007, tzinfo=datetime.timezone.utc), 'processing_time_ms': 22.88}"}
