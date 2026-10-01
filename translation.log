@@ -6996,3 +6996,502 @@ pas mon chevet et ma chambre.»'. is_single_word: False. translation_result со
 ---------------------------------
 "}
 {"ts":"2026-09-30 22:37:09,007","level":"INFO","logger":"translation","request_id":"709ac9e8edf8","user_id":"-","msg":"Db result: {'id': 102, 'success': True, 'original_text': 'why it has the phenomenological properties', 'translated_text': 'почему оно обладает феноменологическими свойствами', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 9, 30, 22, 37, 9, 7007, tzinfo=datetime.timezone.utc), 'processing_time_ms': 22.88}"}
+{"ts":"2026-10-01 11:34:27,063","level":"INFO","logger":"translation","request_id":"a852bc7bcb1e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Such experiments needed'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 11:34:28,375","level":"INFO","logger":"translation","request_id":"a852bc7bcb1e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Такие эксперименты были необходимы', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1263.02}"}
+{"ts":"2026-10-01 11:34:28,376","level":"INFO","logger":"translation","request_id":"a852bc7bcb1e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Such experiments needed'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 11:35:47,790","level":"INFO","logger":"translation","request_id":"e7013840f8d9","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Revising these theories depended on precise experiments in which the ‘hotness’ or ‘coolness’ of objects could be systematically'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 11:35:49,054","level":"INFO","logger":"translation","request_id":"e7013840f8d9","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Пересмотр этих теорий зависел от точных экспериментов, в которых «горячность» или «холодность» объектов можно было систематически', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1232.94}"}
+{"ts":"2026-10-01 11:35:49,055","level":"INFO","logger":"translation","request_id":"e7013840f8d9","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Revising these theories depended on precise experiments in which the ‘hotness’ or ‘coolness’ of objects could be systematically'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 11:36:07,163","level":"INFO","logger":"translation","request_id":"ec4da1f5423d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Revising these theories depended on precise experiments in which the ‘hotness’ or ‘coolness’ of objects could be systematically'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 11:36:07,213","level":"INFO","logger":"translation","request_id":"ec4da1f5423d","user_id":"-","msg":"Db result: {'id': 136, 'success': True, 'original_text': 'Revising these theories depended on precise experiments in which the ‘hotness’ or ‘coolness’ of objects could be systematically', 'translated_text': 'Пересмотр этих теорий зависел от точных экспериментов, в которых «горячность» или «холодность» объектов можно было систематически', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 10, 1, 11, 36, 7, 212448, tzinfo=datetime.timezone.utc), 'processing_time_ms': 48.8}"}
+{"ts":"2026-10-01 11:36:29,841","level":"INFO","logger":"translation","request_id":"a9327f046c49","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'The race was on to develop'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 11:36:30,929","level":"INFO","logger":"translation","request_id":"a9327f046c49","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Началась гонка за разработкой', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1049.52}"}
+{"ts":"2026-10-01 11:36:30,929","level":"INFO","logger":"translation","request_id":"a9327f046c49","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'The race was on to develop'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 11:51:47,936","level":"INFO","logger":"translation","request_id":"3febd186ecb2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'lone'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 11:51:49,101","level":"INFO","logger":"translation","request_id":"3febd186ecb2","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'одинокий', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1131.76}"}
+{"ts":"2026-10-01 11:51:49,102","level":"INFO","logger":"translation","request_id":"3febd186ecb2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'lone'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 11:51:49,970","level":"INFO","logger":"translation","request_id":"3febd186ecb2","user_id":"-","msg":"Found 4 alternatives for lone: ['уединённый', 'одиночный', 'один', 'пустынный']"}
+{"ts":"2026-10-01 12:12:00,928","level":"INFO","logger":"translation","request_id":"f222edd9d4f4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'befell'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:12:02,324","level":"INFO","logger":"translation","request_id":"f222edd9d4f4","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'случилось', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1359.39}"}
+{"ts":"2026-10-01 12:12:02,325","level":"INFO","logger":"translation","request_id":"f222edd9d4f4","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'befell'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:12:03,405","level":"INFO","logger":"translation","request_id":"f222edd9d4f4","user_id":"-","msg":"Found 4 alternatives for befell: ['произошло', 'приключилось', 'постигло', 'выпало']"}
+{"ts":"2026-10-01 12:23:52,180","level":"INFO","logger":"translation","request_id":"e557df3940cb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ever so slightly.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:23:53,332","level":"INFO","logger":"translation","request_id":"e557df3940cb","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Совсем чуть-чуть.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1110.73}"}
+{"ts":"2026-10-01 12:23:53,333","level":"INFO","logger":"translation","request_id":"e557df3940cb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ever so slightly.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:26:58,121","level":"INFO","logger":"translation","request_id":"737fc8c47b5e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'knotted'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:26:58,991","level":"INFO","logger":"translation","request_id":"737fc8c47b5e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'завязанный узлом', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 844.3}"}
+{"ts":"2026-10-01 12:26:58,992","level":"INFO","logger":"translation","request_id":"737fc8c47b5e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'knotted'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:27:00,257","level":"INFO","logger":"translation","request_id":"737fc8c47b5e","user_id":"-","msg":"Found 4 alternatives for knotted: ['связанный узлом', 'затянутый в узел', 'с узлом', 'узловатый']"}
+{"ts":"2026-10-01 12:27:11,159","level":"INFO","logger":"translation","request_id":"8d1c29b9c062","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'knotted into a ball.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:27:12,160","level":"INFO","logger":"translation","request_id":"8d1c29b9c062","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'завязанный в узел.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 960.74}"}
+{"ts":"2026-10-01 12:27:12,161","level":"INFO","logger":"translation","request_id":"8d1c29b9c062","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'knotted into a ball.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:27:17,002","level":"INFO","logger":"translation","request_id":"889ae4568e35","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'My stomach instantly knotted into a ball.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:27:17,832","level":"INFO","logger":"translation","request_id":"889ae4568e35","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Мой желудок мгновенно сжался в комок.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 797.49}"}
+{"ts":"2026-10-01 12:27:17,833","level":"INFO","logger":"translation","request_id":"889ae4568e35","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'My stomach instantly knotted into a ball.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:29:44,673","level":"INFO","logger":"translation","request_id":"b93916605b91","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'As for Governor Malloy, he stopped speaking and was gazing downward.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:29:45,857","level":"INFO","logger":"translation","request_id":"b93916605b91","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Что касается губернатора Мэллоя, он перестал говорить и смотрел вниз.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1147.9}"}
+{"ts":"2026-10-01 12:29:45,858","level":"INFO","logger":"translation","request_id":"b93916605b91","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'As for Governor Malloy, he stopped speaking and was gazing downward.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:36:17,471","level":"INFO","logger":"translation","request_id":"8c7cd21c0121","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'unleash'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:36:18,710","level":"INFO","logger":"translation","request_id":"8c7cd21c0121","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'высвободить', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1218.9}"}
+{"ts":"2026-10-01 12:36:18,711","level":"INFO","logger":"translation","request_id":"8c7cd21c0121","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'unleash'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:36:19,766","level":"INFO","logger":"translation","request_id":"8c7cd21c0121","user_id":"-","msg":"Found 4 alternatives for unleash: ['развязать', 'выпустить', 'дать волю', 'обрушить']"}
+{"ts":"2026-10-01 12:43:11,786","level":"INFO","logger":"translation","request_id":"5dcdde00eae3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'inside'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:43:12,732","level":"INFO","logger":"translation","request_id":"5dcdde00eae3","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'внутри', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 920.15}"}
+{"ts":"2026-10-01 12:43:12,733","level":"INFO","logger":"translation","request_id":"5dcdde00eae3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'inside'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:43:13,930","level":"INFO","logger":"translation","request_id":"5dcdde00eae3","user_id":"-","msg":"Found 4 alternatives for inside: ['внутрь', 'в', 'внутри помещения', 'внутренняя часть']"}
+{"ts":"2026-10-01 12:43:17,923","level":"INFO","logger":"translation","request_id":"4cad443a0c9e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'distinct'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:43:18,907","level":"INFO","logger":"translation","request_id":"4cad443a0c9e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'отчетливый', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 950.97}"}
+{"ts":"2026-10-01 12:43:18,908","level":"INFO","logger":"translation","request_id":"4cad443a0c9e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'distinct'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:43:19,828","level":"INFO","logger":"translation","request_id":"4cad443a0c9e","user_id":"-","msg":"Found 4 alternatives for distinct: ['явный', 'выраженный', 'различимый', 'несомненный']"}
+{"ts":"2026-10-01 12:45:22,505","level":"INFO","logger":"translation","request_id":"7da7b6047071","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'slouch'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:45:23,548","level":"INFO","logger":"translation","request_id":"7da7b6047071","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'сутулиться', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1006.58}"}
+{"ts":"2026-10-01 12:45:23,549","level":"INFO","logger":"translation","request_id":"7da7b6047071","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'slouch'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:45:24,370","level":"INFO","logger":"translation","request_id":"7da7b6047071","user_id":"-","msg":"Found 4 alternatives for slouch: ['горбиться', 'сгибаться', 'сидеть сгорбившись', 'стоять сгорбившись']"}
+{"ts":"2026-10-01 12:46:08,294","level":"INFO","logger":"translation","request_id":"959684a95ee6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'furrowed'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:46:09,551","level":"INFO","logger":"translation","request_id":"959684a95ee6","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'нахмуренный', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1240.01}"}
+{"ts":"2026-10-01 12:46:09,551","level":"INFO","logger":"translation","request_id":"959684a95ee6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'furrowed'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:46:10,708","level":"INFO","logger":"translation","request_id":"959684a95ee6","user_id":"-","msg":"Found 3 alternatives for furrowed: ['морщинистый', 'изборождённый', 'покрытый бороздами']"}
+{"ts":"2026-10-01 12:46:14,539","level":"INFO","logger":"translation","request_id":"e976fa0046f6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'brow'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:46:15,852","level":"INFO","logger":"translation","request_id":"e976fa0046f6","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'бровь', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1279.93}"}
+{"ts":"2026-10-01 12:46:15,853","level":"INFO","logger":"translation","request_id":"e976fa0046f6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'brow'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:46:17,135","level":"INFO","logger":"translation","request_id":"e976fa0046f6","user_id":"-","msg":"Found 3 alternatives for brow: ['брови', 'надбровье', 'лоб']"}
+{"ts":"2026-10-01 12:46:24,327","level":"INFO","logger":"translation","request_id":"fb082c47a032","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'frowned'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:46:25,160","level":"INFO","logger":"translation","request_id":"fb082c47a032","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'нахмурился', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 799.48}"}
+{"ts":"2026-10-01 12:46:25,160","level":"INFO","logger":"translation","request_id":"fb082c47a032","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'frowned'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:46:26,260","level":"INFO","logger":"translation","request_id":"fb082c47a032","user_id":"-","msg":"Found 4 alternatives for frowned: ['помрачнел', 'сдвинул брови', 'нахмурил брови', 'смóрщился']"}
+{"ts":"2026-10-01 12:49:02,164","level":"INFO","logger":"translation","request_id":"f210c2a173a3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'scowl'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:49:03,787","level":"INFO","logger":"translation","request_id":"f210c2a173a3","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'хмуриться', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1590.47}"}
+{"ts":"2026-10-01 12:49:03,789","level":"INFO","logger":"translation","request_id":"f210c2a173a3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'scowl'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:49:04,985","level":"INFO","logger":"translation","request_id":"f210c2a173a3","user_id":"-","msg":"Found 4 alternatives for scowl: ['смотреть сердито', 'смотреть исподлобья', 'хмурить брови', 'мрачнеть']"}
+{"ts":"2026-10-01 12:49:32,355","level":"INFO","logger":"translation","request_id":"686b64ee1782","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'flash of dread.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:49:33,158","level":"INFO","logger":"translation","request_id":"686b64ee1782","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Вспышка ужаса.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 766.3}"}
+{"ts":"2026-10-01 12:49:33,158","level":"INFO","logger":"translation","request_id":"686b64ee1782","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'flash of dread.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:49:47,399","level":"INFO","logger":"translation","request_id":"f6c7457db58e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'identifiable'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:49:48,303","level":"INFO","logger":"translation","request_id":"f6c7457db58e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'идентифицируемый', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 869.77}"}
+{"ts":"2026-10-01 12:49:48,306","level":"INFO","logger":"translation","request_id":"f6c7457db58e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'identifiable'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:49:49,292","level":"INFO","logger":"translation","request_id":"f6c7457db58e","user_id":"-","msg":"Found 4 alternatives for identifiable: ['опознаваемый', 'распознаваемый', 'узнаваемый', 'поддающийся идентификации']"}
+{"ts":"2026-10-01 12:51:52,334","level":"INFO","logger":"translation","request_id":"a45d0f7898a5","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'at odds'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:51:53,479","level":"INFO","logger":"translation","request_id":"a45d0f7898a5","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'в разногласиях', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1113.96}"}
+{"ts":"2026-10-01 12:51:53,480","level":"INFO","logger":"translation","request_id":"a45d0f7898a5","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'at odds'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:53:44,913","level":"INFO","logger":"translation","request_id":"9946465e23ba","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Hippocrates'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:53:45,907","level":"INFO","logger":"translation","request_id":"9946465e23ba","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Гиппократ', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 949.58}"}
+{"ts":"2026-10-01 12:53:45,908","level":"INFO","logger":"translation","request_id":"9946465e23ba","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Hippocrates'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:53:46,877","level":"INFO","logger":"translation","request_id":"9946465e23ba","user_id":"-","msg":"Found 2 alternatives for Hippocrates: ['Гиппократ Косский', 'Гиппократ с Коса']"}
+{"ts":"2026-10-01 12:55:28,502","level":"INFO","logger":"translation","request_id":"af3896a5ad32","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'predicated'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:55:29,758","level":"INFO","logger":"translation","request_id":"af3896a5ad32","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'основанный', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1240.34}"}
+{"ts":"2026-10-01 12:55:29,758","level":"INFO","logger":"translation","request_id":"af3896a5ad32","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'predicated'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:55:30,881","level":"INFO","logger":"translation","request_id":"af3896a5ad32","user_id":"-","msg":"Found 4 alternatives for predicated: ['обусловленный', 'построенный', 'зиждется на', 'базируется на']"}
+{"ts":"2026-10-01 12:55:47,278","level":"INFO","logger":"translation","request_id":"ec7024859c3d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'innermost'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:55:48,396","level":"INFO","logger":"translation","request_id":"ec7024859c3d","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'сокровенный', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1072.55}"}
+{"ts":"2026-10-01 12:55:48,396","level":"INFO","logger":"translation","request_id":"ec7024859c3d","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'innermost'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:55:49,731","level":"INFO","logger":"translation","request_id":"ec7024859c3d","user_id":"-","msg":"Found 4 alternatives for innermost: ['самый глубокий', 'внутренний', 'заветный', 'глубинный']"}
+{"ts":"2026-10-01 12:58:00,285","level":"INFO","logger":"translation","request_id":"a3297958e8f2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'ostensibly'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:58:01,449","level":"INFO","logger":"translation","request_id":"a3297958e8f2","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'якобы', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1136.3}"}
+{"ts":"2026-10-01 12:58:01,450","level":"INFO","logger":"translation","request_id":"a3297958e8f2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'ostensibly'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:58:02,610","level":"INFO","logger":"translation","request_id":"a3297958e8f2","user_id":"-","msg":"Found 4 alternatives for ostensibly: ['як будто', 'по видимости', 'внешне', 'на первый взгляд']"}
+{"ts":"2026-10-01 12:59:11,075","level":"INFO","logger":"translation","request_id":"9d985279d367","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'uniformity'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 12:59:12,521","level":"INFO","logger":"translation","request_id":"9d985279d367","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'единообразие', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1411.27}"}
+{"ts":"2026-10-01 12:59:12,522","level":"INFO","logger":"translation","request_id":"9d985279d367","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'uniformity'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 12:59:13,576","level":"INFO","logger":"translation","request_id":"9d985279d367","user_id":"-","msg":"Found 4 alternatives for uniformity: ['однородность', 'одинаковость', 'однообразие', 'униформность']"}
+{"ts":"2026-10-01 13:02:13,400","level":"INFO","logger":"translation","request_id":"aa2c489be913","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'coincide'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:02:14,298","level":"INFO","logger":"translation","request_id":"aa2c489be913","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'совпадать', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 861.46}"}
+{"ts":"2026-10-01 13:02:14,299","level":"INFO","logger":"translation","request_id":"aa2c489be913","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'coincide'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:02:15,258","level":"INFO","logger":"translation","request_id":"aa2c489be913","user_id":"-","msg":"Found 4 alternatives for coincide: ['совпасть', 'сходиться', 'соответствовать', 'приходиться на одно время']"}
+{"ts":"2026-10-01 13:04:17,376","level":"INFO","logger":"translation","request_id":"aa9528f7d982","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'conceives'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:04:18,658","level":"INFO","logger":"translation","request_id":"aa9528f7d982","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'замышляет', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1242.8}"}
+{"ts":"2026-10-01 13:04:18,659","level":"INFO","logger":"translation","request_id":"aa9528f7d982","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'conceives'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:04:19,530","level":"INFO","logger":"translation","request_id":"aa9528f7d982","user_id":"-","msg":"Found 4 alternatives for conceives: ['задумывает', 'вынашивает', 'представляет себе', 'постигает']"}
+{"ts":"2026-10-01 13:04:57,174","level":"INFO","logger":"translation","request_id":"051c6ea65679","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'compelling'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:04:57,228","level":"INFO","logger":"translation","request_id":"051c6ea65679","user_id":"-","msg":"Db result: {'id': 8, 'success': True, 'original_text': 'compelling', 'translated_text': 'убедительный', 'alternatives': ['захватывающий', 'неотразимый', 'веский', 'притягательный'], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 10, 1, 13, 4, 57, 218938, tzinfo=datetime.timezone.utc), 'processing_time_ms': 43.78}"}
+{"ts":"2026-10-01 13:07:40,794","level":"INFO","logger":"translation","request_id":"cce3eac329d4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'overlook'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:07:42,085","level":"INFO","logger":"translation","request_id":"cce3eac329d4","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'игнорировать', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1245.89}"}
+{"ts":"2026-10-01 13:07:42,086","level":"INFO","logger":"translation","request_id":"cce3eac329d4","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'overlook'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:07:43,325","level":"INFO","logger":"translation","request_id":"cce3eac329d4","user_id":"-","msg":"Found 4 alternatives for overlook: ['не замечать', 'пропускать', 'упускать из виду', 'не обращать внимания']"}
+{"ts":"2026-10-01 13:08:15,569","level":"INFO","logger":"translation","request_id":"3684a54d47cb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'do pose a threat—based on'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:08:16,468","level":"INFO","logger":"translation","request_id":"3684a54d47cb","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'представляют угрозу — исходя из', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 844.91}"}
+{"ts":"2026-10-01 13:08:16,469","level":"INFO","logger":"translation","request_id":"3684a54d47cb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'do pose a threat—based on'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:08:42,507","level":"INFO","logger":"translation","request_id":"e33f7a54e9d7","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'woman'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:08:43,292","level":"INFO","logger":"translation","request_id":"e33f7a54e9d7","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'женщина', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 757.83}"}
+{"ts":"2026-10-01 13:08:43,293","level":"INFO","logger":"translation","request_id":"e33f7a54e9d7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'woman'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:08:44,049","level":"INFO","logger":"translation","request_id":"e33f7a54e9d7","user_id":"-","msg":"Found 4 alternatives for woman: ['дама', 'женщина', 'особа женского пола', 'барышня']"}
+{"ts":"2026-10-01 13:17:22,763","level":"INFO","logger":"translation","request_id":"af0e8475c233","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'species'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:17:23,897","level":"INFO","logger":"translation","request_id":"af0e8475c233","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'вид', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1107.17}"}
+{"ts":"2026-10-01 13:17:23,898","level":"INFO","logger":"translation","request_id":"af0e8475c233","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'species'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:17:24,851","level":"INFO","logger":"translation","request_id":"af0e8475c233","user_id":"-","msg":"Found 3 alternatives for species: ['разновидность', 'порода', 'род']"}
+{"ts":"2026-10-01 13:24:16,190","level":"INFO","logger":"translation","request_id":"78a6c64fd664","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'My internal critic taunted me: not everyone is cut out to be a scientist.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:24:17,752","level":"INFO","logger":"translation","request_id":"78a6c64fd664","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Мой внутренний критик насмехался надо мной: не всем суждено быть учёными.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1518.64}"}
+{"ts":"2026-10-01 13:24:17,752","level":"INFO","logger":"translation","request_id":"78a6c64fd664","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'My internal critic taunted me: not everyone is cut out to be a scientist.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:24:24,886","level":"INFO","logger":"translation","request_id":"dcf6e2d7e86b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'taunted me:'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:24:26,018","level":"INFO","logger":"translation","request_id":"dcf6e2d7e86b","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'дразнил меня:', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1096.15}"}
+{"ts":"2026-10-01 13:24:26,019","level":"INFO","logger":"translation","request_id":"dcf6e2d7e86b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'taunted me:'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:25:11,176","level":"INFO","logger":"translation","request_id":"6d43354851ca","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'decidedly'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:25:12,471","level":"INFO","logger":"translation","request_id":"6d43354851ca","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'решительно', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1263.48}"}
+{"ts":"2026-10-01 13:25:12,473","level":"INFO","logger":"translation","request_id":"6d43354851ca","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'decidedly'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:25:13,786","level":"INFO","logger":"translation","request_id":"6d43354851ca","user_id":"-","msg":"Found 4 alternatives for decidedly: ['определённо', 'безусловно', 'несомненно', 'явно']"}
+{"ts":"2026-10-01 13:27:09,886","level":"INFO","logger":"translation","request_id":"9893963d4e8e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'inquired'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 13:27:11,285","level":"INFO","logger":"translation","request_id":"9893963d4e8e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'осведомился', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1364.59}"}
+{"ts":"2026-10-01 13:27:11,285","level":"INFO","logger":"translation","request_id":"9893963d4e8e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'inquired'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 13:27:12,187","level":"INFO","logger":"translation","request_id":"9893963d4e8e","user_id":"-","msg":"Found 4 alternatives for inquired: ['поинтересовался', 'спросил', 'расспросил', 'узнал']"}
+{"ts":"2026-10-01 15:01:52,654","level":"INFO","logger":"translation","request_id":"9c60b6f52d01","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'And yet'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 15:01:53,496","level":"INFO","logger":"translation","request_id":"9c60b6f52d01","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'И всё же', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 786.75}"}
+{"ts":"2026-10-01 15:01:53,497","level":"INFO","logger":"translation","request_id":"9c60b6f52d01","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'And yet'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 15:02:02,513","level":"INFO","logger":"translation","request_id":"f36d281e4fe1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'pedigree'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 15:02:03,988","level":"INFO","logger":"translation","request_id":"f36d281e4fe1","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'родословная', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1428.76}"}
+{"ts":"2026-10-01 15:02:03,988","level":"INFO","logger":"translation","request_id":"f36d281e4fe1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'pedigree'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-01 15:02:05,093","level":"INFO","logger":"translation","request_id":"f36d281e4fe1","user_id":"-","msg":"Found 4 alternatives for pedigree: ['происхождение', 'порода', 'родословная книга', 'чистокровность']"}
+{"ts":"2026-10-01 17:03:37,961","level":"INFO","logger":"translation","request_id":"56eeaa6562b4","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'mère'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 17:03:38,891","level":"INFO","logger":"translation","request_id":"56eeaa6562b4","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'мать', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 910.55}"}
+{"ts":"2026-10-01 17:03:38,892","level":"INFO","logger":"translation","request_id":"56eeaa6562b4","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'mère'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-10-01 17:03:39,631","level":"INFO","logger":"translation","request_id":"56eeaa6562b4","user_id":"-","msg":"Found 3 alternatives for mère: ['мама', 'матушка', 'матерь']"}
+{"ts":"2026-10-01 17:22:20,256","level":"INFO","logger":"translation","request_id":"ae3b70e549cb","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'semblait'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 17:22:21,586","level":"INFO","logger":"translation","request_id":"ae3b70e549cb","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'казалось', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1297.69}"}
+{"ts":"2026-10-01 17:22:21,587","level":"INFO","logger":"translation","request_id":"ae3b70e549cb","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'semblait'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-10-01 17:22:19,877","level":"INFO","logger":"translation","request_id":"ae3b70e549cb","user_id":"-","msg":"Found 4 alternatives for semblait: ['выглядело', 'представлялось', 'мнилось', 'сдавалось']"}
+{"ts":"2026-10-01 17:22:25,177","level":"INFO","logger":"translation","request_id":"30cdc3227b15","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Restaud'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-01 17:22:26,169","level":"INFO","logger":"translation","request_id":"30cdc3227b15","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Ресто', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 977.16}"}
+{"ts":"2026-10-01 17:22:26,170","level":"INFO","logger":"translation","request_id":"30cdc3227b15","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Restaud'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-10-01 17:22:27,182","level":"INFO","logger":"translation","request_id":"30cdc3227b15","user_id":"-","msg":"Found 3 alternatives for Restaud: ['Ресто', 'Ресто де', 'Ресто-']"}

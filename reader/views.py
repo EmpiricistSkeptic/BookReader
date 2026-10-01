@@ -31,6 +31,7 @@ from rest_framework_extensions.cache.mixins import CacheResponseMixin
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
 
@@ -192,19 +193,17 @@ class AuthViewSet(viewsets.GenericViewSet):
 
     @action(detail=False, methods=["post"], url_path="refresh")
     def refresh_token(self, request):
-        refresh_token = request.data.get("refresh")
-        if not refresh_token:
-            return Response(
-                {"error": "Refresh token is required"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        serializer = TokenRefreshSerializer(data=request.data)
+
         try:
-            refresh = RefreshToken(refresh_token)
+            serializer.is_valid(raise_exception=True)
+        except Exception:
             return Response(
-                {"access": str(refresh.access_token)}, status=status.HTTP_200_OK
+                {"error": "Invalid or expired refresh token"},
+                status=status.HTTP_401_UNAUTHORIZED,
             )
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
 class BookViewSet(viewsets.ModelViewSet):

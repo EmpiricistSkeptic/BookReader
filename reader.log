@@ -546,3 +546,784 @@ rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string=
 {"ts":"2026-09-30 22:36:03,561","level":"INFO","logger":"reader.translator_backends","request_id":"fdf0eba64d5f","user_id":"-","msg":"Recieved: predict and предсказать for it"}
 {"ts":"2026-09-30 22:36:04,487","level":"INFO","logger":"reader.translator_backends","request_id":"fdf0eba64d5f","user_id":"-","msg":"Raw response form Ai {'id': 'c6ccc6cd-cd0e-4878-9723-004d2de077ec', 'object': 'chat.completion', 'created': 1790807763, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "предвидеть"\n    },\n    {\n        "text": "прогнозировать"\n    },\n    {\n        "text": "предугадать"\n    },\n    {\n        "text": "предрекать"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 58, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
 {"ts":"2026-09-30 22:36:04,488","level":"INFO","logger":"reader.translator_backends","request_id":"fdf0eba64d5f","user_id":"-","msg":"Parser result[{'text': 'предвидеть'}, {'text': 'прогнозировать'}, {'text': 'предугадать'}, {'text': 'предрекать'}]"}
+{"ts":"2026-10-01 11:32:43,857","level":"ERROR","logger":"reader","request_id":"224d9c41e991","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 11:34:36,975","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"f76c4bf11384","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=135"}
+{"ts":"2026-10-01 11:34:39,036","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"f76c4bf11384","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=135"}
+{"ts":"2026-10-01 11:49:01,017","level":"INFO","logger":"reader.views","request_id":"ca4dc6e0bceb","user_id":"-","msg":"EPUB cover found via ITEM_COVER"}
+{"ts":"2026-10-01 11:49:04,397","level":"INFO","logger":"reader.views","request_id":"ca4dc6e0bceb","user_id":"-","msg":"Определение языка для книги 'Determined...': По содержимому: en, Из метаданных: en-US, Итоговый: en"}
+{"ts":"2026-10-01 11:50:13,714","level":"INFO","logger":"reader.views","request_id":"bca9fa1ad018","user_id":"-","msg":"EPUB cover found via ITEM_COVER"}
+{"ts":"2026-10-01 11:50:17,467","level":"INFO","logger":"reader.views","request_id":"bca9fa1ad018","user_id":"-","msg":"Определение языка для книги 'Determined...': По содержимому: en, Из метаданных: en-US, Итоговый: en"}
+{"ts":"2026-10-01 11:51:07,278","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-10-01 11:51:07,279","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: cover.jpeg | media_type=image/jpeg | id=cover"}
+{"ts":"2026-10-01 11:51:07,283","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00001.jpeg | media_type=image/jpeg | id=id1"}
+{"ts":"2026-10-01 11:51:07,284","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00002.jpeg | media_type=image/jpeg | id=id2"}
+{"ts":"2026-10-01 11:51:07,288","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00003.jpeg | media_type=image/jpeg | id=id3"}
+{"ts":"2026-10-01 11:51:07,288","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00004.jpeg | media_type=image/jpeg | id=id4"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00005.jpeg | media_type=image/jpeg | id=id5"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00006.jpeg | media_type=image/jpeg | id=id6"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00007.jpeg | media_type=image/jpeg | id=id7"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00008.jpeg | media_type=image/jpeg | id=id8"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00009.jpeg | media_type=image/jpeg | id=id9"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00010.jpeg | media_type=image/jpeg | id=id10"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00011.jpeg | media_type=image/jpeg | id=id11"}
+{"ts":"2026-10-01 11:51:07,289","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00012.jpeg | media_type=image/jpeg | id=id12"}
+{"ts":"2026-10-01 11:51:07,290","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00013.jpeg | media_type=image/jpeg | id=id13"}
+{"ts":"2026-10-01 11:51:07,290","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00014.jpeg | media_type=image/jpeg | id=id14"}
+{"ts":"2026-10-01 11:51:07,290","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00015.jpeg | media_type=image/jpeg | id=id15"}
+{"ts":"2026-10-01 11:51:07,290","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00016.jpeg | media_type=image/jpeg | id=id16"}
+{"ts":"2026-10-01 11:51:07,290","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00017.jpeg | media_type=image/jpeg | id=id17"}
+{"ts":"2026-10-01 11:51:07,290","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00018.jpeg | media_type=image/jpeg | id=id18"}
+{"ts":"2026-10-01 11:51:07,291","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00019.jpeg | media_type=image/jpeg | id=id19"}
+{"ts":"2026-10-01 11:51:07,291","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00020.jpeg | media_type=image/jpeg | id=id20"}
+{"ts":"2026-10-01 11:51:07,291","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00021.jpeg | media_type=image/jpeg | id=id21"}
+{"ts":"2026-10-01 11:51:07,292","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00022.jpeg | media_type=image/jpeg | id=id22"}
+{"ts":"2026-10-01 11:51:07,292","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00023.jpeg | media_type=image/jpeg | id=id23"}
+{"ts":"2026-10-01 11:51:07,292","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00024.jpeg | media_type=image/jpeg | id=id24"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00025.jpeg | media_type=image/jpeg | id=id25"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00026.jpeg | media_type=image/jpeg | id=id26"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00027.jpeg | media_type=image/jpeg | id=id27"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00028.jpeg | media_type=image/jpeg | id=id28"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00029.jpeg | media_type=image/jpeg | id=id29"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00030.jpeg | media_type=image/jpeg | id=id30"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00031.jpeg | media_type=image/jpeg | id=id31"}
+{"ts":"2026-10-01 11:51:07,293","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00032.jpeg | media_type=image/jpeg | id=id32"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00033.jpeg | media_type=image/jpeg | id=id33"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00034.jpeg | media_type=image/jpeg | id=id34"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00035.jpeg | media_type=image/jpeg | id=id35"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00036.jpeg | media_type=image/jpeg | id=id36"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00037.jpeg | media_type=image/jpeg | id=id37"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00038.jpeg | media_type=image/jpeg | id=id38"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00039.jpeg | media_type=image/jpeg | id=id39"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00040.jpeg | media_type=image/jpeg | id=id40"}
+{"ts":"2026-10-01 11:51:07,294","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00041.jpeg | media_type=image/jpeg | id=id41"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00042.gif | media_type=image/gif | id=id42"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00043.gif | media_type=image/gif | id=id43"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00044.gif | media_type=image/gif | id=id44"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00045.gif | media_type=image/gif | id=id45"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00046.gif | media_type=image/gif | id=id46"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00047.gif | media_type=image/gif | id=id47"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Image: images/00048.jpeg | media_type=image/jpeg | id=id48"}
+{"ts":"2026-10-01 11:51:07,295","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"EPUB images: ['cover.jpeg', 'images/00001.jpeg', 'images/00002.jpeg', 'images/00003.jpeg', 'images/00004.jpeg', 'images/00005.jpeg', 'images/00006.jpeg', 'images/00007.jpeg', 'images/00008.jpeg', 'images/00009.jpeg', 'images/00010.jpeg', 'images/00011.jpeg', 'images/00012.jpeg', 'images/00013.jpeg', 'images/00014.jpeg', 'images/00015.jpeg', 'images/00016.jpeg', 'images/00017.jpeg', 'images/00018.jpeg', 'images/00019.jpeg', 'images/00020.jpeg', 'images/00021.jpeg', 'images/00022.jpeg', 'images/00023.jpeg', 'images/00024.jpeg', 'images/00025.jpeg', 'images/00026.jpeg', 'images/00027.jpeg', 'images/00028.jpeg', 'images/00029.jpeg', 'images/00030.jpeg', 'images/00031.jpeg', 'images/00032.jpeg', 'images/00033.jpeg', 'images/00034.jpeg', 'images/00035.jpeg', 'images/00036.jpeg', 'images/00037.jpeg', 'images/00038.jpeg', 'images/00039.jpeg', 'images/00040.jpeg', 'images/00041.jpeg', 'images/00042.gif', 'images/00043.gif', 'images/00044.gif', 'images/00045.gif', 'images/00046.gif', 'images/00047.gif', 'images/00048.jpeg']"}
+{"ts":"2026-10-01 11:51:07,296","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"EPUB cover found via filename fallback (cover.jpeg)"}
+{"ts":"2026-10-01 11:51:06,796","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Определение языка для книги 'How Emotions Are Made: The Sec...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-10-01 11:51:09,187","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Book file name: books/_OceanofPDF_pEU64CH.com_How_Emotions_Are_Made__The_Secret_Life_of_-_Lisa_Feldman_Barrett.epub"}
+{"ts":"2026-10-01 11:51:09,194","level":"INFO","logger":"reader.views","request_id":"acd98be2a55d","user_id":"-","msg":"Book file URL: https://71af5c03970ff8d7a7b3ed12fa3fa567.r2.cloudflarestorage.com/book-reader-storage/books/_OceanofPDF_pEU64CH.com_How_Emotions_Are_Made__The_Secret_Life_of_-_Lisa_Feldman_Barrett.epub?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ebc6457ac9e4ab6ef3382090b3394603%2F20261001%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261001T115109Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=249937249c3475f68f79df6b2a11c135745c54dd042ea5ac1a58f6b559569fae"}
+{"ts":"2026-10-01 11:51:49,103","level":"INFO","logger":"reader.translator_backends","request_id":"3febd186ecb2","user_id":"-","msg":"Recieved: lone and одинокий for it"}
+{"ts":"2026-10-01 11:51:49,968","level":"INFO","logger":"reader.translator_backends","request_id":"3febd186ecb2","user_id":"-","msg":"Raw response form Ai {'id': '6c5890a7-ee0a-477b-8963-220a4d3b2b8b', 'object': 'chat.completion', 'created': 1790855507, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "уединённый"\n    },\n    {\n        "text": "одиночный"\n    },\n    {\n        "text": "один"\n    },\n    {\n        "text": "пустынный"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 54, 'total_tokens': 199, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 11:51:49,969","level":"INFO","logger":"reader.translator_backends","request_id":"3febd186ecb2","user_id":"-","msg":"Parser result[{'text': 'уединённый'}, {'text': 'одиночный'}, {'text': 'один'}, {'text': 'пустынный'}]"}
+{"ts":"2026-10-01 12:12:02,325","level":"INFO","logger":"reader.translator_backends","request_id":"f222edd9d4f4","user_id":"-","msg":"Recieved: befell and случилось for it"}
+{"ts":"2026-10-01 12:12:03,403","level":"INFO","logger":"reader.translator_backends","request_id":"f222edd9d4f4","user_id":"-","msg":"Raw response form Ai {'id': '6850101f-f145-4f3f-9bdc-55c824db45ae', 'object': 'chat.completion', 'created': 1790856720, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "произошло"\n    },\n    {\n        "text": "приключилось"\n    },\n    {\n        "text": "постигло"\n    },\n    {\n        "text": "выпало"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 57, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:12:03,404","level":"INFO","logger":"reader.translator_backends","request_id":"f222edd9d4f4","user_id":"-","msg":"Parser result[{'text': 'произошло'}, {'text': 'приключилось'}, {'text': 'постигло'}, {'text': 'выпало'}]"}
+{"ts":"2026-10-01 12:26:58,993","level":"INFO","logger":"reader.translator_backends","request_id":"737fc8c47b5e","user_id":"-","msg":"Recieved: knotted and завязанный узлом for it"}
+{"ts":"2026-10-01 12:27:00,257","level":"INFO","logger":"reader.translator_backends","request_id":"737fc8c47b5e","user_id":"-","msg":"Raw response form Ai {'id': '8a1cc408-a7da-406f-8f7e-8cad217679f1', 'object': 'chat.completion', 'created': 1790857618, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "связанный узлом"\n    },\n    {\n        "text": "затянутый в узел"\n    },\n    {\n        "text": "с узлом"\n    },\n    {\n        "text": "узловатый"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 149, 'completion_tokens': 62, 'total_tokens': 211, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 149}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:27:00,257","level":"INFO","logger":"reader.translator_backends","request_id":"737fc8c47b5e","user_id":"-","msg":"Parser result[{'text': 'связанный узлом'}, {'text': 'затянутый в узел'}, {'text': 'с узлом'}, {'text': 'узловатый'}]"}
+{"ts":"2026-10-01 12:36:16,230","level":"ERROR","logger":"reader","request_id":"a5ba88ebf6ec","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 12:36:18,711","level":"INFO","logger":"reader.translator_backends","request_id":"8c7cd21c0121","user_id":"-","msg":"Recieved: unleash and высвободить for it"}
+{"ts":"2026-10-01 12:36:19,765","level":"INFO","logger":"reader.translator_backends","request_id":"8c7cd21c0121","user_id":"-","msg":"Raw response form Ai {'id': '61ee95f7-a78d-4bca-af3c-729930747167', 'object': 'chat.completion', 'created': 1790858177, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "развязать"\n    },\n    {\n        "text": "выпустить"\n    },\n    {\n        "text": "дать волю"\n    },\n    {\n        "text": "обрушить"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 55, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:36:19,766","level":"INFO","logger":"reader.translator_backends","request_id":"8c7cd21c0121","user_id":"-","msg":"Parser result[{'text': 'развязать'}, {'text': 'выпустить'}, {'text': 'дать волю'}, {'text': 'обрушить'}]"}
+{"ts":"2026-10-01 12:43:12,734","level":"INFO","logger":"reader.translator_backends","request_id":"5dcdde00eae3","user_id":"-","msg":"Recieved: inside and внутри for it"}
+{"ts":"2026-10-01 12:43:13,929","level":"INFO","logger":"reader.translator_backends","request_id":"5dcdde00eae3","user_id":"-","msg":"Raw response form Ai {'id': 'ad9b2a9c-59bd-44c2-9fe8-bcb800459d82', 'object': 'chat.completion', 'created': 1790858591, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "внутрь"\n    },\n    {\n        "text": "в"\n    },\n    {\n        "text": "внутри помещения"\n    },\n    {\n        "text": "внутренняя часть"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 56, 'total_tokens': 199, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:43:13,929","level":"INFO","logger":"reader.translator_backends","request_id":"5dcdde00eae3","user_id":"-","msg":"Parser result[{'text': 'внутрь'}, {'text': 'в'}, {'text': 'внутри помещения'}, {'text': 'внутренняя часть'}]"}
+{"ts":"2026-10-01 12:43:18,908","level":"INFO","logger":"reader.translator_backends","request_id":"4cad443a0c9e","user_id":"-","msg":"Recieved: distinct and отчетливый for it"}
+{"ts":"2026-10-01 12:43:19,827","level":"INFO","logger":"reader.translator_backends","request_id":"4cad443a0c9e","user_id":"-","msg":"Raw response form Ai {'id': '5b493e3e-0d4d-4a2a-9e57-021ded844c3e', 'object': 'chat.completion', 'created': 1790858596, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "явный"\n    },\n    {\n        "text": "выраженный"\n    },\n    {\n        "text": "различимый"\n    },\n    {\n        "text": "несомненный"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 55, 'total_tokens': 200, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:43:19,827","level":"INFO","logger":"reader.translator_backends","request_id":"4cad443a0c9e","user_id":"-","msg":"Parser result[{'text': 'явный'}, {'text': 'выраженный'}, {'text': 'различимый'}, {'text': 'несомненный'}]"}
+{"ts":"2026-10-01 12:45:23,549","level":"INFO","logger":"reader.translator_backends","request_id":"7da7b6047071","user_id":"-","msg":"Recieved: slouch and сутулиться for it"}
+{"ts":"2026-10-01 12:45:24,369","level":"INFO","logger":"reader.translator_backends","request_id":"7da7b6047071","user_id":"-","msg":"Raw response form Ai {'id': '66779cbe-17ec-4130-ab97-9d77f6b9647f', 'object': 'chat.completion', 'created': 1790858722, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "горбиться"\n    },\n    {\n        "text": "сгибаться"\n    },\n    {\n        "text": "сидеть сгорбившись"\n    },\n    {\n        "text": "стоять сгорбившись"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 63, 'total_tokens': 210, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:45:24,369","level":"INFO","logger":"reader.translator_backends","request_id":"7da7b6047071","user_id":"-","msg":"Parser result[{'text': 'горбиться'}, {'text': 'сгибаться'}, {'text': 'сидеть сгорбившись'}, {'text': 'стоять сгорбившись'}]"}
+{"ts":"2026-10-01 12:46:09,552","level":"INFO","logger":"reader.translator_backends","request_id":"959684a95ee6","user_id":"-","msg":"Recieved: furrowed and нахмуренный for it"}
+{"ts":"2026-10-01 12:46:10,706","level":"INFO","logger":"reader.translator_backends","request_id":"959684a95ee6","user_id":"-","msg":"Raw response form Ai {'id': 'a476c119-db4a-4547-bb4d-767a69eb917e', 'object': 'chat.completion', 'created': 1790858769, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "морщинистый"\n    },\n    {\n        "text": "изборождённый"\n    },\n    {\n        "text": "покрытый бороздами"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 49, 'total_tokens': 197, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:46:10,707","level":"INFO","logger":"reader.translator_backends","request_id":"959684a95ee6","user_id":"-","msg":"Parser result[{'text': 'морщинистый'}, {'text': 'изборождённый'}, {'text': 'покрытый бороздами'}]"}
+{"ts":"2026-10-01 12:46:15,854","level":"INFO","logger":"reader.translator_backends","request_id":"e976fa0046f6","user_id":"-","msg":"Recieved: brow and бровь for it"}
+{"ts":"2026-10-01 12:46:17,133","level":"INFO","logger":"reader.translator_backends","request_id":"e976fa0046f6","user_id":"-","msg":"Raw response form Ai {'id': 'f5786bba-a27f-4aed-8b41-db1fdbb3692f', 'object': 'chat.completion', 'created': 1790858775, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "брови"\n    },\n    {\n        "text": "надбровье"\n    },\n    {\n        "text": "лоб"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 39, 'total_tokens': 184, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:46:17,134","level":"INFO","logger":"reader.translator_backends","request_id":"e976fa0046f6","user_id":"-","msg":"Parser result[{'text': 'брови'}, {'text': 'надбровье'}, {'text': 'лоб'}]"}
+{"ts":"2026-10-01 12:46:25,160","level":"INFO","logger":"reader.translator_backends","request_id":"fb082c47a032","user_id":"-","msg":"Recieved: frowned and нахмурился for it"}
+{"ts":"2026-10-01 12:46:26,258","level":"INFO","logger":"reader.translator_backends","request_id":"fb082c47a032","user_id":"-","msg":"Raw response form Ai {'id': 'e99d1839-043b-423a-9a16-6468dddd9c0a', 'object': 'chat.completion', 'created': 1790858783, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "помрачнел"\n    },\n    {\n        "text": "сдвинул брови"\n    },\n    {\n        "text": "нахмурил брови"\n    },\n    {\n        "text": "смóрщился"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 64, 'total_tokens': 211, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:46:26,259","level":"INFO","logger":"reader.translator_backends","request_id":"fb082c47a032","user_id":"-","msg":"Parser result[{'text': 'помрачнел'}, {'text': 'сдвинул брови'}, {'text': 'нахмурил брови'}, {'text': 'смóрщился'}]"}
+{"ts":"2026-10-01 12:49:03,790","level":"INFO","logger":"reader.translator_backends","request_id":"f210c2a173a3","user_id":"-","msg":"Recieved: scowl and хмуриться for it"}
+{"ts":"2026-10-01 12:49:04,982","level":"INFO","logger":"reader.translator_backends","request_id":"f210c2a173a3","user_id":"-","msg":"Raw response form Ai {'id': 'c99b80ba-0750-426d-ad0e-284005a2ce1e', 'object': 'chat.completion', 'created': 1790858942, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "смотреть сердито"\n    },\n    {\n        "text": "смотреть исподлобья"\n    },\n    {\n        "text": "хмурить брови"\n    },\n    {\n        "text": "мрачнеть"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 63, 'total_tokens': 210, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:49:04,984","level":"INFO","logger":"reader.translator_backends","request_id":"f210c2a173a3","user_id":"-","msg":"Parser result[{'text': 'смотреть сердито'}, {'text': 'смотреть исподлобья'}, {'text': 'хмурить брови'}, {'text': 'мрачнеть'}]"}
+{"ts":"2026-10-01 12:49:48,307","level":"INFO","logger":"reader.translator_backends","request_id":"f6c7457db58e","user_id":"-","msg":"Recieved: identifiable and идентифицируемый for it"}
+{"ts":"2026-10-01 12:49:49,291","level":"INFO","logger":"reader.translator_backends","request_id":"f6c7457db58e","user_id":"-","msg":"Raw response form Ai {'id': '2e39fd82-f8a6-417b-9dd3-c43cca5c16aa', 'object': 'chat.completion', 'created': 1790858988, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "опознаваемый"\n    },\n    {\n        "text": "распознаваемый"\n    },\n    {\n        "text": "узнаваемый"\n    },\n    {\n        "text": "поддающийся идентификации"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 61, 'total_tokens': 207, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:49:49,292","level":"INFO","logger":"reader.translator_backends","request_id":"f6c7457db58e","user_id":"-","msg":"Parser result[{'text': 'опознаваемый'}, {'text': 'распознаваемый'}, {'text': 'узнаваемый'}, {'text': 'поддающийся идентификации'}]"}
+{"ts":"2026-10-01 12:53:45,909","level":"INFO","logger":"reader.translator_backends","request_id":"9946465e23ba","user_id":"-","msg":"Recieved: Hippocrates and Гиппократ for it"}
+{"ts":"2026-10-01 12:53:46,875","level":"INFO","logger":"reader.translator_backends","request_id":"9946465e23ba","user_id":"-","msg":"Raw response form Ai {'id': 'debd6a34-bc2c-4b6b-ad17-2840b2c93dfd', 'object': 'chat.completion', 'created': 1790859224, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "Гиппократ Косский"\n    },\n    {\n        "text": "Гиппократ с Коса"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 40, 'total_tokens': 188, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:53:46,876","level":"INFO","logger":"reader.translator_backends","request_id":"9946465e23ba","user_id":"-","msg":"Parser result[{'text': 'Гиппократ Косский'}, {'text': 'Гиппократ с Коса'}]"}
+{"ts":"2026-10-01 12:55:29,759","level":"INFO","logger":"reader.translator_backends","request_id":"af3896a5ad32","user_id":"-","msg":"Recieved: predicated and основанный for it"}
+{"ts":"2026-10-01 12:55:30,879","level":"INFO","logger":"reader.translator_backends","request_id":"af3896a5ad32","user_id":"-","msg":"Raw response form Ai {'id': '0c1eb8bc-7d12-48fa-8069-c80d971ce325', 'object': 'chat.completion', 'created': 1790859328, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "обусловленный"\n    },\n    {\n        "text": "построенный"\n    },\n    {\n        "text": "зиждется на"\n    },\n    {\n        "text": "базируется на"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 57, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:55:30,880","level":"INFO","logger":"reader.translator_backends","request_id":"af3896a5ad32","user_id":"-","msg":"Parser result[{'text': 'обусловленный'}, {'text': 'построенный'}, {'text': 'зиждется на'}, {'text': 'базируется на'}]"}
+{"ts":"2026-10-01 12:55:48,396","level":"INFO","logger":"reader.translator_backends","request_id":"ec7024859c3d","user_id":"-","msg":"Recieved: innermost and сокровенный for it"}
+{"ts":"2026-10-01 12:55:49,730","level":"INFO","logger":"reader.translator_backends","request_id":"ec7024859c3d","user_id":"-","msg":"Raw response form Ai {'id': '7ab0ac30-80fc-4ea8-8c28-fb79d933d400', 'object': 'chat.completion', 'created': 1790859348, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "самый глубокий"\n    },\n    {\n        "text": "внутренний"\n    },\n    {\n        "text": "заветный"\n    },\n    {\n        "text": "глубинный"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 58, 'total_tokens': 205, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:55:49,731","level":"INFO","logger":"reader.translator_backends","request_id":"ec7024859c3d","user_id":"-","msg":"Parser result[{'text': 'самый глубокий'}, {'text': 'внутренний'}, {'text': 'заветный'}, {'text': 'глубинный'}]"}
+{"ts":"2026-10-01 12:58:01,451","level":"INFO","logger":"reader.translator_backends","request_id":"a3297958e8f2","user_id":"-","msg":"Recieved: ostensibly and якобы for it"}
+{"ts":"2026-10-01 12:58:02,610","level":"INFO","logger":"reader.translator_backends","request_id":"a3297958e8f2","user_id":"-","msg":"Raw response form Ai {'id': '7cebb6af-cc63-4d61-aa59-8bd7e78c576b', 'object': 'chat.completion', 'created': 1790859481, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "як будто"\n    },\n    {\n        "text": "по видимости"\n    },\n    {\n        "text": "внешне"\n    },\n    {\n        "text": "на первый взгляд"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 58, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:58:02,610","level":"INFO","logger":"reader.translator_backends","request_id":"a3297958e8f2","user_id":"-","msg":"Parser result[{'text': 'як будто'}, {'text': 'по видимости'}, {'text': 'внешне'}, {'text': 'на первый взгляд'}]"}
+{"ts":"2026-10-01 12:59:12,523","level":"INFO","logger":"reader.translator_backends","request_id":"9d985279d367","user_id":"-","msg":"Recieved: uniformity and единообразие for it"}
+{"ts":"2026-10-01 12:59:13,573","level":"INFO","logger":"reader.translator_backends","request_id":"9d985279d367","user_id":"-","msg":"Raw response form Ai {'id': '71bc1aad-2a9d-4e4a-a922-5638802ec668', 'object': 'chat.completion', 'created': 1790859551, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "однородность"\n    },\n    {\n        "text": "одинаковость"\n    },\n    {\n        "text": "однообразие"\n    },\n    {\n        "text": "униформность"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 57, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 12:59:13,575","level":"INFO","logger":"reader.translator_backends","request_id":"9d985279d367","user_id":"-","msg":"Parser result[{'text': 'однородность'}, {'text': 'одинаковость'}, {'text': 'однообразие'}, {'text': 'униформность'}]"}
+{"ts":"2026-10-01 13:02:14,299","level":"INFO","logger":"reader.translator_backends","request_id":"aa2c489be913","user_id":"-","msg":"Recieved: coincide and совпадать for it"}
+{"ts":"2026-10-01 13:02:15,257","level":"INFO","logger":"reader.translator_backends","request_id":"aa2c489be913","user_id":"-","msg":"Raw response form Ai {'id': '11db0d63-9273-4813-82c1-473094d43c46', 'object': 'chat.completion', 'created': 1790859734, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "совпасть"\n    },\n    {\n        "text": "сходиться"\n    },\n    {\n        "text": "соответствовать"\n    },\n    {\n        "text": "приходиться на одно время"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 57, 'total_tokens': 202, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 13:02:15,258","level":"INFO","logger":"reader.translator_backends","request_id":"aa2c489be913","user_id":"-","msg":"Parser result[{'text': 'совпасть'}, {'text': 'сходиться'}, {'text': 'соответствовать'}, {'text': 'приходиться на одно время'}]"}
+{"ts":"2026-10-01 13:04:18,659","level":"INFO","logger":"reader.translator_backends","request_id":"aa9528f7d982","user_id":"-","msg":"Recieved: conceives and замышляет for it"}
+{"ts":"2026-10-01 13:04:19,529","level":"INFO","logger":"reader.translator_backends","request_id":"aa9528f7d982","user_id":"-","msg":"Raw response form Ai {'id': '052ac5ad-4024-4d60-b40f-7bfda8415e88', 'object': 'chat.completion', 'created': 1790859856, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "задумывает"\n    },\n    {\n        "text": "вынашивает"\n    },\n    {\n        "text": "представляет себе"\n    },\n    {\n        "text": "постигает"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 57, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 13:04:19,529","level":"INFO","logger":"reader.translator_backends","request_id":"aa9528f7d982","user_id":"-","msg":"Parser result[{'text': 'задумывает'}, {'text': 'вынашивает'}, {'text': 'представляет себе'}, {'text': 'постигает'}]"}
+{"ts":"2026-10-01 13:07:42,087","level":"INFO","logger":"reader.translator_backends","request_id":"cce3eac329d4","user_id":"-","msg":"Recieved: overlook and игнорировать for it"}
+{"ts":"2026-10-01 13:07:43,323","level":"INFO","logger":"reader.translator_backends","request_id":"cce3eac329d4","user_id":"-","msg":"Raw response form Ai {'id': 'b8f002c7-f7e3-446b-9502-47c17e1d3c25', 'object': 'chat.completion', 'created': 1790860061, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "не замечать"\n    },\n    {\n        "text": "пропускать"\n    },\n    {\n        "text": "упускать из виду"\n    },\n    {\n        "text": "не обращать внимания"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 60, 'total_tokens': 206, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 13:07:43,324","level":"INFO","logger":"reader.translator_backends","request_id":"cce3eac329d4","user_id":"-","msg":"Parser result[{'text': 'не замечать'}, {'text': 'пропускать'}, {'text': 'упускать из виду'}, {'text': 'не обращать внимания'}]"}
+{"ts":"2026-10-01 13:08:43,293","level":"INFO","logger":"reader.translator_backends","request_id":"e33f7a54e9d7","user_id":"-","msg":"Recieved: woman and женщина for it"}
+{"ts":"2026-10-01 13:08:44,048","level":"INFO","logger":"reader.translator_backends","request_id":"e33f7a54e9d7","user_id":"-","msg":"Raw response form Ai {'id': 'cffd1436-dc4c-4ade-badc-2a6d25508b71', 'object': 'chat.completion', 'created': 1790860122, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {"text": "дама"},\n    {"text": "женщина"},\n    {"text": "особа женского пола"},\n    {"text": "барышня"}\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 41, 'total_tokens': 185, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 13:08:44,048","level":"INFO","logger":"reader.translator_backends","request_id":"e33f7a54e9d7","user_id":"-","msg":"Parser result[{'text': 'дама'}, {'text': 'женщина'}, {'text': 'особа женского пола'}, {'text': 'барышня'}]"}
+{"ts":"2026-10-01 13:17:23,898","level":"INFO","logger":"reader.translator_backends","request_id":"af0e8475c233","user_id":"-","msg":"Recieved: species and вид for it"}
+{"ts":"2026-10-01 13:17:24,849","level":"INFO","logger":"reader.translator_backends","request_id":"af0e8475c233","user_id":"-","msg":"Raw response form Ai {'id': 'e42b7769-d31d-4407-92fb-5860f5809656', 'object': 'chat.completion', 'created': 1790860643, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "разновидность"\n    },\n    {\n        "text": "порода"\n    },\n    {\n        "text": "род"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 40, 'total_tokens': 183, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 13:17:24,850","level":"INFO","logger":"reader.translator_backends","request_id":"af0e8475c233","user_id":"-","msg":"Parser result[{'text': 'разновидность'}, {'text': 'порода'}, {'text': 'род'}]"}
+{"ts":"2026-10-01 13:25:12,473","level":"INFO","logger":"reader.translator_backends","request_id":"6d43354851ca","user_id":"-","msg":"Recieved: decidedly and решительно for it"}
+{"ts":"2026-10-01 13:25:13,785","level":"INFO","logger":"reader.translator_backends","request_id":"6d43354851ca","user_id":"-","msg":"Raw response form Ai {'id': '3fc96010-f1c8-40b8-8814-0f64afcfca2a', 'object': 'chat.completion', 'created': 1790861111, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "определённо"\n    },\n    {\n        "text": "безусловно"\n    },\n    {\n        "text": "несомненно"\n    },\n    {\n        "text": "явно"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 55, 'total_tokens': 199, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 13:25:13,786","level":"INFO","logger":"reader.translator_backends","request_id":"6d43354851ca","user_id":"-","msg":"Parser result[{'text': 'определённо'}, {'text': 'безусловно'}, {'text': 'несомненно'}, {'text': 'явно'}]"}
+{"ts":"2026-10-01 13:27:11,286","level":"INFO","logger":"reader.translator_backends","request_id":"9893963d4e8e","user_id":"-","msg":"Recieved: inquired and осведомился for it"}
+{"ts":"2026-10-01 13:27:12,186","level":"INFO","logger":"reader.translator_backends","request_id":"9893963d4e8e","user_id":"-","msg":"Raw response form Ai {'id': '05ba6aa5-75d8-4bcb-84b0-58526259f467', 'object': 'chat.completion', 'created': 1790861229, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {"text": "поинтересовался"},\n    {"text": "спросил"},\n    {"text": "расспросил"},\n    {"text": "узнал"}\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 43, 'total_tokens': 189, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 13:27:12,187","level":"INFO","logger":"reader.translator_backends","request_id":"9893963d4e8e","user_id":"-","msg":"Parser result[{'text': 'поинтересовался'}, {'text': 'спросил'}, {'text': 'расспросил'}, {'text': 'узнал'}]"}
+{"ts":"2026-10-01 13:36:22,610","level":"ERROR","logger":"reader","request_id":"ea789d9dc3b8","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 14:36:56,966","level":"ERROR","logger":"reader","request_id":"174102a6f0ef","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/7/update_progress/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 14:36:57,343","level":"ERROR","logger":"reader","request_id":"2e8d8b5434b1","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/known-words/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 14:36:57,621","level":"ERROR","logger":"reader","request_id":"bbb880ce72f2","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/7/chapter_content/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 14:36:57,935","level":"ERROR","logger":"reader","request_id":"ff5a718720be","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 15:02:03,998","level":"INFO","logger":"reader.translator_backends","request_id":"f36d281e4fe1","user_id":"-","msg":"Recieved: pedigree and родословная for it"}
+{"ts":"2026-10-01 15:02:05,090","level":"INFO","logger":"reader.translator_backends","request_id":"f36d281e4fe1","user_id":"-","msg":"Raw response form Ai {'id': 'c13b2b6a-262e-4144-a3e8-a7f18b20233f', 'object': 'chat.completion', 'created': 1790866922, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "происхождение"\n    },\n    {\n        "text": "порода"\n    },\n    {\n        "text": "родословная книга"\n    },\n    {\n        "text": "чистокровность"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 58, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 15:02:05,092","level":"INFO","logger":"reader.translator_backends","request_id":"f36d281e4fe1","user_id":"-","msg":"Parser result[{'text': 'происхождение'}, {'text': 'порода'}, {'text': 'родословная книга'}, {'text': 'чистокровность'}]"}
+{"ts":"2026-10-01 15:06:07,884","level":"INFO","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-10-01 15:06:07,885","level":"INFO","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"Image: images/logo-feedbooks-tiny.png | media_type=image/png | id=logo-feedbooks-tiny"}
+{"ts":"2026-10-01 15:06:07,886","level":"INFO","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"Image: images/logo-feedbooks.png | media_type=image/png | id=logo-feedbooks"}
+{"ts":"2026-10-01 15:06:07,886","level":"INFO","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"EPUB images: ['images/logo-feedbooks-tiny.png', 'images/logo-feedbooks.png']"}
+{"ts":"2026-10-01 15:06:07,887","level":"WARNING","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"EPUB cover not found"}
+{"ts":"2026-10-01 15:06:08,153","level":"INFO","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"Определение языка для книги 'Gobseck...': По содержимому: fr, Из метаданных: fr, Итоговый: fr"}
+{"ts":"2026-10-01 15:06:09,395","level":"INFO","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"Book file name: books/Gobseck20--20Balzac2C20HonorC3A920de20--2020WeLib_9ACujnE.org20.epub"}
+{"ts":"2026-10-01 15:06:09,397","level":"INFO","logger":"reader.views","request_id":"01ede3118fe2","user_id":"-","msg":"Book file URL: https://71af5c03970ff8d7a7b3ed12fa3fa567.r2.cloudflarestorage.com/book-reader-storage/books/Gobseck20--20Balzac2C20HonorC3A920de20--2020WeLib_9ACujnE.org20.epub?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ebc6457ac9e4ab6ef3382090b3394603%2F20261001%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261001T150609Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6d9b47b6b4d94c710461bbd7f1844ee535b0c384b72d9de691bc8b7bb35b3a74"}
+{"ts":"2026-10-01 16:51:59,218","level":"ERROR","logger":"reader","request_id":"65da43727598","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:52:41,105","level":"ERROR","logger":"reader","request_id":"3c363a2e6f23","user_id":"-","msg":"DRF error: view=ConversationViewSet path=/api/conversations/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:53:43,584","level":"ERROR","logger":"reader","request_id":"0a9c1ca1c290","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/known-words/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:53:43,977","level":"ERROR","logger":"reader","request_id":"3e31c5709abd","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/8/chapter_content/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:53:44,232","level":"ERROR","logger":"reader","request_id":"c625545981ed","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:53:45,440","level":"ERROR","logger":"reader","request_id":"8d3a2617e98a","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/8/update_progress/ method=POST exc=NotAuthenticated()"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.check_permissions(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    self.permission_denied(
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 179, in permission_denied
+    raise exceptions.NotAuthenticated()
+rest_framework.exceptions.NotAuthenticated: Authentication credentials were not provided.
+{"ts":"2026-10-01 16:59:27,485","level":"ERROR","logger":"reader","request_id":"098782937965","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/known-words/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:59:27,869","level":"ERROR","logger":"reader","request_id":"4e08d96e4e2e","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/8/chapter_content/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:59:28,145","level":"ERROR","logger":"reader","request_id":"093ceede6f5b","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 16:59:29,765","level":"ERROR","logger":"reader","request_id":"fac30d49e53d","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/8/update_progress/ method=POST exc=NotAuthenticated()"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 420, in initial
+    self.check_permissions(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    self.permission_denied(
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 179, in permission_denied
+    raise exceptions.NotAuthenticated()
+rest_framework.exceptions.NotAuthenticated: Authentication credentials were not provided.
+{"ts":"2026-10-01 17:03:16,648","level":"ERROR","logger":"reader","request_id":"550791c8cf13","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/known-words/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:03:16,693","level":"ERROR","logger":"reader","request_id":"af5a013feb24","user_id":"-","msg":"DRF error: view=UserProfileViewSet path=/api/profile/1/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:03:16,740","level":"ERROR","logger":"reader","request_id":"9a84bebe3efe","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/8/chapter_content/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:03:37,223","level":"ERROR","logger":"reader","request_id":"95309bbf1c25","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:03:38,892","level":"INFO","logger":"reader.translator_backends","request_id":"56eeaa6562b4","user_id":"-","msg":"Recieved: mère and мать for it"}
+{"ts":"2026-10-01 17:03:39,631","level":"INFO","logger":"reader.translator_backends","request_id":"56eeaa6562b4","user_id":"-","msg":"Raw response form Ai {'id': '7b726298-30a3-46e8-a58a-32480410bab0', 'object': 'chat.completion', 'created': 1790874216, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "мама"\n    },\n    {\n        "text": "матушка"\n    },\n    {\n        "text": "матерь"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 40, 'total_tokens': 184, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 17:03:39,631","level":"INFO","logger":"reader.translator_backends","request_id":"56eeaa6562b4","user_id":"-","msg":"Parser result[{'text': 'мама'}, {'text': 'матушка'}, {'text': 'матерь'}]"}
+{"ts":"2026-10-01 17:04:02,392","level":"ERROR","logger":"reader","request_id":"b1b0a80bb8f2","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:04:02,448","level":"ERROR","logger":"reader","request_id":"945281ca42a7","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/8/update_progress/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:04:20,114","level":"ERROR","logger":"reader","request_id":"8163f92d6a98","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:05:57,793","level":"ERROR","logger":"reader","request_id":"087db90405d9","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:17:42,809","level":"ERROR","logger":"reader","request_id":"be1e798bf3e7","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 232, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 389, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-01 17:22:21,587","level":"INFO","logger":"reader.translator_backends","request_id":"ae3b70e549cb","user_id":"-","msg":"Recieved: semblait and казалось for it"}
+{"ts":"2026-10-01 17:22:19,876","level":"INFO","logger":"reader.translator_backends","request_id":"ae3b70e549cb","user_id":"-","msg":"Raw response form Ai {'id': '92df517f-dd16-41bc-8925-73913ecacaf4', 'object': 'chat.completion', 'created': 1790875339, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "выглядело"\n    },\n    {\n        "text": "представлялось"\n    },\n    {\n        "text": "мнилось"\n    },\n    {\n        "text": "сдавалось"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 56, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 17:22:19,877","level":"INFO","logger":"reader.translator_backends","request_id":"ae3b70e549cb","user_id":"-","msg":"Parser result[{'text': 'выглядело'}, {'text': 'представлялось'}, {'text': 'мнилось'}, {'text': 'сдавалось'}]"}
+{"ts":"2026-10-01 17:22:26,170","level":"INFO","logger":"reader.translator_backends","request_id":"30cdc3227b15","user_id":"-","msg":"Recieved: Restaud and Ресто for it"}
+{"ts":"2026-10-01 17:22:27,181","level":"INFO","logger":"reader.translator_backends","request_id":"30cdc3227b15","user_id":"-","msg":"Raw response form Ai {'id': '80a261a5-e520-4619-95d8-64ab3d725b45', 'object': 'chat.completion', 'created': 1790875345, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "Ресто"\n    },\n    {\n        "text": "Ресто де"\n    },\n    {\n        "text": "Ресто-"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 40, 'total_tokens': 185, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
+{"ts":"2026-10-01 17:22:27,181","level":"INFO","logger":"reader.translator_backends","request_id":"30cdc3227b15","user_id":"-","msg":"Parser result[{'text': 'Ресто'}, {'text': 'Ресто де'}, {'text': 'Ресто-'}]"}
