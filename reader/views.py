@@ -1821,6 +1821,305 @@ class BookViewSet(viewsets.ModelViewSet):
             "headings": headings,
         }
 
+    def _flatten_epub_toc(self, toc, output):
+        """Преобразует вложенный TOC EbookLib в последовательный список."""
+        for entry in toc or []:
+            if isinstance(entry, (list, tuple)):
+                if not entry:
+                    continue
+
+                head = entry[0]
+                children = entry[1] if len(entry) > 1 else []
+
+                self._append_epub_toc_node(head, output)
+                self._flatten_epub_toc(children, output)
+
+            else:
+                self._append_epub_toc_node(entry, output)
+
+
+    def _append_epub_toc_node(self, node, output):
+        href = getattr(node, "href", None)
+
+        if isinstance(node, str):
+            href = node
+
+        if not href:
+            return
+
+        title = getattr(node, "title", "") or ""
+
+        if isinstance(title, (bytes, bytearray)):
+            title = title.decode("utf-8", errors="replace")
+
+        title = BeautifulSoup(
+            str(title),
+            "html.parser",
+        ).get_text(" ", strip=True)
+
+        output.append((str(href), title))
+
+    
+    def _resolve_epub_document(self, href, doc_info, by_basename):
+        path = unquote(
+            href.split("#", 1)[0].split("?", 1)[0]
+        ).replace("\\", "/")
+
+        if not path:
+            return None
+
+        normalized = posixpath.normpath(path).lstrip("/")
+
+        while normalized.startswith("./"):
+            normalized = normalized[2:]
+
+        if normalized in doc_info:
+            return normalized
+
+        # Сопоставляем нормализованные пути.
+        for name in doc_info:
+            candidate = posixpath.normpath(name).lstrip("/")
+
+            while candidate.startswith("./"):
+                candidate = candidate[2:]
+
+            if candidate == normalized:
+                return name
+
+        # Последний вариант — уникальное совпадение имени файла.
+        matches = by_basename.get(
+            posixpath.basename(normalized).lower(),
+            [],
+        )
+
+        return matches[0] if len(matches) == 1 else None
+
+
+    def _split_large_epub_unit_by_headings(
+        self,
+        unit,
+        start,
+        end,
+        all_paragraphs,
+        global_headings,
+    ):
+        """
+        Разделяет большую EPUB-главу по крупным заголовкам h1/h2.
+        Если подходящих заголовков нет, оставляет главу целиком.
+        """
+        total = self._chapter_char_count(unit["paragraphs"])
+
+        if total <= self.MAX_CHAPTER_CHARS:
+            return [unit]
+
+        heading_positions = sorted(
+            position
+            for position, heading in global_headings.items()
+            if (
+                start < position < end
+                and heading["level"] <= 2
+                and heading["title"]
+            )
+        )
+
+        if not heading_positions:
+            return [unit]
+
+        boundaries = [start] + heading_positions + [end]
+        result = []
+
+        for index in range(len(boundaries) - 1):
+            left = boundaries[index]
+            right = boundaries[index + 1]
+
+            paragraphs = all_paragraphs[left:right]
+
+            if not paragraphs:
+                continue
+
+            if index == 0:
+                title = unit["title"]
+            else:
+                title = global_headings[left]["title"]
+
+            result.append(
+                self._make_chapter_unit(
+                    title,
+                    paragraphs,
+                    protected=True,
+                    origin="heading" if index else unit["origin"],
+                )
+            )
+
+        return result or [unit]
+
+
+    def _build_epub_units(
+        self,
+        all_paragraphs,
+        document_order,
+        doc_info,
+        global_headings,
+        toc_entries,
+    ):
+        by_basename = {}
+
+        for name in doc_info:
+            by_basename.setdefault(
+                posixpath.basename(name).lower(),
+                [],
+            ).append(name)
+
+        starts = []
+
+        for index, (href, title) in enumerate(toc_entries):
+            name = self._resolve_epub_document(
+                href,
+                doc_info,
+                by_basename,
+            )
+
+            if name is None:
+                logger.warning(
+                    "TOC EPUB ссылается на неизвестный файл: %s",
+                    href,
+                )
+                continue
+
+            offset = doc_info[name]["offset"]
+            local_anchors = doc_info[name]["extracted"]["anchors"]
+
+            anchor = (
+                unquote(href.split("#", 1)[1].split("?", 1)[0])
+                if "#" in href
+                else ""
+            )
+
+            position = offset + local_anchors.get(anchor, 0)
+
+            starts.append((position, index, title))
+
+        starts.sort(key=lambda item: (item[0], item[1]))
+
+        deduplicated = []
+
+        for position, _index, title in starts:
+            if not 0 <= position < len(all_paragraphs):
+                continue
+
+            if (
+                deduplicated
+                and deduplicated[-1][0] == position
+            ):
+                deduplicated[-1] = (position, title)
+            else:
+                deduplicated.append((position, title))
+
+        units = []
+
+        if deduplicated:
+            first_position = deduplicated[0][0]
+
+            if first_position > 0:
+                units.append(
+                    self._make_chapter_unit(
+                        "",
+                        all_paragraphs[:first_position],
+                        protected=False,
+                        origin="technical",
+                    )
+                )
+
+            for index, (start, title) in enumerate(deduplicated):
+                end = (
+                    deduplicated[index + 1][0]
+                    if index + 1 < len(deduplicated)
+                    else len(all_paragraphs)
+                )
+
+                if end <= start:
+                    continue
+
+                unit = self._make_chapter_unit(
+                    title,
+                    all_paragraphs[start:end],
+                    protected=True,
+                    origin="toc",
+                )
+
+                units.extend(
+                    self._split_large_epub_unit_by_headings(
+                        unit,
+                        start,
+                        end,
+                        all_paragraphs,
+                        global_headings,
+                    )
+                )
+
+            return units
+
+        # Если TOC отсутствует или не удалось разрешить его ссылки,
+        # пробуем обнаружить главы по заголовкам внутри документов.
+        major_headings = [
+            (position, heading)
+            for position, heading in sorted(global_headings.items())
+            if heading["level"] <= 2 and heading["title"]
+        ]
+
+        if not major_headings:
+            major_headings = [
+                (position, heading)
+                for position, heading in sorted(global_headings.items())
+                if heading["level"] <= 3 and heading["title"]
+            ]
+
+        if major_headings:
+            first_position = major_headings[0][0]
+
+            if first_position > 0:
+                units.append(
+                    self._make_chapter_unit(
+                        "",
+                        all_paragraphs[:first_position],
+                        protected=False,
+                        origin="technical",
+                    )
+                )
+
+            for index, (start, heading) in enumerate(major_headings):
+                end = (
+                    major_headings[index + 1][0]
+                    if index + 1 < len(major_headings)
+                    else len(all_paragraphs)
+                )
+
+                units.append(
+                    self._make_chapter_unit(
+                        heading["title"],
+                        all_paragraphs[start:end],
+                        protected=True,
+                        origin="heading",
+                    )
+                )
+
+            return units
+
+        # Если заголовки и TOC не найдены, сохраняем документы
+        # в порядке spine, не теряя содержимое.
+        for name in document_order:
+            extracted = doc_info[name]["extracted"]
+
+            units.append(
+                self._make_chapter_unit(
+                    "",
+                    extracted["paragraphs"],
+                    protected=False,
+                    origin="technical",
+                )
+            )
+
+        return units
 
 
     def _extract_epub_cover(self, book_epub):

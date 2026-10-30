@@ -7507,3 +7507,15 @@ pas mon chevet et ma chambre.»'. is_single_word: False. translation_result со
 {"ts":"2026-10-30 00:18:03,979","level":"INFO","logger":"translation","request_id":"c018ef6d0340","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'спасибо', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 683.08}"}
 {"ts":"2026-10-30 00:18:03,979","level":"INFO","logger":"translation","request_id":"c018ef6d0340","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'thanks'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
 {"ts":"2026-10-30 00:18:04,702","level":"INFO","logger":"translation","request_id":"c018ef6d0340","user_id":"-","msg":"Found 3 alternatives for thanks: ['благодарю', 'спасибо большое', 'премного благодарен']"}
+{"ts":"2026-10-30 15:12:49,956","level":"INFO","logger":"translation","request_id":"3bc5be9d0df7","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'them—and'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-30 15:12:50,941","level":"INFO","logger":"translation","request_id":"3bc5be9d0df7","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'их—и', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 967.46}"}
+{"ts":"2026-10-30 15:12:50,942","level":"INFO","logger":"translation","request_id":"3bc5be9d0df7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'them—and'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-30 15:12:51,850","level":"INFO","logger":"translation","request_id":"3bc5be9d0df7","user_id":"-","msg":"Found 3 alternatives for them—and: ['их — и', 'их… и', 'их, и']"}

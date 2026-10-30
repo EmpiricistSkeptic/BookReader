@@ -1959,3 +1959,52 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
     raise InvalidToken(
 rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-30 15:03:28,798","level":"INFO","logger":"reader.views","request_id":"6ffc6d521348","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder for StasStoun was deleted"}
+{"ts":"2026-10-30 15:03:40,058","level":"ERROR","logger":"reader.views","request_id":"102914ea4543","user_id":"-","msg":"Ошибка парсинга EPUB"}
+Traceback (most recent call last):
+  File "/srv/bookreader/reader/views.py", line 2023, in _parse_epub_content
+    self._flatten_epub_toc(
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BookViewSet' object has no attribute '_flatten_epub_toc'
+{"ts":"2026-10-30 15:03:40,262","level":"WARNING","logger":"reader.views","request_id":"102914ea4543","user_id":"-","msg":"Ошибка формата или обработки файла 'Antifragile-%20Things%20That%20Gain%20from%20Disorder%20(Incerto%20Book%203)%20--%20Nassim%20Nicholas%20Taleb%2C%20Nassim%20Nicholas%20Taleb%2C%20Gen%C3%ADs%20S%C3%A1nchez%20--%20(%20WeLib.org%20).epub': Не удалось обработать EPUB: 'BookViewSet' object has no attribute '_flatten_epub_toc'"}
+{"ts":"2026-10-30 15:06:37,654","level":"ERROR","logger":"reader.views","request_id":"f5e84437bfa1","user_id":"-","msg":"Ошибка парсинга EPUB"}
+Traceback (most recent call last):
+  File "/srv/bookreader/reader/views.py", line 2066, in _parse_epub_content
+    units = self._build_epub_units(
+            ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BookViewSet' object has no attribute '_build_epub_units'
+{"ts":"2026-10-30 15:06:37,769","level":"WARNING","logger":"reader.views","request_id":"f5e84437bfa1","user_id":"-","msg":"Ошибка формата или обработки файла 'Antifragile-%20Things%20That%20Gain%20from%20Disorder%20(Incerto%20Book%203)%20--%20Nassim%20Nicholas%20Taleb%2C%20Nassim%20Nicholas%20Taleb%2C%20Gen%C3%ADs%20S%C3%A1nchez%20--%20(%20WeLib.org%20).epub': Не удалось обработать EPUB: 'BookViewSet' object has no attribute '_build_epub_units'"}
+{"ts":"2026-10-30 15:10:37,490","level":"WARNING","logger":"reader.views","request_id":"99710720a74f","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-30 15:10:37,501","level":"WARNING","logger":"reader.views","request_id":"99710720a74f","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-30 15:10:37,511","level":"INFO","logger":"reader.views","request_id":"99710720a74f","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=285 language=en"}
+{"ts":"2026-10-30 15:10:40,089","level":"INFO","logger":"reader.views","request_id":"99710720a74f","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=285 read=0.005s extract=0.000s parse=0.652s database=2.576s total=3.233s"}
+{"ts":"2026-10-30 15:12:50,942","level":"INFO","logger":"reader.translator_backends","request_id":"3bc5be9d0df7","user_id":"-","msg":"Recieved: them—and and их—и for it"}
+{"ts":"2026-10-30 15:12:51,841","level":"INFO","logger":"reader.translator_backends","request_id":"3bc5be9d0df7","user_id":"-","msg":"Raw response form Ai {'id': '1b18a696-f1fb-4a6c-a7ba-c2966c0cc6fd', 'object': 'chat.completion', 'created': 1793373171, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "их — и"\n    },\n    {\n        "text": "их… и"\n    },\n    {\n        "text": "их, и"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 41, 'total_tokens': 188, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-30 15:12:51,841","level":"INFO","logger":"reader.translator_backends","request_id":"3bc5be9d0df7","user_id":"-","msg":"Parser result[{'text': 'их — и'}, {'text': 'их… и'}, {'text': 'их, и'}]"}
+{"ts":"2026-10-30 17:10:11,233","level":"ERROR","logger":"reader","request_id":"211a817c70a0","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-30 17:10:36,762","level":"INFO","logger":"reader.views","request_id":"e1590960d527","user_id":"-","msg":"EPUB parsed: title='La sombra del viento' documents=80 chapters=77 language=es"}
+{"ts":"2026-10-30 17:10:38,745","level":"INFO","logger":"reader.views","request_id":"e1590960d527","user_id":"-","msg":"Book import completed: title='La sombra del viento' format=EPUB bytes=876887 chapters=77 read=0.013s extract=0.000s parse=0.909s database=1.981s total=2.902s"}
