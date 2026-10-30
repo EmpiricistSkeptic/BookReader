@@ -1623,17 +1623,22 @@ class BookViewSet(viewsets.ModelViewSet):
 
 
     
+    
     def _extract_epub_document(self, content):
         """
         Извлекает абзацы, позиции якорей и позиции заголовков из XHTML.
 
         Перед XML-разбором:
-        - определяет кодировку и преобразует содержимое в Unicode;
-        - заменяет известные HTML5 named entities;
-        - сохраняет пять стандартных XML-сущностей и числовые ссылки.
+        - определяет кодировку;
+        - нормализует HTML5 named entities;
+        - сохраняет пять стандартных XML-сущностей.
 
-        Вложенные block-элементы обходятся без дублирования текста.
+        При извлечении:
+        - одиночный <br> сохраняется как перенос внутри абзаца;
+        - два и более последовательных <br> становятся границей абзацев;
+        - вложенные block-элементы не дублируют текст.
         """
+
         # ---------------------------------------------------------
         # 1. Декодирование исходного содержимого
         # ---------------------------------------------------------
@@ -1665,8 +1670,6 @@ class BookViewSet(viewsets.ModelViewSet):
         # 2. Нормализация именованных HTML5-сущностей
         # ---------------------------------------------------------
 
-        # Эти пять сущностей являются стандартными XML-сущностями.
-        # Оставляем их в исходном виде, чтобы XML-парсер обработал их сам.
         xml_predefined_entities = {
             "amp",
             "lt",
@@ -1689,8 +1692,6 @@ class BookViewSet(viewsets.ModelViewSet):
                 f"{entity_name};"
             )
 
-            # Неизвестные сущности не заменяем наугад.
-            # Их обработка остаётся XML-парсеру.
             if replacement is None:
                 return match.group(0)
 
@@ -1749,6 +1750,11 @@ class BookViewSet(viewsets.ModelViewSet):
         headings = {}
         buffer = []
 
+        # Специальный внутренний маркер настоящего HTML-тега <br>.
+        # Он позволяет не путать <br> с обычными переносами
+        # строк в исходном XHTML.
+        BR_MARKER = "\ue000"
+
         def flush():
             if not buffer:
                 return
@@ -1756,18 +1762,39 @@ class BookViewSet(viewsets.ModelViewSet):
             raw = "".join(buffer)
             buffer.clear()
 
-            # Сохраняем одиночные переносы <br>.
-            # Обработку двойных <br> как границ абзацев
-            # добавим отдельным следующим изменением.
-            lines = raw.splitlines() or [raw]
+            # Разделяем содержимое только по двум или более
+            # последовательным тегам <br>.
+            #
+            # Пробелы и переносы между тегами допускаются:
+            # <br><br>
+            # <br />
+            # <br />
+            #
+            # Одиночный <br> останется переносом внутри абзаца.
 
-            text = "\n".join(
-                " ".join(line.split())
-                for line in lines
-            ).strip()
+            br_separator = re.compile(
+                rf"{re.escape(BR_MARKER)}"
+                rf"(?:\s*{re.escape(BR_MARKER)})+"
+            )
 
-            if text:
-                paragraphs.append(text)
+            parts = br_separator.split(raw)
+
+            for part in parts:
+                if not part.strip():
+                    continue
+
+                # Одиночный <br> превращаем в перенос внутри абзаца.
+                part = part.replace(BR_MARKER, "\n")
+
+                lines = part.splitlines() or [part]
+
+                text = "\n".join(
+                    " ".join(line.split())
+                    for line in lines
+                ).strip()
+
+                if text:
+                    paragraphs.append(text)
 
         def register_block_anchors(node):
             for key in ("id", "name"):
@@ -1807,7 +1834,10 @@ class BookViewSet(viewsets.ModelViewSet):
                 return
 
             if tag_name == "br":
-                buffer.append("\n")
+                # Не добавляем обычный перенос напрямую.
+                # Сохраняем отдельный маркер, чтобы flush()
+                # мог отличить один <br> от двух последовательных.
+                buffer.append(BR_MARKER)
                 return
 
             is_block = tag_name in self.EPUB_BLOCK_TAGS
@@ -1880,6 +1910,7 @@ class BookViewSet(viewsets.ModelViewSet):
             "anchors": anchors,
             "headings": headings,
         }
+
 
     def _flatten_epub_toc(self, toc, output):
         """Преобразует вложенный TOC EbookLib в последовательный список."""
