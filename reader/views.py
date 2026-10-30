@@ -1535,18 +1535,76 @@ class BookViewSet(viewsets.ModelViewSet):
             raise ValueError("EPUB содержит повреждённый ZIP-архив.") from exc
 
 
+    
     def _is_epub_document(self, item):
+        """
+        Проверяет, является ли элемент EPUB обычным текстовым документом.
+
+        Исключает:
+        - EpubNav — навигационный XHTML-документ;
+        - элементы с ITEM_NAVIGATION;
+        - элементы с properties="nav".
+
+        Оставляет обычные XHTML/HTML-документы и ITEM_DOCUMENT.
+        """
+
+        # ---------------------------------------------------------
+        # 1. Проверяем класс EpubNav
+        # ---------------------------------------------------------
+
+        nav_class = getattr(epub, "EpubNav", None)
+
+        if nav_class is not None and isinstance(item, nav_class):
+            return False
+
+        # ---------------------------------------------------------
+        # 2. Проверяем тип элемента EbookLib
+        # ---------------------------------------------------------
+
+        try:
+            item_type = item.get_type()
+        except Exception:
+            item_type = None
+
+        navigation_type = getattr(
+            ebooklib,
+            "ITEM_NAVIGATION",
+            None,
+        )
+
+        if (
+            navigation_type is not None
+            and item_type == navigation_type
+        ):
+            return False
+
+        # ---------------------------------------------------------
+        # 3. Проверяем properties из manifest EPUB
+        # ---------------------------------------------------------
+
         properties = getattr(item, "properties", None) or []
 
         if isinstance(properties, str):
             properties = properties.split()
 
-        if "nav" in properties:
+        try:
+            normalized_properties = {
+                str(value).lower()
+                for value in properties
+            }
+        except TypeError:
+            normalized_properties = set()
+
+        if "nav" in normalized_properties:
             return False
+
+        # ---------------------------------------------------------
+        # 4. Проверяем MIME-тип
+        # ---------------------------------------------------------
 
         media_type = (
             getattr(item, "media_type", "") or ""
-        ).lower()
+        ).split(";", 1)[0].strip().lower()
 
         html_types = {
             "application/xhtml+xml",
@@ -1557,10 +1615,12 @@ class BookViewSet(viewsets.ModelViewSet):
         if media_type in html_types:
             return True
 
-        try:
-            return item.get_type() == ebooklib.ITEM_DOCUMENT
-        except Exception:
-            return False
+        # ---------------------------------------------------------
+        # 5. Последняя проверка — тип документа
+        # ---------------------------------------------------------
+
+        return item_type == ebooklib.ITEM_DOCUMENT
+
 
     
     def _extract_epub_document(self, content):
