@@ -805,53 +805,200 @@ class BookViewSet(viewsets.ModelViewSet):
         return sum(len(paragraph) for paragraph in paragraphs)
 
 
+    
     def _split_large_chapter(self, unit):
         """
-        Разбивает большую главу по границам абзацев.
-        Один отдельный абзац не разрывается посередине.
+        Равномерно разделяет большую главу по границам абзацев.
+
+        - Определяет необходимое количество частей.
+        - Старается распределить текст равномерно.
+        - Не превышает MAX_CHAPTER_CHARS, если это возможно
+        без разрыва отдельных абзацев.
+        - Если последняя часть меньше 30% целевого размера,
+        перераспределяет последние две части.
+        - Не разрывает одиночные абзацы.
         """
+
         paragraphs = unit["paragraphs"]
         total = self._chapter_char_count(paragraphs)
 
-        if (
-            total <= self.MAX_CHAPTER_CHARS
-            or len(paragraphs) < 2
-        ):
+        max_size = self.MAX_CHAPTER_CHARS
+
+        if total <= max_size or len(paragraphs) < 2:
             return [unit]
 
-        groups = []
-        current = []
-        current_size = 0
+        # ---------------------------------------------------------
+        # 1. Определяем количество частей
+        # ---------------------------------------------------------
+
+        group_count = min(
+            len(paragraphs),
+            (total + max_size - 1) // max_size,
+        )
+
+        if group_count < 2:
+            return [unit]
+
+        target_size = total / group_count
+
+        # ---------------------------------------------------------
+        # 2. Создаём накопительные размеры абзацев
+        # ---------------------------------------------------------
+
+        prefix_sizes = [0]
 
         for paragraph in paragraphs:
-            paragraph_size = len(paragraph)
+            prefix_sizes.append(
+                prefix_sizes[-1] + len(paragraph)
+            )
 
-            if (
-                current
-                and current_size + paragraph_size > self.MAX_CHAPTER_CHARS
-            ):
-                groups.append(current)
-                current = []
-                current_size = 0
+        # ---------------------------------------------------------
+        # 3. Равномерно распределяем абзацы
+        # ---------------------------------------------------------
 
-            current.append(paragraph)
-            current_size += paragraph_size
+        groups = []
+        start = 0
+        paragraph_count = len(paragraphs)
 
-        if current:
-            groups.append(current)
+        for group_index in range(group_count - 1):
+
+            remaining_groups = (
+                group_count - group_index - 1
+            )
+
+            # Обязательно оставляем хотя бы один абзац
+            # для каждой оставшейся части.
+            max_end = paragraph_count - remaining_groups
+
+            candidate_ends = list(
+                range(start + 1, max_end + 1)
+            )
+
+            # Если возможно, выбираем только такие границы,
+            # при которых текущая часть не превышает MAX.
+            feasible_ends = [
+                end
+                for end in candidate_ends
+                if (
+                    prefix_sizes[end] - prefix_sizes[start]
+                    <= max_size
+                )
+            ]
+
+            if feasible_ends:
+                candidate_ends = feasible_ends
+
+            # Определяем желаемый размер части с учётом
+            # оставшегося текста и количества оставшихся частей.
+            remaining_size = (
+                prefix_sizes[-1] - prefix_sizes[start]
+            )
+
+            desired_size = (
+                remaining_size / (remaining_groups + 1)
+            )
+
+            # Выбираем границу, наиболее близкую к целевому размеру.
+            end = min(
+                candidate_ends,
+                key=lambda position: abs(
+                    (prefix_sizes[position] - prefix_sizes[start])
+                    - desired_size
+                ),
+            )
+
+            groups.append(paragraphs[start:end])
+            start = end
+
+        # Последняя часть получает оставшиеся абзацы.
+        groups.append(paragraphs[start:])
 
         if len(groups) <= 1:
             return [unit]
 
+        # ---------------------------------------------------------
+        # 4. Проверяем размер последней части
+        # ---------------------------------------------------------
+
+        last_size = self._chapter_char_count(groups[-1])
+
+        min_last_size = target_size * 0.30
+
+        if (
+            len(groups) >= 2
+            and last_size < min_last_size
+        ):
+            # Объединяем последние две части временно.
+            combined = groups[-2] + groups[-1]
+
+            combined_prefix = [0]
+
+            for paragraph in combined:
+                combined_prefix.append(
+                    combined_prefix[-1] + len(paragraph)
+                )
+
+            candidate_splits = list(
+                range(1, len(combined))
+            )
+
+            # Предпочитаем варианты, где обе части
+            # не превышают установленный максимум.
+            feasible_splits = [
+                split
+                for split in candidate_splits
+                if (
+                    combined_prefix[split] <= max_size
+                    and (
+                        combined_prefix[-1]
+                        - combined_prefix[split]
+                    ) <= max_size
+                )
+            ]
+
+            if feasible_splits:
+                candidate_splits = feasible_splits
+
+            # Находим наиболее равномерную границу.
+            best_split = min(
+                candidate_splits,
+                key=lambda split: abs(
+                    combined_prefix[split]
+                    - (
+                        combined_prefix[-1]
+                        - combined_prefix[split]
+                    )
+                ),
+            )
+
+            groups[-2] = combined[:best_split]
+            groups[-1] = combined[best_split:]
+
+            logger.info(
+                (
+                    "Rebalanced last EPUB/FB2 chapter parts: "
+                    "previous=%d last=%d"
+                ),
+                self._chapter_char_count(groups[-2]),
+                self._chapter_char_count(groups[-1]),
+            )
+
+        # ---------------------------------------------------------
+        # 5. Создаём итоговые главы
+        # ---------------------------------------------------------
+
         result = []
         base_title = unit["title"] or "Глава"
 
+        total_groups = len(groups)
+
         for index, group in enumerate(groups, 1):
+
             result.append(
                 self._make_chapter_unit(
                     title=(
                         f"{base_title} — часть "
-                        f"{index}/{len(groups)}"
+                        f"{index}/{total_groups}"
                     ),
                     paragraphs=group,
                     protected=unit["protected"],
@@ -860,6 +1007,7 @@ class BookViewSet(viewsets.ModelViewSet):
             )
 
         return result
+
 
 
     def _normalize_chapter_units(self, units):
