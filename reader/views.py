@@ -1400,6 +1400,34 @@ class BookViewSet(viewsets.ModelViewSet):
             if tail:
                 output.append(tail)
 
+    def _is_fb2_decorative_separator(self, text):
+        """
+        Определяет короткие декоративные разделители:
+        * * *, ***, — — —, - - -, • • • и подобные.
+        """
+        compact = "".join((text or "").split())
+
+        if compact == "⁂":
+            return True
+
+        separator_chars = {
+            "*",
+            "•",
+            "·",
+            "—",
+            "–",
+            "-",
+            "_",
+            "=",
+            "~",
+        }
+
+        return (
+            len(compact) >= 3
+            and len(set(compact)) == 1
+            and compact[0] in separator_chars
+        )
+
 
     def _fb2_section_title(self, section):
         title_element = self._find_fb2_child(section, "title")
@@ -1410,18 +1438,34 @@ class BookViewSet(viewsets.ModelViewSet):
         pieces = []
         self._collect_fb2_element(title_element, pieces)
 
-        return " ".join(pieces).strip()
+        return " ".join(" ".join(pieces).split())
 
 
-    def _walk_fb2_section(self, section, units):
+    def _walk_fb2_section(self, section, units, parent_title=""):
         """
-        Сохраняет текст родительской секции до, между и после дочерних
-        секций, не включая текст дочерней секции повторно.
+        Рекурсивно обходит FB2-секции.
 
-        Если собственный текст родителя расположен по обе стороны
-        дочерней главы, поздний фрагмент получает название продолжения.
+        Сохраняет иерархию заголовков и текст родительских секций
+        до, между и после дочерних секций.
+
+        Декоративные разделители сохраняются в тексте, но сами по себе
+        не создают защищённых глав.
         """
-        title = self._fb2_section_title(section)
+        raw_title = self._fb2_section_title(section)
+        is_separator_title = self._is_fb2_decorative_separator(raw_title)
+
+        # Формируем полный заголовок текущей секции.
+        if raw_title and not is_separator_title:
+            title = (
+                f"{parent_title} — {raw_title}"
+                if parent_title
+                else raw_title
+            )
+        else:
+            title = ""
+
+        # Передаём дочерним секциям последний значимый заголовок.
+        child_parent_title = title or parent_title
 
         buffer = []
         segment_number = 0
@@ -1441,16 +1485,25 @@ class BookViewSet(viewsets.ModelViewSet):
             if not paragraphs:
                 return
 
-            if title:
+            # Если фрагмент состоит только из декоративных разделителей,
+            # он не должен становиться защищённой главой.
+            has_real_text = any(
+                not self._is_fb2_decorative_separator(text)
+                for text in paragraphs
+            )
+
+            if title and has_real_text:
                 if segment_number == 0 and not saw_nested_section:
                     segment_title = title
                 else:
                     continuation_number = max(1, segment_number)
+
                     suffix = (
                         " (продолжение)"
                         if continuation_number == 1
                         else f" (продолжение {continuation_number})"
                     )
+
                     segment_title = f"{title}{suffix}"
 
                 protected = True
@@ -1475,19 +1528,27 @@ class BookViewSet(viewsets.ModelViewSet):
             tag = self._xml_local_name(child)
 
             if tag == "title":
-                # Заголовок уже используется как название главы.
-                continue
+                # Обычный заголовок уже используется как название секции.
+                # Но декоративный заголовок сохраняем как текстовый фрагмент.
+                if is_separator_title and raw_title:
+                    buffer.append(raw_title)
 
-            if tag == "section":
+            elif tag == "section":
                 flush_segment()
 
-                self._walk_fb2_section(child, units)
+                self._walk_fb2_section(
+                    child,
+                    units,
+                    parent_title=child_parent_title,
+                )
 
                 saw_nested_section = True
 
             else:
                 self._collect_fb2_element(child, buffer)
 
+            # Обрабатываем tail и для title, чтобы не пропускать текст
+            # между соседними XML-элементами.
             tail = " ".join((child.tail or "").split())
 
             if tail:
@@ -1505,6 +1566,29 @@ class BookViewSet(viewsets.ModelViewSet):
 
             if (body.get("name") or "").lower() in self.FB2_IGNORED_BODIES:
                 continue
+
+            children = list(body)
+
+            has_sections = any(
+                self._xml_local_name(child) == "section"
+                for child in children
+            )
+
+            raw_body_title = (
+                self._fb2_section_title(body)
+                if has_sections
+                else ""
+            )
+
+            body_title_is_separator = self._is_fb2_decorative_separator(
+                raw_body_title
+            )
+
+            body_title = (
+                ""
+                if body_title_is_separator
+                else raw_body_title
+            )
 
             buffer = []
 
@@ -1527,10 +1611,24 @@ class BookViewSet(viewsets.ModelViewSet):
                         )
                     )
 
-            for child in body:
-                if self._xml_local_name(child) == "section":
+            for child in children:
+                tag = self._xml_local_name(child)
+
+                if tag == "title" and has_sections:
+                    # Заголовок body передаётся дочерним секциям.
+                    # Декоративный заголовок при этом сохраняем как текст.
+                    if body_title_is_separator and raw_body_title:
+                        buffer.append(raw_body_title)
+
+                elif tag == "section":
                     flush_body_text()
-                    self._walk_fb2_section(child, units)
+
+                    self._walk_fb2_section(
+                        child,
+                        units,
+                        parent_title=body_title,
+                    )
+
                 else:
                     self._collect_fb2_element(child, buffer)
 
