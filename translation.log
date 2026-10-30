@@ -7495,3 +7495,15 @@ pas mon chevet et ma chambre.»'. is_single_word: False. translation_result со
 {"ts":"2026-10-01 17:22:26,169","level":"INFO","logger":"translation","request_id":"30cdc3227b15","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Ресто', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 977.16}"}
 {"ts":"2026-10-01 17:22:26,170","level":"INFO","logger":"translation","request_id":"30cdc3227b15","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Restaud'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
 {"ts":"2026-10-01 17:22:27,182","level":"INFO","logger":"translation","request_id":"30cdc3227b15","user_id":"-","msg":"Found 3 alternatives for Restaud: ['Ресто', 'Ресто де', 'Ресто-']"}
+{"ts":"2026-10-30 00:18:03,278","level":"INFO","logger":"translation","request_id":"c018ef6d0340","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'thanks'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-30 00:18:03,979","level":"INFO","logger":"translation","request_id":"c018ef6d0340","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'спасибо', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 683.08}"}
+{"ts":"2026-10-30 00:18:03,979","level":"INFO","logger":"translation","request_id":"c018ef6d0340","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'thanks'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-30 00:18:04,702","level":"INFO","logger":"translation","request_id":"c018ef6d0340","user_id":"-","msg":"Found 3 alternatives for thanks: ['благодарю', 'спасибо большое', 'премного благодарен']"}

@@ -8,8 +8,23 @@ import zipfile
 import base64
 import binascii
 
+import posixpath
+import time
+
+from urllib.parse import unquote
+
+from defusedxml import ElementTree as SafeET
+from lxml import etree
+
 import ebooklib
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4.element import (
+    Comment,
+    Declaration,
+    Doctype,
+    ProcessingInstruction,
+)
+
 from django.contrib.auth import authenticate
 from django.core.cache import cache
 from django.core.files.base import ContentFile
@@ -21,7 +36,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 from ebooklib import ITEM_COVER, epub
-from langdetect import LangDetectException, detect
+from langdetect import DetectorFactory, LangDetectException, detect
 from rest_framework import generics, permissions, serializers, status, viewsets, mixins
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -251,145 +266,18 @@ class BookViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    def perform_delete(self, instance):
+    def perform_destroy(self, instance):
         book_name = instance.title
         book_user = instance.user
-        logger.info(f"Book {book_name} for {book_user} were deleted")
+
+        logger.info(
+            "Book %s for %s was deleted",
+            book_name,
+            book_user,
+        )
 
         instance.delete()
 
-    @action(
-        detail=False,
-        methods=["post"],
-        url_path="upload",
-        parser_classes=[MultiPartParser],
-    )
-    @transaction.atomic
-    def upload_book(self, request):
-        """
-        Единый эндпоинт для загрузки и парсинга книжных файлов.
-        Автоматически определяет формат (.fb2, .epub, .zip) и использует
-        сериализатор для валидации входных данных.
-        """
-        # ШАГ 1: Валидация входных данных через исправленный сериализатор
-        # get_serializer_class должен вернуть BookUploadSerializer для этого action
-        upload_serializer = self.get_serializer(data=request.data)
-        upload_serializer.is_valid(raise_exception=True)
-        
-
-        # Теперь мы уверены, что файл прошел валидацию
-        uploaded_file = upload_serializer.validated_data["file"]
-
-        original_filename = uploaded_file.name
-        filename_lower = original_filename.lower()
-
-        file_content = None
-        book_format = None
-
-        try:
-            # --- ШАГ 2: Определение формата и извлечение содержимого ---
-            file_bytes = uploaded_file.read()
-
-            if filename_lower.endswith(".zip"):
-                with zipfile.ZipFile(io.BytesIO(file_bytes)) as zf:
-                    fb2_files = [f for f in zf.namelist() if f.lower().endswith(".fb2")]
-                    epub_files = [
-                        f for f in zf.namelist() if f.lower().endswith(".epub")
-                    ]
-
-                    if fb2_files:
-                        file_to_extract = fb2_files[0]
-                        file_content = zf.read(file_to_extract)
-                        book_format = "FB2"
-                    elif epub_files:
-                        file_to_extract = epub_files[0]
-                        file_content = zf.read(file_to_extract)
-                        book_format = "EPUB"
-                    else:
-                        raise ValueError(
-                            "В ZIP-архиве не найдены поддерживаемые файлы (.fb2, .epub)."
-                        )
-
-            elif filename_lower.endswith(".fb2"):
-                file_content = file_bytes
-                book_format = "FB2"
-
-            elif filename_lower.endswith(".epub"):
-                file_content = file_bytes
-                book_format = "EPUB"
-
-            # --- ШАГ 3: Вызов соответствующего парсера ---
-            if book_format == "FB2":
-                book_data = self._parse_fb2_content(file_content)
-            elif book_format == "EPUB":
-                book_data = self._parse_epub_content(file_content)
-            else:
-                raise ValueError("Не удалось определить формат книги для парсинга.")
-
-            # --- ШАГ 3.5: Унификация данных от парсеров ---
-            authors = ""
-            genres = ""
-            if book_format == "FB2":
-                authors = book_data.get("additional_fields", {}).get("authors", "")
-                genres = book_data.get("additional_fields", {}).get("genres", "")
-            else:  # Для EPUB
-                authors = book_data.get("authors", "")
-                genres = book_data.get("genres", "")
-
-            # --- ШАГ 4: Создание и сохранение объекта книги ---
-            book = Book.objects.create(
-                user=request.user,
-                title=book_data.get("title", "Без названия"),
-                description=book_data.get("description", ""),
-                book_format=book_format,
-                authors=authors,
-                genres=genres,
-                language=book_data.get("language", "unknown"),
-                file_size=len(file_content),
-            )
-
-            if book_data.get("cover_content"):
-                book.cover.save(
-                    book_data["cover_filename"],
-                    ContentFile(book_data["cover_content"]),
-                    save=False,
-                )
-
-            book.file.save(original_filename, ContentFile(file_content), save=False)
-            book.save()
-            logger.info("Book file name: %s", book.file.name)
-            logger.info("Book file URL: %s", book.file.url)
-
-            # --- ШАГ 5: Сохранение глав ---
-            if book_format == "FB2":
-                self._parse_fb2_chapters(book, book_data.get("chapters", []))
-            elif book_format == "EPUB":
-                self._save_epub_chapters(book, book_data.get("chapters", []))
-
-            # --- ШАГ 6: Финальный ответ ---
-            result_serializer = BookDetailSerializer(book, context={"request": request})
-            return Response(
-                {"message": "Книга успешно загружена", "book": result_serializer.data},
-                status=status.HTTP_201_CREATED,
-            )
-
-        except ValueError as e:
-            logger.error(f"Ошибка формата или обработки файла: {str(e)}")
-            return Response(
-                {"error": f"Ошибка формата или обработки файла: {str(e)}"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-        except Exception as e:
-            # exc_info=True добавит полный traceback ошибки в логи
-            logger.error(
-                f"Непредвиденная ошибка при загрузке файла: {str(e)}", exc_info=True
-            )
-            return Response(
-                {
-                    "error": "Произошла непредвиденная ошибка на сервере при обработке файла."
-                },
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            )
 
     @action(detail=True, methods=["get"])
     def chapters(self, request, pk=None):
@@ -490,547 +378,1922 @@ class BookViewSet(viewsets.ModelViewSet):
         )
         return Response({"status": "Progress updated"}, status=status.HTTP_200_OK)
 
-    def _parse_fb2_content(self, file_content):
+        # ============================================================
+    # НАСТРОЙКИ ПАРСИНГА
+    # ============================================================
+
+    MIN_CHAPTER_CHARS = 3_000
+    MAX_CHAPTER_CHARS = 35_000
+
+    MAX_ARCHIVE_SINGLE_FILE = 100 * 1024 * 1024
+    MAX_ARCHIVE_TOTAL_BYTES = 150 * 1024 * 1024
+    MAX_ARCHIVE_ENTRIES = 5_000
+    MAX_COMPRESSION_RATIO = 1_000
+
+    EPUB_BLOCK_TAGS = frozenset({
+        "p", "div", "section", "article", "aside",
+        "header", "footer", "main",
+        "h1", "h2", "h3", "h4", "h5", "h6",
+        "li", "ul", "ol", "dl", "dt", "dd",
+        "blockquote", "pre", "table", "thead", "tbody",
+        "tfoot", "tr", "td", "th", "caption",
+        "figure", "figcaption", "hr", "address", "center",
+    })
+
+    EPUB_SKIP_TAGS = frozenset({
+        "script", "style", "head", "title",
+        "meta", "link", "svg", "noscript",
+    })
+
+    FB2_LINE_TAGS = frozenset({
+        "p", "subtitle", "text-author", "v", "date",
+    })
+
+    FB2_IGNORED_BODIES = frozenset({
+        "notes", "comments",
+    })
+
+
+    # ============================================================
+    # ЗАГРУЗКА КНИГИ
+    # ============================================================
+
+    @action(
+        detail=False,
+        methods=["post"],
+        url_path="upload",
+        parser_classes=[MultiPartParser],
+    )
+    def upload_book(self, request):
         """
-        Парсинг FB2 файла из содержимого (bytes)
+        Загружает FB2, EPUB или ZIP с одной поддерживаемой книгой.
+
+        Парсинг выполняется до создания записей в БД.
+        Книга и главы записываются в одной транзакции.
+        Формат существующего API не меняется.
         """
+        upload_serializer = self.get_serializer(data=request.data)
+        upload_serializer.is_valid(raise_exception=True)
+
+        uploaded_file = upload_serializer.validated_data["file"]
+        original_filename = uploaded_file.name
+
+        storage_files = []
+
+        def cleanup_storage_files():
+            # Файловое хранилище не участвует в транзакции БД.
+            # Поэтому удаляем уже сохранённые файлы, если запись
+            # книги или глав завершилась ошибкой.
+            for storage, name in reversed(storage_files):
+                try:
+                    if name:
+                        storage.delete(name)
+                except Exception:
+                    logger.exception(
+                        "Не удалось удалить файл после ошибки импорта: %s",
+                        name,
+                    )
+
+        started_at = time.perf_counter()
+
         try:
-            # Парсим XML из байтов
-            root = ET.fromstring(file_content)
+            # ----------------------------------------------------
+            # 1. Чтение и определение формата
+            # ----------------------------------------------------
 
-            # Определяем namespace
-            namespace = {"fb": "http://www.gribuser.ru/xml/fictionbook/2.0"}
+            read_started = time.perf_counter()
+            uploaded_bytes = uploaded_file.read()
+            read_seconds = time.perf_counter() - read_started
 
-            # Ищем namespace в корневом элементе
-            if root.tag.startswith("{"):
-                ns_uri = root.tag[1 : root.tag.find("}")]
-                namespace = {"fb": ns_uri}
-            else:
-                # Если namespace не найден, пробуем без него
-                namespace = {}
+            extract_started = time.perf_counter()
 
-            # Валидируем структуру FB2
-            self._validate_fb2_structure(root, namespace)
-
-            # Извлекаем метаданные
-            book_data = self._extract_fb2_metadata(root, namespace)
-
-            # Извлекаем главы
-            book_data["chapters"] = self._extract_fb2_chapters(root, namespace)
-
-            title_info = root.find(
-                ".//fb:title-info" if namespace else ".//title-info", namespace
+            stored_filename, file_content, book_format = (
+                self._extract_upload_payload(
+                    original_filename,
+                    uploaded_bytes,
+                )
             )
-            cover_content, cover_filename = self._extract_fb2_cover(root, namespace, title_info)
 
-            book_data["cover_content"] = cover_content
-            book_data["cover_filename"] = cover_filename
+            extract_seconds = time.perf_counter() - extract_started
 
+            # ----------------------------------------------------
+            # 2. Парсинг до начала транзакции записи
+            # ----------------------------------------------------
 
-            if not book_data.get("language"):
-                detected_language = self._detect_language_from_content(book_data.get("chapters", []))
-                book_data["language"] = detected_language or "unknown"
+            parse_started = time.perf_counter()
 
-            return book_data
+            if book_format == "FB2":
+                book_data = self._parse_fb2_content(file_content)
+            elif book_format == "EPUB":
+                book_data = self._parse_epub_content(file_content)
+            else:
+                raise ValueError("Не удалось определить формат книги.")
 
-        except ET.ParseError as e:
-            raise ValueError(f"Некорректный XML формат: {str(e)}")
-        except Exception as e:
-            raise ValueError(f"Ошибка при парсинге FB2: {str(e)}")
+            chapters_data = book_data.get("chapters") or []
 
-    def _validate_fb2_structure(self, root, namespace):
-        """
-        Проверка базовой структуры FB2
-        """
-        required_elements = [
-            (".//fb:title-info" if namespace else ".//title-info", "title-info"),
-            (".//fb:body" if namespace else ".//body", "body"),
-        ]
+            if not chapters_data:
+                raise ValueError("В книге не удалось найти текст.")
 
-        for xpath, element_name in required_elements:
-            if root.find(xpath, namespace) is None:
-                raise ValueError(
-                    f"FB2 файл поврежден: отсутствует элемент {element_name}"
+            if book_format == "FB2":
+                additional_fields = book_data.get(
+                    "additional_fields", {}
+                )
+                authors = additional_fields.get("authors", "")
+                genres = additional_fields.get("genres", "")
+            else:
+                authors = book_data.get("authors", "")
+                genres = book_data.get("genres", "")
+
+            parse_seconds = time.perf_counter() - parse_started
+
+            # ----------------------------------------------------
+            # 3. Создание книги и глав в одной транзакции
+            # ----------------------------------------------------
+
+            db_started = time.perf_counter()
+
+            with transaction.atomic():
+                book = Book.objects.create(
+                    user=request.user,
+                    title=book_data.get("title") or "Без названия",
+                    description=book_data.get("description") or "",
+                    book_format=book_format,
+                    authors=authors,
+                    genres=genres,
+                    language=book_data.get("language") or "unknown",
+                    file_size=len(file_content),
                 )
 
-    def _extract_fb2_metadata(self, root, namespace):
-        """
-        Извлечение метаданных из FB2
-        """
+                cover_content = book_data.get("cover_content")
+                cover_filename = book_data.get("cover_filename")
 
-        def find_text(element, path, default=""):
-            """Безопасный поиск текста в элементе"""
-            if namespace:
-                path = path.replace("/", "/fb:").replace("fb:fb:", "fb:")
-                if not path.startswith("fb:"):
-                    path = "fb:" + path
+                if cover_content:
+                    safe_cover_name = self._safe_filename(
+                        cover_filename or "cover.jpg",
+                        ".jpg",
+                    )
 
-            found = element.find(path, namespace)
-            return found.text.strip() if found is not None and found.text else default
+                    book.cover.save(
+                        safe_cover_name,
+                        ContentFile(cover_content),
+                        save=False,
+                    )
 
-        def find_all_text(element, path):
-            """Поиск всех элементов и объединение текста"""
-            if namespace:
-                path = path.replace("/", "/fb:").replace("fb:fb:", "fb:")
-                if not path.startswith("fb:"):
-                    path = "fb:" + path
+                    storage_files.append(
+                        (book.cover.storage, book.cover.name)
+                    )
 
-            elements = element.findall(path, namespace)
-            return " ".join([el.text.strip() for el in elements if el.text])
+                book.file.save(
+                    stored_filename,
+                    ContentFile(file_content),
+                    save=False,
+                )
 
-        # Основные метаданные
-        title_info = root.find(
-            ".//fb:title-info" if namespace else ".//title-info", namespace
-        )
+                storage_files.append(
+                    (book.file.storage, book.file.name)
+                )
 
-        if title_info is None:
-            raise ValueError("Не найдена секция title-info в FB2 файле")
+                book.save()
 
-        # Извлекаем заголовок
-        title = find_text(title_info, "book-title", "Без названия")
+                if book_format == "FB2":
+                    self._parse_fb2_chapters(book, chapters_data)
+                else:
+                    self._save_epub_chapters(book, chapters_data)
 
-        # Извлекаем авторов
-        authors = []
-        author_elements = title_info.findall(
-            ".//fb:author" if namespace else ".//author", namespace
-        )
-        for author in author_elements:
-            first_name = find_text(author, "first-name")
-            last_name = find_text(author, "last-name")
-            middle_name = find_text(author, "middle-name")
+                result_serializer = BookDetailSerializer(
+                    book,
+                    context={"request": request},
+                )
+                result_data = result_serializer.data
 
-            author_name = " ".join(filter(None, [first_name, middle_name, last_name]))
-            if author_name:
-                authors.append(author_name)
+            db_seconds = time.perf_counter() - db_started
 
-        # Извлекаем аннотацию
-        annotation_elem = title_info.find(
-            ".//fb:annotation" if namespace else ".//annotation", namespace
-        )
-        description = ""
-        if annotation_elem is not None:
-            # Собираем текст из всех параграфов аннотации
-            paragraphs = annotation_elem.findall(
-                ".//fb:p" if namespace else ".//p", namespace
+            logger.info(
+                (
+                    "Book import completed: title=%r format=%s "
+                    "bytes=%d chapters=%d "
+                    "read=%.3fs extract=%.3fs parse=%.3fs "
+                    "database=%.3fs total=%.3fs"
+                ),
+                book.title,
+                book_format,
+                len(file_content),
+                len(chapters_data),
+                read_seconds,
+                extract_seconds,
+                parse_seconds,
+                db_seconds,
+                time.perf_counter() - started_at,
             )
-            if paragraphs:
-                description = "\n".join([p.text.strip() for p in paragraphs if p.text])
-            else:
-                # Если нет параграфов, берем весь текст
-                description = "".join(annotation_elem.itertext()).strip()
 
-        # Извлекаем жанры
-        genres = find_all_text(title_info, "genre")
+            return Response(
+                {
+                    "message": "Книга успешно загружена",
+                    "book": result_data,
+                },
+                status=status.HTTP_201_CREATED,
+            )
 
-        # Извлекаем язык
-        language = find_text(title_info, "lang", "")
+        except ValueError as exc:
+            cleanup_storage_files()
+
+            logger.warning(
+                "Ошибка формата или обработки файла %r: %s",
+                original_filename,
+                exc,
+            )
+
+            return Response(
+                {"error": f"Ошибка обработки книги: {exc}"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        except Exception:
+            cleanup_storage_files()
+
+            logger.exception(
+                "Непредвиденная ошибка при загрузке книги %r",
+                original_filename,
+            )
+
+            return Response(
+                {
+                    "error": (
+                        "Произошла непредвиденная ошибка "
+                        "при обработке файла."
+                    )
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+
+    def _safe_filename(self, filename, expected_extension=None):
+        """Оставляет только имя файла и при необходимости исправляет расширение."""
+        filename = str(filename or "book").replace("\\", "/")
+        filename = filename.split("/")[-1].strip()
+
+        if not filename or filename in {".", ".."}:
+            filename = "book"
+
+        if expected_extension:
+            stem = filename.rsplit(".", 1)[0] if "." in filename else filename
+            filename = f"{stem}{expected_extension}"
+
+        return filename
+
+
+    def _check_zip_limits(self, archive, archive_label="архив"):
+        """Проверяет распакованный размер, количество файлов и степень сжатия."""
+        infos = [
+            info
+            for info in archive.infolist()
+            if not info.is_dir()
+        ]
+
+        if len(infos) > self.MAX_ARCHIVE_ENTRIES:
+            raise ValueError(
+                f"{archive_label}: слишком много файлов в архиве."
+            )
+
+        total_unpacked = 0
+
+        for info in infos:
+            if info.file_size > self.MAX_ARCHIVE_SINGLE_FILE:
+                raise ValueError(
+                    f"{archive_label}: один из файлов слишком большой."
+                )
+
+            total_unpacked += info.file_size
+
+            if total_unpacked > self.MAX_ARCHIVE_TOTAL_BYTES:
+                raise ValueError(
+                    f"{archive_label}: превышен лимит распакованного размера."
+                )
+
+            if info.file_size and not info.compress_size:
+                raise ValueError(
+                    f"{archive_label}: некорректный размер сжатого файла."
+                )
+
+            if info.compress_size:
+                ratio = info.file_size / info.compress_size
+
+                if ratio > self.MAX_COMPRESSION_RATIO:
+                    raise ValueError(
+                        f"{archive_label}: подозрительная степень сжатия."
+                    )
+
+        return infos
+
+
+    def _extract_upload_payload(self, original_filename, uploaded_bytes):
+        """
+        Возвращает (имя сохраняемого файла, байты книги, формат).
+
+        ZIP должен содержать ровно один поддерживаемый файл книги.
+        Извлечённый EPUB не сохраняется под расширением .zip.
+        """
+        lowered = original_filename.lower()
+
+        if lowered.endswith(".fb2"):
+            return (
+                self._safe_filename(original_filename, ".fb2"),
+                uploaded_bytes,
+                "FB2",
+            )
+
+        if lowered.endswith(".epub"):
+            return (
+                self._safe_filename(original_filename, ".epub"),
+                uploaded_bytes,
+                "EPUB",
+            )
+
+        if not lowered.endswith(".zip"):
+            raise ValueError("Поддерживаются только FB2, EPUB и ZIP.")
+
+        try:
+            with zipfile.ZipFile(io.BytesIO(uploaded_bytes)) as archive:
+                infos = self._check_zip_limits(archive, "ZIP")
+
+                candidates = [
+                    info
+                    for info in infos
+                    if not info.filename.replace("\\", "/").startswith("__MACOSX/")
+                    and info.filename.lower().endswith((".fb2", ".epub"))
+                ]
+
+                if not candidates:
+                    raise ValueError(
+                        "В ZIP не найден файл FB2 или EPUB."
+                    )
+
+                if len(candidates) > 1:
+                    raise ValueError(
+                        "В ZIP найдено несколько книг. "
+                        "Оставь в архиве только одну книгу."
+                    )
+
+                selected = candidates[0]
+
+                if selected.file_size > self.MAX_ARCHIVE_SINGLE_FILE:
+                    raise ValueError("Файл книги внутри ZIP слишком большой.")
+
+                with archive.open(selected) as source:
+                    file_content = source.read(
+                        self.MAX_ARCHIVE_SINGLE_FILE + 1
+                    )
+
+                if len(file_content) > self.MAX_ARCHIVE_SINGLE_FILE:
+                    raise ValueError("Файл книги внутри ZIP слишком большой.")
+
+                if selected.filename.lower().endswith(".fb2"):
+                    book_format = "FB2"
+                    extension = ".fb2"
+                else:
+                    book_format = "EPUB"
+                    extension = ".epub"
+
+                stored_filename = self._safe_filename(
+                    selected.filename,
+                    extension,
+                )
+
+                return stored_filename, file_content, book_format
+
+        except zipfile.BadZipFile as exc:
+            raise ValueError("Повреждённый ZIP-архив.") from exc
+
+
+    # ============================================================
+    # ОБЩИЕ ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ
+    # ============================================================
+
+    def _make_chapter_unit(
+        self,
+        title,
+        paragraphs,
+        protected=False,
+        origin="technical",
+    ):
+        """Внутреннее представление фрагмента книги до сохранения в БД."""
+        return {
+            "title": (title or "").strip(),
+            "paragraphs": [
+                paragraph.strip()
+                for paragraph in paragraphs
+                if paragraph and paragraph.strip()
+            ],
+            "protected": bool(protected),
+            "origin": origin,
+        }
+
+
+    def _chapter_char_count(self, paragraphs):
+        return sum(len(paragraph) for paragraph in paragraphs)
+
+
+    def _split_large_chapter(self, unit):
+        """
+        Разбивает большую главу по границам абзацев.
+        Один отдельный абзац не разрывается посередине.
+        """
+        paragraphs = unit["paragraphs"]
+        total = self._chapter_char_count(paragraphs)
+
+        if (
+            total <= self.MAX_CHAPTER_CHARS
+            or len(paragraphs) < 2
+        ):
+            return [unit]
+
+        groups = []
+        current = []
+        current_size = 0
+
+        for paragraph in paragraphs:
+            paragraph_size = len(paragraph)
+
+            if (
+                current
+                and current_size + paragraph_size > self.MAX_CHAPTER_CHARS
+            ):
+                groups.append(current)
+                current = []
+                current_size = 0
+
+            current.append(paragraph)
+            current_size += paragraph_size
+
+        if current:
+            groups.append(current)
+
+        if len(groups) <= 1:
+            return [unit]
+
+        result = []
+        base_title = unit["title"] or "Глава"
+
+        for index, group in enumerate(groups, 1):
+            result.append(
+                self._make_chapter_unit(
+                    title=(
+                        f"{base_title} — часть "
+                        f"{index}/{len(groups)}"
+                    ),
+                    paragraphs=group,
+                    protected=unit["protected"],
+                    origin=unit["origin"],
+                )
+            )
+
+        return result
+
+
+    def _normalize_chapter_units(self, units):
+        """
+        Объединяет только небольшие технические фрагменты.
+        Главы, заданные TOC или авторскими заголовками, защищены от склейки.
+        Затем делит чрезмерно большие главы.
+        """
+        prepared = []
+
+        for unit in units:
+            paragraphs = [
+                paragraph.strip()
+                for paragraph in unit.get("paragraphs", [])
+                if paragraph and paragraph.strip()
+            ]
+
+            if not paragraphs:
+                continue
+
+            current = self._make_chapter_unit(
+                title=unit.get("title", ""),
+                paragraphs=paragraphs,
+                protected=unit.get("protected", False),
+                origin=unit.get("origin", "technical"),
+            )
+
+            size = self._chapter_char_count(current["paragraphs"])
+
+            if (
+                not current["protected"]
+                and size < self.MIN_CHAPTER_CHARS
+                and prepared
+            ):
+                previous = prepared[-1]
+                combined_size = (
+                    self._chapter_char_count(previous["paragraphs"]) + size
+                )
+
+                if combined_size <= self.MAX_CHAPTER_CHARS:
+                    previous["paragraphs"].extend(current["paragraphs"])
+                    continue
+
+            prepared.append(current)
+
+        normalized = []
+
+        for unit in prepared:
+            normalized.extend(self._split_large_chapter(unit))
+
+        result = []
+
+        for index, unit in enumerate(normalized, 1):
+            title = (
+                unit["title"]
+                or f"Глава {index}"
+            )[:500]
+
+            result.append(
+                {
+                    "title": title,
+                    "content": "\n\n".join(unit["paragraphs"]),
+                    "order": index,
+                }
+            )
+
+        if not result:
+            raise ValueError("В книге не удалось найти текст.")
+
+        return result
+
+
+    # ============================================================
+    # ЯЗЫК КНИГИ
+    # ============================================================
+
+    def _normalize_language_code(self, language):
+        if not language:
+            return ""
+
+        code = (
+            str(language)
+            .strip()
+            .lower()
+            .replace("_", "-")
+            .split("-")[0]
+        )
+
+        aliases = {
+            "eng": "en",
+            "spa": "es",
+            "fra": "fr",
+            "fre": "fr",
+            "deu": "de",
+            "ger": "de",
+            "ukr": "uk",
+            "rus": "ru",
+            "por": "pt",
+            "ita": "it",
+            "zho": "zh",
+            "chi": "zh",
+            "jpn": "ja",
+        }
+
+        return aliases.get(code, code)
+
+
+    def _supported_language_codes(self):
+        try:
+            choices = Book._meta.get_field("language").choices
+            return {
+                self._normalize_language_code(code)
+                for code, _label in choices
+                if code
+            }
+        except Exception:
+            return set()
+
+
+    def _detect_language_from_content(self, chapters_data):
+        text_sample = "\n".join(
+            chapter.get("content", "")
+            for chapter in chapters_data[:5]
+        )[:5_000]
+
+        if not text_sample.strip():
+            return None
+
+        try:
+
+            DetectorFactory.seed = 0
+            detected = self._normalize_language_code(
+                detect(text_sample)
+            )
+
+            supported = self._supported_language_codes()
+
+            if detected and (
+                not supported or detected in supported
+            ):
+                return detected
+
+        except Exception:
+            logger.warning(
+                "Не удалось определить язык книги по тексту.",
+                exc_info=True,
+            )
+
+        return None
+
+
+    def _resolve_book_language(self, metadata_language, chapters_data):
+        """
+        Сначала валидные метаданные, затем определение по тексту.
+        Не присваивает поддерживаемый языковой код только потому,
+        что он является значением по умолчанию модели.
+        """
+        supported = self._supported_language_codes()
+        metadata_code = self._normalize_language_code(metadata_language)
+
+        if metadata_code and (
+            not supported or metadata_code in supported
+        ):
+            return metadata_code
+
+        detected = self._detect_language_from_content(chapters_data)
+
+        return detected or "unknown"
+
+
+    # ============================================================
+    # FB2
+    # ============================================================
+
+    @staticmethod
+    def _xml_local_name(element):
+        tag = getattr(element, "tag", "")
+
+        if not isinstance(tag, str):
+            return ""
+
+        return tag.rsplit("}", 1)[-1].lower()
+
+
+    @staticmethod
+    def _xml_text(element):
+        if element is None:
+            return ""
+
+        return " ".join(
+            "".join(element.itertext()).split()
+        )
+
+
+    def _find_fb2_child(self, element, name):
+        if element is None:
+            return None
+
+        for child in element:
+            if self._xml_local_name(child) == name.lower():
+                return child
+
+        return None
+
+
+    def _find_fb2_descendant(self, element, name):
+        if element is None:
+            return None
+
+        for child in element.iter():
+            if self._xml_local_name(child) == name.lower():
+                return child
+
+        return None
+
+
+    def _load_fb2_root(self, file_content):
+        """
+        Сначала обычный безопасный XML-разбор.
+        lxml recover — только резервный путь при ошибке разбора.
+        """
+        try:
+            try:
+                return SafeET.fromstring(file_content)
+            except ImportError:
+                return ET.fromstring(file_content)
+
+        except Exception as initial_error:
+            logger.warning(
+                "Обычный разбор FB2 не удался; пробую lxml recover: %s",
+                initial_error,
+            )
+
+            try:
+
+                parser = etree.XMLParser(
+                    recover=True,
+                    resolve_entities=False,
+                    no_network=True,
+                    huge_tree=False,
+                )
+
+                root = etree.fromstring(file_content, parser=parser)
+
+                if root is None:
+                    raise ValueError("XML-парсер не вернул корневой элемент.")
+
+                return root
+
+            except Exception as fallback_error:
+                raise ValueError(
+                    "Некорректный XML формата FB2."
+                ) from fallback_error
+
+
+    def _validate_fb2_structure(self, root, namespace=None):
+        if self._find_fb2_descendant(root, "title-info") is None:
+            raise ValueError(
+                "FB2-файл повреждён: отсутствует title-info."
+            )
+
+        if self._find_fb2_descendant(root, "body") is None:
+            raise ValueError(
+                "FB2-файл повреждён: отсутствует body."
+            )
+
+
+    def _extract_fb2_metadata(self, root, namespace=None):
+        title_info = self._find_fb2_descendant(root, "title-info")
+
+        title_element = self._find_fb2_child(
+            title_info,
+            "book-title",
+        )
+
+        title = self._xml_text(title_element) or "Без названия"
+
+        authors = []
+
+        for author in title_info:
+            if self._xml_local_name(author) != "author":
+                continue
+
+            first_name = self._xml_text(
+                self._find_fb2_child(author, "first-name")
+            )
+            middle_name = self._xml_text(
+                self._find_fb2_child(author, "middle-name")
+            )
+            last_name = self._xml_text(
+                self._find_fb2_child(author, "last-name")
+            )
+
+            name = " ".join(
+                part
+                for part in (first_name, middle_name, last_name)
+                if part
+            )
+
+            if name:
+                authors.append(name)
+
+        genres = []
+
+        for element in title_info.iter():
+            if self._xml_local_name(element) == "genre":
+                genre = self._xml_text(element)
+
+                if genre and genre not in genres:
+                    genres.append(genre)
+
+        language = self._xml_text(
+            self._find_fb2_child(title_info, "lang")
+        )
+
+        annotation = self._find_fb2_descendant(
+            title_info,
+            "annotation",
+        )
+
+        description_paragraphs = []
+
+        if annotation is not None:
+            for element in annotation.iter():
+                if self._xml_local_name(element) == "p":
+                    text = self._xml_text(element)
+
+                    if text:
+                        description_paragraphs.append(text)
+
+            if not description_paragraphs:
+                text = self._xml_text(annotation)
+
+                if text:
+                    description_paragraphs.append(text)
 
         return {
             "title": title,
-            "description": description,
+            "description": "\n\n".join(description_paragraphs),
             "language": language,
             "additional_fields": {
-                "authors": ", ".join(authors) if authors else "",
-                "genres": genres,
+                "authors": ", ".join(authors),
+                "genres": ", ".join(genres),
             },
         }
 
-    def _extract_fb2_cover(self, root, namespace, title_info):
+
+    def _collect_fb2_element(self, element, output):
         """
-        ДОБАВЛЕНО. В исходном коде извлечение обложки для FB2 отсутствовало
-        полностью, поэтому у FB2-книг обложка никогда не сохранялась.
- 
-        В FB2 обложка задаётся ссылкой:
-            <title-info><coverpage><image xlink:href="#cover.jpg"/></coverpage></title-info>
-        а сами байты картинки лежат в отдельном элементе на верхнем уровне:
-            <binary id="cover.jpg" content-type="image/jpeg">base64...</binary>
-        Нужно найти ссылку, вытащить id, найти binary с этим id и
-        декодировать base64.
+        Извлекает текстовые блоки в порядке XML-документа.
+
+        Неизвестные контейнеры обходятся рекурсивно, поэтому содержимое,
+        например, таблицы не теряется только из-за названия тега.
         """
+        tag = self._xml_local_name(element)
+
+        if tag in {"section", "binary", "image"}:
+            return
+
+        if tag in self.FB2_LINE_TAGS:
+            text = self._xml_text(element)
+
+            if text:
+                output.append(text)
+
+            return
+
+        children = list(element)
+
+        if not children:
+            text = self._xml_text(element)
+
+            if text:
+                output.append(text)
+
+            return
+
+        # Текст перед первым дочерним элементом.
+        direct_text = " ".join((element.text or "").split())
+
+        if direct_text:
+            output.append(direct_text)
+
+        for child in children:
+            self._collect_fb2_element(child, output)
+
+            # В XML хвостовой текст находится после дочернего элемента.
+            tail = " ".join((child.tail or "").split())
+
+            if tail:
+                output.append(tail)
+
+
+    def _fb2_section_title(self, section):
+        title_element = self._find_fb2_child(section, "title")
+
+        if title_element is None:
+            return ""
+
+        pieces = []
+        self._collect_fb2_element(title_element, pieces)
+
+        return " ".join(pieces).strip()
+
+
+    def _walk_fb2_section(self, section, units):
+        """
+        Сохраняет текст родительской секции до, между и после дочерних
+        секций, не включая текст дочерней секции повторно.
+
+        Если собственный текст родителя расположен по обе стороны
+        дочерней главы, поздний фрагмент получает название продолжения.
+        """
+        title = self._fb2_section_title(section)
+
+        buffer = []
+        segment_number = 0
+        saw_nested_section = False
+
+        def flush_segment():
+            nonlocal segment_number
+
+            paragraphs = [
+                text.strip()
+                for text in buffer
+                if text and text.strip()
+            ]
+
+            buffer.clear()
+
+            if not paragraphs:
+                return
+
+            if title:
+                if segment_number == 0 and not saw_nested_section:
+                    segment_title = title
+                else:
+                    continuation_number = max(1, segment_number)
+                    suffix = (
+                        " (продолжение)"
+                        if continuation_number == 1
+                        else f" (продолжение {continuation_number})"
+                    )
+                    segment_title = f"{title}{suffix}"
+
+                protected = True
+                origin = "section"
+            else:
+                segment_title = ""
+                protected = False
+                origin = "technical"
+
+            units.append(
+                self._make_chapter_unit(
+                    segment_title,
+                    paragraphs,
+                    protected=protected,
+                    origin=origin,
+                )
+            )
+
+            segment_number += 1
+
+        for child in section:
+            tag = self._xml_local_name(child)
+
+            if tag == "title":
+                # Заголовок уже используется как название главы.
+                continue
+
+            if tag == "section":
+                flush_segment()
+
+                self._walk_fb2_section(child, units)
+
+                saw_nested_section = True
+
+            else:
+                self._collect_fb2_element(child, buffer)
+
+            tail = " ".join((child.tail or "").split())
+
+            if tail:
+                buffer.append(tail)
+
+        flush_segment()
+
+
+    def _extract_fb2_chapters(self, root, namespace=None):
+        units = []
+
+        for body in root.iter():
+            if self._xml_local_name(body) != "body":
+                continue
+
+            if (body.get("name") or "").lower() in self.FB2_IGNORED_BODIES:
+                continue
+
+            buffer = []
+
+            def flush_body_text():
+                paragraphs = [
+                    text.strip()
+                    for text in buffer
+                    if text and text.strip()
+                ]
+
+                buffer.clear()
+
+                if paragraphs:
+                    units.append(
+                        self._make_chapter_unit(
+                            "",
+                            paragraphs,
+                            protected=False,
+                            origin="technical",
+                        )
+                    )
+
+            for child in body:
+                if self._xml_local_name(child) == "section":
+                    flush_body_text()
+                    self._walk_fb2_section(child, units)
+                else:
+                    self._collect_fb2_element(child, buffer)
+
+                tail = " ".join((child.tail or "").split())
+
+                if tail:
+                    buffer.append(tail)
+
+            flush_body_text()
+
+        return self._normalize_chapter_units(units)
+
+
+    def _extract_fb2_cover(self, root, namespace=None, title_info=None):
+        if title_info is None:
+            title_info = self._find_fb2_descendant(root, "title-info")
+
         if title_info is None:
             return None, None
- 
-        image_path = "fb:coverpage/fb:image" if namespace else "coverpage/image"
-        coverpage_image = title_info.find(image_path, namespace)
-        logger.info("FB2 coverpage image: %s", coverpage_image)
-        if coverpage_image is None:
+
+        coverpage = self._find_fb2_child(title_info, "coverpage")
+
+        if coverpage is None:
             return None, None
- 
-        xlink_href_attr = "{http://www.w3.org/1999/xlink}href"
-        href = (
-            coverpage_image.get(xlink_href_attr)
-            or coverpage_image.get("href")
-            or coverpage_image.get("l:href")
-        )
-        logger.info("FB2 cover href: %s", href)
+
+        image_element = self._find_fb2_descendant(coverpage, "image")
+
+        if image_element is None:
+            return None, None
+
+        href = None
+
+        for attr_name, attr_value in image_element.attrib.items():
+            if attr_name.rsplit("}", 1)[-1].lower() == "href":
+                href = attr_value
+                break
+
         if not href:
             return None, None
- 
+
         cover_id = href.lstrip("#").strip()
-        if not cover_id:
-            return None, None
- 
-        binary_path = ".//fb:binary" if namespace else ".//binary"
-        binaries = root.findall(binary_path, namespace)
-        logger.info(
-            "FB2 binaries: %s",
-            [
-                (
-                    b.get("id"),
-                    b.get("content-type")
-                )
-                for b in binaries
-            ]
-        )
-        for binary_elem in binaries:
-            if binary_elem.get("id") != cover_id:
+
+        for element in root.iter():
+            if self._xml_local_name(element) != "binary":
                 continue
- 
-            if not binary_elem.text:
-                return None, None
- 
+
+            if element.get("id") != cover_id or not element.text:
+                continue
+
             try:
-                cover_bytes = base64.b64decode(binary_elem.text.strip())
+                encoded = re.sub(r"\s+", "", element.text)
+                image_bytes = base64.b64decode(encoded, validate=True)
             except (binascii.Error, ValueError):
                 logger.warning(
-                    f"Не удалось декодировать обложку FB2 (id={cover_id})"
+                    "Не удалось декодировать обложку FB2: %s",
+                    cover_id,
                 )
                 return None, None
- 
-            content_type = binary_elem.get("content-type", "image/jpeg")
-            ext = content_type.split("/")[-1] if "/" in content_type else "jpg"
-            filename = cover_id if "." in cover_id else f"{cover_id}.{ext}"
-            logger.info(
-                "FB2 cover found: id=%s filename=%s size=%d",
-                cover_id,
-                filename,
-                len(cover_bytes),
-            )
-            return cover_bytes, filename
- 
+
+            content_type = (
+                element.get("content-type") or "image/jpeg"
+            ).lower()
+
+            extensions = {
+                "image/jpeg": ".jpg",
+                "image/jpg": ".jpg",
+                "image/png": ".png",
+                "image/gif": ".gif",
+                "image/webp": ".webp",
+            }
+
+            extension = extensions.get(content_type, ".jpg")
+            filename = self._safe_filename(cover_id, extension)
+
+            return image_bytes, filename
+
         return None, None
 
-    def _extract_fb2_chapters(self, root, namespace):
-        """
-        Извлечение глав из FB2
-        """
-        chapters = []
 
-        # Ищем body элемент
-        body = root.find(".//fb:body" if namespace else ".//body", namespace)
-        if body is None:
-            return chapters
+    def _parse_fb2_content(self, file_content):
+        try:
+            root = self._load_fb2_root(file_content)
 
-        # Ищем только прямые дочерние секции первого уровня
-        sections = body.findall("./fb:section" if namespace else "./section", namespace)
+            self._validate_fb2_structure(root)
 
-        # Если нет прямых секций, ищем все секции
-        if not sections:
-            sections = body.findall(
-                ".//fb:section" if namespace else ".//section", namespace
+            book_data = self._extract_fb2_metadata(root)
+
+            chapters = self._extract_fb2_chapters(root)
+
+            title_info = self._find_fb2_descendant(root, "title-info")
+
+            cover_content, cover_filename = self._extract_fb2_cover(
+                root,
+                title_info=title_info,
             )
 
-        chapter_order_counter = 1
-        for section in sections:
-            chapter_data = self._process_fb2_section(
-                section, namespace, chapter_order_counter
+            book_data["chapters"] = chapters
+            book_data["cover_content"] = cover_content
+            book_data["cover_filename"] = cover_filename
+
+            book_data["language"] = self._resolve_book_language(
+                book_data.get("language"),
+                chapters,
             )
 
-            if chapter_data:
-                chapters.append(chapter_data)
-                chapter_order_counter += 1
+            return book_data
 
-        return chapters
+        except ValueError:
+            raise
 
-    def _process_fb2_section(self, section, namespace, order):
-        """
-        Обработка отдельной секции FB2
-        """
-        # Извлекаем заголовок главы
-        title_elem = section.find("./fb:title" if namespace else "./title", namespace)
-        chapter_title = ""
+        except Exception as exc:
+            logger.exception("Ошибка парсинга FB2")
 
-        if title_elem is not None:
-            # Собираем текст из всех параграфов заголовка
-            title_paragraphs = title_elem.findall(
-                ".//fb:p" if namespace else ".//p", namespace
-            )
-            if title_paragraphs:
-                chapter_title = " ".join(
-                    [p.text.strip() for p in title_paragraphs if p.text]
-                )
-            else:
-                chapter_title = "".join(title_elem.itertext()).strip()
+            raise ValueError(
+                f"Не удалось обработать FB2: {exc}"
+            ) from exc
 
-        if not chapter_title:
-            chapter_title = f"Глава {order}"
-
-        # Извлекаем содержимое главы (только параграфы, не включая вложенные секции)
-        content_paragraphs = []
-        for child in section:
-            if child.tag.endswith("p") or (
-                namespace and child.tag == f"{{{namespace['fb']}}}p"
-            ):
-                content_paragraphs.append(child)
-
-        chapter_content = "\n\n".join(
-            [
-                "".join(p.itertext()).strip()
-                for p in content_paragraphs
-                if "".join(p.itertext()).strip()
-            ]
-        )
-
-        if chapter_content.strip():
-            return {"title": chapter_title, "content": chapter_content, "order": order}
-        return None
 
     def _parse_fb2_chapters(self, book, chapters_data):
-        """
-        Создание объектов глав в базе данных
-        """
-        Chapter = book.chapters.model
+        """Сохраняет все главы FB2 одним массовым запросом."""
+        ChapterModel = book.chapters.model
 
-        for chapter_data in chapters_data:
-            Chapter.objects.create(
+        objects = [
+            ChapterModel(
                 book=book,
-                title=chapter_data["title"],
-                content=chapter_data["content"],
-                order=chapter_data["order"],
+                title=chapter["title"],
+                content=chapter["content"],
+                order=chapter["order"],
+            )
+            for chapter in chapters_data
+        ]
+
+        if objects:
+            ChapterModel.objects.bulk_create(
+                objects,
+                batch_size=500,
             )
 
-    def _detect_language_from_content(self, chapters_data):
-        """
-        Определяет язык по содержимому первых глав книги.
 
-        Args:
-            chapters_data (list): Список словарей с главами, где у каждого есть ключ 'content'.
+    # ============================================================
+    # EPUB: ОБХОД HTML И ОГЛАВЛЕНИЯ
+    # ============================================================
 
-        Returns:
-            str | None: Код языка (например, 'es', 'en') в случае успеха
-                        или None, если определить не удалось.
-        """
-        # Собираем достаточно большой фрагмент текста для более точного определения
-        # langdetect работает лучше на текстах от 1000 до 3000 символов
-        text_sample = "\n".join(ch.get("content", "") for ch in chapters_data[:5])[:3000]
+    def _validate_epub_archive(self, file_content):
+        try:
+            with zipfile.ZipFile(io.BytesIO(file_content)) as archive:
+                self._check_zip_limits(archive, "EPUB")
 
-        if not text_sample.strip():
-            logger.warning("Не удалось извлечь текст для определения языка.")
-            return None
+        except zipfile.BadZipFile as exc:
+            raise ValueError("EPUB содержит повреждённый ZIP-архив.") from exc
+
+
+    def _is_epub_document(self, item):
+        properties = getattr(item, "properties", None) or []
+
+        if isinstance(properties, str):
+            properties = properties.split()
+
+        if "nav" in properties:
+            return False
+
+        media_type = (
+            getattr(item, "media_type", "") or ""
+        ).lower()
+
+        html_types = {
+            "application/xhtml+xml",
+            "text/html",
+            "application/x-dtbook+xml",
+        }
+
+        if media_type in html_types:
+            return True
 
         try:
-            # Пытаемся определить язык
-            return detect(text_sample)
-        except LangDetectException:
-            # Это исключение возникает, если текст слишком короткий,
-            # неоднозначный или не похож ни на один известный язык.
-            logger.warning(
-                "Не удалось определить язык по содержимому (LangDetectException)."
-            )
+            return item.get_type() == ebooklib.ITEM_DOCUMENT
+        except Exception:
+            return False
+
+
+    def _extract_epub_document(self, content):
+        """
+        Возвращает абзацы, позиции якорей и позиции заголовков.
+
+        Обходит текстовые узлы ровно один раз. Вложенные div/p не
+        дублируются. <br> сохраняет перенос строки внутри абзаца.
+        """
+        soup = None
+        body = None
+
+        for parser in ("xml", "lxml"):
+            try:
+                candidate = BeautifulSoup(content, parser)
+                candidate_body = candidate.find("body")
+
+                if candidate_body is not None:
+                    soup = candidate
+                    body = candidate_body
+                    break
+
+                if soup is None:
+                    soup = candidate
+
+            except Exception:
+                logger.warning(
+                    "Не удалось разобрать XHTML с помощью %s",
+                    parser,
+                    exc_info=True,
+                )
+
+        if body is None:
+            if soup is None:
+                raise ValueError("Не удалось прочитать HTML-содержимое EPUB.")
+
+            body = soup
+
+        paragraphs = []
+        anchors = {}
+        headings = {}
+        buffer = []
+
+        def flush():
+            if not buffer:
+                return
+
+            raw = "".join(buffer)
+            buffer.clear()
+
+            # Сохраняем переносы <br>, но нормализуем пробелы
+            # отдельно в пределах каждой строки.
+            lines = raw.splitlines() or [raw]
+
+            text = "\n".join(
+                " ".join(line.split())
+                for line in lines
+            ).strip()
+
+            if text:
+                paragraphs.append(text)
+
+        def register_block_anchors(node):
+            for key in ("id", "name"):
+                value = node.get(key)
+
+                if isinstance(value, str) and value.strip():
+                    anchors.setdefault(
+                        value.strip(),
+                        len(paragraphs),
+                    )
+
+        def walk(node):
+            if isinstance(node, NavigableString):
+                if not isinstance(
+                    node,
+                    (
+                        Comment,
+                        Declaration,
+                        Doctype,
+                        ProcessingInstruction,
+                    ),
+                ):
+                    buffer.append(str(node))
+
+                return
+
+            if not isinstance(node, Tag):
+                return
+
+            tag_name = (node.name or "").lower()
+
+            if tag_name in self.EPUB_SKIP_TAGS:
+                return
+
+            if tag_name == "br":
+                buffer.append("\n")
+                return
+
+            is_block = tag_name in self.EPUB_BLOCK_TAGS
+
+            if is_block:
+                flush()
+                register_block_anchors(node)
+
+                heading_level = None
+
+                if (
+                    len(tag_name) == 2
+                    and tag_name[0] == "h"
+                    and tag_name[1].isdigit()
+                ):
+                    heading_level = int(tag_name[1])
+
+                start_index = len(paragraphs)
+
+                for child in node.children:
+                    walk(child)
+
+                flush()
+
+                if (
+                    heading_level is not None
+                    and start_index < len(paragraphs)
+                ):
+                    heading_text = (
+                        paragraphs[start_index]
+                        .replace("\n", " ")
+                        .strip()
+                    )
+
+                    if heading_text:
+                        headings[start_index] = {
+                            "title": heading_text,
+                            "level": heading_level,
+                        }
+
+                return
+
+            # Встроенные теги <i>, <b>, <span>, <a> не добавляют
+            # искусственных пробелов вокруг текста.
+            for key in ("id", "name"):
+                value = node.get(key)
+
+                if not isinstance(value, str) or not value.strip():
+                    continue
+
+                # Якорь внутри абзаца указывает на следующий абзац.
+                # Так мы избегаем потери или дублирования текста,
+                # хотя внутрипараграфная граница может быть округлена.
+                pending_text = "".join(buffer)
+
+                position = len(paragraphs)
+
+                if pending_text.strip():
+                    position += 1
+
+                anchors.setdefault(value.strip(), position)
+
+            for child in node.children:
+                walk(child)
+
+        for child in body.children:
+            walk(child)
+
+        flush()
+
+        return {
+            "paragraphs": paragraphs,
+            "anchors": anchors,
+            "headings": headings,
+        }
+
+
+    def _flatten_epub_toc(self, toc, output):
+        """Преобразует вложенный TOC EbookLib в последовательный список."""
+        for entry in toc or []:
+            if isinstance(entry, (list, tuple)):
+                if not entry:
+                    continue
+
+                head = entry[0]
+                children = entry[1] if len(entry) > 1 else []
+
+                self._append_epub_toc_node(head, output)
+                self._flatten_epub_toc(children, output)
+
+            else:
+                self._append_epub_toc_node(entry, output)
+
+
+    def _append_epub_toc_node(self, node, output):
+        href = getattr(node, "href", None)
+
+        if isinstance(node, str):
+            href = node
+
+        if not href:
+            return
+
+        title = getattr(node, "title", "") or ""
+
+        if isinstance(title, (bytes, bytearray)):
+            title = title.decode("utf-8", errors="replace")
+
+        title = BeautifulSoup(
+            str(title),
+            "html.parser",
+        ).get_text(" ", strip=True)
+
+        output.append((str(href), title))
+
+
+    def _resolve_epub_document(self, href, doc_info, by_basename):
+        path = unquote(
+            href.split("#", 1)[0].split("?", 1)[0]
+        ).replace("\\", "/")
+
+        if not path:
             return None
 
+        normalized = posixpath.normpath(path).lstrip("/")
+
+        while normalized.startswith("./"):
+            normalized = normalized[2:]
+
+        if normalized in doc_info:
+            return normalized
+
+        # EbookLib и некоторые EPUB используют разные относительные
+        # пути для manifest/spine и ссылок оглавления.
+        for name in doc_info:
+            candidate = posixpath.normpath(name).lstrip("/")
+
+            while candidate.startswith("./"):
+                candidate = candidate[2:]
+
+            if candidate == normalized:
+                return name
+
+        matches = by_basename.get(
+            posixpath.basename(normalized).lower(),
+            [],
+        )
+
+        return matches[0] if len(matches) == 1 else None
+
+
+    def _split_large_epub_unit_by_headings(
+        self,
+        unit,
+        start,
+        end,
+        all_paragraphs,
+        global_headings,
+    ):
+        """
+        Если одна логическая EPUB-глава огромна, сначала пытается
+        разделить её по крупным HTML-заголовкам h1/h2.
+        Если их нет, окончательное деление выполнит нормализатор
+        по границам абзацев.
+        """
+        total = self._chapter_char_count(unit["paragraphs"])
+
+        if total <= self.MAX_CHAPTER_CHARS:
+            return [unit]
+
+        heading_positions = sorted(
+            position
+            for position, heading in global_headings.items()
+            if (
+                start < position < end
+                and heading["level"] <= 2
+                and heading["title"]
+            )
+        )
+
+        if not heading_positions:
+            return [unit]
+
+        boundaries = [start] + heading_positions + [end]
+        result = []
+
+        for index in range(len(boundaries) - 1):
+            left = boundaries[index]
+            right = boundaries[index + 1]
+
+            paragraphs = all_paragraphs[left:right]
+
+            if not paragraphs:
+                continue
+
+            if index == 0:
+                title = unit["title"]
+            else:
+                title = global_headings[left]["title"]
+
+            result.append(
+                self._make_chapter_unit(
+                    title,
+                    paragraphs,
+                    protected=True,
+                    origin="heading" if index else unit["origin"],
+                )
+            )
+
+        return result or [unit]
+
+
+    def _build_epub_units(
+        self,
+        all_paragraphs,
+        document_order,
+        doc_info,
+        global_headings,
+        toc_entries,
+    ):
+        by_basename = {}
+
+        for name in doc_info:
+            by_basename.setdefault(
+                posixpath.basename(name).lower(),
+                [],
+            ).append(name)
+
+        starts = []
+
+        for index, (href, title) in enumerate(toc_entries):
+            name = self._resolve_epub_document(
+                href,
+                doc_info,
+                by_basename,
+            )
+
+            if name is None:
+                logger.warning(
+                    "TOC EPUB ссылается на неизвестный файл: %s",
+                    href,
+                )
+                continue
+
+            offset = doc_info[name]["offset"]
+            local_anchors = doc_info[name]["extracted"]["anchors"]
+
+            anchor = (
+                unquote(href.split("#", 1)[1].split("?", 1)[0])
+                if "#" in href
+                else ""
+            )
+
+            position = offset + local_anchors.get(anchor, 0)
+
+            starts.append((position, index, title))
+
+        starts.sort(key=lambda item: (item[0], item[1]))
+
+        deduplicated = []
+
+        for position, _index, title in starts:
+            if not 0 <= position < len(all_paragraphs):
+                continue
+
+            if (
+                deduplicated
+                and deduplicated[-1][0] == position
+            ):
+                # При одинаковой позиции якоря используем
+                # последнюю запись TOC.
+                deduplicated[-1] = (position, title)
+            else:
+                deduplicated.append((position, title))
+
+        units = []
+
+        if deduplicated:
+            first_position = deduplicated[0][0]
+
+            if first_position > 0:
+                units.append(
+                    self._make_chapter_unit(
+                        "",
+                        all_paragraphs[:first_position],
+                        protected=False,
+                        origin="technical",
+                    )
+                )
+
+            for index, (start, title) in enumerate(deduplicated):
+                end = (
+                    deduplicated[index + 1][0]
+                    if index + 1 < len(deduplicated)
+                    else len(all_paragraphs)
+                )
+
+                if end <= start:
+                    continue
+
+                unit = self._make_chapter_unit(
+                    title,
+                    all_paragraphs[start:end],
+                    protected=True,
+                    origin="toc",
+                )
+
+                units.extend(
+                    self._split_large_epub_unit_by_headings(
+                        unit,
+                        start,
+                        end,
+                        all_paragraphs,
+                        global_headings,
+                    )
+                )
+
+            return units
+
+        # Если TOC отсутствует или его ссылки не удалось разрешить,
+        # пробуем обнаружить главы по заголовкам внутри документов.
+        major_headings = [
+            (position, heading)
+            for position, heading in sorted(global_headings.items())
+            if heading["level"] <= 2 and heading["title"]
+        ]
+
+        if not major_headings:
+            major_headings = [
+                (position, heading)
+                for position, heading in sorted(global_headings.items())
+                if heading["level"] <= 3 and heading["title"]
+            ]
+
+        if major_headings:
+            first_position = major_headings[0][0]
+
+            if first_position > 0:
+                units.append(
+                    self._make_chapter_unit(
+                        "",
+                        all_paragraphs[:first_position],
+                        protected=False,
+                        origin="technical",
+                    )
+                )
+
+            for index, (start, heading) in enumerate(major_headings):
+                end = (
+                    major_headings[index + 1][0]
+                    if index + 1 < len(major_headings)
+                    else len(all_paragraphs)
+                )
+
+                units.append(
+                    self._make_chapter_unit(
+                        heading["title"],
+                        all_paragraphs[start:end],
+                        protected=True,
+                        origin="heading",
+                    )
+                )
+
+            return units
+
+        # Последний запасной вариант: сохраняем документы spine
+        # в исходном порядке, чтобы текст не исчезал.
+        for name in document_order:
+            extracted = doc_info[name]["extracted"]
+
+            units.append(
+                self._make_chapter_unit(
+                    "",
+                    extracted["paragraphs"],
+                    protected=False,
+                    origin="technical",
+                )
+            )
+
+        return units
+
+
     def _extract_epub_cover(self, book_epub):
-        # 1. EPUB3: properties="cover-image"
-        cover_items = list(book_epub.get_items_of_type(ITEM_COVER))
+        """Извлекает обложку EPUB2/EPUB3, если она присутствует."""
+        try:
+            cover_items = list(
+                book_epub.get_items_of_type(ebooklib.ITEM_COVER)
+            )
+        except Exception:
+            cover_items = []
+
         if cover_items:
-            logger.info("EPUB cover found via ITEM_COVER")
-
             item = cover_items[0]
-            return item.get_content(), item.get_name().split("/")[-1]
 
-        # 2. EPUB2: <meta name="cover" content="item-id">
-        meta_cover = book_epub.get_metadata("OPF", "cover")
-        logger.info(f"OPF cover metadata: {meta_cover}")
-        if meta_cover:
-            cover_data = meta_cover[0][1]
-            cover_id = cover_data.get("content")
+            return (
+                item.get_content(),
+                item.get_name().replace("\\", "/").split("/")[-1],
+            )
+
+        metadata = book_epub.get_metadata("OPF", "cover")
+
+        if metadata:
+            attrs = metadata[0][1] or {}
+            cover_id = attrs.get("content")
 
             if cover_id:
                 item = book_epub.get_item_with_id(cover_id)
+
                 if item:
-                    logger.info(f"EPUB cover found via OPF metadata (id={cover_id})")
-                    return item.get_content(), item.get_name().split("/")[-1]
+                    return (
+                        item.get_content(),
+                        item.get_name().replace("\\", "/").split("/")[-1],
+                    )
 
-        images = list(book_epub.get_items_of_type(ebooklib.ITEM_IMAGE))
-        for img in images:
-            logger.info(
-                "Image: %s | media_type=%s | id=%s",
-                img.get_name(),
-                img.media_type,
-                img.id,
-            )
-
-        logger.info(
-            "EPUB images: %s",
-            [img.get_name() for img in images]
-        )
-
-        for item in images:
+        for item in book_epub.get_items_of_type(ebooklib.ITEM_IMAGE):
             if "cover" in item.get_name().lower():
-                logger.info(
-                    f"EPUB cover found via filename fallback ({item.get_name()})"
+                return (
+                    item.get_content(),
+                    item.get_name().replace("\\", "/").split("/")[-1],
                 )
-                return item.get_content(), item.get_name().split("/")[-1]
 
-        logger.warning("EPUB cover not found")
         return None, None
 
 
     def _parse_epub_content(self, file_content):
         """
-        Парсинг EPUB файла из содержимого (bytes).
-        Использует временный файл и защищен от некорректных метаданных.
+        EPUB: проверка архива, чтение spine, разбор текста,
+        восстановление границ TOC/якорей и нормализация размеров.
         """
-        with tempfile.NamedTemporaryFile(suffix=".epub", delete=True) as tmp:
-            try:
+        self._validate_epub_archive(file_content)
+
+        try:
+            with tempfile.NamedTemporaryFile(
+                suffix=".epub",
+                delete=True,
+            ) as tmp:
                 tmp.write(file_content)
                 tmp.flush()
+
                 book_epub = epub.read_epub(tmp.name)
 
-                title = "Без названия"
-                if book_epub.get_metadata("DC", "title"):
-                    title = book_epub.get_metadata("DC", "title")[0][0]
-
-                raw_authors = book_epub.get_metadata("DC", "creator")
-                authors_list = (
-                    [author[0] for author in raw_authors if author and author[0]]
-                    if raw_authors
-                    else []
+                title_metadata = book_epub.get_metadata("DC", "title")
+                title = (
+                    title_metadata[0][0]
+                    if title_metadata and title_metadata[0][0]
+                    else "Без названия"
                 )
 
-                raw_genres = book_epub.get_metadata("DC", "subject")
-                genres_list = (
-                    [genre[0] for genre in raw_genres if genre and genre[0]]
-                    if raw_genres
-                    else []
+                author_metadata = book_epub.get_metadata("DC", "creator")
+                authors = ", ".join(
+                    item[0]
+                    for item in (author_metadata or [])
+                    if item and item[0]
                 )
-                # =========================================================================
+
+                subject_metadata = book_epub.get_metadata("DC", "subject")
+                genres = ", ".join(
+                    item[0]
+                    for item in (subject_metadata or [])
+                    if item and item[0]
+                )
+
+                description_metadata = book_epub.get_metadata(
+                    "DC",
+                    "description",
+                )
 
                 description = ""
-                if book_epub.get_metadata("DC", "description"):
-                    desc_html = book_epub.get_metadata("DC", "description")[0][0]
-                    description = BeautifulSoup(desc_html, "lxml").get_text(strip=True)
 
-                # --- Извлечение языка из метаданных (без присвоения основной переменной) ---
+                if description_metadata and description_metadata[0][0]:
+                    description = BeautifulSoup(
+                        description_metadata[0][0],
+                        "lxml",
+                    ).get_text(" ", strip=True)
+
+                language_metadata = book_epub.get_metadata(
+                    "DC",
+                    "language",
+                )
+
                 metadata_language = (
-                    book_epub.get_metadata("DC", "language")[0][0]
-                    if book_epub.get_metadata("DC", "language")
+                    language_metadata[0][0]
+                    if language_metadata
                     else None
                 )
 
-                cover_content, cover_filename = self._extract_epub_cover(book_epub)
+                cover_content, cover_filename = (
+                    self._extract_epub_cover(book_epub)
+                )
 
-                # ------------------ БЕЗОПАСНЫЙ ОБХОД TOC (без изменений) ------------------
-                def _iter_toc_entries(toc):
-                    for entry in toc:
-                        if isinstance(entry, (list, tuple)):
-                            if len(entry) >= 1:
-                                yield entry[0]
-                            if len(entry) >= 2 and entry[1]:
-                                for child in _iter_toc_entries(entry[1]):
-                                    yield child
-                        else:
-                            yield entry
+                # -----------------------------------------------
+                # 1. Документы в порядке чтения из spine
+                # -----------------------------------------------
 
-                toc_map = {}
-                for node in _iter_toc_entries(book_epub.toc or []):
-                    href = getattr(node, "href", None)
-                    if isinstance(node, str) and not href:
-                        href = node
-                    title_val = getattr(node, "title", None)
-                    if isinstance(title_val, (list, tuple)) and title_val:
-                        title_val = title_val[0]
-                    if isinstance(title_val, (bytes, bytearray)):
-                        try:
-                            title_val = title_val.decode("utf-8", errors="ignore")
-                        except Exception:
-                            title_val = str(title_val)
-                    if isinstance(title_val, str):
-                        title_val = BeautifulSoup(title_val, "lxml").get_text(
-                            strip=True
-                        )
-                    if href:
-                        clean_href = href.split("#")[0]
-                        if clean_href not in toc_map or (
-                            title_val and toc_map.get(clean_href) == ""
+                items = []
+                seen_names = set()
+
+                for entry in book_epub.spine or []:
+                    if isinstance(entry, (tuple, list)):
+                        idref = entry[0]
+                        linear = entry[1] if len(entry) > 1 else "yes"
+                    else:
+                        idref = entry
+                        linear = "yes"
+
+                    if str(linear).lower() == "no":
+                        continue
+
+                    item = book_epub.get_item_with_id(idref)
+
+                    if (
+                        item is not None
+                        and self._is_epub_document(item)
+                        and item.get_name() not in seen_names
+                    ):
+                        items.append(item)
+                        seen_names.add(item.get_name())
+
+                # Если spine отсутствует или в нём не все документы,
+                # добавляем оставшиеся текстовые документы в порядке
+                # их появления в manifest.
+                # Резервный обход manifest используем только тогда,
+                # когда EPUB вообще не содержит spine.
+                # Если spine существует, соблюдаем его порядок и linear="no".
+                if not (book_epub.spine or []):
+                    for item in book_epub.get_items():
+                        name = item.get_name()
+
+                        if (
+                            self._is_epub_document(item)
+                            and name not in seen_names
                         ):
-                            toc_map[clean_href] = title_val or ""
-                # --------------------------------------------------------------------------
+                            items.append(item)
+                            seen_names.add(name)
 
-                chapters_data = []
-                chapter_order = 1
-                for item in book_epub.get_items_of_type(ebooklib.ITEM_DOCUMENT):
-                    content_html = item.get_content()
-                    soup = BeautifulSoup(content_html, "xml")
-                    for tag in soup(["script", "style"]):
-                        tag.decompose()
-                    text_blocks = [
-                        p.get_text(separator=" ", strip=True)
-                        for p in soup.find_all(
-                            ["p", "h1", "h2", "h3", "h4", "h5", "h6"]
-                        )
-                    ]
-                    chapter_content = "\n\n".join(filter(None, text_blocks))
-                    if chapter_content.strip():
-                        clean_href = item.get_name().split("#")[0]
-                        chapter_title = toc_map.get(
-                            clean_href, f"Глава {chapter_order}"
-                        )
-                        chapters_data.append(
-                            {
-                                "title": chapter_title,
-                                "content": chapter_content,
-                                "order": chapter_order,
-                            }
-                        )
-                        chapter_order += 1
+                # -----------------------------------------------
+                # 2. Одна лента абзацев и глобальные позиции
+                # -----------------------------------------------
 
-                detected_language = self._detect_language_from_content(chapters_data)
+                all_paragraphs = []
+                doc_info = {}
+                document_order = []
+                global_headings = {}
 
-                # Шаг 2: Выбираем итоговый язык на основе приоритетов
-                if detected_language:
-                    # Самый высокий приоритет: язык, определенный по тексту
-                    language = detected_language
-                elif metadata_language:
-                    # Второй приоритет: язык из метаданных, если по тексту не вышло
-                    language = metadata_language
-                else:
-                    # Запасной вариант, если ничего не найдено
-                    language = "unknown"
+                for item in items:
+                    name = item.get_name()
+                    offset = len(all_paragraphs)
+
+                    extracted = self._extract_epub_document(
+                        item.get_content()
+                    )
+
+                    paragraphs = extracted["paragraphs"]
+
+                    # Пустые документы не формируют пустые главы.
+                    if not paragraphs:
+                        continue
+
+                    doc_info[name] = {
+                        "offset": offset,
+                        "extracted": extracted,
+                    }
+
+                    document_order.append(name)
+                    all_paragraphs.extend(paragraphs)
+
+                    for local_position, heading in (
+                        extracted["headings"].items()
+                    ):
+                        global_headings[offset + local_position] = heading
+
+                if not all_paragraphs:
+                    raise ValueError("В EPUB не удалось найти текст.")
+
+                # -----------------------------------------------
+                # 3. TOC и якоря
+                # -----------------------------------------------
+
+                toc_entries = []
+                self._flatten_epub_toc(
+                    book_epub.toc or [],
+                    toc_entries,
+                )
+
+                units = self._build_epub_units(
+                    all_paragraphs,
+                    document_order,
+                    doc_info,
+                    global_headings,
+                    toc_entries,
+                )
+
+                chapters_data = self._normalize_chapter_units(units)
+
+                language = self._resolve_book_language(
+                    metadata_language,
+                    chapters_data,
+                )
 
                 logger.info(
-                    f"Определение языка для книги '{title[:30]}...': "
-                    f"По содержимому: {detected_language}, "
-                    f"Из метаданных: {metadata_language}, "
-                    f"Итоговый: {language}"
+                    "EPUB parsed: title=%r documents=%d chapters=%d language=%s",
+                    title,
+                    len(document_order),
+                    len(chapters_data),
+                    language,
                 )
-                # =========================================================================
 
                 return {
                     "title": title,
                     "description": description,
-                    "language": language,  # Здесь теперь используется надежно определенный язык
-                    "authors": ", ".join(authors_list),
-                    "genres": ", ".join(genres_list),
+                    "language": language,
+                    "authors": authors,
+                    "genres": genres,
                     "chapters": chapters_data,
                     "cover_content": cover_content,
                     "cover_filename": cover_filename,
                 }
-            except Exception as e:
-                logger.error(
-                    f"Ошибка при парсинге EPUB из временного файла: {str(e)}",
-                    exc_info=True,
-                )
-                raise ValueError(f"Ошибка при парсинге EPUB: {str(e)}")
+
+        except ValueError:
+            raise
+
+        except Exception as exc:
+            logger.exception("Ошибка парсинга EPUB")
+
+            raise ValueError(
+                f"Не удалось обработать EPUB: {exc}"
+            ) from exc
+
 
     def _save_epub_chapters(self, book, chapters_data):
-        """
-        Создание объектов глав в базе данных из распарсенных данных EPUB.
-        """
-        Chapter = book.chapters.model
-        chapters_to_create = [Chapter(book=book, **data) for data in chapters_data]
-        if chapters_to_create:
-            Chapter.objects.bulk_create(chapters_to_create)
+        """Массовое сохранение глав EPUB."""
+        ChapterModel = book.chapters.model
+
+        objects = [
+            ChapterModel(
+                book=book,
+                title=chapter["title"],
+                content=chapter["content"],
+                order=chapter["order"],
+            )
+            for chapter in chapters_data
+        ]
+
+        if objects:
+            ChapterModel.objects.bulk_create(
+                objects,
+                batch_size=500,
+            )
 
 
 class FlashCardViewSet(viewsets.ModelViewSet):

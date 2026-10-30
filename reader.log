@@ -1327,3 +1327,610 @@ rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string=
 {"ts":"2026-10-01 17:22:26,170","level":"INFO","logger":"reader.translator_backends","request_id":"30cdc3227b15","user_id":"-","msg":"Recieved: Restaud and Ресто for it"}
 {"ts":"2026-10-01 17:22:27,181","level":"INFO","logger":"reader.translator_backends","request_id":"30cdc3227b15","user_id":"-","msg":"Raw response form Ai {'id': '80a261a5-e520-4619-95d8-64ab3d725b45', 'object': 'chat.completion', 'created': 1790875345, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "Ресто"\n    },\n    {\n        "text": "Ресто де"\n    },\n    {\n        "text": "Ресто-"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 40, 'total_tokens': 185, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'aeb56401ca74e127821c4f9126dcb669'}"}
 {"ts":"2026-10-01 17:22:27,181","level":"INFO","logger":"reader.translator_backends","request_id":"30cdc3227b15","user_id":"-","msg":"Parser result[{'text': 'Ресто'}, {'text': 'Ресто де'}, {'text': 'Ресто-'}]"}
+{"ts":"2026-10-29 22:50:25,216","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-10-29 22:50:25,218","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/calibre_cover.jpg | media_type=image/jpeg | id=cover"}
+{"ts":"2026-10-29 22:50:25,218","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00008.jpg | media_type=image/jpeg | id=id4"}
+{"ts":"2026-10-29 22:50:25,218","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00009.jpg | media_type=image/jpeg | id=id5"}
+{"ts":"2026-10-29 22:50:25,218","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00011.jpg | media_type=image/jpeg | id=id7"}
+{"ts":"2026-10-29 22:50:25,218","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00012.jpg | media_type=image/jpeg | id=id8"}
+{"ts":"2026-10-29 22:50:25,218","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00013.jpg | media_type=image/jpeg | id=id9"}
+{"ts":"2026-10-29 22:50:25,218","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00014.jpg | media_type=image/jpeg | id=id10"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00015.jpg | media_type=image/jpeg | id=id11"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00016.jpg | media_type=image/jpeg | id=id12"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00017.jpg | media_type=image/jpeg | id=id13"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00018.jpg | media_type=image/jpeg | id=id14"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00019.jpg | media_type=image/jpeg | id=id15"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00020.jpg | media_type=image/jpeg | id=id16"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00021.jpg | media_type=image/jpeg | id=id17"}
+{"ts":"2026-10-29 22:50:25,219","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00022.jpg | media_type=image/jpeg | id=id18"}
+{"ts":"2026-10-29 22:50:25,220","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00023.jpg | media_type=image/jpeg | id=id19"}
+{"ts":"2026-10-29 22:50:25,220","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00024.jpg | media_type=image/jpeg | id=id20"}
+{"ts":"2026-10-29 22:50:25,220","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00025.jpg | media_type=image/jpeg | id=id21"}
+{"ts":"2026-10-29 22:50:25,220","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00026.jpg | media_type=image/jpeg | id=id22"}
+{"ts":"2026-10-29 22:50:25,220","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00027.jpg | media_type=image/jpeg | id=id23"}
+{"ts":"2026-10-29 22:50:25,220","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00028.jpg | media_type=image/jpeg | id=id24"}
+{"ts":"2026-10-29 22:50:25,220","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00029.jpg | media_type=image/jpeg | id=id25"}
+{"ts":"2026-10-29 22:50:25,222","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00030.jpg | media_type=image/jpeg | id=id26"}
+{"ts":"2026-10-29 22:50:25,223","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00031.jpg | media_type=image/jpeg | id=id27"}
+{"ts":"2026-10-29 22:50:25,223","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00032.jpg | media_type=image/jpeg | id=id28"}
+{"ts":"2026-10-29 22:50:25,223","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00033.jpg | media_type=image/jpeg | id=id29"}
+{"ts":"2026-10-29 22:50:25,224","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00034.jpg | media_type=image/jpeg | id=id30"}
+{"ts":"2026-10-29 22:50:25,226","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00035.jpg | media_type=image/jpeg | id=id31"}
+{"ts":"2026-10-29 22:50:25,227","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00036.jpg | media_type=image/jpeg | id=id32"}
+{"ts":"2026-10-29 22:50:25,228","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00037.jpg | media_type=image/jpeg | id=id33"}
+{"ts":"2026-10-29 22:50:25,228","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00038.jpg | media_type=image/jpeg | id=id34"}
+{"ts":"2026-10-29 22:50:25,229","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00039.jpg | media_type=image/jpeg | id=id35"}
+{"ts":"2026-10-29 22:50:25,229","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00040.jpg | media_type=image/jpeg | id=id36"}
+{"ts":"2026-10-29 22:50:25,229","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00041.jpg | media_type=image/jpeg | id=id37"}
+{"ts":"2026-10-29 22:50:25,230","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00042.jpg | media_type=image/jpeg | id=id38"}
+{"ts":"2026-10-29 22:50:25,230","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00043.jpg | media_type=image/jpeg | id=id39"}
+{"ts":"2026-10-29 22:50:25,230","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00044.jpg | media_type=image/jpeg | id=id40"}
+{"ts":"2026-10-29 22:50:25,230","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00045.jpg | media_type=image/jpeg | id=id41"}
+{"ts":"2026-10-29 22:50:25,231","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00046.jpg | media_type=image/jpeg | id=id42"}
+{"ts":"2026-10-29 22:50:25,231","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00047.jpg | media_type=image/jpeg | id=id43"}
+{"ts":"2026-10-29 22:50:25,231","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00048.jpg | media_type=image/jpeg | id=id44"}
+{"ts":"2026-10-29 22:50:25,231","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00049.jpg | media_type=image/jpeg | id=id45"}
+{"ts":"2026-10-29 22:50:25,231","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00050.jpg | media_type=image/jpeg | id=id46"}
+{"ts":"2026-10-29 22:50:25,231","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00051.jpg | media_type=image/jpeg | id=id47"}
+{"ts":"2026-10-29 22:50:25,232","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00052.jpg | media_type=image/jpeg | id=id48"}
+{"ts":"2026-10-29 22:50:25,232","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00053.jpg | media_type=image/jpeg | id=id49"}
+{"ts":"2026-10-29 22:50:25,232","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00054.jpg | media_type=image/jpeg | id=id50"}
+{"ts":"2026-10-29 22:50:25,232","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00055.jpg | media_type=image/jpeg | id=id51"}
+{"ts":"2026-10-29 22:50:25,232","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00056.jpg | media_type=image/jpeg | id=id52"}
+{"ts":"2026-10-29 22:50:25,232","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00057.jpg | media_type=image/jpeg | id=id53"}
+{"ts":"2026-10-29 22:50:25,232","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00058.jpg | media_type=image/jpeg | id=id54"}
+{"ts":"2026-10-29 22:50:25,233","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00059.jpg | media_type=image/jpeg | id=id55"}
+{"ts":"2026-10-29 22:50:25,233","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00060.jpg | media_type=image/jpeg | id=id56"}
+{"ts":"2026-10-29 22:50:25,233","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00061.jpg | media_type=image/jpeg | id=id57"}
+{"ts":"2026-10-29 22:50:25,233","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00062.jpg | media_type=image/jpeg | id=id58"}
+{"ts":"2026-10-29 22:50:25,233","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00063.jpg | media_type=image/jpeg | id=id59"}
+{"ts":"2026-10-29 22:50:25,234","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00064.jpg | media_type=image/jpeg | id=id60"}
+{"ts":"2026-10-29 22:50:25,234","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00065.jpg | media_type=image/jpeg | id=id61"}
+{"ts":"2026-10-29 22:50:25,234","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00066.jpg | media_type=image/jpeg | id=id62"}
+{"ts":"2026-10-29 22:50:25,234","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00067.jpg | media_type=image/jpeg | id=id63"}
+{"ts":"2026-10-29 22:50:25,234","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00068.jpg | media_type=image/jpeg | id=id64"}
+{"ts":"2026-10-29 22:50:25,235","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00069.jpg | media_type=image/jpeg | id=id65"}
+{"ts":"2026-10-29 22:50:25,235","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00070.jpg | media_type=image/jpeg | id=id66"}
+{"ts":"2026-10-29 22:50:25,235","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00071.jpg | media_type=image/jpeg | id=id67"}
+{"ts":"2026-10-29 22:50:25,235","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00072.jpg | media_type=image/jpeg | id=id68"}
+{"ts":"2026-10-29 22:50:25,235","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00073.jpg | media_type=image/jpeg | id=id69"}
+{"ts":"2026-10-29 22:50:25,236","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00074.jpg | media_type=image/jpeg | id=id70"}
+{"ts":"2026-10-29 22:50:25,236","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00075.jpg | media_type=image/jpeg | id=id71"}
+{"ts":"2026-10-29 22:50:25,236","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00076.jpg | media_type=image/jpeg | id=id72"}
+{"ts":"2026-10-29 22:50:25,236","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00077.jpg | media_type=image/jpeg | id=id73"}
+{"ts":"2026-10-29 22:50:25,236","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00078.jpg | media_type=image/jpeg | id=id74"}
+{"ts":"2026-10-29 22:50:25,237","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00079.jpg | media_type=image/jpeg | id=id75"}
+{"ts":"2026-10-29 22:50:25,237","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00080.jpg | media_type=image/jpeg | id=id76"}
+{"ts":"2026-10-29 22:50:25,237","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00081.jpg | media_type=image/jpeg | id=id77"}
+{"ts":"2026-10-29 22:50:25,237","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00082.jpg | media_type=image/jpeg | id=id78"}
+{"ts":"2026-10-29 22:50:25,238","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00083.jpg | media_type=image/jpeg | id=id79"}
+{"ts":"2026-10-29 22:50:25,238","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00084.jpg | media_type=image/jpeg | id=id80"}
+{"ts":"2026-10-29 22:50:25,238","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00085.jpg | media_type=image/jpeg | id=id81"}
+{"ts":"2026-10-29 22:50:25,239","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00086.jpg | media_type=image/jpeg | id=id82"}
+{"ts":"2026-10-29 22:50:25,239","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00087.jpg | media_type=image/jpeg | id=id83"}
+{"ts":"2026-10-29 22:50:25,239","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00088.jpg | media_type=image/jpeg | id=id84"}
+{"ts":"2026-10-29 22:50:25,239","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00089.jpg | media_type=image/jpeg | id=id85"}
+{"ts":"2026-10-29 22:50:25,239","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00090.jpg | media_type=image/jpeg | id=id86"}
+{"ts":"2026-10-29 22:50:25,240","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00091.jpg | media_type=image/jpeg | id=id87"}
+{"ts":"2026-10-29 22:50:25,240","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00092.jpg | media_type=image/jpeg | id=id88"}
+{"ts":"2026-10-29 22:50:25,240","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00093.jpg | media_type=image/jpeg | id=id89"}
+{"ts":"2026-10-29 22:50:25,241","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00094.jpg | media_type=image/jpeg | id=id90"}
+{"ts":"2026-10-29 22:50:25,242","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00095.jpg | media_type=image/jpeg | id=id91"}
+{"ts":"2026-10-29 22:50:25,242","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00096.jpg | media_type=image/jpeg | id=id92"}
+{"ts":"2026-10-29 22:50:25,243","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00097.jpg | media_type=image/jpeg | id=id93"}
+{"ts":"2026-10-29 22:50:25,244","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00098.jpg | media_type=image/jpeg | id=id94"}
+{"ts":"2026-10-29 22:50:25,244","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00099.jpg | media_type=image/jpeg | id=id95"}
+{"ts":"2026-10-29 22:50:25,244","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00100.jpg | media_type=image/jpeg | id=id96"}
+{"ts":"2026-10-29 22:50:25,244","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00101.jpg | media_type=image/jpeg | id=id97"}
+{"ts":"2026-10-29 22:50:25,244","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00102.jpg | media_type=image/jpeg | id=id98"}
+{"ts":"2026-10-29 22:50:25,244","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00103.jpg | media_type=image/jpeg | id=id99"}
+{"ts":"2026-10-29 22:50:25,245","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00104.jpg | media_type=image/jpeg | id=id100"}
+{"ts":"2026-10-29 22:50:25,245","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00105.jpg | media_type=image/jpeg | id=id101"}
+{"ts":"2026-10-29 22:50:25,245","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00106.jpg | media_type=image/jpeg | id=id102"}
+{"ts":"2026-10-29 22:50:25,245","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00107.jpg | media_type=image/jpeg | id=id103"}
+{"ts":"2026-10-29 22:50:25,246","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00108.jpg | media_type=image/jpeg | id=id104"}
+{"ts":"2026-10-29 22:50:25,246","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00109.jpg | media_type=image/jpeg | id=id105"}
+{"ts":"2026-10-29 22:50:25,246","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00110.jpg | media_type=image/jpeg | id=id106"}
+{"ts":"2026-10-29 22:50:25,246","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00111.jpg | media_type=image/jpeg | id=id107"}
+{"ts":"2026-10-29 22:50:25,246","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00112.jpg | media_type=image/jpeg | id=id108"}
+{"ts":"2026-10-29 22:50:25,247","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00113.jpg | media_type=image/jpeg | id=id109"}
+{"ts":"2026-10-29 22:50:25,247","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00114.jpg | media_type=image/jpeg | id=id110"}
+{"ts":"2026-10-29 22:50:25,247","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00115.jpg | media_type=image/jpeg | id=id111"}
+{"ts":"2026-10-29 22:50:25,247","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00116.jpg | media_type=image/jpeg | id=id112"}
+{"ts":"2026-10-29 22:50:25,247","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00117.jpg | media_type=image/jpeg | id=id113"}
+{"ts":"2026-10-29 22:50:25,248","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00118.jpg | media_type=image/jpeg | id=id114"}
+{"ts":"2026-10-29 22:50:25,248","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00119.jpg | media_type=image/jpeg | id=id115"}
+{"ts":"2026-10-29 22:50:25,248","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00120.jpg | media_type=image/jpeg | id=id116"}
+{"ts":"2026-10-29 22:50:25,248","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00121.jpg | media_type=image/jpeg | id=id117"}
+{"ts":"2026-10-29 22:50:25,248","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00122.jpg | media_type=image/jpeg | id=id118"}
+{"ts":"2026-10-29 22:50:25,248","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00123.jpg | media_type=image/jpeg | id=id119"}
+{"ts":"2026-10-29 22:50:25,249","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00124.jpg | media_type=image/jpeg | id=id120"}
+{"ts":"2026-10-29 22:50:25,249","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00125.jpg | media_type=image/jpeg | id=id121"}
+{"ts":"2026-10-29 22:50:25,249","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00126.jpg | media_type=image/jpeg | id=id122"}
+{"ts":"2026-10-29 22:50:25,249","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00127.jpg | media_type=image/jpeg | id=id123"}
+{"ts":"2026-10-29 22:50:25,249","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00128.jpg | media_type=image/jpeg | id=id124"}
+{"ts":"2026-10-29 22:50:25,249","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00129.jpg | media_type=image/jpeg | id=id125"}
+{"ts":"2026-10-29 22:50:25,250","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00130.jpg | media_type=image/jpeg | id=id126"}
+{"ts":"2026-10-29 22:50:25,250","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00131.jpg | media_type=image/jpeg | id=id127"}
+{"ts":"2026-10-29 22:50:25,250","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00132.jpg | media_type=image/jpeg | id=id128"}
+{"ts":"2026-10-29 22:50:25,250","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00133.jpg | media_type=image/jpeg | id=id129"}
+{"ts":"2026-10-29 22:50:25,250","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00134.jpg | media_type=image/jpeg | id=id130"}
+{"ts":"2026-10-29 22:50:25,250","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00135.jpg | media_type=image/jpeg | id=id131"}
+{"ts":"2026-10-29 22:50:25,251","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00136.jpg | media_type=image/jpeg | id=id132"}
+{"ts":"2026-10-29 22:50:25,251","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00137.jpg | media_type=image/jpeg | id=id133"}
+{"ts":"2026-10-29 22:50:25,251","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00138.jpg | media_type=image/jpeg | id=id134"}
+{"ts":"2026-10-29 22:50:25,251","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00139.jpg | media_type=image/jpeg | id=id135"}
+{"ts":"2026-10-29 22:50:25,251","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00140.jpg | media_type=image/jpeg | id=id136"}
+{"ts":"2026-10-29 22:50:25,251","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00141.jpg | media_type=image/jpeg | id=id137"}
+{"ts":"2026-10-29 22:50:25,251","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00142.jpg | media_type=image/jpeg | id=id138"}
+{"ts":"2026-10-29 22:50:25,252","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00143.jpg | media_type=image/jpeg | id=id139"}
+{"ts":"2026-10-29 22:50:25,252","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00144.jpg | media_type=image/jpeg | id=id140"}
+{"ts":"2026-10-29 22:50:25,252","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00145.jpg | media_type=image/jpeg | id=id141"}
+{"ts":"2026-10-29 22:50:25,252","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00146.jpg | media_type=image/jpeg | id=id142"}
+{"ts":"2026-10-29 22:50:25,252","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00147.jpg | media_type=image/jpeg | id=id143"}
+{"ts":"2026-10-29 22:50:25,252","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00148.jpg | media_type=image/jpeg | id=id144"}
+{"ts":"2026-10-29 22:50:25,252","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00149.jpg | media_type=image/jpeg | id=id145"}
+{"ts":"2026-10-29 22:50:25,253","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00150.jpg | media_type=image/jpeg | id=id146"}
+{"ts":"2026-10-29 22:50:25,253","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00151.jpg | media_type=image/jpeg | id=id147"}
+{"ts":"2026-10-29 22:50:25,253","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00152.jpg | media_type=image/jpeg | id=id148"}
+{"ts":"2026-10-29 22:50:25,253","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00153.jpg | media_type=image/jpeg | id=id149"}
+{"ts":"2026-10-29 22:50:25,253","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00154.jpg | media_type=image/jpeg | id=id150"}
+{"ts":"2026-10-29 22:50:25,253","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00155.jpg | media_type=image/jpeg | id=id151"}
+{"ts":"2026-10-29 22:50:25,253","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00156.jpg | media_type=image/jpeg | id=id152"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00157.jpg | media_type=image/jpeg | id=id153"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00158.jpg | media_type=image/jpeg | id=id154"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00159.jpg | media_type=image/jpeg | id=id155"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00160.jpg | media_type=image/jpeg | id=id156"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00161.jpg | media_type=image/jpeg | id=id157"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00162.jpg | media_type=image/jpeg | id=id158"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00163.jpg | media_type=image/jpeg | id=id159"}
+{"ts":"2026-10-29 22:50:25,254","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00164.jpg | media_type=image/jpeg | id=id160"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00165.jpg | media_type=image/jpeg | id=id161"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00166.jpg | media_type=image/jpeg | id=id162"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00167.jpg | media_type=image/jpeg | id=id163"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00168.jpg | media_type=image/jpeg | id=id164"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00169.jpg | media_type=image/jpeg | id=id165"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00170.jpg | media_type=image/jpeg | id=id166"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00171.jpg | media_type=image/jpeg | id=id167"}
+{"ts":"2026-10-29 22:50:25,255","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00172.jpg | media_type=image/jpeg | id=id168"}
+{"ts":"2026-10-29 22:50:25,256","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00173.jpg | media_type=image/jpeg | id=id169"}
+{"ts":"2026-10-29 22:50:25,256","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00174.jpg | media_type=image/jpeg | id=id170"}
+{"ts":"2026-10-29 22:50:25,256","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00175.jpg | media_type=image/jpeg | id=id171"}
+{"ts":"2026-10-29 22:50:25,256","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00176.jpg | media_type=image/jpeg | id=id172"}
+{"ts":"2026-10-29 22:50:25,256","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00177.jpg | media_type=image/jpeg | id=id173"}
+{"ts":"2026-10-29 22:50:25,257","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00178.jpg | media_type=image/jpeg | id=id174"}
+{"ts":"2026-10-29 22:50:25,257","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00179.jpg | media_type=image/jpeg | id=id175"}
+{"ts":"2026-10-29 22:50:25,257","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00180.jpg | media_type=image/jpeg | id=id176"}
+{"ts":"2026-10-29 22:50:25,257","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00181.jpg | media_type=image/jpeg | id=id177"}
+{"ts":"2026-10-29 22:50:25,257","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00182.jpg | media_type=image/jpeg | id=id178"}
+{"ts":"2026-10-29 22:50:25,257","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00183.jpg | media_type=image/jpeg | id=id179"}
+{"ts":"2026-10-29 22:50:25,258","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00184.jpg | media_type=image/jpeg | id=id180"}
+{"ts":"2026-10-29 22:50:25,258","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00185.jpg | media_type=image/jpeg | id=id181"}
+{"ts":"2026-10-29 22:50:25,259","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00186.jpg | media_type=image/jpeg | id=id182"}
+{"ts":"2026-10-29 22:50:25,260","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00187.jpg | media_type=image/jpeg | id=id183"}
+{"ts":"2026-10-29 22:50:25,261","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00188.jpg | media_type=image/jpeg | id=id184"}
+{"ts":"2026-10-29 22:50:25,261","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00189.jpg | media_type=image/jpeg | id=id185"}
+{"ts":"2026-10-29 22:50:25,262","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00190.jpg | media_type=image/jpeg | id=id186"}
+{"ts":"2026-10-29 22:50:25,262","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00191.jpg | media_type=image/jpeg | id=id187"}
+{"ts":"2026-10-29 22:50:25,262","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00192.jpg | media_type=image/jpeg | id=id188"}
+{"ts":"2026-10-29 22:50:25,262","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00193.jpg | media_type=image/jpeg | id=id189"}
+{"ts":"2026-10-29 22:50:25,262","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00194.jpg | media_type=image/jpeg | id=id190"}
+{"ts":"2026-10-29 22:50:25,263","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00195.jpg | media_type=image/jpeg | id=id191"}
+{"ts":"2026-10-29 22:50:25,263","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00196.jpg | media_type=image/jpeg | id=id192"}
+{"ts":"2026-10-29 22:50:25,263","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00197.jpg | media_type=image/jpeg | id=id193"}
+{"ts":"2026-10-29 22:50:25,263","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00198.jpg | media_type=image/jpeg | id=id194"}
+{"ts":"2026-10-29 22:50:25,263","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00199.jpg | media_type=image/jpeg | id=id195"}
+{"ts":"2026-10-29 22:50:25,264","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00200.jpg | media_type=image/jpeg | id=id196"}
+{"ts":"2026-10-29 22:50:25,264","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00201.jpg | media_type=image/jpeg | id=id197"}
+{"ts":"2026-10-29 22:50:25,264","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00202.jpg | media_type=image/jpeg | id=id198"}
+{"ts":"2026-10-29 22:50:25,264","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00203.jpg | media_type=image/jpeg | id=id199"}
+{"ts":"2026-10-29 22:50:25,264","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00204.jpg | media_type=image/jpeg | id=id200"}
+{"ts":"2026-10-29 22:50:25,265","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00205.jpg | media_type=image/jpeg | id=id201"}
+{"ts":"2026-10-29 22:50:25,265","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00206.jpg | media_type=image/jpeg | id=id202"}
+{"ts":"2026-10-29 22:50:25,265","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00207.jpg | media_type=image/jpeg | id=id203"}
+{"ts":"2026-10-29 22:50:25,265","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00208.jpg | media_type=image/jpeg | id=id204"}
+{"ts":"2026-10-29 22:50:25,265","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00209.jpg | media_type=image/jpeg | id=id205"}
+{"ts":"2026-10-29 22:50:25,266","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00210.jpg | media_type=image/jpeg | id=id206"}
+{"ts":"2026-10-29 22:50:25,266","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00211.jpg | media_type=image/jpeg | id=id207"}
+{"ts":"2026-10-29 22:50:25,266","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00212.jpg | media_type=image/jpeg | id=id208"}
+{"ts":"2026-10-29 22:50:25,267","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00213.jpg | media_type=image/jpeg | id=id209"}
+{"ts":"2026-10-29 22:50:25,267","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00214.jpg | media_type=image/jpeg | id=id210"}
+{"ts":"2026-10-29 22:50:25,267","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00215.jpg | media_type=image/jpeg | id=id211"}
+{"ts":"2026-10-29 22:50:25,268","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00216.jpg | media_type=image/jpeg | id=id212"}
+{"ts":"2026-10-29 22:50:25,268","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00217.jpg | media_type=image/jpeg | id=id213"}
+{"ts":"2026-10-29 22:50:25,268","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00218.jpg | media_type=image/jpeg | id=id214"}
+{"ts":"2026-10-29 22:50:25,268","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00219.jpg | media_type=image/jpeg | id=id215"}
+{"ts":"2026-10-29 22:50:25,269","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00220.jpg | media_type=image/jpeg | id=id216"}
+{"ts":"2026-10-29 22:50:25,269","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00221.jpg | media_type=image/jpeg | id=id217"}
+{"ts":"2026-10-29 22:50:25,269","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00222.jpg | media_type=image/jpeg | id=id218"}
+{"ts":"2026-10-29 22:50:25,269","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00223.jpg | media_type=image/jpeg | id=id219"}
+{"ts":"2026-10-29 22:50:25,270","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00224.jpg | media_type=image/jpeg | id=id220"}
+{"ts":"2026-10-29 22:50:25,270","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00225.jpg | media_type=image/jpeg | id=id221"}
+{"ts":"2026-10-29 22:50:25,270","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00226.jpg | media_type=image/jpeg | id=id222"}
+{"ts":"2026-10-29 22:50:25,270","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00227.jpg | media_type=image/jpeg | id=id223"}
+{"ts":"2026-10-29 22:50:25,270","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00228.jpg | media_type=image/jpeg | id=id224"}
+{"ts":"2026-10-29 22:50:25,270","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00229.jpg | media_type=image/jpeg | id=id225"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00230.jpg | media_type=image/jpeg | id=id226"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00231.jpg | media_type=image/jpeg | id=id227"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00232.jpg | media_type=image/jpeg | id=id228"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00233.jpg | media_type=image/jpeg | id=id229"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00234.jpg | media_type=image/jpeg | id=id230"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00235.jpg | media_type=image/jpeg | id=id231"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00236.jpg | media_type=image/jpeg | id=id232"}
+{"ts":"2026-10-29 22:50:25,271","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00237.jpg | media_type=image/jpeg | id=id233"}
+{"ts":"2026-10-29 22:50:25,272","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00238.jpg | media_type=image/jpeg | id=id234"}
+{"ts":"2026-10-29 22:50:25,272","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00239.jpg | media_type=image/jpeg | id=id235"}
+{"ts":"2026-10-29 22:50:25,272","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00240.jpg | media_type=image/jpeg | id=id236"}
+{"ts":"2026-10-29 22:50:25,272","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00241.jpg | media_type=image/jpeg | id=id237"}
+{"ts":"2026-10-29 22:50:25,272","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00242.jpg | media_type=image/jpeg | id=id238"}
+{"ts":"2026-10-29 22:50:25,272","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00243.jpg | media_type=image/jpeg | id=id239"}
+{"ts":"2026-10-29 22:50:25,273","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00244.jpg | media_type=image/jpeg | id=id240"}
+{"ts":"2026-10-29 22:50:25,273","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00245.jpg | media_type=image/jpeg | id=id241"}
+{"ts":"2026-10-29 22:50:25,273","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00246.jpg | media_type=image/jpeg | id=id242"}
+{"ts":"2026-10-29 22:50:25,273","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00247.jpg | media_type=image/jpeg | id=id243"}
+{"ts":"2026-10-29 22:50:25,273","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00248.jpg | media_type=image/jpeg | id=id244"}
+{"ts":"2026-10-29 22:50:25,273","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00249.jpg | media_type=image/jpeg | id=id245"}
+{"ts":"2026-10-29 22:50:25,274","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00250.jpg | media_type=image/jpeg | id=id246"}
+{"ts":"2026-10-29 22:50:25,274","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Image: images/00251.jpg | media_type=image/jpeg | id=id247"}
+{"ts":"2026-10-29 22:50:25,274","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"EPUB images: ['images/calibre_cover.jpg', 'images/00008.jpg', 'images/00009.jpg', 'images/00011.jpg', 'images/00012.jpg', 'images/00013.jpg', 'images/00014.jpg', 'images/00015.jpg', 'images/00016.jpg', 'images/00017.jpg', 'images/00018.jpg', 'images/00019.jpg', 'images/00020.jpg', 'images/00021.jpg', 'images/00022.jpg', 'images/00023.jpg', 'images/00024.jpg', 'images/00025.jpg', 'images/00026.jpg', 'images/00027.jpg', 'images/00028.jpg', 'images/00029.jpg', 'images/00030.jpg', 'images/00031.jpg', 'images/00032.jpg', 'images/00033.jpg', 'images/00034.jpg', 'images/00035.jpg', 'images/00036.jpg', 'images/00037.jpg', 'images/00038.jpg', 'images/00039.jpg', 'images/00040.jpg', 'images/00041.jpg', 'images/00042.jpg', 'images/00043.jpg', 'images/00044.jpg', 'images/00045.jpg', 'images/00046.jpg', 'images/00047.jpg', 'images/00048.jpg', 'images/00049.jpg', 'images/00050.jpg', 'images/00051.jpg', 'images/00052.jpg', 'images/00053.jpg', 'images/00054.jpg', 'images/00055.jpg', 'images/00056.jpg', 'images/00057.jpg', 'images/00058.jpg', 'images/00059.jpg', 'images/00060.jpg', 'images/00061.jpg', 'images/00062.jpg', 'images/00063.jpg', 'images/00064.jpg', 'images/00065.jpg', 'images/00066.jpg', 'images/00067.jpg', 'images/00068.jpg', 'images/00069.jpg', 'images/00070.jpg', 'images/00071.jpg', 'images/00072.jpg', 'images/00073.jpg', 'images/00074.jpg', 'images/00075.jpg', 'images/00076.jpg', 'images/00077.jpg', 'images/00078.jpg', 'images/00079.jpg', 'images/00080.jpg', 'images/00081.jpg', 'images/00082.jpg', 'images/00083.jpg', 'images/00084.jpg', 'images/00085.jpg', 'images/00086.jpg', 'images/00087.jpg', 'images/00088.jpg', 'images/00089.jpg', 'images/00090.jpg', 'images/00091.jpg', 'images/00092.jpg', 'images/00093.jpg', 'images/00094.jpg', 'images/00095.jpg', 'images/00096.jpg', 'images/00097.jpg', 'images/00098.jpg', 'images/00099.jpg', 'images/00100.jpg', 'images/00101.jpg', 'images/00102.jpg', 'images/00103.jpg', 'images/00104.jpg', 'images/00105.jpg', 'images/00106.jpg', 'images/00107.jpg', 'images/00108.jpg', 'images/00109.jpg', 'images/00110.jpg', 'images/00111.jpg', 'images/00112.jpg', 'images/00113.jpg', 'images/00114.jpg', 'images/00115.jpg', 'images/00116.jpg', 'images/00117.jpg', 'images/00118.jpg', 'images/00119.jpg', 'images/00120.jpg', 'images/00121.jpg', 'images/00122.jpg', 'images/00123.jpg', 'images/00124.jpg', 'images/00125.jpg', 'images/00126.jpg', 'images/00127.jpg', 'images/00128.jpg', 'images/00129.jpg', 'images/00130.jpg', 'images/00131.jpg', 'images/00132.jpg', 'images/00133.jpg', 'images/00134.jpg', 'images/00135.jpg', 'images/00136.jpg', 'images/00137.jpg', 'images/00138.jpg', 'images/00139.jpg', 'images/00140.jpg', 'images/00141.jpg', 'images/00142.jpg', 'images/00143.jpg', 'images/00144.jpg', 'images/00145.jpg', 'images/00146.jpg', 'images/00147.jpg', 'images/00148.jpg', 'images/00149.jpg', 'images/00150.jpg', 'images/00151.jpg', 'images/00152.jpg', 'images/00153.jpg', 'images/00154.jpg', 'images/00155.jpg', 'images/00156.jpg', 'images/00157.jpg', 'images/00158.jpg', 'images/00159.jpg', 'images/00160.jpg', 'images/00161.jpg', 'images/00162.jpg', 'images/00163.jpg', 'images/00164.jpg', 'images/00165.jpg', 'images/00166.jpg', 'images/00167.jpg', 'images/00168.jpg', 'images/00169.jpg', 'images/00170.jpg', 'images/00171.jpg', 'images/00172.jpg', 'images/00173.jpg', 'images/00174.jpg', 'images/00175.jpg', 'images/00176.jpg', 'images/00177.jpg', 'images/00178.jpg', 'images/00179.jpg', 'images/00180.jpg', 'images/00181.jpg', 'images/00182.jpg', 'images/00183.jpg', 'images/00184.jpg', 'images/00185.jpg', 'images/00186.jpg', 'images/00187.jpg', 'images/00188.jpg', 'images/00189.jpg', 'images/00190.jpg', 'images/00191.jpg', 'images/00192.jpg', 'images/00193.jpg', 'images/00194.jpg', 'images/00195.jpg', 'images/00196.jpg', 'images/00197.jpg', 'images/00198.jpg', 'images/00199.jpg', 'images/00200.jpg', 'images/00201.jpg', 'images/00202.jpg', 'images/00203.jpg', 'images/00204.jpg', 'images/00205.jpg', 'images/00206.jpg', 'images/00207.jpg', 'images/00208.jpg', 'images/00209.jpg', 'images/00210.jpg', 'images/00211.jpg', 'images/00212.jpg', 'images/00213.jpg', 'images/00214.jpg', 'images/00215.jpg', 'images/00216.jpg', 'images/00217.jpg', 'images/00218.jpg', 'images/00219.jpg', 'images/00220.jpg', 'images/00221.jpg', 'images/00222.jpg', 'images/00223.jpg', 'images/00224.jpg', 'images/00225.jpg', 'images/00226.jpg', 'images/00227.jpg', 'images/00228.jpg', 'images/00229.jpg', 'images/00230.jpg', 'images/00231.jpg', 'images/00232.jpg', 'images/00233.jpg', 'images/00234.jpg', 'images/00235.jpg', 'images/00236.jpg', 'images/00237.jpg', 'images/00238.jpg', 'images/00239.jpg', 'images/00240.jpg', 'images/00241.jpg', 'images/00242.jpg', 'images/00243.jpg', 'images/00244.jpg', 'images/00245.jpg', 'images/00246.jpg', 'images/00247.jpg', 'images/00248.jpg', 'images/00249.jpg', 'images/00250.jpg', 'images/00251.jpg']"}
+{"ts":"2026-10-29 22:50:25,275","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"EPUB cover found via filename fallback (images/calibre_cover.jpg)"}
+{"ts":"2026-10-29 22:50:26,780","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Определение языка для книги 'Antifragile: Things That Gain ...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-10-29 22:50:31,014","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Book file name: books/Antifragile-20Things20That20Gain20from20Disorder20Incerto20Book20320--20Nas_Jaac9vT.org20.epub"}
+{"ts":"2026-10-29 22:50:31,017","level":"INFO","logger":"reader.views","request_id":"02bb06ee18d6","user_id":"-","msg":"Book file URL: https://71af5c03970ff8d7a7b3ed12fa3fa567.r2.cloudflarestorage.com/book-reader-storage/books/Antifragile-20Things20That20Gain20from20Disorder20Incerto20Book20320--20Nas_Jaac9vT.org20.epub?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ebc6457ac9e4ab6ef3382090b3394603%2F20261029%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261029T225031Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=54010ba3faee38d1e6bb8a2fc8ed17c0d208d6b698f27e6890f1748dc2689943"}
+{"ts":"2026-10-29 23:42:27,675","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"OPF cover metadata: []"}
+{"ts":"2026-10-29 23:42:27,687","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/calibre_cover.jpg | media_type=image/jpeg | id=cover"}
+{"ts":"2026-10-29 23:42:27,687","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00008.jpg | media_type=image/jpeg | id=id4"}
+{"ts":"2026-10-29 23:42:27,687","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00009.jpg | media_type=image/jpeg | id=id5"}
+{"ts":"2026-10-29 23:42:27,687","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00011.jpg | media_type=image/jpeg | id=id7"}
+{"ts":"2026-10-29 23:42:27,687","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00012.jpg | media_type=image/jpeg | id=id8"}
+{"ts":"2026-10-29 23:42:27,688","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00013.jpg | media_type=image/jpeg | id=id9"}
+{"ts":"2026-10-29 23:42:27,688","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00014.jpg | media_type=image/jpeg | id=id10"}
+{"ts":"2026-10-29 23:42:27,688","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00015.jpg | media_type=image/jpeg | id=id11"}
+{"ts":"2026-10-29 23:42:27,688","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00016.jpg | media_type=image/jpeg | id=id12"}
+{"ts":"2026-10-29 23:42:27,689","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00017.jpg | media_type=image/jpeg | id=id13"}
+{"ts":"2026-10-29 23:42:27,689","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00018.jpg | media_type=image/jpeg | id=id14"}
+{"ts":"2026-10-29 23:42:27,689","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00019.jpg | media_type=image/jpeg | id=id15"}
+{"ts":"2026-10-29 23:42:27,689","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00020.jpg | media_type=image/jpeg | id=id16"}
+{"ts":"2026-10-29 23:42:27,689","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00021.jpg | media_type=image/jpeg | id=id17"}
+{"ts":"2026-10-29 23:42:27,689","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00022.jpg | media_type=image/jpeg | id=id18"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00023.jpg | media_type=image/jpeg | id=id19"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00024.jpg | media_type=image/jpeg | id=id20"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00025.jpg | media_type=image/jpeg | id=id21"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00026.jpg | media_type=image/jpeg | id=id22"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00027.jpg | media_type=image/jpeg | id=id23"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00028.jpg | media_type=image/jpeg | id=id24"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00029.jpg | media_type=image/jpeg | id=id25"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00030.jpg | media_type=image/jpeg | id=id26"}
+{"ts":"2026-10-29 23:42:27,690","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00031.jpg | media_type=image/jpeg | id=id27"}
+{"ts":"2026-10-29 23:42:27,691","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00032.jpg | media_type=image/jpeg | id=id28"}
+{"ts":"2026-10-29 23:42:27,691","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00033.jpg | media_type=image/jpeg | id=id29"}
+{"ts":"2026-10-29 23:42:27,691","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00034.jpg | media_type=image/jpeg | id=id30"}
+{"ts":"2026-10-29 23:42:27,692","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00035.jpg | media_type=image/jpeg | id=id31"}
+{"ts":"2026-10-29 23:42:27,692","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00036.jpg | media_type=image/jpeg | id=id32"}
+{"ts":"2026-10-29 23:42:27,692","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00037.jpg | media_type=image/jpeg | id=id33"}
+{"ts":"2026-10-29 23:42:27,693","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00038.jpg | media_type=image/jpeg | id=id34"}
+{"ts":"2026-10-29 23:42:27,693","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00039.jpg | media_type=image/jpeg | id=id35"}
+{"ts":"2026-10-29 23:42:27,693","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00040.jpg | media_type=image/jpeg | id=id36"}
+{"ts":"2026-10-29 23:42:27,693","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00041.jpg | media_type=image/jpeg | id=id37"}
+{"ts":"2026-10-29 23:42:27,693","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00042.jpg | media_type=image/jpeg | id=id38"}
+{"ts":"2026-10-29 23:42:27,694","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00043.jpg | media_type=image/jpeg | id=id39"}
+{"ts":"2026-10-29 23:42:27,694","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00044.jpg | media_type=image/jpeg | id=id40"}
+{"ts":"2026-10-29 23:42:27,694","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00045.jpg | media_type=image/jpeg | id=id41"}
+{"ts":"2026-10-29 23:42:27,694","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00046.jpg | media_type=image/jpeg | id=id42"}
+{"ts":"2026-10-29 23:42:27,695","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00047.jpg | media_type=image/jpeg | id=id43"}
+{"ts":"2026-10-29 23:42:27,695","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00048.jpg | media_type=image/jpeg | id=id44"}
+{"ts":"2026-10-29 23:42:27,696","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00049.jpg | media_type=image/jpeg | id=id45"}
+{"ts":"2026-10-29 23:42:27,696","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00050.jpg | media_type=image/jpeg | id=id46"}
+{"ts":"2026-10-29 23:42:27,697","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00051.jpg | media_type=image/jpeg | id=id47"}
+{"ts":"2026-10-29 23:42:27,697","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00052.jpg | media_type=image/jpeg | id=id48"}
+{"ts":"2026-10-29 23:42:27,698","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00053.jpg | media_type=image/jpeg | id=id49"}
+{"ts":"2026-10-29 23:42:27,698","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00054.jpg | media_type=image/jpeg | id=id50"}
+{"ts":"2026-10-29 23:42:27,698","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00055.jpg | media_type=image/jpeg | id=id51"}
+{"ts":"2026-10-29 23:42:27,699","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00056.jpg | media_type=image/jpeg | id=id52"}
+{"ts":"2026-10-29 23:42:27,700","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00057.jpg | media_type=image/jpeg | id=id53"}
+{"ts":"2026-10-29 23:42:27,700","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00058.jpg | media_type=image/jpeg | id=id54"}
+{"ts":"2026-10-29 23:42:27,701","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00059.jpg | media_type=image/jpeg | id=id55"}
+{"ts":"2026-10-29 23:42:27,701","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00060.jpg | media_type=image/jpeg | id=id56"}
+{"ts":"2026-10-29 23:42:27,701","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00061.jpg | media_type=image/jpeg | id=id57"}
+{"ts":"2026-10-29 23:42:27,701","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00062.jpg | media_type=image/jpeg | id=id58"}
+{"ts":"2026-10-29 23:42:27,702","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00063.jpg | media_type=image/jpeg | id=id59"}
+{"ts":"2026-10-29 23:42:27,702","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00064.jpg | media_type=image/jpeg | id=id60"}
+{"ts":"2026-10-29 23:42:27,702","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00065.jpg | media_type=image/jpeg | id=id61"}
+{"ts":"2026-10-29 23:42:27,702","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00066.jpg | media_type=image/jpeg | id=id62"}
+{"ts":"2026-10-29 23:42:27,702","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00067.jpg | media_type=image/jpeg | id=id63"}
+{"ts":"2026-10-29 23:42:27,702","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00068.jpg | media_type=image/jpeg | id=id64"}
+{"ts":"2026-10-29 23:42:27,703","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00069.jpg | media_type=image/jpeg | id=id65"}
+{"ts":"2026-10-29 23:42:27,703","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00070.jpg | media_type=image/jpeg | id=id66"}
+{"ts":"2026-10-29 23:42:27,703","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00071.jpg | media_type=image/jpeg | id=id67"}
+{"ts":"2026-10-29 23:42:27,703","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00072.jpg | media_type=image/jpeg | id=id68"}
+{"ts":"2026-10-29 23:42:27,703","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00073.jpg | media_type=image/jpeg | id=id69"}
+{"ts":"2026-10-29 23:42:27,704","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00074.jpg | media_type=image/jpeg | id=id70"}
+{"ts":"2026-10-29 23:42:27,704","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00075.jpg | media_type=image/jpeg | id=id71"}
+{"ts":"2026-10-29 23:42:27,704","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00076.jpg | media_type=image/jpeg | id=id72"}
+{"ts":"2026-10-29 23:42:27,704","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00077.jpg | media_type=image/jpeg | id=id73"}
+{"ts":"2026-10-29 23:42:27,704","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00078.jpg | media_type=image/jpeg | id=id74"}
+{"ts":"2026-10-29 23:42:27,704","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00079.jpg | media_type=image/jpeg | id=id75"}
+{"ts":"2026-10-29 23:42:27,704","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00080.jpg | media_type=image/jpeg | id=id76"}
+{"ts":"2026-10-29 23:42:27,705","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00081.jpg | media_type=image/jpeg | id=id77"}
+{"ts":"2026-10-29 23:42:27,705","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00082.jpg | media_type=image/jpeg | id=id78"}
+{"ts":"2026-10-29 23:42:27,705","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00083.jpg | media_type=image/jpeg | id=id79"}
+{"ts":"2026-10-29 23:42:27,705","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00084.jpg | media_type=image/jpeg | id=id80"}
+{"ts":"2026-10-29 23:42:27,705","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00085.jpg | media_type=image/jpeg | id=id81"}
+{"ts":"2026-10-29 23:42:27,706","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00086.jpg | media_type=image/jpeg | id=id82"}
+{"ts":"2026-10-29 23:42:27,706","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00087.jpg | media_type=image/jpeg | id=id83"}
+{"ts":"2026-10-29 23:42:27,706","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00088.jpg | media_type=image/jpeg | id=id84"}
+{"ts":"2026-10-29 23:42:27,706","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00089.jpg | media_type=image/jpeg | id=id85"}
+{"ts":"2026-10-29 23:42:27,706","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00090.jpg | media_type=image/jpeg | id=id86"}
+{"ts":"2026-10-29 23:42:27,707","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00091.jpg | media_type=image/jpeg | id=id87"}
+{"ts":"2026-10-29 23:42:27,707","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00092.jpg | media_type=image/jpeg | id=id88"}
+{"ts":"2026-10-29 23:42:27,707","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00093.jpg | media_type=image/jpeg | id=id89"}
+{"ts":"2026-10-29 23:42:27,707","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00094.jpg | media_type=image/jpeg | id=id90"}
+{"ts":"2026-10-29 23:42:27,707","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00095.jpg | media_type=image/jpeg | id=id91"}
+{"ts":"2026-10-29 23:42:27,707","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00096.jpg | media_type=image/jpeg | id=id92"}
+{"ts":"2026-10-29 23:42:27,707","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00097.jpg | media_type=image/jpeg | id=id93"}
+{"ts":"2026-10-29 23:42:27,708","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00098.jpg | media_type=image/jpeg | id=id94"}
+{"ts":"2026-10-29 23:42:27,708","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00099.jpg | media_type=image/jpeg | id=id95"}
+{"ts":"2026-10-29 23:42:27,708","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00100.jpg | media_type=image/jpeg | id=id96"}
+{"ts":"2026-10-29 23:42:27,708","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00101.jpg | media_type=image/jpeg | id=id97"}
+{"ts":"2026-10-29 23:42:27,708","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00102.jpg | media_type=image/jpeg | id=id98"}
+{"ts":"2026-10-29 23:42:27,709","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00103.jpg | media_type=image/jpeg | id=id99"}
+{"ts":"2026-10-29 23:42:27,709","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00104.jpg | media_type=image/jpeg | id=id100"}
+{"ts":"2026-10-29 23:42:27,709","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00105.jpg | media_type=image/jpeg | id=id101"}
+{"ts":"2026-10-29 23:42:27,709","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00106.jpg | media_type=image/jpeg | id=id102"}
+{"ts":"2026-10-29 23:42:27,709","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00107.jpg | media_type=image/jpeg | id=id103"}
+{"ts":"2026-10-29 23:42:27,709","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00108.jpg | media_type=image/jpeg | id=id104"}
+{"ts":"2026-10-29 23:42:27,710","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00109.jpg | media_type=image/jpeg | id=id105"}
+{"ts":"2026-10-29 23:42:27,710","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00110.jpg | media_type=image/jpeg | id=id106"}
+{"ts":"2026-10-29 23:42:27,710","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00111.jpg | media_type=image/jpeg | id=id107"}
+{"ts":"2026-10-29 23:42:27,711","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00112.jpg | media_type=image/jpeg | id=id108"}
+{"ts":"2026-10-29 23:42:27,711","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00113.jpg | media_type=image/jpeg | id=id109"}
+{"ts":"2026-10-29 23:42:27,712","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00114.jpg | media_type=image/jpeg | id=id110"}
+{"ts":"2026-10-29 23:42:27,712","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00115.jpg | media_type=image/jpeg | id=id111"}
+{"ts":"2026-10-29 23:42:27,713","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00116.jpg | media_type=image/jpeg | id=id112"}
+{"ts":"2026-10-29 23:42:27,713","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00117.jpg | media_type=image/jpeg | id=id113"}
+{"ts":"2026-10-29 23:42:27,713","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00118.jpg | media_type=image/jpeg | id=id114"}
+{"ts":"2026-10-29 23:42:27,714","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00119.jpg | media_type=image/jpeg | id=id115"}
+{"ts":"2026-10-29 23:42:27,715","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00120.jpg | media_type=image/jpeg | id=id116"}
+{"ts":"2026-10-29 23:42:27,715","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00121.jpg | media_type=image/jpeg | id=id117"}
+{"ts":"2026-10-29 23:42:27,716","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00122.jpg | media_type=image/jpeg | id=id118"}
+{"ts":"2026-10-29 23:42:27,716","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00123.jpg | media_type=image/jpeg | id=id119"}
+{"ts":"2026-10-29 23:42:27,717","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00124.jpg | media_type=image/jpeg | id=id120"}
+{"ts":"2026-10-29 23:42:27,717","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00125.jpg | media_type=image/jpeg | id=id121"}
+{"ts":"2026-10-29 23:42:27,717","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00126.jpg | media_type=image/jpeg | id=id122"}
+{"ts":"2026-10-29 23:42:27,718","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00127.jpg | media_type=image/jpeg | id=id123"}
+{"ts":"2026-10-29 23:42:27,718","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00128.jpg | media_type=image/jpeg | id=id124"}
+{"ts":"2026-10-29 23:42:27,718","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00129.jpg | media_type=image/jpeg | id=id125"}
+{"ts":"2026-10-29 23:42:27,718","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00130.jpg | media_type=image/jpeg | id=id126"}
+{"ts":"2026-10-29 23:42:27,719","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00131.jpg | media_type=image/jpeg | id=id127"}
+{"ts":"2026-10-29 23:42:27,719","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00132.jpg | media_type=image/jpeg | id=id128"}
+{"ts":"2026-10-29 23:42:27,719","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00133.jpg | media_type=image/jpeg | id=id129"}
+{"ts":"2026-10-29 23:42:27,719","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00134.jpg | media_type=image/jpeg | id=id130"}
+{"ts":"2026-10-29 23:42:27,719","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00135.jpg | media_type=image/jpeg | id=id131"}
+{"ts":"2026-10-29 23:42:27,719","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00136.jpg | media_type=image/jpeg | id=id132"}
+{"ts":"2026-10-29 23:42:27,719","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00137.jpg | media_type=image/jpeg | id=id133"}
+{"ts":"2026-10-29 23:42:27,720","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00138.jpg | media_type=image/jpeg | id=id134"}
+{"ts":"2026-10-29 23:42:27,720","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00139.jpg | media_type=image/jpeg | id=id135"}
+{"ts":"2026-10-29 23:42:27,720","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00140.jpg | media_type=image/jpeg | id=id136"}
+{"ts":"2026-10-29 23:42:27,720","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00141.jpg | media_type=image/jpeg | id=id137"}
+{"ts":"2026-10-29 23:42:27,720","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00142.jpg | media_type=image/jpeg | id=id138"}
+{"ts":"2026-10-29 23:42:27,720","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00143.jpg | media_type=image/jpeg | id=id139"}
+{"ts":"2026-10-29 23:42:27,720","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00144.jpg | media_type=image/jpeg | id=id140"}
+{"ts":"2026-10-29 23:42:27,721","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00145.jpg | media_type=image/jpeg | id=id141"}
+{"ts":"2026-10-29 23:42:27,721","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00146.jpg | media_type=image/jpeg | id=id142"}
+{"ts":"2026-10-29 23:42:27,721","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00147.jpg | media_type=image/jpeg | id=id143"}
+{"ts":"2026-10-29 23:42:27,721","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00148.jpg | media_type=image/jpeg | id=id144"}
+{"ts":"2026-10-29 23:42:27,721","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00149.jpg | media_type=image/jpeg | id=id145"}
+{"ts":"2026-10-29 23:42:27,721","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00150.jpg | media_type=image/jpeg | id=id146"}
+{"ts":"2026-10-29 23:42:27,721","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00151.jpg | media_type=image/jpeg | id=id147"}
+{"ts":"2026-10-29 23:42:27,722","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00152.jpg | media_type=image/jpeg | id=id148"}
+{"ts":"2026-10-29 23:42:27,722","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00153.jpg | media_type=image/jpeg | id=id149"}
+{"ts":"2026-10-29 23:42:27,722","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00154.jpg | media_type=image/jpeg | id=id150"}
+{"ts":"2026-10-29 23:42:27,722","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00155.jpg | media_type=image/jpeg | id=id151"}
+{"ts":"2026-10-29 23:42:27,722","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00156.jpg | media_type=image/jpeg | id=id152"}
+{"ts":"2026-10-29 23:42:27,722","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00157.jpg | media_type=image/jpeg | id=id153"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00158.jpg | media_type=image/jpeg | id=id154"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00159.jpg | media_type=image/jpeg | id=id155"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00160.jpg | media_type=image/jpeg | id=id156"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00161.jpg | media_type=image/jpeg | id=id157"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00162.jpg | media_type=image/jpeg | id=id158"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00163.jpg | media_type=image/jpeg | id=id159"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00164.jpg | media_type=image/jpeg | id=id160"}
+{"ts":"2026-10-29 23:42:27,723","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00165.jpg | media_type=image/jpeg | id=id161"}
+{"ts":"2026-10-29 23:42:27,724","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00166.jpg | media_type=image/jpeg | id=id162"}
+{"ts":"2026-10-29 23:42:27,724","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00167.jpg | media_type=image/jpeg | id=id163"}
+{"ts":"2026-10-29 23:42:27,724","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00168.jpg | media_type=image/jpeg | id=id164"}
+{"ts":"2026-10-29 23:42:27,724","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00169.jpg | media_type=image/jpeg | id=id165"}
+{"ts":"2026-10-29 23:42:27,724","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00170.jpg | media_type=image/jpeg | id=id166"}
+{"ts":"2026-10-29 23:42:27,724","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00171.jpg | media_type=image/jpeg | id=id167"}
+{"ts":"2026-10-29 23:42:27,725","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00172.jpg | media_type=image/jpeg | id=id168"}
+{"ts":"2026-10-29 23:42:27,725","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00173.jpg | media_type=image/jpeg | id=id169"}
+{"ts":"2026-10-29 23:42:27,725","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00174.jpg | media_type=image/jpeg | id=id170"}
+{"ts":"2026-10-29 23:42:27,725","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00175.jpg | media_type=image/jpeg | id=id171"}
+{"ts":"2026-10-29 23:42:27,725","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00176.jpg | media_type=image/jpeg | id=id172"}
+{"ts":"2026-10-29 23:42:27,725","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00177.jpg | media_type=image/jpeg | id=id173"}
+{"ts":"2026-10-29 23:42:27,725","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00178.jpg | media_type=image/jpeg | id=id174"}
+{"ts":"2026-10-29 23:42:27,726","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00179.jpg | media_type=image/jpeg | id=id175"}
+{"ts":"2026-10-29 23:42:27,726","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00180.jpg | media_type=image/jpeg | id=id176"}
+{"ts":"2026-10-29 23:42:27,726","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00181.jpg | media_type=image/jpeg | id=id177"}
+{"ts":"2026-10-29 23:42:27,726","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00182.jpg | media_type=image/jpeg | id=id178"}
+{"ts":"2026-10-29 23:42:27,726","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00183.jpg | media_type=image/jpeg | id=id179"}
+{"ts":"2026-10-29 23:42:27,726","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00184.jpg | media_type=image/jpeg | id=id180"}
+{"ts":"2026-10-29 23:42:27,726","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00185.jpg | media_type=image/jpeg | id=id181"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00186.jpg | media_type=image/jpeg | id=id182"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00187.jpg | media_type=image/jpeg | id=id183"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00188.jpg | media_type=image/jpeg | id=id184"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00189.jpg | media_type=image/jpeg | id=id185"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00190.jpg | media_type=image/jpeg | id=id186"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00191.jpg | media_type=image/jpeg | id=id187"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00192.jpg | media_type=image/jpeg | id=id188"}
+{"ts":"2026-10-29 23:42:27,727","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00193.jpg | media_type=image/jpeg | id=id189"}
+{"ts":"2026-10-29 23:42:27,728","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00194.jpg | media_type=image/jpeg | id=id190"}
+{"ts":"2026-10-29 23:42:27,728","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00195.jpg | media_type=image/jpeg | id=id191"}
+{"ts":"2026-10-29 23:42:27,728","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00196.jpg | media_type=image/jpeg | id=id192"}
+{"ts":"2026-10-29 23:42:27,728","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00197.jpg | media_type=image/jpeg | id=id193"}
+{"ts":"2026-10-29 23:42:27,728","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00198.jpg | media_type=image/jpeg | id=id194"}
+{"ts":"2026-10-29 23:42:27,728","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00199.jpg | media_type=image/jpeg | id=id195"}
+{"ts":"2026-10-29 23:42:27,728","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00200.jpg | media_type=image/jpeg | id=id196"}
+{"ts":"2026-10-29 23:42:27,729","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00201.jpg | media_type=image/jpeg | id=id197"}
+{"ts":"2026-10-29 23:42:27,729","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00202.jpg | media_type=image/jpeg | id=id198"}
+{"ts":"2026-10-29 23:42:27,729","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00203.jpg | media_type=image/jpeg | id=id199"}
+{"ts":"2026-10-29 23:42:27,729","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00204.jpg | media_type=image/jpeg | id=id200"}
+{"ts":"2026-10-29 23:42:27,730","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00205.jpg | media_type=image/jpeg | id=id201"}
+{"ts":"2026-10-29 23:42:27,740","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00206.jpg | media_type=image/jpeg | id=id202"}
+{"ts":"2026-10-29 23:42:27,740","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00207.jpg | media_type=image/jpeg | id=id203"}
+{"ts":"2026-10-29 23:42:27,740","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00208.jpg | media_type=image/jpeg | id=id204"}
+{"ts":"2026-10-29 23:42:27,740","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00209.jpg | media_type=image/jpeg | id=id205"}
+{"ts":"2026-10-29 23:42:27,740","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00210.jpg | media_type=image/jpeg | id=id206"}
+{"ts":"2026-10-29 23:42:27,740","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00211.jpg | media_type=image/jpeg | id=id207"}
+{"ts":"2026-10-29 23:42:27,741","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00212.jpg | media_type=image/jpeg | id=id208"}
+{"ts":"2026-10-29 23:42:27,741","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00213.jpg | media_type=image/jpeg | id=id209"}
+{"ts":"2026-10-29 23:42:27,741","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00214.jpg | media_type=image/jpeg | id=id210"}
+{"ts":"2026-10-29 23:42:27,742","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00215.jpg | media_type=image/jpeg | id=id211"}
+{"ts":"2026-10-29 23:42:27,742","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00216.jpg | media_type=image/jpeg | id=id212"}
+{"ts":"2026-10-29 23:42:27,742","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00217.jpg | media_type=image/jpeg | id=id213"}
+{"ts":"2026-10-29 23:42:27,742","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00218.jpg | media_type=image/jpeg | id=id214"}
+{"ts":"2026-10-29 23:42:27,742","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00219.jpg | media_type=image/jpeg | id=id215"}
+{"ts":"2026-10-29 23:42:27,742","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00220.jpg | media_type=image/jpeg | id=id216"}
+{"ts":"2026-10-29 23:42:27,742","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00221.jpg | media_type=image/jpeg | id=id217"}
+{"ts":"2026-10-29 23:42:27,743","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00222.jpg | media_type=image/jpeg | id=id218"}
+{"ts":"2026-10-29 23:42:27,743","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00223.jpg | media_type=image/jpeg | id=id219"}
+{"ts":"2026-10-29 23:42:27,744","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00224.jpg | media_type=image/jpeg | id=id220"}
+{"ts":"2026-10-29 23:42:27,744","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00225.jpg | media_type=image/jpeg | id=id221"}
+{"ts":"2026-10-29 23:42:27,745","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00226.jpg | media_type=image/jpeg | id=id222"}
+{"ts":"2026-10-29 23:42:27,745","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00227.jpg | media_type=image/jpeg | id=id223"}
+{"ts":"2026-10-29 23:42:27,745","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00228.jpg | media_type=image/jpeg | id=id224"}
+{"ts":"2026-10-29 23:42:27,746","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00229.jpg | media_type=image/jpeg | id=id225"}
+{"ts":"2026-10-29 23:42:27,746","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00230.jpg | media_type=image/jpeg | id=id226"}
+{"ts":"2026-10-29 23:42:27,747","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00231.jpg | media_type=image/jpeg | id=id227"}
+{"ts":"2026-10-29 23:42:27,747","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00232.jpg | media_type=image/jpeg | id=id228"}
+{"ts":"2026-10-29 23:42:27,747","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00233.jpg | media_type=image/jpeg | id=id229"}
+{"ts":"2026-10-29 23:42:27,747","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00234.jpg | media_type=image/jpeg | id=id230"}
+{"ts":"2026-10-29 23:42:27,747","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00235.jpg | media_type=image/jpeg | id=id231"}
+{"ts":"2026-10-29 23:42:27,748","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00236.jpg | media_type=image/jpeg | id=id232"}
+{"ts":"2026-10-29 23:42:27,748","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00237.jpg | media_type=image/jpeg | id=id233"}
+{"ts":"2026-10-29 23:42:27,752","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00238.jpg | media_type=image/jpeg | id=id234"}
+{"ts":"2026-10-29 23:42:27,753","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00239.jpg | media_type=image/jpeg | id=id235"}
+{"ts":"2026-10-29 23:42:27,753","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00240.jpg | media_type=image/jpeg | id=id236"}
+{"ts":"2026-10-29 23:42:27,753","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00241.jpg | media_type=image/jpeg | id=id237"}
+{"ts":"2026-10-29 23:42:27,754","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00242.jpg | media_type=image/jpeg | id=id238"}
+{"ts":"2026-10-29 23:42:27,754","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00243.jpg | media_type=image/jpeg | id=id239"}
+{"ts":"2026-10-29 23:42:27,754","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00244.jpg | media_type=image/jpeg | id=id240"}
+{"ts":"2026-10-29 23:42:27,755","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00245.jpg | media_type=image/jpeg | id=id241"}
+{"ts":"2026-10-29 23:42:27,755","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00246.jpg | media_type=image/jpeg | id=id242"}
+{"ts":"2026-10-29 23:42:27,755","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00247.jpg | media_type=image/jpeg | id=id243"}
+{"ts":"2026-10-29 23:42:27,755","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00248.jpg | media_type=image/jpeg | id=id244"}
+{"ts":"2026-10-29 23:42:27,755","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00249.jpg | media_type=image/jpeg | id=id245"}
+{"ts":"2026-10-29 23:42:27,756","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00250.jpg | media_type=image/jpeg | id=id246"}
+{"ts":"2026-10-29 23:42:27,756","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Image: images/00251.jpg | media_type=image/jpeg | id=id247"}
+{"ts":"2026-10-29 23:42:27,756","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"EPUB images: ['images/calibre_cover.jpg', 'images/00008.jpg', 'images/00009.jpg', 'images/00011.jpg', 'images/00012.jpg', 'images/00013.jpg', 'images/00014.jpg', 'images/00015.jpg', 'images/00016.jpg', 'images/00017.jpg', 'images/00018.jpg', 'images/00019.jpg', 'images/00020.jpg', 'images/00021.jpg', 'images/00022.jpg', 'images/00023.jpg', 'images/00024.jpg', 'images/00025.jpg', 'images/00026.jpg', 'images/00027.jpg', 'images/00028.jpg', 'images/00029.jpg', 'images/00030.jpg', 'images/00031.jpg', 'images/00032.jpg', 'images/00033.jpg', 'images/00034.jpg', 'images/00035.jpg', 'images/00036.jpg', 'images/00037.jpg', 'images/00038.jpg', 'images/00039.jpg', 'images/00040.jpg', 'images/00041.jpg', 'images/00042.jpg', 'images/00043.jpg', 'images/00044.jpg', 'images/00045.jpg', 'images/00046.jpg', 'images/00047.jpg', 'images/00048.jpg', 'images/00049.jpg', 'images/00050.jpg', 'images/00051.jpg', 'images/00052.jpg', 'images/00053.jpg', 'images/00054.jpg', 'images/00055.jpg', 'images/00056.jpg', 'images/00057.jpg', 'images/00058.jpg', 'images/00059.jpg', 'images/00060.jpg', 'images/00061.jpg', 'images/00062.jpg', 'images/00063.jpg', 'images/00064.jpg', 'images/00065.jpg', 'images/00066.jpg', 'images/00067.jpg', 'images/00068.jpg', 'images/00069.jpg', 'images/00070.jpg', 'images/00071.jpg', 'images/00072.jpg', 'images/00073.jpg', 'images/00074.jpg', 'images/00075.jpg', 'images/00076.jpg', 'images/00077.jpg', 'images/00078.jpg', 'images/00079.jpg', 'images/00080.jpg', 'images/00081.jpg', 'images/00082.jpg', 'images/00083.jpg', 'images/00084.jpg', 'images/00085.jpg', 'images/00086.jpg', 'images/00087.jpg', 'images/00088.jpg', 'images/00089.jpg', 'images/00090.jpg', 'images/00091.jpg', 'images/00092.jpg', 'images/00093.jpg', 'images/00094.jpg', 'images/00095.jpg', 'images/00096.jpg', 'images/00097.jpg', 'images/00098.jpg', 'images/00099.jpg', 'images/00100.jpg', 'images/00101.jpg', 'images/00102.jpg', 'images/00103.jpg', 'images/00104.jpg', 'images/00105.jpg', 'images/00106.jpg', 'images/00107.jpg', 'images/00108.jpg', 'images/00109.jpg', 'images/00110.jpg', 'images/00111.jpg', 'images/00112.jpg', 'images/00113.jpg', 'images/00114.jpg', 'images/00115.jpg', 'images/00116.jpg', 'images/00117.jpg', 'images/00118.jpg', 'images/00119.jpg', 'images/00120.jpg', 'images/00121.jpg', 'images/00122.jpg', 'images/00123.jpg', 'images/00124.jpg', 'images/00125.jpg', 'images/00126.jpg', 'images/00127.jpg', 'images/00128.jpg', 'images/00129.jpg', 'images/00130.jpg', 'images/00131.jpg', 'images/00132.jpg', 'images/00133.jpg', 'images/00134.jpg', 'images/00135.jpg', 'images/00136.jpg', 'images/00137.jpg', 'images/00138.jpg', 'images/00139.jpg', 'images/00140.jpg', 'images/00141.jpg', 'images/00142.jpg', 'images/00143.jpg', 'images/00144.jpg', 'images/00145.jpg', 'images/00146.jpg', 'images/00147.jpg', 'images/00148.jpg', 'images/00149.jpg', 'images/00150.jpg', 'images/00151.jpg', 'images/00152.jpg', 'images/00153.jpg', 'images/00154.jpg', 'images/00155.jpg', 'images/00156.jpg', 'images/00157.jpg', 'images/00158.jpg', 'images/00159.jpg', 'images/00160.jpg', 'images/00161.jpg', 'images/00162.jpg', 'images/00163.jpg', 'images/00164.jpg', 'images/00165.jpg', 'images/00166.jpg', 'images/00167.jpg', 'images/00168.jpg', 'images/00169.jpg', 'images/00170.jpg', 'images/00171.jpg', 'images/00172.jpg', 'images/00173.jpg', 'images/00174.jpg', 'images/00175.jpg', 'images/00176.jpg', 'images/00177.jpg', 'images/00178.jpg', 'images/00179.jpg', 'images/00180.jpg', 'images/00181.jpg', 'images/00182.jpg', 'images/00183.jpg', 'images/00184.jpg', 'images/00185.jpg', 'images/00186.jpg', 'images/00187.jpg', 'images/00188.jpg', 'images/00189.jpg', 'images/00190.jpg', 'images/00191.jpg', 'images/00192.jpg', 'images/00193.jpg', 'images/00194.jpg', 'images/00195.jpg', 'images/00196.jpg', 'images/00197.jpg', 'images/00198.jpg', 'images/00199.jpg', 'images/00200.jpg', 'images/00201.jpg', 'images/00202.jpg', 'images/00203.jpg', 'images/00204.jpg', 'images/00205.jpg', 'images/00206.jpg', 'images/00207.jpg', 'images/00208.jpg', 'images/00209.jpg', 'images/00210.jpg', 'images/00211.jpg', 'images/00212.jpg', 'images/00213.jpg', 'images/00214.jpg', 'images/00215.jpg', 'images/00216.jpg', 'images/00217.jpg', 'images/00218.jpg', 'images/00219.jpg', 'images/00220.jpg', 'images/00221.jpg', 'images/00222.jpg', 'images/00223.jpg', 'images/00224.jpg', 'images/00225.jpg', 'images/00226.jpg', 'images/00227.jpg', 'images/00228.jpg', 'images/00229.jpg', 'images/00230.jpg', 'images/00231.jpg', 'images/00232.jpg', 'images/00233.jpg', 'images/00234.jpg', 'images/00235.jpg', 'images/00236.jpg', 'images/00237.jpg', 'images/00238.jpg', 'images/00239.jpg', 'images/00240.jpg', 'images/00241.jpg', 'images/00242.jpg', 'images/00243.jpg', 'images/00244.jpg', 'images/00245.jpg', 'images/00246.jpg', 'images/00247.jpg', 'images/00248.jpg', 'images/00249.jpg', 'images/00250.jpg', 'images/00251.jpg']"}
+{"ts":"2026-10-29 23:42:27,756","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"EPUB cover found via filename fallback (images/calibre_cover.jpg)"}
+{"ts":"2026-10-29 23:42:28,809","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Определение языка для книги 'Antifragile: Things That Gain ...': По содержимому: en, Из метаданных: en, Итоговый: en"}
+{"ts":"2026-10-29 23:42:33,458","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Book file name: books/Antifragile-20Things20That20Gain20from20Disorder20Incerto20Book20320--20Nas_DRm8QN5.org20.epub"}
+{"ts":"2026-10-29 23:42:33,459","level":"INFO","logger":"reader.views","request_id":"8cab45b94da0","user_id":"-","msg":"Book file URL: https://71af5c03970ff8d7a7b3ed12fa3fa567.r2.cloudflarestorage.com/book-reader-storage/books/Antifragile-20Things20That20Gain20from20Disorder20Incerto20Book20320--20Nas_DRm8QN5.org20.epub?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ebc6457ac9e4ab6ef3382090b3394603%2F20261029%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261029T234233Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=790f8dbe1ae97b7613d400242fc8d45d089a7c4f2eb12745382935e9afc9c156"}
+{"ts":"2026-10-29 23:50:51,797","level":"ERROR","logger":"reader","request_id":"d3ce5211e038","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-29 23:50:52,295","level":"ERROR","logger":"reader","request_id":"53431769e583","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/2/update_progress/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-30 00:15:11,550","level":"ERROR","logger":"reader","request_id":"d6d80a368f18","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=AuthenticationFailed('User not found')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 132, in get_user
+    user = self.user_model.objects.get(**{api_settings.USER_ID_FIELD: user_id})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 635, in get
+    raise self.model.DoesNotExist(
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 51, in authenticate
+    return self.get_user(validated_token), validated_token
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 134, in get_user
+    raise AuthenticationFailed(
+rest_framework_simplejwt.exceptions.AuthenticationFailed: {'detail': ErrorDetail(string='User not found', code='authentication_failed'), 'code': ErrorDetail(string='user_not_found', code='authentication_failed')}
+{"ts":"2026-10-30 00:15:49,298","level":"WARNING","logger":"reader.views","request_id":"a460373a0970","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-30 00:15:49,298","level":"WARNING","logger":"reader.views","request_id":"a460373a0970","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-30 00:15:49,317","level":"INFO","logger":"reader.views","request_id":"a460373a0970","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=285 language=en"}
+{"ts":"2026-10-30 00:15:53,364","level":"INFO","logger":"reader.views","request_id":"a460373a0970","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=285 read=0.005s extract=0.000s parse=0.849s database=3.038s total=3.892s"}
+{"ts":"2026-10-30 00:18:03,979","level":"INFO","logger":"reader.translator_backends","request_id":"c018ef6d0340","user_id":"-","msg":"Recieved: thanks and спасибо for it"}
+{"ts":"2026-10-30 00:18:04,701","level":"INFO","logger":"reader.translator_backends","request_id":"c018ef6d0340","user_id":"-","msg":"Raw response form Ai {'id': 'ab6a59c6-20d6-41d8-956e-082e67e9cbb9', 'object': 'chat.completion', 'created': 1793319484, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "благодарю"\n    },\n    {\n        "text": "спасибо большое"\n    },\n    {\n        "text": "премного благодарен"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 47, 'total_tokens': 192, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-30 00:18:04,701","level":"INFO","logger":"reader.translator_backends","request_id":"c018ef6d0340","user_id":"-","msg":"Parser result[{'text': 'благодарю'}, {'text': 'спасибо большое'}, {'text': 'премного благодарен'}]"}
+{"ts":"2026-10-30 00:21:58,527","level":"INFO","logger":"reader.views","request_id":"d05f30c193ce","user_id":"-","msg":"EPUB parsed: title="Surely You're Joking, Mr. Feynman!" documents=14 chapters=24 language=en"}
+{"ts":"2026-10-30 00:21:59,928","level":"INFO","logger":"reader.views","request_id":"d05f30c193ce","user_id":"-","msg":"Book import completed: title="Surely You're Joking, Mr. Feynman!" format=EPUB bytes=308423 chapters=24 read=0.000s extract=0.000s parse=0.209s database=1.401s total=1.611s"}
+{"ts":"2026-10-30 00:23:43,587","level":"WARNING","logger":"reader.views","request_id":"db521a05a5c7","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/Eagl_9780307907509_epub3_cvi_r1.xhtml"}
+{"ts":"2026-10-30 00:23:43,587","level":"WARNING","logger":"reader.views","request_id":"db521a05a5c7","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/Eagl_9780307907509_epub3_tp_r1.xhtml"}
+{"ts":"2026-10-30 00:23:43,603","level":"INFO","logger":"reader.views","request_id":"db521a05a5c7","user_id":"-","msg":"EPUB parsed: title='Livewired' documents=21 chapters=74 language=en"}
+{"ts":"2026-10-30 00:23:49,057","level":"INFO","logger":"reader.views","request_id":"db521a05a5c7","user_id":"-","msg":"Book import completed: title='Livewired' format=EPUB bytes=30931442 chapters=74 read=0.030s extract=0.000s parse=0.631s database=5.441s total=6.103s"}
+{"ts":"2026-10-30 00:24:37,446","level":"WARNING","logger":"reader.views","request_id":"da0d058db31c","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/001_Cover.xhtml"}
+{"ts":"2026-10-30 00:24:37,447","level":"WARNING","logger":"reader.views","request_id":"da0d058db31c","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/003_Title_Page.xhtml"}
+{"ts":"2026-10-30 00:24:37,455","level":"INFO","logger":"reader.views","request_id":"da0d058db31c","user_id":"-","msg":"EPUB parsed: title='Determined' documents=28 chapters=173 language=en"}
+{"ts":"2026-10-30 00:24:46,482","level":"INFO","logger":"reader.views","request_id":"da0d058db31c","user_id":"-","msg":"Book import completed: title='Determined' format=EPUB bytes=35310319 chapters=173 read=0.055s extract=0.000s parse=1.339s database=7.806s total=9.200s"}
+{"ts":"2026-10-30 00:30:05,148","level":"INFO","logger":"reader.views","request_id":"b7d68c44792d","user_id":"-","msg":"EPUB parsed: title='Abrázame fuerte' documents=1 chapters=36 language=ar"}
+{"ts":"2026-10-30 00:30:06,331","level":"INFO","logger":"reader.views","request_id":"b7d68c44792d","user_id":"-","msg":"Book import completed: title='Abrázame fuerte' format=EPUB bytes=613006 chapters=36 read=0.000s extract=0.000s parse=0.118s database=1.173s total=1.291s"}
