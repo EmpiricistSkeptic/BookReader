@@ -29,7 +29,7 @@ from django.contrib.auth import authenticate
 from django.core.cache import cache
 from django.core.files.base import ContentFile
 from django.db import transaction
-from django.db.models import Case, F, When, Count, OuterRef, Subquery
+from django.db.models import Case, F, When, Count, OuterRef, Subquery, Prefetch
 from django.db.models.functions import Lower, Length
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -249,17 +249,28 @@ class BookViewSet(viewsets.ModelViewSet):
             .values("last_read")[:1]
         )
 
-        return (
+        queryset = (
             Book.objects
             .filter(user=self.request.user)
             .annotate(
                 chapter_count=Count("chapters"),
                 user_last_read=Subquery(last_read_subquery),
             )
-            .order_by(
-                F("user_last_read").desc(nulls_last=True),
-                "-uploaded_at",
+        )
+
+        # Для деталей книги и списка глав загружаем
+        # метаданные глав, но откладываем большой content.
+        if self.action in ("retrieve", "chapters"):
+            queryset = queryset.prefetch_related(
+                Prefetch(
+                    "chapters",
+                    queryset=Chapter.objects.defer("content").order_by("order"),
+                )
             )
+
+        return queryset.order_by(
+            F("user_last_read").desc(nulls_last=True),
+            "-uploaded_at",
         )
 
 
