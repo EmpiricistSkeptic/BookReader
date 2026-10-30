@@ -1986,6 +1986,7 @@ class BookViewSet(viewsets.ModelViewSet):
         return matches[0] if len(matches) == 1 else None
 
 
+    
     def _split_large_epub_unit_by_headings(
         self,
         unit,
@@ -1993,17 +1994,31 @@ class BookViewSet(viewsets.ModelViewSet):
         end,
         all_paragraphs,
         global_headings,
+        force=False,
     ):
         """
-        Разделяет большую EPUB-главу по крупным заголовкам h1/h2.
-        Если подходящих заголовков нет, оставляет главу целиком.
+        Разделяет EPUB-главу по h1/h2 только тогда,
+        когда большинство получившихся фрагментов имеет
+        достаточный размер.
+
+        Маленькие фрагменты объединяются с соседними.
+        Если разделение создаёт слишком много маленьких глав,
+        возвращается исходная глава для обычной нормализации.
+
+        force=True позволяет использовать алгоритм в fallback,
+        даже если вся книга меньше MAX_CHAPTER_CHARS.
         """
+
         total = self._chapter_char_count(unit["paragraphs"])
 
-        if total <= self.MAX_CHAPTER_CHARS:
+        if total <= self.MAX_CHAPTER_CHARS and not force:
             return [unit]
 
-        heading_positions = sorted(
+        # ---------------------------------------------------------
+        # 1. Находим позиции крупных заголовков h1/h2
+        # ---------------------------------------------------------
+
+        heading_positions = sorted({
             position
             for position, heading in global_headings.items()
             if (
@@ -2011,40 +2026,189 @@ class BookViewSet(viewsets.ModelViewSet):
                 and heading["level"] <= 2
                 and heading["title"]
             )
-        )
+        })
 
         if not heading_positions:
             return [unit]
 
         boundaries = [start] + heading_positions + [end]
-        result = []
+
+        # ---------------------------------------------------------
+        # 2. Формируем предварительные фрагменты
+        # ---------------------------------------------------------
+
+        segments = []
 
         for index in range(len(boundaries) - 1):
             left = boundaries[index]
             right = boundaries[index + 1]
 
-            paragraphs = all_paragraphs[left:right]
+            paragraphs = list(all_paragraphs[left:right])
 
             if not paragraphs:
                 continue
 
+            heading = global_headings.get(left, {})
+
             if index == 0:
-                title = unit["title"]
+                title = unit["title"] or heading.get("title", "")
             else:
-                title = global_headings[left]["title"]
+                title = heading.get("title", "")
+
+            segments.append({
+                "title": title,
+                "paragraphs": paragraphs,
+                "size": self._chapter_char_count(paragraphs),
+                "origin": (
+                    unit.get("origin", "technical")
+                    if index == 0
+                    else "heading"
+                ),
+            })
+
+        if len(segments) < 2:
+            return [unit]
+
+        # ---------------------------------------------------------
+        # 3. Проверяем качество предполагаемого разделения
+        # ---------------------------------------------------------
+
+        reasonable_segments = sum(
+            segment["size"] >= self.MIN_CHAPTER_CHARS
+            for segment in segments
+        )
+
+        # Требуем строгое большинство фрагментов
+        # размером не менее MIN_CHAPTER_CHARS.
+        if reasonable_segments * 2 <= len(segments):
+            logger.info(
+                (
+                    "EPUB heading split skipped: "
+                    "reasonable=%d total=%d chapter_title=%r"
+                ),
+                reasonable_segments,
+                len(segments),
+                unit.get("title", ""),
+            )
+
+            return [unit]
+
+        # ---------------------------------------------------------
+        # 4. Вспомогательное объединение соседних фрагментов
+        # ---------------------------------------------------------
+
+        def merge_segments(first, second):
+            paragraphs = (
+                first["paragraphs"] + second["paragraphs"]
+            )
+
+            return {
+                "title": first["title"] or second["title"],
+                "paragraphs": paragraphs,
+                "size": self._chapter_char_count(paragraphs),
+                "origin": first["origin"],
+            }
+
+        # ---------------------------------------------------------
+        # 5. Объединяем слишком маленькие фрагменты
+        # ---------------------------------------------------------
+
+        merged_segments = []
+        pending = None
+
+        for segment in segments:
+
+            if segment["size"] >= self.MIN_CHAPTER_CHARS:
+
+                if pending is not None:
+
+                    if (
+                        merged_segments
+                        and (
+                            merged_segments[-1]["size"] + pending["size"]
+                            <= self.MAX_CHAPTER_CHARS
+                        )
+                    ):
+                        # Сначала пытаемся присоединить маленький
+                        # фрагмент к предыдущему.
+                        merged_segments[-1] = merge_segments(
+                            merged_segments[-1],
+                            pending,
+                        )
+
+                    else:
+                        # Если предыдущая глава уже достаточно большая,
+                        # присоединяем маленький фрагмент к следующей.
+                        segment = merge_segments(
+                            pending,
+                            segment,
+                        )
+
+                    pending = None
+
+                merged_segments.append(segment)
+
+            else:
+
+                if (
+                    merged_segments
+                    and (
+                        merged_segments[-1]["size"] + segment["size"]
+                        <= self.MAX_CHAPTER_CHARS
+                    )
+                ):
+                    # Маленькая подглава присоединяется к предыдущей.
+                    merged_segments[-1] = merge_segments(
+                        merged_segments[-1],
+                        segment,
+                    )
+
+                elif pending is None:
+                    pending = segment
+
+                else:
+                    # Накапливаем соседние маленькие фрагменты,
+                    # чтобы не создавать множество коротких глав.
+                    pending = merge_segments(
+                        pending,
+                        segment,
+                    )
+
+        # Обрабатываем оставшийся фрагмент после последней границы.
+        if pending is not None:
+
+            if merged_segments:
+                merged_segments[-1] = merge_segments(
+                    merged_segments[-1],
+                    pending,
+                )
+            else:
+                merged_segments.append(pending)
+
+        # ---------------------------------------------------------
+        # 6. Формируем итоговые главы
+        # ---------------------------------------------------------
+
+        result = []
+
+        for segment in merged_segments:
+
+            size = segment["size"]
 
             result.append(
                 self._make_chapter_unit(
-                    title,
-                    paragraphs,
-                    protected=True,
-                    origin="heading" if index else unit["origin"],
+                    title=segment["title"],
+                    paragraphs=segment["paragraphs"],
+                    protected=size >= self.MIN_CHAPTER_CHARS,
+                    origin=segment["origin"],
                 )
             )
 
         return result or [unit]
 
 
+
+    
     def _build_epub_units(
         self,
         all_paragraphs,
@@ -2053,6 +2217,26 @@ class BookViewSet(viewsets.ModelViewSet):
         global_headings,
         toc_entries,
     ):
+        """
+        Формирует главы EPUB на основе TOC и заголовков h1/h2.
+
+        Если TOC доступен:
+            - использует его границы;
+            - дополнительно делит большие главы по внутренним h1/h2.
+
+        Если TOC отсутствует или не удалось разрешить его ссылки:
+            - использует h1/h2;
+            - применяет те же проверки размеров;
+            - при неудачном разделении оставляет обычную нормализацию.
+
+        Если заголовки отсутствуют:
+            - сохраняет документы в порядке spine.
+        """
+
+        # ---------------------------------------------------------
+        # 1. Индекс документов по имени файла
+        # ---------------------------------------------------------
+
         by_basename = {}
 
         for name in doc_info:
@@ -2061,9 +2245,14 @@ class BookViewSet(viewsets.ModelViewSet):
                 [],
             ).append(name)
 
+        # ---------------------------------------------------------
+        # 2. Определяем позиции глав из TOC
+        # ---------------------------------------------------------
+
         starts = []
 
         for index, (href, title) in enumerate(toc_entries):
+
             name = self._resolve_epub_document(
                 href,
                 doc_info,
@@ -2078,10 +2267,15 @@ class BookViewSet(viewsets.ModelViewSet):
                 continue
 
             offset = doc_info[name]["offset"]
-            local_anchors = doc_info[name]["extracted"]["anchors"]
+
+            local_anchors = (
+                doc_info[name]["extracted"]["anchors"]
+            )
 
             anchor = (
-                unquote(href.split("#", 1)[1].split("?", 1)[0])
+                unquote(
+                    href.split("#", 1)[1].split("?", 1)[0]
+                )
                 if "#" in href
                 else ""
             )
@@ -2092,9 +2286,14 @@ class BookViewSet(viewsets.ModelViewSet):
 
         starts.sort(key=lambda item: (item[0], item[1]))
 
+        # ---------------------------------------------------------
+        # 3. Удаляем повторяющиеся позиции TOC
+        # ---------------------------------------------------------
+
         deduplicated = []
 
         for position, _index, title in starts:
+
             if not 0 <= position < len(all_paragraphs):
                 continue
 
@@ -2103,12 +2302,18 @@ class BookViewSet(viewsets.ModelViewSet):
                 and deduplicated[-1][0] == position
             ):
                 deduplicated[-1] = (position, title)
+
             else:
                 deduplicated.append((position, title))
 
         units = []
 
+        # ---------------------------------------------------------
+        # 4. Основной вариант: используем TOC
+        # ---------------------------------------------------------
+
         if deduplicated:
+
             first_position = deduplicated[0][0]
 
             if first_position > 0:
@@ -2122,6 +2327,7 @@ class BookViewSet(viewsets.ModelViewSet):
                 )
 
             for index, (start, title) in enumerate(deduplicated):
+
                 end = (
                     deduplicated[index + 1][0]
                     if index + 1 < len(deduplicated)
@@ -2138,6 +2344,8 @@ class BookViewSet(viewsets.ModelViewSet):
                     origin="toc",
                 )
 
+                # Внутренние h1/h2 разделяют только большие главы
+                # и только если получаются достаточно крупные фрагменты.
                 units.extend(
                     self._split_large_epub_unit_by_headings(
                         unit,
@@ -2150,55 +2358,51 @@ class BookViewSet(viewsets.ModelViewSet):
 
             return units
 
-        # Если TOC отсутствует или не удалось разрешить его ссылки,
-        # пробуем обнаружить главы по заголовкам внутри документов.
+        # ---------------------------------------------------------
+        # 5. Fallback: TOC отсутствует или не удалось его разрешить
+        # ---------------------------------------------------------
+
         major_headings = [
             (position, heading)
-            for position, heading in sorted(global_headings.items())
-            if heading["level"] <= 2 and heading["title"]
+            for position, heading in sorted(
+                global_headings.items()
+            )
+            if (
+                heading["level"] <= 2
+                and heading["title"]
+            )
         ]
 
-        if not major_headings:
-            major_headings = [
-                (position, heading)
-                for position, heading in sorted(global_headings.items())
-                if heading["level"] <= 3 and heading["title"]
-            ]
-
         if major_headings:
-            first_position = major_headings[0][0]
 
-            if first_position > 0:
-                units.append(
-                    self._make_chapter_unit(
-                        "",
-                        all_paragraphs[:first_position],
-                        protected=False,
-                        origin="technical",
-                    )
-                )
+            # Если первый документ начинается с заголовка,
+            # используем его как название первой главы.
+            first_heading = global_headings.get(0, {})
 
-            for index, (start, heading) in enumerate(major_headings):
-                end = (
-                    major_headings[index + 1][0]
-                    if index + 1 < len(major_headings)
-                    else len(all_paragraphs)
-                )
+            fallback_unit = self._make_chapter_unit(
+                title=first_heading.get("title", ""),
+                paragraphs=all_paragraphs,
+                protected=False,
+                origin="technical",
+            )
 
-                units.append(
-                    self._make_chapter_unit(
-                        heading["title"],
-                        all_paragraphs[start:end],
-                        protected=True,
-                        origin="heading",
-                    )
-                )
+            # В fallback применяем те же правила проверки размеров,
+            # даже если вся книга меньше MAX_CHAPTER_CHARS.
+            return self._split_large_epub_unit_by_headings(
+                fallback_unit,
+                0,
+                len(all_paragraphs),
+                all_paragraphs,
+                global_headings,
+                force=True,
+            )
 
-            return units
+        # ---------------------------------------------------------
+        # 6. Последний вариант: сохраняем документы по spine
+        # ---------------------------------------------------------
 
-        # Если заголовки и TOC не найдены, сохраняем документы
-        # в порядке spine, не теряя содержимое.
         for name in document_order:
+
             extracted = doc_info[name]["extracted"]
 
             units.append(
@@ -2211,6 +2415,7 @@ class BookViewSet(viewsets.ModelViewSet):
             )
 
         return units
+
 
 
     def _extract_epub_cover(self, book_epub):
