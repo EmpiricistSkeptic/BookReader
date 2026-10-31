@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -5,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from drf_spectacular.utils import extend_schema_field
+from django.db import transaction
 
 
 from .constants import (
@@ -26,6 +29,8 @@ from .models import (
     UserProfile,
     WordAnalysis
 )
+
+logger = logging.getLogger(__name__)
 
 class KnownWordsQuerySerializer(serializers.Serializer):
     book_id = serializers.IntegerField(min_value=1)
@@ -301,6 +306,28 @@ class UserProfileWriteSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
         read_only_fields = ["created_at", "updated_at"]
+
+    def update(self, instance, validated_data):
+        old_avatar_name = instance.avatar.name if instance.avatar else None
+        old_avatar_storage = instance.avatar.storage if instance.avatar else None
+
+        instance = super().update(instance, validated_data)
+
+        new_avatar_name = instance.avatar.name if instance.avatar else None
+
+        if old_avatar_name and old_avatar_name != new_avatar_name:
+            transaction.on_commit(
+                lambda: self.delete_old_avatar(old_avatar_storage, old_avatar_name)
+            )
+        return instance
+
+    @staticmethod
+    def delete_old_avatar(storage, name):
+        try:
+            storage.delete(name)
+        except Exception:
+            logger.exception("Failed to delete old user avatar: %s", name)
+            
 
 class UserProfileSerializer(serializers.ModelSerializer):
     avatar_url = serializers.SerializerMethodField()
