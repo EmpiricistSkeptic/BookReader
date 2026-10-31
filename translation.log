@@ -7519,3 +7519,215 @@ pas mon chevet et ma chambre.»'. is_single_word: False. translation_result со
 {"ts":"2026-10-30 15:12:50,941","level":"INFO","logger":"translation","request_id":"3bc5be9d0df7","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'их—и', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 967.46}"}
 {"ts":"2026-10-30 15:12:50,942","level":"INFO","logger":"translation","request_id":"3bc5be9d0df7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'them—and'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
 {"ts":"2026-10-30 15:12:51,850","level":"INFO","logger":"translation","request_id":"3bc5be9d0df7","user_id":"-","msg":"Found 3 alternatives for them—and: ['их — и', 'их… и', 'их, и']"}
+{"ts":"2026-10-30 17:57:12,720","level":"INFO","logger":"translation","request_id":"1653d1cc2df2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: '¿Por qué luchaban con tanto empeño para obtener una respuesta de su ser amado?'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'ar'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-30 17:57:13,644","level":"INFO","logger":"translation","request_id":"1653d1cc2df2","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Почему они так настойчиво добивались ответа от своего возлюбленного?', 'detected_language': 'ar', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 903.62}"}
+{"ts":"2026-10-30 17:57:13,644","level":"INFO","logger":"translation","request_id":"1653d1cc2df2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: '¿Por qué luchaban con tanto empeño para obtener una respuesta de su ser amado?'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'ar'."}
+{"ts":"2026-10-30 17:57:43,483","level":"INFO","logger":"translation","request_id":"9e91d78aad05","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'this'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-30 17:57:44,055","level":"INFO","logger":"translation","request_id":"9e91d78aad05","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'это', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 555.09}"}
+{"ts":"2026-10-30 17:57:44,055","level":"INFO","logger":"translation","request_id":"9e91d78aad05","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'this'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-30 17:57:44,885","level":"INFO","logger":"translation","request_id":"9e91d78aad05","user_id":"-","msg":"Found 4 alternatives for this: ['этот', 'сие', 'данный', 'вот это']"}
+{"ts":"2026-10-30 17:57:44,950","level":"INFO","logger":"translation","request_id":"ba9417db79fc","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'discussing'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-30 17:57:45,854","level":"INFO","logger":"translation","request_id":"ba9417db79fc","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'обсуждая', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 887.05}"}
+{"ts":"2026-10-30 17:57:45,854","level":"INFO","logger":"translation","request_id":"ba9417db79fc","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'discussing'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-30 17:57:46,747","level":"INFO","logger":"translation","request_id":"ba9417db79fc","user_id":"-","msg":"Found 4 alternatives for discussing: ['обсуждающий', 'рассматривая', 'говоря о', 'разбирая']"}
+{"ts":"2026-10-30 18:04:38,159","level":"INFO","logger":"translation","request_id":"24dbb6e89d47","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'politics'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-10-30 18:04:38,545","level":"INFO","logger":"translation","request_id":"24dbb6e89d47","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'политика', 'detected_language': 'en', 'service': 'deepl', 'confidence': 0.95, 'processing_time_ms': 360.26}"}
+{"ts":"2026-10-30 18:04:38,545","level":"INFO","logger":"translation","request_id":"24dbb6e89d47","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'politics'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-30 18:04:38,555","level":"INFO","logger":"translation","request_id":"24dbb6e89d47","user_id":"-","msg":"Found 0 alternatives for politics: []"}
+{"ts":"2026-10-30 18:05:27,265","level":"INFO","logger":"translation","request_id":"2b170885cff6","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'asymmetry'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepl'
+---------------------------------
+"}
+{"ts":"2026-10-30 18:05:27,598","level":"INFO","logger":"translation","request_id":"2b170885cff6","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'асимметрия', 'detected_language': 'en', 'service': 'deepl', 'confidence': 0.95, 'processing_time_ms': 320.8}"}
+{"ts":"2026-10-30 18:05:27,599","level":"INFO","logger":"translation","request_id":"2b170885cff6","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'asymmetry'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-30 18:05:27,599","level":"INFO","logger":"translation","request_id":"2b170885cff6","user_id":"-","msg":"Found 0 alternatives for asymmetry: []"}
+{"ts":"2026-10-30 18:17:12,492","level":"INFO","logger":"translation","request_id":"4f6e3de67e0c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'prestigiosa'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'ar'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-30 18:17:13,408","level":"INFO","logger":"translation","request_id":"4f6e3de67e0c","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'престижная', 'detected_language': 'ar', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 886.46}"}
+{"ts":"2026-10-30 18:17:13,408","level":"INFO","logger":"translation","request_id":"4f6e3de67e0c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'prestigiosa'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'ar'."}
+{"ts":"2026-10-30 18:17:14,306","level":"INFO","logger":"translation","request_id":"4f6e3de67e0c","user_id":"-","msg":"Found 4 alternatives for prestigiosa: ['авторитетная', 'влиятельная', 'респектабельная', 'именитая']"}
+{"ts":"2026-10-31 13:09:40,518","level":"INFO","logger":"translation","request_id":"b18e15bbd883","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'When people ponder the question, greater dlPFC activation predicts a greater likelihood of answering yes (but as we’ll see in chapter 13, it also depends on how you ask the question).'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 13:09:41,882","level":"INFO","logger":"translation","request_id":"b18e15bbd883","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Когда люди обдумывают этот вопрос, более высокая активация дорсолатеральной префронтальной коры предсказывает более высокую вероятность ответа «да» (но, как мы увидим в главе 13, это также зависит от того, как вы задаёте вопрос).', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1345.5}"}
+{"ts":"2026-10-31 13:09:41,882","level":"INFO","logger":"translation","request_id":"b18e15bbd883","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'When people ponder the question, greater dlPFC activation predicts a greater likelihood of answering yes (but as we’ll see in chapter 13, it also depends on how you ask the question).'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 13:09:46,950","level":"INFO","logger":"translation","request_id":"c78e1a249410","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Monkeys with dlPFC lesions can’t switch strategies in a task when the rewards given for each strategy shift—they perseverate with the strategy offering the most immediate reward.57 Similarly, humans with dlPFC damage are impaired in planning or gratification postponement, perseverate on strategies that offer immediate reward, and show poor executive control over their behavior.* Remarkably, the technique of transcranial magnetic stimulation can temporarily silence part of someone’s cortex, as was done in a fascinating study by Ernst Fehr of the University of Zurich.58 When the dlPFC was silenced, subjects playing an economic game impulsively accepted lousy offers that they’d normally reject in the hopes of getting better offers in the future.'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 13:09:49,205","level":"INFO","logger":"translation","request_id":"c78e1a249410","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'У обезьян с поражением дорсолатеральной префронтальной коры (длПФК) нарушается способность переключать стратегии в задаче, когда вознаграждение за каждую стратегию меняется, — они perseverируют, настаивая на стратегии, дающей максимальное немедленное вознаграждение.57 Аналогично люди с повреждением длПФК испытывают трудности с планированием и отложенным вознаграждением, застревают на стратегиях, сулящих немедленную награду, и демонстрируют слабый исполнительный контроль над своим поведением.* Примечательно, что метод транскраниальной магнитной стимуляции позволяет временно «отключить» часть коры головного мозга, как это было сделано в увлекательном исследовании Эрнста Фера из Цюрихского университета.58 Когда длПФК была отключена, испытуемые, играющие в экономическую игру, импульсивно принимали невыгодные предложения, которые в обычных условиях отвергли бы в надежде получить лучшие предложения в будущем.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 2241.07}"}
+{"ts":"2026-10-31 13:09:49,205","level":"INFO","logger":"translation","request_id":"c78e1a249410","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Monkeys with dlPFC lesions can’t switch strategies in a task when the rewards given for each strategy shift—they perseverate with the strategy offering the most immediate reward.57 Similarly, humans with dlPFC damage are impaired in planning or gratification postponement, perseverate on strategies that offer immediate reward, and show poor executive control over their behavior.* Remarkably, the technique of transcranial magnetic stimulation can temporarily silence part of someone’s cortex, as was done in a fascinating study by Ernst Fehr of the University of Zurich.58 When the dlPFC was silenced, subjects playing an economic game impulsively accepted lousy offers that they’d normally reject in the hopes of getting better offers in the future.'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 13:10:03,318","level":"INFO","logger":"translation","request_id":"35e54265ecb9","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Moreover, controls and subjects with silenced dlPFCs rated lousy offers as being equally unfair;'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 13:10:04,699","level":"INFO","logger":"translation","request_id":"35e54265ecb9","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Более того, испытуемые из контрольной группы и группы с подавленной активностью дорсолатеральной префронтальной коры оценивали невыгодные предложения как одинаково несправедливые;', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1359.96}"}
+{"ts":"2026-10-31 13:10:04,700","level":"INFO","logger":"translation","request_id":"35e54265ecb9","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Moreover, controls and subjects with silenced dlPFCs rated lousy offers as being equally unfair;'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:05:50,480","level":"INFO","logger":"translation","request_id":"11e21c240c20","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'lessens'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:05:51,636","level":"INFO","logger":"translation","request_id":"11e21c240c20","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'уменьшает', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1123.96}"}
+{"ts":"2026-10-31 15:05:51,637","level":"INFO","logger":"translation","request_id":"11e21c240c20","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'lessens'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:05:52,651","level":"INFO","logger":"translation","request_id":"11e21c240c20","user_id":"-","msg":"Found 4 alternatives for lessens: ['снижает', 'ослабляет', 'сокращает', 'уменьшает']"}
+{"ts":"2026-10-31 15:06:54,662","level":"INFO","logger":"translation","request_id":"8b56818eddf3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'eating'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:06:55,702","level":"INFO","logger":"translation","request_id":"8b56818eddf3","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'есть', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1021.23}"}
+{"ts":"2026-10-31 15:06:55,702","level":"INFO","logger":"translation","request_id":"8b56818eddf3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'eating'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:06:56,509","level":"INFO","logger":"translation","request_id":"8b56818eddf3","user_id":"-","msg":"Found 4 alternatives for eating: ['кушает', 'принимает пищу', 'питается', 'употребляет в пищу']"}
+{"ts":"2026-10-31 15:48:23,319","level":"INFO","logger":"translation","request_id":"309f1897c66b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'flossing'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:48:24,410","level":"INFO","logger":"translation","request_id":"309f1897c66b","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'использование зубной нити', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1057.8}"}
+{"ts":"2026-10-31 15:48:24,411","level":"INFO","logger":"translation","request_id":"309f1897c66b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'flossing'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:48:25,687","level":"INFO","logger":"translation","request_id":"309f1897c66b","user_id":"-","msg":"Found 4 alternatives for flossing: ['чистка зубов нитью', 'применение зубной нити', 'уход за зубами с помощью нити', 'флоссинг']"}
+{"ts":"2026-10-31 15:48:56,136","level":"INFO","logger":"translation","request_id":"6361ed076ed7","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'vulnerability'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:48:57,070","level":"INFO","logger":"translation","request_id":"6361ed076ed7","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'уязвимость', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 917.68}"}
+{"ts":"2026-10-31 15:48:57,071","level":"INFO","logger":"translation","request_id":"6361ed076ed7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'vulnerability'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:48:58,040","level":"INFO","logger":"translation","request_id":"6361ed076ed7","user_id":"-","msg":"Found 4 alternatives for vulnerability: ['ранимость', 'незащищённость', 'слабое место', 'брешь']"}
+{"ts":"2026-10-31 15:49:15,679","level":"INFO","logger":"translation","request_id":"f53333f92d62","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'gangs'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:49:16,361","level":"INFO","logger":"translation","request_id":"f53333f92d62","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'банды', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 668.1}"}
+{"ts":"2026-10-31 15:49:16,361","level":"INFO","logger":"translation","request_id":"f53333f92d62","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'gangs'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:49:17,344","level":"INFO","logger":"translation","request_id":"f53333f92d62","user_id":"-","msg":"Found 4 alternatives for gangs: ['группировки', 'шайки', 'бандитские формирования', 'преступные группировки']"}
+{"ts":"2026-10-31 15:49:40,766","level":"INFO","logger":"translation","request_id":"e6a05ca2d8cc","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'depression'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:49:41,656","level":"INFO","logger":"translation","request_id":"e6a05ca2d8cc","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'депрессия', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 869.53}"}
+{"ts":"2026-10-31 15:49:41,656","level":"INFO","logger":"translation","request_id":"e6a05ca2d8cc","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'depression'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:49:42,451","level":"INFO","logger":"translation","request_id":"e6a05ca2d8cc","user_id":"-","msg":"Found 4 alternatives for depression: ['уныние', 'подавленность', 'угнетённое состояние', 'депрессивное состояние']"}
+{"ts":"2026-10-31 15:49:56,627","level":"INFO","logger":"translation","request_id":"e44e86f62f3d","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'reinforcing'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:49:57,578","level":"INFO","logger":"translation","request_id":"e44e86f62f3d","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'усиливающий', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 934.48}"}
+{"ts":"2026-10-31 15:49:57,578","level":"INFO","logger":"translation","request_id":"e44e86f62f3d","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'reinforcing'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:49:58,729","level":"INFO","logger":"translation","request_id":"e44e86f62f3d","user_id":"-","msg":"Found 4 alternatives for reinforcing: ['укрепляющий', 'подкрепляющий', 'усилительный', 'армирующий']"}
+{"ts":"2026-10-31 15:58:51,893","level":"INFO","logger":"translation","request_id":"477f9af40621","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'shown'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:58:53,013","level":"INFO","logger":"translation","request_id":"477f9af40621","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'показано', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1105.88}"}
+{"ts":"2026-10-31 15:58:53,013","level":"INFO","logger":"translation","request_id":"477f9af40621","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'shown'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:58:54,109","level":"INFO","logger":"translation","request_id":"477f9af40621","user_id":"-","msg":"Found 4 alternatives for shown: ['отображено', 'продемонстрировано', 'показан', 'выведено']"}
+{"ts":"2026-10-31 15:59:26,130","level":"INFO","logger":"translation","request_id":"7180eb29ea7b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'belong'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-10-31 15:59:27,051","level":"INFO","logger":"translation","request_id":"7180eb29ea7b","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'принадлежать', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 908.75}"}
+{"ts":"2026-10-31 15:59:27,052","level":"INFO","logger":"translation","request_id":"7180eb29ea7b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'belong'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-10-31 15:59:28,171","level":"INFO","logger":"translation","request_id":"7180eb29ea7b","user_id":"-","msg":"Found 4 alternatives for belong: ['относиться', 'входить в состав', 'быть частью', 'числиться']"}

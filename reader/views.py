@@ -282,13 +282,28 @@ class BookViewSet(viewsets.ModelViewSet):
         book_name = instance.title
         book_user = instance.user
 
+        try:
+            if instance.file and instance.file.name:
+                instance.file.delete(save=False)
+
+            if instance.cover and instance.cover.name:
+                instance.cover.delete(save=False)
+
+            instance.delete()
+
+        except Exception:
+            logger.exception(
+                "Failed to delete book %s for %s",
+                book_name,
+                book_user,
+            )
+            raise
+
         logger.info(
-            "Book %s for %s was deleted",
+            "Book %s and its stored files were deleted for %s",
             book_name,
             book_user,
         )
-
-        instance.delete()
 
 
     @action(detail=True, methods=["get"])
@@ -390,7 +405,7 @@ class BookViewSet(viewsets.ModelViewSet):
         )
         return Response({"status": "Progress updated"}, status=status.HTTP_200_OK)
 
-        # ============================================================
+    # ============================================================
     # НАСТРОЙКИ ПАРСИНГА
     # ============================================================
 
@@ -988,7 +1003,7 @@ class BookViewSet(viewsets.ModelViewSet):
         # ---------------------------------------------------------
 
         result = []
-        base_title = unit["title"] or "Глава"
+        base_title = unit["title"] or "Chapter"
 
         total_groups = len(groups)
 
@@ -997,7 +1012,7 @@ class BookViewSet(viewsets.ModelViewSet):
             result.append(
                 self._make_chapter_unit(
                     title=(
-                        f"{base_title} — часть "
+                        f"{base_title} — part "
                         f"{index}/{total_groups}"
                     ),
                     paragraphs=group,
@@ -1063,7 +1078,7 @@ class BookViewSet(viewsets.ModelViewSet):
         for index, unit in enumerate(normalized, 1):
             title = (
                 unit["title"]
-                or f"Глава {index}"
+                or f"Chapter {index}"
             )[:500]
 
             result.append(

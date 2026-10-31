@@ -2008,3 +2008,338 @@ Traceback (most recent call last):
 rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
 {"ts":"2026-10-30 17:10:36,762","level":"INFO","logger":"reader.views","request_id":"e1590960d527","user_id":"-","msg":"EPUB parsed: title='La sombra del viento' documents=80 chapters=77 language=es"}
 {"ts":"2026-10-30 17:10:38,745","level":"INFO","logger":"reader.views","request_id":"e1590960d527","user_id":"-","msg":"Book import completed: title='La sombra del viento' format=EPUB bytes=876887 chapters=77 read=0.013s extract=0.000s parse=0.909s database=1.981s total=2.902s"}
+{"ts":"2026-10-30 17:45:10,160","level":"INFO","logger":"reader.views","request_id":"7166e8674e3b","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder for StasStoun was deleted"}
+{"ts":"2026-10-30 17:45:20,465","level":"WARNING","logger":"reader.views","request_id":"c465d08dab96","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-30 17:45:20,466","level":"WARNING","logger":"reader.views","request_id":"c465d08dab96","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-30 17:45:20,479","level":"INFO","logger":"reader.views","request_id":"c465d08dab96","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=285 language=en"}
+{"ts":"2026-10-30 17:45:22,004","level":"INFO","logger":"reader.views","request_id":"c465d08dab96","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=285 read=0.005s extract=0.000s parse=0.821s database=1.523s total=2.349s"}
+{"ts":"2026-10-30 17:46:02,009","level":"INFO","logger":"reader.views","request_id":"22e4a1216167","user_id":"-","msg":"Book Abrázame fuerte for StasStoun was deleted"}
+{"ts":"2026-10-30 17:46:21,435","level":"INFO","logger":"reader.views","request_id":"1dacd04500be","user_id":"-","msg":"EPUB parsed: title='Abrázame fuerte' documents=1 chapters=36 language=ar"}
+{"ts":"2026-10-30 17:46:22,119","level":"INFO","logger":"reader.views","request_id":"1dacd04500be","user_id":"-","msg":"Book import completed: title='Abrázame fuerte' format=EPUB bytes=613006 chapters=36 read=0.000s extract=0.000s parse=0.139s database=0.683s total=0.822s"}
+{"ts":"2026-10-30 17:55:42,159","level":"INFO","logger":"reader.views","request_id":"8e0fc2fc4c25","user_id":"-","msg":"Book Abrázame fuerte for StasStoun was deleted"}
+{"ts":"2026-10-30 17:55:55,723","level":"INFO","logger":"reader.views","request_id":"c429c76c7871","user_id":"-","msg":"EPUB parsed: title='Abrázame fuerte' documents=1 chapters=36 language=ar"}
+{"ts":"2026-10-30 17:55:56,603","level":"INFO","logger":"reader.views","request_id":"c429c76c7871","user_id":"-","msg":"Book import completed: title='Abrázame fuerte' format=EPUB bytes=613006 chapters=36 read=0.000s extract=0.000s parse=0.184s database=0.879s total=1.064s"}
+{"ts":"2026-10-30 17:57:44,055","level":"INFO","logger":"reader.translator_backends","request_id":"9e91d78aad05","user_id":"-","msg":"Recieved: this and это for it"}
+{"ts":"2026-10-30 17:57:44,884","level":"INFO","logger":"reader.translator_backends","request_id":"9e91d78aad05","user_id":"-","msg":"Raw response form Ai {'id': 'd42db236-be32-45ea-a3c4-08a198fd40df', 'object': 'chat.completion', 'created': 1793383065, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {"text": "этот"},\n    {"text": "сие"},\n    {"text": "данный"},\n    {"text": "вот это"}\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 36, 'total_tokens': 179, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-30 17:57:44,885","level":"INFO","logger":"reader.translator_backends","request_id":"9e91d78aad05","user_id":"-","msg":"Parser result[{'text': 'этот'}, {'text': 'сие'}, {'text': 'данный'}, {'text': 'вот это'}]"}
+{"ts":"2026-10-30 17:57:45,854","level":"INFO","logger":"reader.translator_backends","request_id":"ba9417db79fc","user_id":"-","msg":"Recieved: discussing and обсуждая for it"}
+{"ts":"2026-10-30 17:57:46,746","level":"INFO","logger":"reader.translator_backends","request_id":"ba9417db79fc","user_id":"-","msg":"Raw response form Ai {'id': '8627c360-8d22-45ee-844a-cc8ed44093ea', 'object': 'chat.completion', 'created': 1793383067, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "обсуждающий"\n    },\n    {\n        "text": "рассматривая"\n    },\n    {\n        "text": "говоря о"\n    },\n    {\n        "text": "разбирая"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 57, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-30 17:57:46,747","level":"INFO","logger":"reader.translator_backends","request_id":"ba9417db79fc","user_id":"-","msg":"Parser result[{'text': 'обсуждающий'}, {'text': 'рассматривая'}, {'text': 'говоря о'}, {'text': 'разбирая'}]"}
+{"ts":"2026-10-30 17:59:21,525","level":"INFO","logger":"reader.views","request_id":"32e830a967a7","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder for StasStoun was deleted"}
+{"ts":"2026-10-30 17:59:31,891","level":"WARNING","logger":"reader.views","request_id":"13d4ea1156e4","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-30 17:59:31,891","level":"WARNING","logger":"reader.views","request_id":"13d4ea1156e4","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-30 17:59:31,906","level":"INFO","logger":"reader.views","request_id":"13d4ea1156e4","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=285 language=en"}
+{"ts":"2026-10-30 17:59:33,214","level":"INFO","logger":"reader.views","request_id":"13d4ea1156e4","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=285 read=0.004s extract=0.000s parse=0.836s database=1.306s total=2.145s"}
+{"ts":"2026-10-30 18:04:38,545","level":"INFO","logger":"reader.translator_backends","request_id":"24dbb6e89d47","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-10-30 18:05:27,599","level":"INFO","logger":"reader.translator_backends","request_id":"2b170885cff6","user_id":"-","msg":"DeepLTranslator не поддерживает получение альтернативных переводов."}
+{"ts":"2026-10-30 18:12:59,993","level":"ERROR","logger":"reader","request_id":"d16a15fb770f","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/74/update_progress/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-30 18:13:00,337","level":"ERROR","logger":"reader","request_id":"f5a4c5f6a264","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/74/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-30 18:13:08,961","level":"INFO","logger":"reader.views","request_id":"aff00819ab71","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder for StasStoun was deleted"}
+{"ts":"2026-10-30 18:13:11,343","level":"INFO","logger":"reader.views","request_id":"d89061623243","user_id":"-","msg":"Book Surely You're Joking, Mr. Feynman! for StasStoun was deleted"}
+{"ts":"2026-10-30 18:13:15,697","level":"INFO","logger":"reader.views","request_id":"c25f011af416","user_id":"-","msg":"Book Abrázame fuerte for StasStoun was deleted"}
+{"ts":"2026-10-30 18:13:26,635","level":"WARNING","logger":"reader.views","request_id":"8ea0f3567245","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-30 18:13:26,636","level":"WARNING","logger":"reader.views","request_id":"8ea0f3567245","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-30 18:13:26,646","level":"INFO","logger":"reader.views","request_id":"8ea0f3567245","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=282 language=en"}
+{"ts":"2026-10-30 18:13:28,218","level":"INFO","logger":"reader.views","request_id":"8ea0f3567245","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=282 read=0.005s extract=0.000s parse=0.727s database=1.570s total=2.302s"}
+{"ts":"2026-10-30 18:14:55,976","level":"INFO","logger":"reader.views","request_id":"cac52dff818e","user_id":"-","msg":"EPUB parsed: title="Surely You're Joking, Mr. Feynman!" documents=14 chapters=24 language=en"}
+{"ts":"2026-10-30 18:14:56,853","level":"INFO","logger":"reader.views","request_id":"cac52dff818e","user_id":"-","msg":"Book import completed: title="Surely You're Joking, Mr. Feynman!" format=EPUB bytes=308423 chapters=24 read=0.000s extract=0.000s parse=0.180s database=0.876s total=1.056s"}
+{"ts":"2026-10-30 18:16:02,443","level":"INFO","logger":"reader.views","request_id":"636af370eac0","user_id":"-","msg":"EPUB parsed: title='Abrázame fuerte' documents=1 chapters=36 language=ar"}
+{"ts":"2026-10-30 18:16:02,982","level":"INFO","logger":"reader.views","request_id":"636af370eac0","user_id":"-","msg":"Book import completed: title='Abrázame fuerte' format=EPUB bytes=613006 chapters=36 read=0.000s extract=0.000s parse=0.163s database=0.537s total=0.701s"}
+{"ts":"2026-10-30 18:17:13,409","level":"INFO","logger":"reader.translator_backends","request_id":"4f6e3de67e0c","user_id":"-","msg":"Recieved: prestigiosa and престижная for it"}
+{"ts":"2026-10-30 18:17:14,305","level":"INFO","logger":"reader.translator_backends","request_id":"4f6e3de67e0c","user_id":"-","msg":"Raw response form Ai {'id': '51ad4175-7b0d-4758-a1b7-a20847d28ce1', 'object': 'chat.completion', 'created': 1793384234, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "авторитетная"\n    },\n    {\n        "text": "влиятельная"\n    },\n    {\n        "text": "респектабельная"\n    },\n    {\n        "text": "именитая"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 57, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-30 18:17:14,305","level":"INFO","logger":"reader.translator_backends","request_id":"4f6e3de67e0c","user_id":"-","msg":"Parser result[{'text': 'авторитетная'}, {'text': 'влиятельная'}, {'text': 'респектабельная'}, {'text': 'именитая'}]"}
+{"ts":"2026-10-30 18:23:35,816","level":"INFO","logger":"reader.views","request_id":"e83e0bb42ae8","user_id":"-","msg":"Book Abrázame fuerte for StasStoun was deleted"}
+{"ts":"2026-10-30 18:23:38,276","level":"INFO","logger":"reader.views","request_id":"007f1ef4bc8e","user_id":"-","msg":"Book Surely You're Joking, Mr. Feynman! for StasStoun was deleted"}
+{"ts":"2026-10-30 18:23:41,235","level":"INFO","logger":"reader.views","request_id":"371c24c68247","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder for StasStoun was deleted"}
+{"ts":"2026-10-30 18:23:50,539","level":"WARNING","logger":"reader.views","request_id":"e6e8b734d89a","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-30 18:23:50,539","level":"WARNING","logger":"reader.views","request_id":"e6e8b734d89a","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-30 18:23:50,551","level":"INFO","logger":"reader.views","request_id":"e6e8b734d89a","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=282 language=en"}
+{"ts":"2026-10-30 18:23:53,556","level":"INFO","logger":"reader.views","request_id":"e6e8b734d89a","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=282 read=0.005s extract=0.000s parse=0.729s database=3.004s total=3.738s"}
+{"ts":"2026-10-30 18:25:46,787","level":"WARNING","logger":"reader.views","request_id":"ea770cf88983","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: 001.html"}
+{"ts":"2026-10-30 18:25:46,790","level":"INFO","logger":"reader.views","request_id":"ea770cf88983","user_id":"-","msg":"EPUB parsed: title='La Peste' documents=38 chapters=18 language=fr"}
+{"ts":"2026-10-30 18:25:47,424","level":"INFO","logger":"reader.views","request_id":"ea770cf88983","user_id":"-","msg":"Book import completed: title='La Peste' format=EPUB bytes=339266 chapters=18 read=0.000s extract=0.000s parse=0.129s database=0.633s total=0.762s"}
+{"ts":"2026-10-30 18:28:03,535","level":"INFO","logger":"reader.views","request_id":"f93b5387d591","user_id":"-","msg":"EPUB heading split skipped: reasonable=7 total=17 chapter_title='Seven: BACK TO THE CRIB, BACK TO THE WOMB'"}
+{"ts":"2026-10-30 18:28:03,628","level":"INFO","logger":"reader.views","request_id":"f93b5387d591","user_id":"-","msg":"EPUB heading split skipped: reasonable=4 total=8 chapter_title='Sixteen: BIOLOGY, THE CRIMINAL JUSTICE SYSTEM, AND (OH, WHY NOT?) FREE WILL'"}
+{"ts":"2026-10-30 18:28:03,629","level":"INFO","logger":"reader.views","request_id":"f93b5387d591","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Appendix 1: Neuroscience 101'"}
+{"ts":"2026-10-30 18:28:03,630","level":"INFO","logger":"reader.views","request_id":"f93b5387d591","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='About the Author'"}
+{"ts":"2026-10-30 18:28:03,644","level":"INFO","logger":"reader.views","request_id":"f93b5387d591","user_id":"-","msg":"EPUB parsed: title='Behave: The Biology of Humans at Our Best and Worst' documents=555 chapters=115 language=en"}
+{"ts":"2026-10-30 18:28:07,635","level":"INFO","logger":"reader.views","request_id":"f93b5387d591","user_id":"-","msg":"Book import completed: title='Behave: The Biology of Humans at Our Best and Worst' format=EPUB bytes=12144806 chapters=115 read=0.010s extract=0.000s parse=1.479s database=3.987s total=5.476s"}
+{"ts":"2026-10-30 18:40:06,782","level":"INFO","logger":"reader.views","request_id":"5e7836af3fd5","user_id":"-","msg":"Book import completed: title='Ensemble, c’est tout' format=FB2 bytes=911975 chapters=25 read=0.000s extract=0.020s parse=0.068s database=1.224s total=1.312s"}
+{"ts":"2026-10-30 18:44:27,580","level":"INFO","logger":"reader.views","request_id":"2d48a4df1585","user_id":"-","msg":"Book Behave: The Biology of Humans at Our Best and Worst for StasStoun was deleted"}
+{"ts":"2026-10-30 18:44:50,620","level":"INFO","logger":"reader.views","request_id":"ef0f4d2337bd","user_id":"-","msg":"EPUB heading split skipped: reasonable=7 total=17 chapter_title='Seven: BACK TO THE CRIB, BACK TO THE WOMB'"}
+{"ts":"2026-10-30 18:44:50,622","level":"INFO","logger":"reader.views","request_id":"ef0f4d2337bd","user_id":"-","msg":"EPUB heading split skipped: reasonable=4 total=8 chapter_title='Sixteen: BIOLOGY, THE CRIMINAL JUSTICE SYSTEM, AND (OH, WHY NOT?) FREE WILL'"}
+{"ts":"2026-10-30 18:44:50,622","level":"INFO","logger":"reader.views","request_id":"ef0f4d2337bd","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Appendix 1: Neuroscience 101'"}
+{"ts":"2026-10-30 18:44:50,624","level":"INFO","logger":"reader.views","request_id":"ef0f4d2337bd","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='About the Author'"}
+{"ts":"2026-10-30 18:44:50,636","level":"INFO","logger":"reader.views","request_id":"ef0f4d2337bd","user_id":"-","msg":"EPUB parsed: title='Behave: The Biology of Humans at Our Best and Worst' documents=555 chapters=115 language=en"}
+{"ts":"2026-10-30 18:44:55,704","level":"INFO","logger":"reader.views","request_id":"ef0f4d2337bd","user_id":"-","msg":"Book import completed: title='Behave: The Biology of Humans at Our Best and Worst' format=EPUB bytes=12144806 chapters=115 read=0.009s extract=0.000s parse=1.487s database=3.287s total=4.783s"}
+{"ts":"2026-10-30 19:26:50,093","level":"ERROR","logger":"reader","request_id":"99dd05503a2f","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-30 19:27:26,592","level":"WARNING","logger":"reader.views","request_id":"4d85799a416a","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: cover.xhtml"}
+{"ts":"2026-10-30 19:27:26,592","level":"WARNING","logger":"reader.views","request_id":"4d85799a416a","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: pagetitre.xhtml"}
+{"ts":"2026-10-30 19:27:26,610","level":"INFO","logger":"reader.views","request_id":"4d85799a416a","user_id":"-","msg":"EPUB parsed: title='Mémorial de Sainte-Hélène. Le manuscrit retrouvé' documents=26 chapters=416 language=fr"}
+{"ts":"2026-10-30 19:27:28,250","level":"INFO","logger":"reader.views","request_id":"4d85799a416a","user_id":"-","msg":"Book import completed: title='Mémorial de Sainte-Hélène. Le manuscrit retrouvé' format=EPUB bytes=3511860 chapters=416 read=0.004s extract=0.000s parse=1.114s database=1.638s total=2.756s"}
+{"ts":"2026-10-30 19:32:33,508","level":"INFO","logger":"reader.views","request_id":"60632f7bc9f7","user_id":"-","msg":"EPUB parsed: title='Le Comte de Monte-Cristo - Tome I' documents=36 chapters=38 language=fr"}
+{"ts":"2026-10-30 19:32:34,608","level":"INFO","logger":"reader.views","request_id":"60632f7bc9f7","user_id":"-","msg":"Book import completed: title='Le Comte de Monte-Cristo - Tome I' format=EPUB bytes=716505 chapters=38 read=0.000s extract=0.000s parse=0.386s database=1.090s total=1.476s"}
+{"ts":"2026-10-30 19:39:22,835","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='1. Measuring Reality'"}
+{"ts":"2026-10-30 19:39:22,835","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='2. Cause and Effect'"}
+{"ts":"2026-10-30 19:39:22,835","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='3. Other Minds'"}
+{"ts":"2026-10-30 19:39:22,835","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='4. Knowing Our Own Minds'"}
+{"ts":"2026-10-30 19:39:22,836","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='5. Wonderlust'"}
+{"ts":"2026-10-30 19:39:22,836","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='6. Originality'"}
+{"ts":"2026-10-30 19:39:22,836","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='7. Paradigm Shifts'"}
+{"ts":"2026-10-30 19:39:22,839","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"EPUB parsed: title='A Trick of the Mind' documents=23 chapters=31 language=en"}
+{"ts":"2026-10-30 19:39:24,874","level":"INFO","logger":"reader.views","request_id":"74b1aab98f96","user_id":"-","msg":"Book import completed: title='A Trick of the Mind' format=EPUB bytes=6253581 chapters=31 read=0.005s extract=0.000s parse=0.169s database=2.033s total=2.207s"}
+{"ts":"2026-10-30 19:45:01,396","level":"INFO","logger":"reader.views","request_id":"132a05d6d408","user_id":"-","msg":"EPUB parsed: title='Gobseck' documents=7 chapters=6 language=fr"}
+{"ts":"2026-10-30 19:45:02,007","level":"INFO","logger":"reader.views","request_id":"132a05d6d408","user_id":"-","msg":"Book import completed: title='Gobseck' format=EPUB bytes=71274 chapters=6 read=0.000s extract=0.000s parse=0.027s database=0.610s total=0.637s"}
+{"ts":"2026-10-30 19:46:07,427","level":"WARNING","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: text/part0000.html#0-686f5f2a46ea4871a792f6f7c67c9361"}
+{"ts":"2026-10-30 19:46:07,427","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='The Search for Emotion’s “Fingerprints”'"}
+{"ts":"2026-10-30 19:46:07,428","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Emotions Are Constructed'"}
+{"ts":"2026-10-30 19:46:07,428","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='The Origin of Feeling'"}
+{"ts":"2026-10-30 19:46:07,428","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Concepts, Goals, and Words'"}
+{"ts":"2026-10-30 19:46:07,428","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='How the Brain Makes Emotions'"}
+{"ts":"2026-10-30 19:46:07,429","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Emotions as Social Reality'"}
+{"ts":"2026-10-30 19:46:07,429","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='A New View of Human Nature'"}
+{"ts":"2026-10-30 19:46:07,429","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Mastering Your Emotions'"}
+{"ts":"2026-10-30 19:46:07,429","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Emotion and Illness'"}
+{"ts":"2026-10-30 19:46:07,429","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Emotion and the Law'"}
+{"ts":"2026-10-30 19:46:07,430","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Is a Growling Dog Angry?'"}
+{"ts":"2026-10-30 19:46:07,441","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"EPUB parsed: title='How Emotions Are Made: The Secret Life of the Brain' documents=60 chapters=49 language=en"}
+{"ts":"2026-10-30 19:46:08,932","level":"INFO","logger":"reader.views","request_id":"e5f48b2da08a","user_id":"-","msg":"Book import completed: title='How Emotions Are Made: The Secret Life of the Brain' format=EPUB bytes=2008568 chapters=49 read=0.000s extract=0.000s parse=0.672s database=1.489s total=2.161s"}
+{"ts":"2026-10-30 19:46:31,527","level":"INFO","logger":"reader.views","request_id":"4f17358f6a9b","user_id":"-","msg":"Book import completed: title="Harry Potter and the Sorcerer's Stone" format=FB2 bytes=508290 chapters=19 read=0.000s extract=0.003s parse=0.026s database=0.958s total=0.987s"}
+{"ts":"2026-10-30 19:55:07,368","level":"INFO","logger":"reader.views","request_id":"78676e4b55db","user_id":"-","msg":"EPUB parsed: title='Immense World : How Animal Senses Reveal the Hidden Realms Around Us (9780593133248)' documents=11 chapters=51 language=en"}
+{"ts":"2026-10-30 19:55:10,735","level":"INFO","logger":"reader.views","request_id":"78676e4b55db","user_id":"-","msg":"Book import completed: title='Immense World : How Animal Senses Reveal the Hidden Realms Around Us (9780593133248)' format=EPUB bytes=2824046 chapters=51 read=0.000s extract=0.000s parse=0.745s database=1.727s total=2.472s"}
+{"ts":"2026-10-30 19:56:25,745","level":"INFO","logger":"reader.views","request_id":"795209dab844","user_id":"-","msg":"EPUB parsed: title='Ensemble c`est tout de Anna Gavalda' documents=257 chapters=21 language=fr"}
+{"ts":"2026-10-30 19:56:26,226","level":"INFO","logger":"reader.views","request_id":"795209dab844","user_id":"-","msg":"Book import completed: title='Ensemble c`est tout de Anna Gavalda' format=EPUB bytes=467511 chapters=21 read=0.000s extract=0.000s parse=0.630s database=0.480s total=1.110s"}
+{"ts":"2026-10-30 20:03:19,835","level":"INFO","logger":"reader.views","request_id":"ea514a918669","user_id":"-","msg":"Book Ensemble c`est tout de Anna Gavalda for StasStoun was deleted"}
+{"ts":"2026-10-30 20:03:21,930","level":"INFO","logger":"reader.views","request_id":"80810bde99ad","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder for StasStoun was deleted"}
+{"ts":"2026-10-30 20:03:25,095","level":"INFO","logger":"reader.views","request_id":"c1e87d7fa820","user_id":"-","msg":"Book La Peste for StasStoun was deleted"}
+{"ts":"2026-10-30 20:03:27,463","level":"INFO","logger":"reader.views","request_id":"4954f065d80c","user_id":"-","msg":"Book Ensemble, c’est tout for StasStoun was deleted"}
+{"ts":"2026-10-30 20:06:15,716","level":"INFO","logger":"reader.views","request_id":"fc89529f9055","user_id":"-","msg":"EPUB parsed: title="Surely You're Joking, Mr. Feynman!" documents=14 chapters=24 language=en"}
+{"ts":"2026-10-30 20:06:18,343","level":"INFO","logger":"reader.views","request_id":"fc89529f9055","user_id":"-","msg":"Book import completed: title="Surely You're Joking, Mr. Feynman!" format=EPUB bytes=309176 chapters=24 read=0.000s extract=0.000s parse=0.296s database=2.627s total=2.923s"}
+{"ts":"2026-10-31 12:52:27,240","level":"ERROR","logger":"reader","request_id":"efab1d36091e","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-31 12:52:59,236","level":"INFO","logger":"reader.views","request_id":"2090f610978d","user_id":"-","msg":"Book Livewired for StasStoun was deleted"}
+{"ts":"2026-10-31 12:53:02,301","level":"INFO","logger":"reader.views","request_id":"bd5ca327434a","user_id":"-","msg":"Book Determined for StasStoun was deleted"}
+{"ts":"2026-10-31 12:53:24,499","level":"WARNING","logger":"reader.views","request_id":"1f9c4dc5039a","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/001_Cover.xhtml"}
+{"ts":"2026-10-31 12:53:24,499","level":"WARNING","logger":"reader.views","request_id":"1f9c4dc5039a","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/003_Title_Page.xhtml"}
+{"ts":"2026-10-31 12:53:24,502","level":"INFO","logger":"reader.views","request_id":"1f9c4dc5039a","user_id":"-","msg":"EPUB heading split skipped: reasonable=6 total=26 chapter_title='Index'"}
+{"ts":"2026-10-31 12:53:24,507","level":"INFO","logger":"reader.views","request_id":"1f9c4dc5039a","user_id":"-","msg":"EPUB parsed: title='Determined' documents=28 chapters=145 language=en"}
+{"ts":"2026-10-31 12:53:34,253","level":"INFO","logger":"reader.views","request_id":"1f9c4dc5039a","user_id":"-","msg":"Book import completed: title='Determined' format=EPUB bytes=35310319 chapters=145 read=0.022s extract=0.000s parse=1.280s database=9.741s total=11.043s"}
+{"ts":"2026-10-31 12:55:50,141","level":"INFO","logger":"reader.views","request_id":"dad569db8cbd","user_id":"-","msg":"Book La sombra del viento for StasStoun was deleted"}
+{"ts":"2026-10-31 12:55:53,167","level":"INFO","logger":"reader.views","request_id":"32c66c74de57","user_id":"-","msg":"Book Mémorial de Sainte-Hélène. Le manuscrit retrouvé for StasStoun was deleted"}
+{"ts":"2026-10-31 12:55:57,208","level":"INFO","logger":"reader.views","request_id":"8bd3b87a26ea","user_id":"-","msg":"Book Le Comte de Monte-Cristo - Tome I for StasStoun was deleted"}
+{"ts":"2026-10-31 12:56:00,011","level":"INFO","logger":"reader.views","request_id":"68d6c39efd9b","user_id":"-","msg":"Book A Trick of the Mind for StasStoun was deleted"}
+{"ts":"2026-10-31 12:56:03,621","level":"INFO","logger":"reader.views","request_id":"d6d5eda97ee3","user_id":"-","msg":"Book Gobseck for StasStoun was deleted"}
+{"ts":"2026-10-31 12:56:05,833","level":"INFO","logger":"reader.views","request_id":"1add3868b721","user_id":"-","msg":"Book How Emotions Are Made: The Secret Life of the Brain for StasStoun was deleted"}
+{"ts":"2026-10-31 12:56:08,464","level":"INFO","logger":"reader.views","request_id":"51de55ed804c","user_id":"-","msg":"Book Harry Potter and the Sorcerer's Stone for StasStoun was deleted"}
+{"ts":"2026-10-31 12:56:12,444","level":"INFO","logger":"reader.views","request_id":"6323f1703782","user_id":"-","msg":"Book Immense World : How Animal Senses Reveal the Hidden Realms Around Us (9780593133248) for StasStoun was deleted"}
+{"ts":"2026-10-31 13:30:44,366","level":"WARNING","logger":"reader.views","request_id":"f33873ccdec9","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-31 13:30:44,367","level":"WARNING","logger":"reader.views","request_id":"f33873ccdec9","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-31 13:30:44,378","level":"INFO","logger":"reader.views","request_id":"f33873ccdec9","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=282 language=en"}
+{"ts":"2026-10-31 13:30:46,228","level":"INFO","logger":"reader.views","request_id":"f33873ccdec9","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=282 read=0.002s extract=0.000s parse=1.256s database=1.848s total=3.106s"}
+{"ts":"2026-10-31 13:30:51,802","level":"INFO","logger":"reader.views","request_id":"7900c956bca0","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder for StasStoun was deleted"}
+{"ts":"2026-10-31 13:47:58,111","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"9ddb4d2f582b","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=74"}
+{"ts":"2026-10-31 13:48:00,527","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"9ddb4d2f582b","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=74"}
+{"ts":"2026-10-31 14:48:18,099","level":"ERROR","logger":"reader","request_id":"8f79c89f0a79","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-31 14:48:32,787","level":"INFO","logger":"reader.views","request_id":"f6fcdc39e555","user_id":"-","msg":"Book Surely You're Joking, Mr. Feynman! and its stored files were deleted for StasStoun"}
+{"ts":"2026-10-31 14:49:18,400","level":"WARNING","logger":"reader.views","request_id":"42694d7e30f5","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-10-31 14:49:18,401","level":"WARNING","logger":"reader.views","request_id":"42694d7e30f5","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-10-31 14:49:18,412","level":"INFO","logger":"reader.views","request_id":"42694d7e30f5","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=282 language=en"}
+{"ts":"2026-10-31 14:49:20,358","level":"INFO","logger":"reader.views","request_id":"42694d7e30f5","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=282 read=0.002s extract=0.000s parse=0.743s database=1.944s total=2.689s"}
+{"ts":"2026-10-31 14:50:39,057","level":"INFO","logger":"reader.views","request_id":"d479245e1bb7","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder and its stored files were deleted for StasStoun"}
+{"ts":"2026-10-31 15:05:51,637","level":"INFO","logger":"reader.translator_backends","request_id":"11e21c240c20","user_id":"-","msg":"Recieved: lessens and уменьшает for it"}
+{"ts":"2026-10-31 15:05:52,649","level":"INFO","logger":"reader.translator_backends","request_id":"11e21c240c20","user_id":"-","msg":"Raw response form Ai {'id': '44b31689-20ae-4d20-9e3c-85031a2f50d5', 'object': 'chat.completion', 'created': 1793459151, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "снижает"\n    },\n    {\n        "text": "ослабляет"\n    },\n    {\n        "text": "сокращает"\n    },\n    {\n        "text": "уменьшает"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 54, 'total_tokens': 199, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:05:52,650","level":"INFO","logger":"reader.translator_backends","request_id":"11e21c240c20","user_id":"-","msg":"Parser result[{'text': 'снижает'}, {'text': 'ослабляет'}, {'text': 'сокращает'}, {'text': 'уменьшает'}]"}
+{"ts":"2026-10-31 15:05:54,689","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"c73ab7405921","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=76"}
+{"ts":"2026-10-31 15:05:56,564","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"c73ab7405921","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=76"}
+{"ts":"2026-10-31 15:06:55,703","level":"INFO","logger":"reader.translator_backends","request_id":"8b56818eddf3","user_id":"-","msg":"Recieved: eating and есть for it"}
+{"ts":"2026-10-31 15:06:56,508","level":"INFO","logger":"reader.translator_backends","request_id":"8b56818eddf3","user_id":"-","msg":"Raw response form Ai {'id': 'd77a2eb5-4814-43cf-8c7f-8d4510494618', 'object': 'chat.completion', 'created': 1793459215, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "кушает"\n    },\n    {\n        "text": "принимает пищу"\n    },\n    {\n        "text": "питается"\n    },\n    {\n        "text": "употребляет в пищу"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 57, 'total_tokens': 200, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:06:56,509","level":"INFO","logger":"reader.translator_backends","request_id":"8b56818eddf3","user_id":"-","msg":"Parser result[{'text': 'кушает'}, {'text': 'принимает пищу'}, {'text': 'питается'}, {'text': 'употребляет в пищу'}]"}
+{"ts":"2026-10-31 15:47:54,265","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"37c23800fa79","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=77"}
+{"ts":"2026-10-31 15:47:56,483","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"37c23800fa79","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=77"}
+{"ts":"2026-10-31 15:48:22,261","level":"ERROR","logger":"reader","request_id":"1c7159b7fe71","user_id":"-","msg":"DRF error: view=TranslationViewSet path=/api/translations/ method=POST exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-10-31 15:48:24,411","level":"INFO","logger":"reader.translator_backends","request_id":"309f1897c66b","user_id":"-","msg":"Recieved: flossing and использование зубной нити for it"}
+{"ts":"2026-10-31 15:48:25,686","level":"INFO","logger":"reader.translator_backends","request_id":"309f1897c66b","user_id":"-","msg":"Raw response form Ai {'id': 'def4092a-518b-4cb4-a489-58a6fd7d945c', 'object': 'chat.completion', 'created': 1793461704, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "чистка зубов нитью"\n    },\n    {\n        "text": "применение зубной нити"\n    },\n    {\n        "text": "уход за зубами с помощью нити"\n    },\n    {\n        "text": "флоссинг"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 71, 'total_tokens': 219, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:48:25,687","level":"INFO","logger":"reader.translator_backends","request_id":"309f1897c66b","user_id":"-","msg":"Parser result[{'text': 'чистка зубов нитью'}, {'text': 'применение зубной нити'}, {'text': 'уход за зубами с помощью нити'}, {'text': 'флоссинг'}]"}
+{"ts":"2026-10-31 15:48:29,363","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"a9759576ceae","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=78"}
+{"ts":"2026-10-31 15:48:31,421","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"a9759576ceae","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=78"}
+{"ts":"2026-10-31 15:48:57,071","level":"INFO","logger":"reader.translator_backends","request_id":"6361ed076ed7","user_id":"-","msg":"Recieved: vulnerability and уязвимость for it"}
+{"ts":"2026-10-31 15:48:58,040","level":"INFO","logger":"reader.translator_backends","request_id":"6361ed076ed7","user_id":"-","msg":"Raw response form Ai {'id': '55783028-b459-4709-9a66-8a9d1955ad95', 'object': 'chat.completion', 'created': 1793461737, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "ранимость"\n    },\n    {\n        "text": "незащищённость"\n    },\n    {\n        "text": "слабое место"\n    },\n    {\n        "text": "брешь"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 58, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:48:58,040","level":"INFO","logger":"reader.translator_backends","request_id":"6361ed076ed7","user_id":"-","msg":"Parser result[{'text': 'ранимость'}, {'text': 'незащищённость'}, {'text': 'слабое место'}, {'text': 'брешь'}]"}
+{"ts":"2026-10-31 15:49:00,766","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"fd076e83ed0a","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=79"}
+{"ts":"2026-10-31 15:49:02,720","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"fd076e83ed0a","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=79"}
+{"ts":"2026-10-31 15:49:16,361","level":"INFO","logger":"reader.translator_backends","request_id":"f53333f92d62","user_id":"-","msg":"Recieved: gangs and банды for it"}
+{"ts":"2026-10-31 15:49:17,344","level":"INFO","logger":"reader.translator_backends","request_id":"f53333f92d62","user_id":"-","msg":"Raw response form Ai {'id': '2b82cd8c-5ef5-4b98-9f4e-869145c7bc80', 'object': 'chat.completion', 'created': 1793461756, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "группировки"\n    },\n    {\n        "text": "шайки"\n    },\n    {\n        "text": "бандитские формирования"\n    },\n    {\n        "text": "преступные группировки"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 59, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:49:17,344","level":"INFO","logger":"reader.translator_backends","request_id":"f53333f92d62","user_id":"-","msg":"Parser result[{'text': 'группировки'}, {'text': 'шайки'}, {'text': 'бандитские формирования'}, {'text': 'преступные группировки'}]"}
+{"ts":"2026-10-31 15:49:19,500","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"a9e7dd2c1a67","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=80"}
+{"ts":"2026-10-31 15:49:21,482","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"a9e7dd2c1a67","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=80"}
+{"ts":"2026-10-31 15:49:41,656","level":"INFO","logger":"reader.translator_backends","request_id":"e6a05ca2d8cc","user_id":"-","msg":"Recieved: depression and депрессия for it"}
+{"ts":"2026-10-31 15:49:42,450","level":"INFO","logger":"reader.translator_backends","request_id":"e6a05ca2d8cc","user_id":"-","msg":"Raw response form Ai {'id': 'f0511fa6-0ca2-415e-b3cd-78fad56a5058', 'object': 'chat.completion', 'created': 1793461781, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {"text": "уныние"},\n    {"text": "подавленность"},\n    {"text": "угнетённое состояние"},\n    {"text": "депрессивное состояние"}\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 43, 'total_tokens': 189, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:49:42,451","level":"INFO","logger":"reader.translator_backends","request_id":"e6a05ca2d8cc","user_id":"-","msg":"Parser result[{'text': 'уныние'}, {'text': 'подавленность'}, {'text': 'угнетённое состояние'}, {'text': 'депрессивное состояние'}]"}
+{"ts":"2026-10-31 15:49:45,324","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"b5591b820208","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=81"}
+{"ts":"2026-10-31 15:49:47,254","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"b5591b820208","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=81"}
+{"ts":"2026-10-31 15:49:57,578","level":"INFO","logger":"reader.translator_backends","request_id":"e44e86f62f3d","user_id":"-","msg":"Recieved: reinforcing and усиливающий for it"}
+{"ts":"2026-10-31 15:49:58,728","level":"INFO","logger":"reader.translator_backends","request_id":"e44e86f62f3d","user_id":"-","msg":"Raw response form Ai {'id': '7df68b6d-e0ab-4b2b-bc3e-9820ed989aef', 'object': 'chat.completion', 'created': 1793461797, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "укрепляющий"\n    },\n    {\n        "text": "подкрепляющий"\n    },\n    {\n        "text": "усилительный"\n    },\n    {\n        "text": "армирующий"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 145, 'completion_tokens': 58, 'total_tokens': 203, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 145}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:49:58,728","level":"INFO","logger":"reader.translator_backends","request_id":"e44e86f62f3d","user_id":"-","msg":"Parser result[{'text': 'укрепляющий'}, {'text': 'подкрепляющий'}, {'text': 'усилительный'}, {'text': 'армирующий'}]"}
+{"ts":"2026-10-31 15:50:00,403","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"04de289ea835","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=82"}
+{"ts":"2026-10-31 15:50:02,818","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"04de289ea835","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=82"}
+{"ts":"2026-10-31 15:58:53,013","level":"INFO","logger":"reader.translator_backends","request_id":"477f9af40621","user_id":"-","msg":"Recieved: shown and показано for it"}
+{"ts":"2026-10-31 15:58:54,108","level":"INFO","logger":"reader.translator_backends","request_id":"477f9af40621","user_id":"-","msg":"Raw response form Ai {'id': 'fe929b4f-523c-4c08-a3c4-3d24c6c24a75', 'object': 'chat.completion', 'created': 1793462333, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "отображено"\n    },\n    {\n        "text": "продемонстрировано"\n    },\n    {\n        "text": "показан"\n    },\n    {\n        "text": "выведено"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 57, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:58:54,108","level":"INFO","logger":"reader.translator_backends","request_id":"477f9af40621","user_id":"-","msg":"Parser result[{'text': 'отображено'}, {'text': 'продемонстрировано'}, {'text': 'показан'}, {'text': 'выведено'}]"}
+{"ts":"2026-10-31 15:58:56,553","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"f5e24334af73","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=83"}
+{"ts":"2026-10-31 15:58:58,602","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"f5e24334af73","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=83"}
+{"ts":"2026-10-31 15:59:27,052","level":"INFO","logger":"reader.translator_backends","request_id":"7180eb29ea7b","user_id":"-","msg":"Recieved: belong and принадлежать for it"}
+{"ts":"2026-10-31 15:59:28,171","level":"INFO","logger":"reader.translator_backends","request_id":"7180eb29ea7b","user_id":"-","msg":"Raw response form Ai {'id': '0b65ec42-4d14-497c-b5d1-710b59b2179e', 'object': 'chat.completion', 'created': 1793462367, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "относиться"\n    },\n    {\n        "text": "входить в состав"\n    },\n    {\n        "text": "быть частью"\n    },\n    {\n        "text": "числиться"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 55, 'total_tokens': 199, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-10-31 15:59:28,171","level":"INFO","logger":"reader.translator_backends","request_id":"7180eb29ea7b","user_id":"-","msg":"Parser result[{'text': 'относиться'}, {'text': 'входить в состав'}, {'text': 'быть частью'}, {'text': 'числиться'}]"}
+{"ts":"2026-10-31 15:59:31,419","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"cd69006ba9c8","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=84"}
+{"ts":"2026-10-31 15:59:33,406","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"cd69006ba9c8","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=84"}
+{"ts":"2026-10-31 16:05:43,493","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"e74a5470568d","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=40"}
+{"ts":"2026-10-31 16:05:45,729","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"e74a5470568d","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=40"}
+{"ts":"2026-10-31 16:06:06,712","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"6861cbda9b3f","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=39"}
+{"ts":"2026-10-31 16:06:08,889","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"6861cbda9b3f","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=39"}
+{"ts":"2026-10-31 16:06:17,677","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"6d6e1df5a5e8","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=38"}
+{"ts":"2026-10-31 16:06:19,567","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"6d6e1df5a5e8","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=38"}
+{"ts":"2026-10-31 16:06:26,552","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"f54f938b5823","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=37"}
+{"ts":"2026-10-31 16:06:28,589","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"f54f938b5823","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=37"}
