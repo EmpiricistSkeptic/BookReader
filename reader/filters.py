@@ -1,8 +1,6 @@
 from django.utils import timezone
 from django_filters import rest_framework as filters
 
-from .models import FlashCard
-
 
 class FlashCardFilter(filters.FilterSet):
     # Добавляем кастомный фильтр "is_due"

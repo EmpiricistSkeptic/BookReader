@@ -43,7 +43,6 @@ from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework_extensions.cache.mixins import CacheResponseMixin
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -57,15 +56,11 @@ from reader.services.translation_service import TranslationService
 from reader.throttles import TranslationThrottle, AuthThrottle, WordAnalysisThrottle
 from reader.utils.google_auth import GoogleAuthService
 
-from .pagination import DictionaryPagination, MessagesPagination
-from .filters import FlashCardFilter
+from .pagination import MessagesPagination
 from .models import (
     Book,
     Chapter,
     Conversation,
-    DictionaryCategory,
-    DictionaryEntry,
-    FlashCard,
     Message,
     Translation,
     UserBookProgress,
@@ -81,17 +76,11 @@ from .serializers import (
     ConversationListSerializer,
     ConversationSerializer,
     CreateConversationSerializer,
-    DictionaryCategorySerializer,
-    DictionaryEntrySerializer,
-    DictionaryTranslationResponseSerializer,
-    FlashCardSerializer,
     GoogleAuthSerializer,
     LoginSerializer,
     MessageSerializer,
     SendMessageSerializer,
     RegisterSerializer,
-    SuggestionRequestSerializer,
-    SuggestionResponseSerializer,
     TranslationRequestSerializer,
     TranslationResponseSerializer,
     TranslationSerializer,
