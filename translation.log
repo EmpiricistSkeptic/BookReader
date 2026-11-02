@@ -7731,3 +7731,14 @@ pas mon chevet et ma chambre.»'. is_single_word: False. translation_result со
 {"ts":"2026-10-31 15:59:27,051","level":"INFO","logger":"translation","request_id":"7180eb29ea7b","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'принадлежать', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 908.75}"}
 {"ts":"2026-10-31 15:59:27,052","level":"INFO","logger":"translation","request_id":"7180eb29ea7b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'belong'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
 {"ts":"2026-10-31 15:59:28,171","level":"INFO","logger":"translation","request_id":"7180eb29ea7b","user_id":"-","msg":"Found 4 alternatives for belong: ['относиться', 'входить в состав', 'быть частью', 'числиться']"}
+{"ts":"2026-11-02 12:54:50,859","level":"INFO","logger":"translation","request_id":"170095629360","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: '29. W. Borneman, Polk: The Man Who Transformed the Presidency and America (New York: Random House, 2008); B. Wyatt-Brown, Southern Honor: Ethics and Behavior in the Old South (Oxford: Oxford University Press, 1982).'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-02 12:54:52,400","level":"INFO","logger":"translation","request_id":"170095629360","user_id":"-","msg":"New translation: {'success': True, 'translated_text': '29. У. Борнеман, Полк: Человек, который преобразил президентство и Америку (Нью-Йорк: Random House, 2008); Б. Уайатт-Браун, Южная честь: Этика и поведение на Старом Юге (Оксфорд: Oxford University Press, 1982).', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1522.58}"}
+{"ts":"2026-11-02 12:54:52,401","level":"INFO","logger":"translation","request_id":"170095629360","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: '29. W. Borneman, Polk: The Man Who Transformed the Presidency and America (New York: Random House, 2008); B. Wyatt-Brown, Southern Honor: Ethics and Behavior in the Old South (Oxford: Oxford University Press, 1982).'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}

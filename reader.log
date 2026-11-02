@@ -2368,3 +2368,139 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
     raise InvalidToken(
 rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-01 14:19:24,306","level":"ERROR","logger":"reader","request_id":"f6c779490170","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-01 14:19:35,164","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"43dfb77bea20","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html#00010"}
+{"ts":"2026-11-01 14:19:35,164","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"43dfb77bea20","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: CR%21WDDHDN2YAD3W5FDQD3JHYKA4FYTD_split_000.html"}
+{"ts":"2026-11-01 14:19:35,181","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"43dfb77bea20","user_id":"-","msg":"EPUB parsed: title='Antifragile: Things That Gain from Disorder' documents=199 chapters=282"}
+{"ts":"2026-11-01 14:19:37,344","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"43dfb77bea20","user_id":"-","msg":"Book import completed: title='Antifragile: Things That Gain from Disorder' format=EPUB bytes=3288726 chapters=282 read=0.003s extract=0.000s parse=1.100s database=2.159s total=3.262s"}
+{"ts":"2026-11-01 14:20:53,423","level":"INFO","logger":"reader.views","request_id":"45bf7043d2a1","user_id":"-","msg":"Book Behave: The Biology of Humans at Our Best and Worst and its stored files were deleted for StasStoun"}
+{"ts":"2026-11-01 14:21:14,339","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"a64ea2d122bb","user_id":"-","msg":"EPUB heading split skipped: reasonable=7 total=17 chapter_title='Seven: BACK TO THE CRIB, BACK TO THE WOMB'"}
+{"ts":"2026-11-01 14:21:14,343","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"a64ea2d122bb","user_id":"-","msg":"EPUB heading split skipped: reasonable=4 total=8 chapter_title='Sixteen: BIOLOGY, THE CRIMINAL JUSTICE SYSTEM, AND (OH, WHY NOT?) FREE WILL'"}
+{"ts":"2026-11-01 14:21:14,344","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"a64ea2d122bb","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='Appendix 1: Neuroscience 101'"}
+{"ts":"2026-11-01 14:21:14,349","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"a64ea2d122bb","user_id":"-","msg":"EPUB heading split skipped: reasonable=1 total=2 chapter_title='About the Author'"}
+{"ts":"2026-11-01 14:21:14,366","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"a64ea2d122bb","user_id":"-","msg":"EPUB parsed: title='Behave: The Biology of Humans at Our Best and Worst' documents=555 chapters=115"}
+{"ts":"2026-11-01 14:21:18,252","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"a64ea2d122bb","user_id":"-","msg":"Book import completed: title='Behave: The Biology of Humans at Our Best and Worst' format=EPUB bytes=12144806 chapters=115 read=0.018s extract=0.000s parse=2.215s database=3.881s total=6.114s"}
+{"ts":"2026-11-01 14:21:41,969","level":"INFO","logger":"reader.views","request_id":"6d3907994813","user_id":"-","msg":"Book Determined and its stored files were deleted for StasStoun"}
+{"ts":"2026-11-01 14:22:08,521","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"d9a082aa2e9e","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/001_Cover.xhtml"}
+{"ts":"2026-11-01 14:22:08,522","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"d9a082aa2e9e","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/003_Title_Page.xhtml"}
+{"ts":"2026-11-01 14:22:08,526","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"d9a082aa2e9e","user_id":"-","msg":"EPUB heading split skipped: reasonable=6 total=26 chapter_title='Index'"}
+{"ts":"2026-11-01 14:22:08,534","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"d9a082aa2e9e","user_id":"-","msg":"EPUB parsed: title='Determined' documents=28 chapters=145"}
+{"ts":"2026-11-01 14:31:05,750","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"39e4c571f60e","user_id":"-","msg":"Book import completed: title="Surely You're Joking, Mr. Feynman!" format=FB2 bytes=748158 chapters=13 read=0.001s extract=0.000s parse=0.051s database=3.175s total=3.227s"}
+{"ts":"2026-11-01 14:31:14,967","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"9caf1616c2bd","user_id":"-","msg":"EPUB parsed: title='Le Comte de Monte-Cristo - Tome I' documents=36 chapters=38"}
+{"ts":"2026-11-01 14:31:16,806","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"9caf1616c2bd","user_id":"-","msg":"Book import completed: title='Le Comte de Monte-Cristo - Tome I' format=EPUB bytes=716505 chapters=38 read=0.000s extract=0.000s parse=0.469s database=1.838s total=2.307s"}
+{"ts":"2026-11-01 14:31:38,782","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"c2c59801289e","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/001_Cover.xhtml"}
+{"ts":"2026-11-01 14:31:38,782","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"c2c59801289e","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/003_Title_Page.xhtml"}
+{"ts":"2026-11-01 14:31:38,789","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"c2c59801289e","user_id":"-","msg":"EPUB heading split skipped: reasonable=6 total=26 chapter_title='Index'"}
+{"ts":"2026-11-01 14:31:38,797","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"c2c59801289e","user_id":"-","msg":"EPUB parsed: title='Determined' documents=28 chapters=145"}
+{"ts":"2026-11-01 14:31:45,696","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"c2c59801289e","user_id":"-","msg":"Book import completed: title='Determined' format=EPUB bytes=35310319 chapters=145 read=0.049s extract=0.000s parse=1.637s database=6.894s total=8.579s"}
+{"ts":"2026-11-01 14:38:39,265","level":"INFO","logger":"reader.views","request_id":"d8d0c611a1a9","user_id":"-","msg":"Book Antifragile: Things That Gain from Disorder and its stored files were deleted for StasStoun"}
+{"ts":"2026-11-01 14:39:04,177","level":"INFO","logger":"reader.views","request_id":"2c212ff52598","user_id":"-","msg":"Book Le Comte de Monte-Cristo - Tome I and its stored files were deleted for StasStoun"}
+{"ts":"2026-11-01 14:39:08,841","level":"INFO","logger":"reader.views","request_id":"e9c3398c8231","user_id":"-","msg":"Book Surely You're Joking, Mr. Feynman! and its stored files were deleted for StasStoun"}
+{"ts":"2026-11-01 16:58:57,391","level":"ERROR","logger":"reader","request_id":"dda19f912d45","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/162/ method=DELETE exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-01 16:58:59,605","level":"INFO","logger":"reader.views","request_id":"88bea0e81de9","user_id":"-","msg":"Book Determined and its stored files were deleted for StasStoun"}
+{"ts":"2026-11-01 16:59:32,391","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"497ba58ec36d","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/001_Cover.xhtml"}
+{"ts":"2026-11-01 16:59:32,391","level":"WARNING","logger":"reader.services.book_services.parsers.epub","request_id":"497ba58ec36d","user_id":"-","msg":"TOC EPUB ссылается на неизвестный файл: xhtml/003_Title_Page.xhtml"}
+{"ts":"2026-11-01 16:59:32,395","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"497ba58ec36d","user_id":"-","msg":"EPUB heading split skipped: reasonable=6 total=26 chapter_title='Index'"}
+{"ts":"2026-11-01 16:59:32,403","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"497ba58ec36d","user_id":"-","msg":"EPUB parsed: title='Determined' documents=28 chapters=145"}
+{"ts":"2026-11-01 16:59:38,223","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"497ba58ec36d","user_id":"-","msg":"Book import completed: title='Determined' format=EPUB bytes=35310319 chapters=145 read=0.079s extract=0.000s parse=1.543s book_create=0.019s cover_save=0.786s file_save=4.829s book_save=0.005s chapters_save=0.105s serialization=0.055s transaction=5.812s total=7.433s"}
+{"ts":"2026-11-01 20:23:49,981","level":"ERROR","logger":"reader","request_id":"6b6a05af3479","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-01 20:42:08,959","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"3489f4bd0a9a","user_id":"-","msg":"EPUB parsed: title='Gobseck' documents=7 chapters=6"}
+{"ts":"2026-11-01 20:42:10,344","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"3489f4bd0a9a","user_id":"-","msg":"Book import completed: title='Gobseck' format=EPUB bytes=71274 chapters=6 read=0.000s extract=0.000s parse=0.073s book_create=0.013s cover_save=0.000s file_save=1.283s book_save=0.004s chapters_save=0.047s serialization=0.023s transaction=1.383s total=1.456s"}
+{"ts":"2026-11-01 20:42:20,469","level":"INFO","logger":"reader.views","request_id":"50d83fb86629","user_id":"-","msg":"Book Gobseck and its stored files were deleted for StasStoun"}
+{"ts":"2026-11-02 12:50:05,818","level":"ERROR","logger":"reader","request_id":"d38110093fa6","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
