@@ -23,3 +23,4 @@ python-dotenv
 sentry-sdk
 django-redis
 defusedxml>=0.7.1,<1
+pydantic>=2.0,<3.0

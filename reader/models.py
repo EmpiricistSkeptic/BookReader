@@ -250,10 +250,27 @@ class Translation(models.Model):
         return None
 
 class WordAnalysis(models.Model):
+    KIND_CHOICES = [
+        ("word", "Word"),
+        ("expression", "Expression"),
+        ("sentence", "Sentence"),
+    ]
+    
     translation = models.OneToOneField(
         Translation,
         on_delete=models.CASCADE,
         related_name="word_analysis",
+    )
+
+    kind = models.CharField(
+        max_length=20,
+        choices=KIND_CHOICES,
+        default="word",
+    )
+
+    data = models.JSONField(
+        default=dict,
+        blank=True,
     )
 
     lemma = models.CharField(max_length=255, blank=True)

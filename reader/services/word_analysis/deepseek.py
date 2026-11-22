@@ -1,290 +1,291 @@
-import logging
-import requests
 import json
+import logging
+import re
 
+import requests
 from django.conf import settings
+from pydantic import ValidationError
 
 from ...models import Translation
-from .user_prompt import USER_PROMPT
-from .system_prompt import BASE_PROMPT
+from .prompts import (
+    MULTI_TOKEN_SYSTEM_PROMPT,
+    MULTI_TOKEN_USER_PROMPT,
+    SENTENCE_SYSTEM_PROMPT,
+    SENTENCE_USER_PROMPT,
+    WORD_SECURITY_SUFFIX,
+)
+from .schemas import (
+    ANALYSIS_RESULT_ADAPTER,
+    SENTENCE_DATA_ADAPTER,
+    WORD_DATA_ADAPTER,
+)
+from .selection import InvalidSelectionError, count_tokens, detect_selection_form
+from .system_prompt import BASE_PROMPT as WORD_SYSTEM_PROMPT
+from .user_prompt import USER_PROMPT as WORD_USER_PROMPT
 
 
 logger = logging.getLogger(__name__)
 
-class DeepSeekWordAnalyzer:
+
+class DeepSeekTextAnalyzer:
+    MAX_SELECTED_TEXT_LENGTH = 600
+    MAX_CONTEXT_LENGTH = 2000
+    # Whitespace-separated selections longer than this are not idioms or
+    # collocations, so they go straight to sentence analysis without the
+    # classification request. Tune if you see long proverbs misrouted.
+    MAX_EXPRESSION_TOKENS = 12
+    WORD_MAX_TOKENS = 1500
+    MULTI_TOKEN_MAX_TOKENS = 1500
+    SENTENCE_MAX_TOKENS = 2000
+
     def __init__(self):
         self.api_key = getattr(settings, "DEEPSEEK_API_KEY", None)
-        self.base_url = getattr(settings, "DEEPSEEK_BASE_URL", "https://api.deepseek.com/chat/completions")
-        self.model = "deepseek-flash"
+        self.base_url = getattr(
+            settings,
+            "DEEPSEEK_BASE_URL",
+            "https://api.deepseek.com/chat/completions",
+        )
+        self.model = getattr(
+            settings,
+            "DEEPSEEK_WORD_ANALYSIS_MODEL",
+            "deepseek-flash",
+        )
         self.session = requests.Session()
 
-    def _parse_response(self, raw_response: dict) -> dict:
-        content = raw_response["choices"][0]["message"]["content"]
+    @staticmethod
+    def _get_value(obj, field_name, default=None):
+        if isinstance(obj, dict):
+            return obj.get(field_name, default)
+        return getattr(obj, field_name, default)
 
-        if not content:
-            raise ValueError("Empty content from DeepSeek")
-
-        content = content.strip()
-
+    @staticmethod
+    def _clean_json_content(content: str) -> str:
+        content = (content or "").strip()
         if content.startswith("```"):
-            content = (
-                content
-                .replace("```json", "", 1)
-                .replace("```", "", 1)
-                .strip()
+            content = re.sub(
+                r"^```(?:json)?\s*",
+                "",
+                content,
+                count=1,
+                flags=re.IGNORECASE,
             )
+            content = re.sub(r"\s*```$", "", content, count=1)
+        return content.strip()
 
-        try:
-            data = json.loads(content)
-        except json.JSONDecodeError as e:
-            logger.warning("DeepSeek returned invalid JSON")
-            raise ValueError("Invalid JSON returned by DeepSeek") from e
+    def _build_word_user_prompt(self, translation: Translation) -> str:
+        selected_text = self._get_value(translation, "original_text", "") or ""
+        translated_text = self._get_value(translation, "translated_text", "") or ""
+        source_language = self._get_value(translation, "source_language", "") or "unknown"
+        target_language = self._get_value(translation, "target_language", "") or "unknown"
 
-        if not isinstance(data, dict):
-            logger.warning("DeepSeek returned non-dict JSON")
-            raise ValueError("DeepSeek response must be a JSON object")
-
-        # -------------------------
-        # lemma
-        # -------------------------
-        lemma = data.get("lemma")
-
-        if not isinstance(lemma, str) or not lemma.strip():
-            raise ValueError("Invalid 'lemma' field")
-
-        lemma = lemma.strip()
-
-        # -------------------------
-        # ipa
-        # -------------------------
-        ipa = data.get("ipa")
-
-        if not isinstance(ipa, str) or not ipa.strip():
-            raise ValueError("Invalid 'ipa' field")
-
-        ipa = ipa.strip()
-
-        # -------------------------
-        # part_of_speech
-        # -------------------------
-        part_of_speech = data.get("part_of_speech")
-
-        if not isinstance(part_of_speech, str) or not part_of_speech.strip():
-            raise ValueError("Invalid 'part_of_speech' field")
-
-        part_of_speech = part_of_speech.strip()
-
-        # -------------------------
-        # grammar
-        # -------------------------
-        grammar = data.get("grammar")
-
-        if not isinstance(grammar, dict):
-            raise ValueError("'grammar' must be a dict")
-
-        for key, value in grammar.items():
-            if not isinstance(key, str):
-                raise ValueError("Grammar keys must be strings")
-
-            if value is not None and not isinstance(value, (str, int)):
-                raise ValueError(
-                    f"Invalid grammar value for '{key}': "
-                    f"expected string, integer or null"
-                )
-
-            if isinstance(value, str):
-                grammar[key] = value.strip()
-
-        # -------------------------
-        # explanation
-        # -------------------------
-        explanation = data.get("explanation")
-
-        if not isinstance(explanation, str) or not explanation.strip():
-            raise ValueError("Invalid 'explanation' field")
-
-        explanation = explanation.strip()
-
-        # -------------------------
-        # synonyms
-        # -------------------------
-        synonyms = data.get("synonyms")
-
-        if not isinstance(synonyms, list):
-            raise ValueError("'synonyms' must be a list")
-
-        if not all(
-            isinstance(item, str) and item.strip()
-            for item in synonyms
-        ):
-            raise ValueError(
-                "'synonyms' must contain only non-empty strings"
+        return (
+            WORD_USER_PROMPT.format(
+                word=selected_text,
+                translated=translated_text,
+                source_language=source_language,
+                target_language=target_language,
             )
-
-        synonyms = [item.strip() for item in synonyms]
-
-        # -------------------------
-        # examples
-        # -------------------------
-        examples = data.get("examples")
-
-        if not isinstance(examples, list):
-            raise ValueError("'examples' must be a list")
-
-        if len(examples) != 3:
-            raise ValueError("'examples' must contain exactly 3 examples")
-
-        cleaned_examples = []
-
-        for example in examples:
-            if not isinstance(example, dict):
-                raise ValueError(
-                    "Each example must be a JSON object"
-                )
-
-            source = example.get("source")
-            translation = example.get("translation")
-
-            if not isinstance(source, str) or not source.strip():
-                raise ValueError(
-                    "Each example must contain a non-empty 'source'"
-                )
-
-            if (
-                not isinstance(translation, str)
-                or not translation.strip()
-            ):
-                raise ValueError(
-                    "Each example must contain a non-empty 'translation'"
-                )
-
-            cleaned_examples.append(
-                {
-                    "source": source.strip(),
-                    "translation": translation.strip(),
-                }
-            )
-
-        # -------------------------
-        # etymology
-        # -------------------------
-        etymology = data.get("etymology")
-
-        if etymology is not None and not isinstance(etymology, str):
-            raise ValueError(
-                "'etymology' must be a string or null"
-            )
-
-        if isinstance(etymology, str):
-            etymology = etymology.strip()
-
-            if not etymology:
-                etymology = None
-
-        # -------------------------
-        # final result
-        # -------------------------
-        return {
-            "lemma": lemma,
-            "ipa": ipa,
-            "part_of_speech": part_of_speech,
-            "grammar": grammar,
-            "explanation": explanation,
-            "synonyms": synonyms,
-            "examples": cleaned_examples,
-            "etymology": etymology,
-        }
-
-    def build_system_prompt(self) -> str:
-        return BASE_PROMPT
-
-    def build_user_prompt(self, translation: Translation) -> str:
-        word = translation.original_text
-        translated = translation.translated_text
-        source_language = translation.source_language
-        target_language = translation.target_language
-
-        return USER_PROMPT.format(
-            word=word,
-            translated=translated,
-            source_language=source_language,
-            target_language=target_language,
+            + WORD_SECURITY_SUFFIX
         )
 
+    def _build_user_data_json(self, translation: Translation) -> str:
+        selected_text = self._get_value(translation, "original_text", "") or ""
+        translated_text = self._get_value(translation, "translated_text", "") or ""
+        source_language = self._get_value(translation, "source_language", "") or "unknown"
+        target_language = self._get_value(translation, "target_language", "") or "unknown"
+        context = (self._get_value(translation, "context", "") or "").strip()
+        context = context[: self.MAX_CONTEXT_LENGTH]
 
-    def analyze(self, translation: Translation) -> dict:
+        # JSON encoding keeps user-controlled values inside data fields rather
+        # than interpolating them into the surrounding prompt instructions.
+        user_data = {
+            "selected_text": selected_text,
+            "machine_translation_hint": translated_text,
+            "source_language": source_language,
+            "target_language": target_language,
+            "surrounding_book_context": context or None,
+        }
+        return json.dumps(user_data, ensure_ascii=False)
 
+    def _build_multi_token_user_prompt(
+        self,
+        translation: Translation,
+        selection_form: str,
+    ) -> str:
+        return MULTI_TOKEN_USER_PROMPT.format(
+            selection_form=selection_form,
+            user_data_json=self._build_user_data_json(translation),
+        )
+
+    def _build_sentence_user_prompt(self, translation: Translation) -> str:
+        return SENTENCE_USER_PROMPT.format(
+            user_data_json=self._build_user_data_json(translation),
+        )
+
+    def _complete(
+        self,
+        translation: Translation,
+        system_prompt: str,
+        user_prompt: str,
+        max_tokens: int,
+    ) -> str:
         if not self.api_key:
-            raise ValueError("DeepSeek API ключ не найден")
+            raise ValueError("DeepSeek API key is not configured")
+
+        payload = {
+            "model": self.model,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+            "max_tokens": max_tokens,
+            "temperature": 0.3,
+            "thinking": {"type": "disabled"},
+            "response_format": {"type": "json_object"},
+        }
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+
+        user_id = self._get_value(translation, "user_id")
+        translation_id = self._get_value(translation, "id")
 
         try:
-            messages = [
-                {
-                    "role": "system",
-                    "content": self.build_system_prompt(),
-                },
-                {
-                    "role": "user", 
-                    "content": self.build_user_prompt(translation),
-                }
-            ]
-
-            data = {
-                "model": self.model,
-                "messages": messages,
-                "max_tokens": 1500,
-                "temperature": 0.3,
-                "thinking": {
-                    "type": "disabled"
-                },
-                "response_format": {
-                    "type": "json_object"
-                },
-            }
-            logger.info(
-                "DeepSeek request: user_id=%s, translation_id=%s",
-                translation.user_id,
-                translation.id,
-            )
-
-            headers = {
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json",
-            }
             response = self.session.post(
                 self.base_url,
-                json=data,
+                json=payload,
                 headers=headers,
                 timeout=(5, 30),
             )
             response.raise_for_status()
             raw_response = response.json()
-            logger.info(
-                "DeepSeek response received: user_id=%s, translation_id=%s",
-                translation.user_id,
-                translation.id,
-            )
-            return self._parse_response(raw_response)
+            content = raw_response["choices"][0]["message"]["content"]
         except requests.exceptions.Timeout:
             logger.error(
-                "DeepSeek API timeout for user_id=%s, translation_id=%s",
-                translation.user_id,
-                translation.id,
+                "DeepSeek API timeout: user_id=%s, translation_id=%s",
+                user_id,
+                translation_id,
             )
             raise
-                            
-        except requests.exceptions.RequestException as e:
+        except requests.exceptions.RequestException:
             logger.exception(
-                "HTTP error during DeepSeek request: user_id=%s, translation_id=%s",
-                translation.user_id,
-                translation.id,
+                "DeepSeek HTTP error: user_id=%s, translation_id=%s",
+                user_id,
+                translation_id,
             )
             raise
-                            
-        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as e:
+        except (KeyError, IndexError, TypeError, ValueError):
             logger.exception(
-                "Unexpected DeepSeek response format: user_id=%s, translation_id=%s",
-                translation.user_id,
-                translation.id,
+                "Unexpected DeepSeek response envelope: user_id=%s, translation_id=%s",
+                user_id,
+                translation_id,
             )
-            raise 
+            raise ValueError("Unexpected DeepSeek response format")
+
+        if not isinstance(content, str) or not content.strip():
+            raise ValueError("DeepSeek returned empty content")
+
+        return self._clean_json_content(content)
+
+    @staticmethod
+    def _validate_word(content: str) -> dict:
+        try:
+            data = WORD_DATA_ADAPTER.validate_json(content)
+        except (ValidationError, ValueError) as exc:
+            raise ValueError("DeepSeek returned an invalid word-analysis structure") from exc
+
+        return {
+            "kind": "word",
+            "data": data.model_dump(mode="json"),
+        }
+
+    @staticmethod
+    def _validate_multi_token(content: str) -> dict:
+        try:
+            result = ANALYSIS_RESULT_ADAPTER.validate_json(content)
+        except (ValidationError, ValueError) as exc:
+            raise ValueError("DeepSeek returned an invalid text-analysis structure") from exc
+
+        return result.model_dump(mode="json", by_alias=True)
+
+    @staticmethod
+    def _validate_sentence(content: str) -> dict:
+        try:
+            data = SENTENCE_DATA_ADAPTER.validate_json(content)
+        except (ValidationError, ValueError) as exc:
+            raise ValueError("DeepSeek returned an invalid sentence-analysis structure") from exc
+
+        return {
+            "kind": "sentence",
+            "data": data.model_dump(mode="json"),
+        }
+
+    def _analyze_sentence(self, translation: Translation) -> dict:
+        content = self._complete(
+            translation=translation,
+            system_prompt=SENTENCE_SYSTEM_PROMPT,
+            user_prompt=self._build_sentence_user_prompt(translation),
+            max_tokens=self.SENTENCE_MAX_TOKENS,
+        )
+        return self._validate_sentence(content)
+
+    def analyze(self, translation: Translation) -> dict:
+        selected_text = (self._get_value(translation, "original_text", "") or "").strip()
+        if len(selected_text) > self.MAX_SELECTED_TEXT_LENGTH:
+            raise InvalidSelectionError(
+                f"Selected text exceeds the maximum of {self.MAX_SELECTED_TEXT_LENGTH} characters."
+            )
+
+        source_language = self._get_value(translation, "source_language", "") or ""
+        selection_form = detect_selection_form(selected_text, source_language)
+
+        if not self.api_key:
+            raise ValueError("DeepSeek API key is not configured")
+
+        if selection_form == "word":
+            content = self._complete(
+                translation=translation,
+                system_prompt=WORD_SYSTEM_PROMPT + WORD_SECURITY_SUFFIX,
+                user_prompt=self._build_word_user_prompt(translation),
+                max_tokens=self.WORD_MAX_TOKENS,
+            )
+            result = self._validate_word(content)
+        elif (
+            selection_form == "multi_token"
+            and count_tokens(selected_text) > self.MAX_EXPRESSION_TOKENS
+        ):
+            # Too long to be a lexical expression: skip classification.
+            result = self._analyze_sentence(translation)
+        else:
+            content = self._complete(
+                translation=translation,
+                system_prompt=MULTI_TOKEN_SYSTEM_PROMPT,
+                user_prompt=self._build_multi_token_user_prompt(
+                    translation,
+                    selection_form,
+                ),
+                max_tokens=self.MULTI_TOKEN_MAX_TOKENS,
+            )
+            result = self._validate_multi_token(content)
+
+            # The model may return a word only for scripts where the backend
+            # cannot infer token boundaries. This full word payload is reused;
+            # no second DeepSeek request is necessary.
+            if selection_form == "multi_token" and result["kind"] == "word":
+                raise ValueError(
+                    "DeepSeek classified a known multi-token selection as a word"
+                )
+
+            # Classification said "sentence": run the dedicated sentence analysis.
+            if result["kind"] == "sentence":
+                result = self._analyze_sentence(translation)
+
+        logger.info(
+            "DeepSeek text analysis completed: user_id=%s, translation_id=%s, selection_form=%s, kind=%s",
+            self._get_value(translation, "user_id"),
+            self._get_value(translation, "id"),
+            selection_form,
+            result["kind"],
+        )
+        return result

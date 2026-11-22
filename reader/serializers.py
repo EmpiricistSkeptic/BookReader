@@ -9,6 +9,11 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from drf_spectacular.utils import extend_schema_field
 from django.db import transaction
 
+from .services.word_analysis.selection import (
+    InvalidSelectionError,
+    detect_selection_form,
+)
+
 
 from .constants import (
     LANGUAGE_NAMES,
@@ -28,6 +33,15 @@ from .models import (
 )
 
 logger = logging.getLogger(__name__)
+
+def get_text_selection_form(text, source_language):
+    try:
+        return detect_selection_form(
+            text,
+            source_language,
+        )
+    except InvalidSelectionError:
+        return "unknown"
 
 class KnownWordsQuerySerializer(serializers.Serializer):
     book_id = serializers.IntegerField(min_value=1)
@@ -551,11 +565,25 @@ class TranslationResponseSerializer(serializers.Serializer):
     )
     source_language = serializers.CharField(read_only=True)
     target_language = serializers.CharField(read_only=True)
+    selection_form = serializers.SerializerMethodField()
     service = serializers.CharField(read_only=True)
     confidence = serializers.FloatField(required=False, allow_null=True, read_only=True)
     cached = serializers.BooleanField(default=False, read_only=True)
     timestamp = serializers.DateTimeField(read_only=True)
     processing_time_ms = serializers.FloatField(read_only=True)
+
+    def get_selection_form(self, obj):
+        if isinstance(obj, dict):
+            original_text = obj.get("original_text", "")
+            source_language = obj.get("source_language", "")
+        else:
+            original_text = getattr(obj, "original_text", "")
+            source_language = getattr(obj, "source_language", "")
+
+        return get_text_selection_form(
+            original_text,
+            source_language,
+        )
 
     def to_representation(self, instance):
         """Кастомная сериализация ответа"""
@@ -579,20 +607,8 @@ class TranslationResponseSerializer(serializers.Serializer):
 class WordAnalysisSerializer(serializers.ModelSerializer):
     class Meta:
         model = WordAnalysis
-        fields = [
-            "id",
-            "lemma",
-            "ipa",
-            "part_of_speech",
-            "grammar",
-            "explanation",
-            "synonyms",
-            "examples",
-            "etymology",
-            "created_at",
-            "updated_at",
-        ]
-        read_only_fields = ["id", "created_at", "updated_at"]
+        fields = ["id", "kind", "data", "created_at", "updated_at"]
+        read_only_fields = fields
 
 
 class TranslationSerializer(serializers.ModelSerializer):
@@ -601,6 +617,7 @@ class TranslationSerializer(serializers.ModelSerializer):
     source_language_name = serializers.SerializerMethodField()
     target_language_name = serializers.SerializerMethodField()
     service_name = serializers.SerializerMethodField()
+    selection_form = serializers.SerializerMethodField()
     word_analysis = WordAnalysisSerializer(read_only=True, allow_null=True)
 
     class Meta:
@@ -613,6 +630,7 @@ class TranslationSerializer(serializers.ModelSerializer):
             "target_language",
             "source_language_name",
             "target_language_name",
+            "selection_form",
             "translator_service",
             "service_name",
             "context",
@@ -632,3 +650,8 @@ class TranslationSerializer(serializers.ModelSerializer):
     def get_service_name(self, obj) -> str:
         return SERVICE_NAMES.get(obj.translator_service, obj.translator_service)
 
+    def get_selection_form(self, obj) -> str:
+        return get_text_selection_form(
+            obj.original_text,
+            obj.source_language,
+        )

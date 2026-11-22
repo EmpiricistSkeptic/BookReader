@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 import base64
 import binascii
+import requests
 
 import posixpath
 import time
@@ -92,10 +93,12 @@ from .serializers import (
     KnownWordsQuerySerializer,
 )
 
-from .services.word_analysis.analyze_service import WordAnalysisService
+from .services.word_analysis.analyze_service import TextAnalysisService
 from .utils.text_utils import normalize_word
 
 from .services.book_services import BookImportError, BookImportService
+
+from .services.word_analysis.selection import InvalidSelectionError
 
 logger = logging.getLogger(__name__)
 
@@ -693,15 +696,86 @@ class TranslationViewSet(mixins.CreateModelMixin,
     def word_analysis(self, request, pk=None):
         translation = self.get_object()
 
-        analysis = WordAnalysisService().get_or_generate(
-            translation=translation
-        )
+        try:
+            analysis = TextAnalysisService().get_or_generate(
+                translation=translation
+            )
 
-        serializer = WordAnalysisSerializer(analysis)
-        return Response(
-            serializer.data,
-            status=status.HTTP_200_OK,
-        )
+            serializer = WordAnalysisSerializer(analysis)
+
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK,
+            )
+
+        except InvalidSelectionError as e:
+            return Response(
+                {
+                    "success": False,
+                    "error": str(e),
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        except requests.exceptions.Timeout:
+            logger.exception(
+                "Word analysis timeout: user_id=%s, translation_id=%s",
+                request.user.id,
+                translation.id,
+            )
+
+            return Response(
+                {
+                    "success": False,
+                    "error": _("Превышено время ожидания анализа. Попробуйте ещё раз."),
+                },
+                status=status.HTTP_504_GATEWAY_TIMEOUT,
+            )
+
+        except requests.exceptions.RequestException:
+            logger.exception(
+                "Word analysis API error: user_id=%s, translation_id=%s",
+                request.user.id,
+                translation.id,
+            )
+
+            return Response(
+                {
+                    "success": False,
+                    "error": _("Сервис анализа временно недоступен."),
+                },
+                status=status.HTTP_502_BAD_GATEWAY,
+            )
+
+        except ValueError:
+            logger.exception(
+                "Word analysis validation error: user_id=%s, translation_id=%s",
+                request.user.id,
+                translation.id,
+            )
+
+            return Response(
+                {
+                    "success": False,
+                    "error": _("Не удалось обработать результат анализа."),
+                },
+                status=status.HTTP_502_BAD_GATEWAY,
+            )
+
+        except Exception:
+            logger.exception(
+                "Unexpected word analysis error: user_id=%s, translation_id=%s",
+                request.user.id,
+                translation.id,
+            )
+
+            return Response(
+                {
+                    "success": False,
+                    "error": _("Внутренняя ошибка сервера."),
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
     @action(detail=False, methods=["get"], url_path="known-words")
     def known_words(self, request):

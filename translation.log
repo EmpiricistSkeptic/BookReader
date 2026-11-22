@@ -7742,3 +7742,305 @@ pas mon chevet et ma chambre.»'. is_single_word: False. translation_result со
 "}
 {"ts":"2026-11-02 12:54:52,400","level":"INFO","logger":"translation","request_id":"170095629360","user_id":"-","msg":"New translation: {'success': True, 'translated_text': '29. У. Борнеман, Полк: Человек, который преобразил президентство и Америку (Нью-Йорк: Random House, 2008); Б. Уайатт-Браун, Южная честь: Этика и поведение на Старом Юге (Оксфорд: Oxford University Press, 1982).', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1522.58}"}
 {"ts":"2026-11-02 12:54:52,401","level":"INFO","logger":"translation","request_id":"170095629360","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: '29. W. Borneman, Polk: The Man Who Transformed the Presidency and America (New York: Random House, 2008); B. Wyatt-Brown, Southern Honor: Ethics and Behavior in the Old South (Oxford: Oxford University Press, 1982).'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-21 21:56:13,505","level":"INFO","logger":"translation","request_id":"05efd46cb9ea","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'keystone'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 21:56:14,524","level":"INFO","logger":"translation","request_id":"05efd46cb9ea","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'ключевой камень', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 987.61}"}
+{"ts":"2026-11-21 21:56:14,524","level":"INFO","logger":"translation","request_id":"05efd46cb9ea","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'keystone'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-21 21:56:15,341","level":"INFO","logger":"translation","request_id":"05efd46cb9ea","user_id":"-","msg":"Found 4 alternatives for keystone: ['краеугольный камень', 'основной элемент', 'замковый камень', 'основа']"}
+{"ts":"2026-11-21 21:56:27,759","level":"INFO","logger":"translation","request_id":"142f69ff51e2","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'life'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 21:56:28,934","level":"INFO","logger":"translation","request_id":"142f69ff51e2","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'жизнь', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1158.84}"}
+{"ts":"2026-11-21 21:56:28,934","level":"INFO","logger":"translation","request_id":"142f69ff51e2","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'life'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-21 21:56:30,044","level":"INFO","logger":"translation","request_id":"142f69ff51e2","user_id":"-","msg":"Found 4 alternatives for life: ['существование', 'бытие', 'житьё', 'житуха']"}
+{"ts":"2026-11-21 23:16:59,108","level":"INFO","logger":"translation","request_id":"6f2b7447f7de","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'd’habitude'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 23:17:00,156","level":"INFO","logger":"translation","request_id":"6f2b7447f7de","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'обычно', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1016.75}"}
+{"ts":"2026-11-21 23:17:00,156","level":"INFO","logger":"translation","request_id":"6f2b7447f7de","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'd’habitude'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-11-21 23:17:02,103","level":"INFO","logger":"translation","request_id":"6f2b7447f7de","user_id":"-","msg":"Found 4 alternatives for d’habitude: ['как правило', 'как обычно', 'по обыкновению', 'обыкновенно']"}
+{"ts":"2026-11-21 23:25:18,998","level":"INFO","logger":"translation","request_id":"30b2c602b1e1","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'sparkle'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 23:25:19,804","level":"INFO","logger":"translation","request_id":"30b2c602b1e1","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Сияние', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 778.28}"}
+{"ts":"2026-11-21 23:25:19,805","level":"INFO","logger":"translation","request_id":"30b2c602b1e1","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'sparkle'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-21 23:25:21,601","level":"INFO","logger":"translation","request_id":"30b2c602b1e1","user_id":"-","msg":"Found 4 alternatives for sparkle: ['Блеск', 'Сверкание', 'Искристость', 'Мерцание']"}
+{"ts":"2026-11-21 23:26:10,438","level":"INFO","logger":"translation","request_id":"9b32579a4327","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'The joy of physics'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 23:26:11,328","level":"INFO","logger":"translation","request_id":"9b32579a4327","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Радость физики', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 871.64}"}
+{"ts":"2026-11-21 23:26:11,329","level":"INFO","logger":"translation","request_id":"9b32579a4327","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'The joy of physics'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-21 23:26:33,471","level":"INFO","logger":"translation","request_id":"7b19a9a4ce7e","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'It was no secret joke that brought the smile and the sparkle in his eye, it was physics'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 23:26:34,438","level":"INFO","logger":"translation","request_id":"7b19a9a4ce7e","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Это была не тайная шутка, вызвавшая улыбку и блеск в его глазах, это была физика.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 950.69}"}
+{"ts":"2026-11-21 23:26:34,439","level":"INFO","logger":"translation","request_id":"7b19a9a4ce7e","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'It was no secret joke that brought the smile and the sparkle in his eye, it was physics'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-21 23:27:35,741","level":"INFO","logger":"translation","request_id":"575ed2dc22af","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'During the time'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 23:27:36,548","level":"INFO","logger":"translation","request_id":"575ed2dc22af","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'В течение этого времени', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 792.58}"}
+{"ts":"2026-11-21 23:27:36,549","level":"INFO","logger":"translation","request_id":"575ed2dc22af","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'During the time'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-21 23:28:37,801","level":"INFO","logger":"translation","request_id":"0f75956f37bf","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Aussitôt'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 23:28:38,536","level":"INFO","logger":"translation","request_id":"0f75956f37bf","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Тотчас', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 720.28}"}
+{"ts":"2026-11-21 23:28:38,536","level":"INFO","logger":"translation","request_id":"0f75956f37bf","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Aussitôt'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-11-21 23:28:39,392","level":"INFO","logger":"translation","request_id":"0f75956f37bf","user_id":"-","msg":"Found 4 alternatives for Aussitôt: ['Сразу же', 'Немедленно', 'Тут же', 'Незамедлительно']"}
+{"ts":"2026-11-21 23:29:00,674","level":"INFO","logger":"translation","request_id":"5e7d139a933b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Pharaon, a été construit, gréé, arrimé sur les chantiers de la vieille Phocée, et appartient à un armateur de la ville'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-21 23:29:01,486","level":"INFO","logger":"translation","request_id":"5e7d139a933b","user_id":"-","msg":"New translation: {'success': True, 'translated_text': '«Фараон» был построен, оснащён и снаряжён на верфях старой Фокеи и принадлежит судовладельцу из этого города.', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 795.19}"}
+{"ts":"2026-11-21 23:29:01,486","level":"INFO","logger":"translation","request_id":"5e7d139a933b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Pharaon, a été construit, gréé, arrimé sur les chantiers de la vieille Phocée, et appartient à un armateur de la ville'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-11-22 00:30:14,863","level":"INFO","logger":"translation","request_id":"466de3fe1b9c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'went'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:30:15,720","level":"INFO","logger":"translation","request_id":"466de3fe1b9c","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'пошел', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 820.99}"}
+{"ts":"2026-11-22 00:30:15,721","level":"INFO","logger":"translation","request_id":"466de3fe1b9c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'went'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:30:16,512","level":"INFO","logger":"translation","request_id":"466de3fe1b9c","user_id":"-","msg":"Found 4 alternatives for went: ['отправился', 'уехал', 'двинулся', 'пошёл']"}
+{"ts":"2026-11-22 00:30:59,834","level":"INFO","logger":"translation","request_id":"9c617e180c2b","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'went off'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:31:00,581","level":"INFO","logger":"translation","request_id":"9c617e180c2b","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'сработал', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 719.78}"}
+{"ts":"2026-11-22 00:31:00,581","level":"INFO","logger":"translation","request_id":"9c617e180c2b","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'went off'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:33:23,690","level":"INFO","logger":"translation","request_id":"5b1374e56dfe","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'look up to'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:33:24,401","level":"INFO","logger":"translation","request_id":"5b1374e56dfe","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'восхищаться', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 686.84}"}
+{"ts":"2026-11-22 00:33:24,402","level":"INFO","logger":"translation","request_id":"5b1374e56dfe","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'look up to'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:34:08,331","level":"INFO","logger":"translation","request_id":"ad17c10bd73c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'look up to'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:34:08,364","level":"INFO","logger":"translation","request_id":"ad17c10bd73c","user_id":"-","msg":"Db result: {'id': 44, 'success': True, 'original_text': 'look up to', 'translated_text': 'восхищаться', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 11, 22, 0, 34, 8, 363864, tzinfo=datetime.timezone.utc), 'processing_time_ms': 31.47}"}
+{"ts":"2026-11-22 00:34:42,881","level":"INFO","logger":"translation","request_id":"ff1929d8ccc3","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'About that time I invented'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:34:43,863","level":"INFO","logger":"translation","request_id":"ff1929d8ccc3","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Примерно тогда я и придумал', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 958.24}"}
+{"ts":"2026-11-22 00:34:43,864","level":"INFO","logger":"translation","request_id":"ff1929d8ccc3","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'About that time I invented'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:35:19,672","level":"INFO","logger":"translation","request_id":"116904e0f894","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'looks red'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:35:20,386","level":"INFO","logger":"translation","request_id":"116904e0f894","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'выглядит красным', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 688.41}"}
+{"ts":"2026-11-22 00:35:20,386","level":"INFO","logger":"translation","request_id":"116904e0f894","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'looks red'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:35:54,527","level":"INFO","logger":"translation","request_id":"b63888eda41f","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'All of a sudden this tremendous bell went off with a helluva racket – BONG BONG BONG BONG BONG'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:35:55,621","level":"INFO","logger":"translation","request_id":"b63888eda41f","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'И вдруг этот оглушительный колокол зазвонил с адским грохотом – БОМ БОМ БОМ БОМ БОМ', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1074.49}"}
+{"ts":"2026-11-22 00:35:55,622","level":"INFO","logger":"translation","request_id":"b63888eda41f","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'All of a sudden this tremendous bell went off with a helluva racket – BONG BONG BONG BONG BONG'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:37:41,820","level":"INFO","logger":"translation","request_id":"cfd1494fcd86","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'opened'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:37:42,936","level":"INFO","logger":"translation","request_id":"cfd1494fcd86","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'открыл', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1080.52}"}
+{"ts":"2026-11-22 00:37:42,937","level":"INFO","logger":"translation","request_id":"cfd1494fcd86","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'opened'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:37:43,705","level":"INFO","logger":"translation","request_id":"cfd1494fcd86","user_id":"-","msg":"Found 5 alternatives for opened: ['открыл', 'раскрыл', 'отворил', 'вскрыл', 'разомкнул']"}
+{"ts":"2026-11-22 00:37:54,471","level":"INFO","logger":"translation","request_id":"9f324d24bf61","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'opened'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:37:54,499","level":"INFO","logger":"translation","request_id":"9f324d24bf61","user_id":"-","msg":"Db result: {'id': 48, 'success': True, 'original_text': 'opened', 'translated_text': 'открыл', 'alternatives': ['открыл', 'раскрыл', 'отворил', 'вскрыл', 'разомкнул'], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 11, 22, 0, 37, 54, 499403, tzinfo=datetime.timezone.utc), 'processing_time_ms': 27.37}"}
+{"ts":"2026-11-22 00:38:40,466","level":"INFO","logger":"translation","request_id":"b00efb0d7491","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'All of a sudden this tremendous bell went off with a helluva racket – BONG BONG BONG BONG BONG'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:38:40,492","level":"INFO","logger":"translation","request_id":"b00efb0d7491","user_id":"-","msg":"Db result: {'id': 47, 'success': True, 'original_text': 'All of a sudden this tremendous bell went off with a helluva racket\xa0– BONG BONG BONG BONG BONG', 'translated_text': 'И вдруг этот оглушительный колокол зазвонил с адским грохотом – БОМ БОМ БОМ БОМ БОМ', 'alternatives': [], 'source_language': 'en', 'target_language': 'ru', 'service': 'deepseek', 'cached': True, 'from_db': True, 'timestamp': datetime.datetime(2026, 11, 22, 0, 38, 40, 492457, tzinfo=datetime.timezone.utc), 'processing_time_ms': 25.44}"}
+{"ts":"2026-11-22 00:50:06,549","level":"INFO","logger":"translation","request_id":"67e362d2ea22","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'would'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:50:07,836","level":"INFO","logger":"translation","request_id":"67e362d2ea22","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'бы', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1248.58}"}
+{"ts":"2026-11-22 00:50:07,836","level":"INFO","logger":"translation","request_id":"67e362d2ea22","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'would'. is_single_word: True. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:50:08,588","level":"INFO","logger":"translation","request_id":"67e362d2ea22","user_id":"-","msg":"Found 4 alternatives for would: ['хотел бы', 'желал бы', 'собирался', 'намеревался']"}
+{"ts":"2026-11-22 00:50:18,232","level":"INFO","logger":"translation","request_id":"89778914cc67","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'make a purple'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:50:19,310","level":"INFO","logger":"translation","request_id":"89778914cc67","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'сделай фиолетовый', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1050.85}"}
+{"ts":"2026-11-22 00:50:19,311","level":"INFO","logger":"translation","request_id":"89778914cc67","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'make a purple'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 00:50:33,042","level":"INFO","logger":"translation","request_id":"9713080ed303","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Newspapers burn fast, you know, and the flame looked pretty big inside the room'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 00:50:33,925","level":"INFO","logger":"translation","request_id":"9713080ed303","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Газеты быстро горят, знаешь ли, и пламя выглядело довольно большим в комнате.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 862.33}"}
+{"ts":"2026-11-22 00:50:33,925","level":"INFO","logger":"translation","request_id":"9713080ed303","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Newspapers burn fast, you know, and the flame looked pretty big inside the room'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 01:02:08,003","level":"INFO","logger":"translation","request_id":"29e545177170","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'But I was often in the house, fiddling with my lab.I bought radios at rummage sales'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 01:02:09,215","level":"INFO","logger":"translation","request_id":"29e545177170","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Но я часто бывал дома, возился со своей лабораторией. Я покупал радиоприемники на барахолках', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1185.03}"}
+{"ts":"2026-11-22 01:02:09,216","level":"INFO","logger":"translation","request_id":"29e545177170","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'But I was often in the house, fiddling with my lab.I bought radios at rummage sales'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 01:03:26,316","level":"INFO","logger":"translation","request_id":"11097b6780d8","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'I didn’t get to do as much as I wanted to, because my mother kept putting me out all the time, to play'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 01:03:27,308","level":"INFO","logger":"translation","request_id":"11097b6780d8","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'No pude hacer tanto como quería, porque mi madre me echaba a la calle todo el tiempo, a jugar', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 966.16}"}
+{"ts":"2026-11-22 01:03:27,309","level":"INFO","logger":"translation","request_id":"11097b6780d8","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'I didn’t get to do as much as I wanted to, because my mother kept putting me out all the time, to play'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 01:31:03,449","level":"INFO","logger":"translation","request_id":"77ce5409ca43","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'You know, we haven’t heard from so-and-so in a long time'
+Целевой язык (входящий): 'es'
+Исходный язык (входящий): 'en'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 01:31:04,367","level":"INFO","logger":"translation","request_id":"77ce5409ca43","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Sabes, no hemos sabido de fulano de tal en mucho tiempo.', 'detected_language': 'en', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 902.31}"}
+{"ts":"2026-11-22 01:31:04,367","level":"INFO","logger":"translation","request_id":"77ce5409ca43","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'You know, we haven’t heard from so-and-so in a long time'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'en'."}
+{"ts":"2026-11-22 01:32:49,597","level":"INFO","logger":"translation","request_id":"80694abf9ee7","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 's’était couverte de curieux'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 01:32:51,106","level":"INFO","logger":"translation","request_id":"80694abf9ee7","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'покрылась странными', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 1492.83}"}
+{"ts":"2026-11-22 01:32:51,106","level":"INFO","logger":"translation","request_id":"80694abf9ee7","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 's’était couverte de curieux'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}
+{"ts":"2026-11-22 01:33:07,079","level":"INFO","logger":"translation","request_id":"564a7686719c","user_id":"-","msg":"
+
+--- НАЧАЛО ЗАПРОСА НА ПЕРЕВОД ---
+Текст: 'Aussitôt, comme d’habitude encore, la plate-forme du fort Saint-Jean s’était couverte de curieux'
+Целевой язык (входящий): 'ru'
+Исходный язык (входящий): 'fr'
+Сервис: 'deepseek'
+---------------------------------
+"}
+{"ts":"2026-11-22 01:33:08,011","level":"INFO","logger":"translation","request_id":"564a7686719c","user_id":"-","msg":"New translation: {'success': True, 'translated_text': 'Тотчас же, как обычно, площадка форта Сен-Жан заполнилась любопытными', 'detected_language': 'fr', 'service': 'deepseek', 'confidence': 0.9, 'processing_time_ms': 918.53}"}
+{"ts":"2026-11-22 01:33:08,011","level":"INFO","logger":"translation","request_id":"564a7686719c","user_id":"-","msg":"ПРОВЕРКА 'СТРАЖНИКА': Слово: 'Aussitôt, comme d’habitude encore, la plate-forme du fort Saint-Jean s’était couverte de curieux'. is_single_word: False. translation_result содержит 'detected_language': True. Значение detected_language: 'fr'."}

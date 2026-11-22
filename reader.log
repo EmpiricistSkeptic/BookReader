@@ -2504,3 +2504,342 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
     raise InvalidToken(
 rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-21 21:44:18,468","level":"ERROR","logger":"reader","request_id":"1b4711621bf2","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-21 21:45:01,871","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"a398b38491d6","user_id":"-","msg":"Book import completed: title="Surely You're Joking, Mr. Feynman!" format=FB2 bytes=748158 chapters=13 read=0.001s extract=0.000s parse=0.082s book_create=0.019s cover_save=1.717s file_save=0.924s book_save=0.016s chapters_save=0.084s serialization=0.050s transaction=2.814s total=2.898s"}
+{"ts":"2026-11-21 21:56:11,108","level":"ERROR","logger":"reader","request_id":"2b5a35874aa2","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/1/update_progress/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 385, in update_progress
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]}
+{"ts":"2026-11-21 21:56:14,525","level":"INFO","logger":"reader.translator_backends","request_id":"05efd46cb9ea","user_id":"-","msg":"Recieved: keystone and ключевой камень for it"}
+{"ts":"2026-11-21 21:56:15,340","level":"INFO","logger":"reader.translator_backends","request_id":"05efd46cb9ea","user_id":"-","msg":"Raw response form Ai {'id': '96ba71d4-393f-4813-b22b-0b13dd4b4381', 'object': 'chat.completion', 'created': 1795298175, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "краеугольный камень"\n    },\n    {\n        "text": "основной элемент"\n    },\n    {\n        "text": "замковый камень"\n    },\n    {\n        "text": "основа"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 148, 'completion_tokens': 60, 'total_tokens': 208, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 148}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-21 21:56:15,341","level":"INFO","logger":"reader.translator_backends","request_id":"05efd46cb9ea","user_id":"-","msg":"Parser result[{'text': 'краеугольный камень'}, {'text': 'основной элемент'}, {'text': 'замковый камень'}, {'text': 'основа'}]"}
+{"ts":"2026-11-21 21:56:28,934","level":"INFO","logger":"reader.translator_backends","request_id":"142f69ff51e2","user_id":"-","msg":"Recieved: life and жизнь for it"}
+{"ts":"2026-11-21 21:56:30,043","level":"INFO","logger":"reader.translator_backends","request_id":"142f69ff51e2","user_id":"-","msg":"Raw response form Ai {'id': '4bf23c9f-45c7-44d4-8cf3-d9a3f56a0f1e', 'object': 'chat.completion', 'created': 1795298190, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "существование"\n    },\n    {\n        "text": "бытие"\n    },\n    {\n        "text": "житьё"\n    },\n    {\n        "text": "житуха"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 53, 'total_tokens': 196, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-21 21:56:30,043","level":"INFO","logger":"reader.translator_backends","request_id":"142f69ff51e2","user_id":"-","msg":"Parser result[{'text': 'существование'}, {'text': 'бытие'}, {'text': 'житьё'}, {'text': 'житуха'}]"}
+{"ts":"2026-11-21 21:56:34,885","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"4548caaba696","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=2"}
+{"ts":"2026-11-21 21:56:36,418","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"4548caaba696","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=2"}
+{"ts":"2026-11-21 21:56:36,434","level":"ERROR","logger":"reader","request_id":"4548caaba696","user_id":"-","msg":"Unhandled error: view=TranslationViewSet path=/api/translations/2/word-analysis/ method=POST exc=IntegrityError('null value in column "data" of relation "reader_wordanalysis" violates not-null constraint\nDETAIL:  Failing row contains (1, life, /laɪf/, noun, {"case": null, "mood": null, "tense": null, "aspect": null, "deg..., Существительное life означает «жизн..., ["existence", "living", "lifetime"], [{"source": "Life is full of surprises.", "translation": "Жиз..., null, 2026-11-21 21:56:36.419373+00, 2026-11-21 21:56:36.419391+00, 2, null, null).\n')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "data" of relation "reader_wordanalysis" violates not-null constraint
+DETAIL:  Failing row contains (1, life, /laɪf/, noun, {"case": null, "mood": null, "tense": null, "aspect": null, "deg..., Существительное life означает «жизн..., ["existence", "living", "lifetime"], [{"source": "Life is full of surprises.", "translation": "Жиз..., null, 2026-11-21 21:56:36.419373+00, 2026-11-21 21:56:36.419391+00, 2, null, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 696, in word_analysis
+    analysis = WordAnalysisService().get_or_generate(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/services/word_analysis/analyze_service.py", line 22, in get_or_generate
+    return WordAnalysis.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 665, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 1873, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/utils.py", line 1933, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 876, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: null value in column "data" of relation "reader_wordanalysis" violates not-null constraint
+DETAIL:  Failing row contains (1, life, /laɪf/, noun, {"case": null, "mood": null, "tense": null, "aspect": null, "deg..., Существительное life означает «жизн..., ["existence", "living", "lifetime"], [{"source": "Life is full of surprises.", "translation": "Жиз..., null, 2026-11-21 21:56:36.419373+00, 2026-11-21 21:56:36.419391+00, 2, null, null).
+
+{"ts":"2026-11-21 21:59:40,900","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"76d8924564ed","user_id":"-","msg":"EPUB parsed: title='Le Comte de Monte-Cristo - Tome I' documents=36 chapters=38"}
+{"ts":"2026-11-21 21:59:42,707","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"76d8924564ed","user_id":"-","msg":"Book import completed: title='Le Comte de Monte-Cristo - Tome I' format=EPUB bytes=716505 chapters=38 read=0.000s extract=0.000s parse=0.332s book_create=0.004s cover_save=1.083s file_save=0.625s book_save=0.003s chapters_save=0.045s serialization=0.031s transaction=1.795s total=2.127s"}
+{"ts":"2026-11-21 22:03:18,320","level":"ERROR","logger":"reader","request_id":"dbc15d2dc2d9","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/2/update_progress/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 385, in update_progress
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]}
+{"ts":"2026-11-21 23:16:25,874","level":"ERROR","logger":"reader","request_id":"60ff200e482c","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-21 23:16:40,749","level":"ERROR","logger":"reader","request_id":"6e2c665bd34d","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/2/update_progress/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 385, in update_progress
+    data=request.data, context={"request": request, "book": book}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]}
+{"ts":"2026-11-21 23:17:00,157","level":"INFO","logger":"reader.translator_backends","request_id":"6f2b7447f7de","user_id":"-","msg":"Recieved: d’habitude and обычно for it"}
+{"ts":"2026-11-21 23:17:02,102","level":"INFO","logger":"reader.translator_backends","request_id":"6f2b7447f7de","user_id":"-","msg":"Raw response form Ai {'id': '360c7769-2e10-47cd-8384-4258a5e8a6e5', 'object': 'chat.completion', 'created': 1795303021, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "как правило"\n    },\n    {\n        "text": "как обычно"\n    },\n    {\n        "text": "по обыкновению"\n    },\n    {\n        "text": "обыкновенно"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 55, 'total_tokens': 201, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-21 23:17:02,103","level":"INFO","logger":"reader.translator_backends","request_id":"6f2b7447f7de","user_id":"-","msg":"Parser result[{'text': 'как правило'}, {'text': 'как обычно'}, {'text': 'по обыкновению'}, {'text': 'обыкновенно'}]"}
+{"ts":"2026-11-21 23:17:04,233","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"a3b9527b6127","user_id":"-","msg":"DeepSeek request: user_id=1, translation_id=3"}
+{"ts":"2026-11-21 23:17:05,976","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"a3b9527b6127","user_id":"-","msg":"DeepSeek response received: user_id=1, translation_id=3"}
+{"ts":"2026-11-21 23:17:05,983","level":"ERROR","logger":"reader","request_id":"a3b9527b6127","user_id":"-","msg":"Unhandled error: view=TranslationViewSet path=/api/translations/3/word-analysis/ method=POST exc=IntegrityError('null value in column "data" of relation "reader_wordanalysis" violates not-null constraint\nDETAIL:  Failing row contains (2, d\'habitude, /d‿a.bi.tyd/, adverbe, {"case": null, "mood": null, "tense": null, "aspect": null, "deg..., Наречное выражение, означающее «об..., ["habituellement", "généralement", "ordinairement"], [{"source": "D\'habitude, je me lève à sept heures.", "translat..., null, 2026-11-21 23:17:05.977861+00, 2026-11-21 23:17:05.977878+00, 3, null, null).\n')"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "data" of relation "reader_wordanalysis" violates not-null constraint
+DETAIL:  Failing row contains (2, d'habitude, /d‿a.bi.tyd/, adverbe, {"case": null, "mood": null, "tense": null, "aspect": null, "deg..., Наречное выражение, означающее «об..., ["habituellement", "généralement", "ordinairement"], [{"source": "D'habitude, je me lève à sept heures.", "translat..., null, 2026-11-21 23:17:05.977861+00, 2026-11-21 23:17:05.977878+00, 3, null, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 696, in word_analysis
+    translation = self.get_object()
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/services/word_analysis/analyze_service.py", line 22, in get_or_generate
+    "examples": [],
+               ^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 665, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/query.py", line 1873, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/utils.py", line 1933, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 876, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: null value in column "data" of relation "reader_wordanalysis" violates not-null constraint
+DETAIL:  Failing row contains (2, d'habitude, /d‿a.bi.tyd/, adverbe, {"case": null, "mood": null, "tense": null, "aspect": null, "deg..., Наречное выражение, означающее «об..., ["habituellement", "généralement", "ordinairement"], [{"source": "D'habitude, je me lève à sept heures.", "translat..., null, 2026-11-21 23:17:05.977861+00, 2026-11-21 23:17:05.977878+00, 3, null, null).
+
+{"ts":"2026-11-21 23:25:19,805","level":"INFO","logger":"reader.translator_backends","request_id":"30b2c602b1e1","user_id":"-","msg":"Recieved: sparkle and Сияние for it"}
+{"ts":"2026-11-21 23:25:21,601","level":"INFO","logger":"reader.translator_backends","request_id":"30b2c602b1e1","user_id":"-","msg":"Raw response form Ai {'id': '1e95c7c3-1f74-4248-a49f-c883b5a05b72', 'object': 'chat.completion', 'created': 1795303521, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "Блеск"\n    },\n    {\n        "text": "Сверкание"\n    },\n    {\n        "text": "Искристость"\n    },\n    {\n        "text": "Мерцание"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 146, 'completion_tokens': 58, 'total_tokens': 204, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 146}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-21 23:25:21,601","level":"INFO","logger":"reader.translator_backends","request_id":"30b2c602b1e1","user_id":"-","msg":"Parser result[{'text': 'Блеск'}, {'text': 'Сверкание'}, {'text': 'Искристость'}, {'text': 'Мерцание'}]"}
+{"ts":"2026-11-21 23:25:29,990","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"3b3ba6d6ffec","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=36, selection_form=word, kind=word"}
+{"ts":"2026-11-21 23:26:14,243","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"785ac7c7e165","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=37, selection_form=multi_token, kind=expression"}
+{"ts":"2026-11-21 23:26:41,025","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"16d0e9087d05","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=38, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-21 23:27:39,740","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"810176cda01b","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=39, selection_form=multi_token, kind=expression"}
+{"ts":"2026-11-21 23:28:02,365","level":"ERROR","logger":"reader","request_id":"53904990f8ff","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/1/update_progress/ method=POST exc=ValidationError({'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 523, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/bookreader/reader/views.py", line 388, in update_progress
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='У главы не указано total_pages.', code='invalid')]}
+{"ts":"2026-11-21 23:28:38,536","level":"INFO","logger":"reader.translator_backends","request_id":"0f75956f37bf","user_id":"-","msg":"Recieved: Aussitôt and Тотчас for it"}
+{"ts":"2026-11-21 23:28:39,392","level":"INFO","logger":"reader.translator_backends","request_id":"0f75956f37bf","user_id":"-","msg":"Raw response form Ai {'id': 'a4bb9b54-b5b7-4fb7-9ffb-57805061bc72', 'object': 'chat.completion', 'created': 1795303719, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {"text": "Сразу же"},\n    {"text": "Немедленно"},\n    {"text": "Тут же"},\n    {"text": "Незамедлительно"}\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 147, 'completion_tokens': 42, 'total_tokens': 189, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 147}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-21 23:28:39,392","level":"INFO","logger":"reader.translator_backends","request_id":"0f75956f37bf","user_id":"-","msg":"Parser result[{'text': 'Сразу же'}, {'text': 'Немедленно'}, {'text': 'Тут же'}, {'text': 'Незамедлительно'}]"}
+{"ts":"2026-11-21 23:28:45,378","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"3840c8b071f7","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=40, selection_form=word, kind=word"}
+{"ts":"2026-11-21 23:29:10,095","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"46eee75ea89a","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=41, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-22 00:29:21,575","level":"ERROR","logger":"reader","request_id":"d53cc2230e14","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-22 00:30:15,722","level":"INFO","logger":"reader.translator_backends","request_id":"466de3fe1b9c","user_id":"-","msg":"Recieved: went and пошел for it"}
+{"ts":"2026-11-22 00:30:16,511","level":"INFO","logger":"reader.translator_backends","request_id":"466de3fe1b9c","user_id":"-","msg":"Raw response form Ai {'id': '3cae6aed-187a-43f7-b25e-a5a22de78999', 'object': 'chat.completion', 'created': 1795307416, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "отправился"\n    },\n    {\n        "text": "уехал"\n    },\n    {\n        "text": "двинулся"\n    },\n    {\n        "text": "пошёл"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 54, 'total_tokens': 198, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-22 00:30:16,511","level":"INFO","logger":"reader.translator_backends","request_id":"466de3fe1b9c","user_id":"-","msg":"Parser result[{'text': 'отправился'}, {'text': 'уехал'}, {'text': 'двинулся'}, {'text': 'пошёл'}]"}
+{"ts":"2026-11-22 00:30:21,260","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"db1529abbc4e","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=42, selection_form=word, kind=word"}
+{"ts":"2026-11-22 00:31:04,202","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"5c802533fc86","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=43, selection_form=multi_token, kind=expression"}
+{"ts":"2026-11-22 00:33:28,347","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"3d422e2ce19a","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=44, selection_form=multi_token, kind=expression"}
+{"ts":"2026-11-22 00:34:48,954","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"50e64130aa02","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=45, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-22 00:35:22,185","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"242077e87aac","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=46, selection_form=multi_token, kind=expression"}
+{"ts":"2026-11-22 00:36:01,384","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"dc2ec95d1d69","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=47, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-22 00:37:42,937","level":"INFO","logger":"reader.translator_backends","request_id":"cfd1494fcd86","user_id":"-","msg":"Recieved: opened and открыл for it"}
+{"ts":"2026-11-22 00:37:43,704","level":"INFO","logger":"reader.translator_backends","request_id":"cfd1494fcd86","user_id":"-","msg":"Raw response form Ai {'id': 'c186e7f3-77f7-4e39-8ad1-f95eeb1eb3af', 'object': 'chat.completion', 'created': 1795307863, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {\n        "text": "открыл"\n    },\n    {\n        "text": "раскрыл"\n    },\n    {\n        "text": "отворил"\n    },\n    {\n        "text": "вскрыл"\n    },\n    {\n        "text": "разомкнул"\n    }\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 144, 'completion_tokens': 71, 'total_tokens': 215, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 144}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-22 00:37:43,705","level":"INFO","logger":"reader.translator_backends","request_id":"cfd1494fcd86","user_id":"-","msg":"Parser result[{'text': 'открыл'}, {'text': 'раскрыл'}, {'text': 'отворил'}, {'text': 'вскрыл'}, {'text': 'разомкнул'}]"}
+{"ts":"2026-11-22 00:37:48,536","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"830b791c376e","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=48, selection_form=word, kind=word"}
+{"ts":"2026-11-22 00:44:26,298","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"301e82e2bef9","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=1, selection_form=word, kind=word"}
+{"ts":"2026-11-22 00:44:39,016","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"b5bdbb924f46","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=3, selection_form=word, kind=word"}
+{"ts":"2026-11-22 00:50:07,837","level":"INFO","logger":"reader.translator_backends","request_id":"67e362d2ea22","user_id":"-","msg":"Recieved: would and бы for it"}
+{"ts":"2026-11-22 00:50:08,587","level":"INFO","logger":"reader.translator_backends","request_id":"67e362d2ea22","user_id":"-","msg":"Raw response form Ai {'id': '48cd0c16-5499-446f-a467-50b1015b3a1f', 'object': 'chat.completion', 'created': 1795308608, 'model': 'deepseek-flash', 'choices': [{'index': 0, 'message': {'role': 'assistant', 'content': '[\n    {"text": "хотел бы"},\n    {"text": "желал бы"},\n    {"text": "собирался"},\n    {"text": "намеревался"}\n]'}, 'logprobs': None, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 143, 'completion_tokens': 43, 'total_tokens': 186, 'prompt_tokens_details': {'cached_tokens': 0}, 'prompt_cache_hit_tokens': 0, 'prompt_cache_miss_tokens': 143}, 'system_fingerprint': 'bc19ba97cbe016479903222bb1578db6'}"}
+{"ts":"2026-11-22 00:50:08,588","level":"INFO","logger":"reader.translator_backends","request_id":"67e362d2ea22","user_id":"-","msg":"Parser result[{'text': 'хотел бы'}, {'text': 'желал бы'}, {'text': 'собирался'}, {'text': 'намеревался'}]"}
+{"ts":"2026-11-22 00:51:02,179","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"3111855e56c8","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=51, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-22 00:51:14,691","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"152f49bdf313","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=50, selection_form=multi_token, kind=expression"}
+{"ts":"2026-11-22 00:51:20,346","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"6d4d0afc21ae","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=49, selection_form=word, kind=word"}
+{"ts":"2026-11-22 01:00:33,314","level":"INFO","logger":"reader.services.book_services.parsers.epub","request_id":"56ecf4792982","user_id":"-","msg":"EPUB parsed: title='Gobseck' documents=7 chapters=6"}
+{"ts":"2026-11-22 01:00:33,977","level":"INFO","logger":"reader.services.book_services.import_service","request_id":"56ecf4792982","user_id":"-","msg":"Book import completed: title='Gobseck' format=EPUB bytes=71274 chapters=6 read=0.000s extract=0.000s parse=0.094s book_create=0.008s cover_save=0.000s file_save=0.568s book_save=0.006s chapters_save=0.041s serialization=0.024s transaction=0.652s total=0.746s"}
+{"ts":"2026-11-22 01:02:15,140","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"e39a9f2f1cc1","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=52, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-22 01:04:12,201","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"69840101087b","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=53, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-22 01:30:42,362","level":"ERROR","logger":"reader","request_id":"4106be3091a7","user_id":"-","msg":"DRF error: view=BookViewSet path=/api/books/ method=GET exc=InvalidToken({'detail': 'Given token not valid for any token type', 'messages': [{'token_class': 'AccessToken', 'token_type': 'access', 'message': 'Token is expired'}]})"}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 514, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 366, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 419, in initial
+    self.perform_authentication(request)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/views.py", line 329, in perform_authentication
+    request.user
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 236, in user
+    self._authenticate()
+  File "/usr/local/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 403, in sentry_patched_drf_authenticate
+    return old_drf_authenticate(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/request.py", line 393, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 49, in authenticate
+    validated_token = self.get_validated_token(raw_token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework_simplejwt/authentication.py", line 113, in get_validated_token
+    raise InvalidToken(
+rest_framework_simplejwt.exceptions.InvalidToken: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is expired', code='token_not_valid')}]}
+{"ts":"2026-11-22 01:31:11,982","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"419208f7b473","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=54, selection_form=multi_token, kind=sentence"}
+{"ts":"2026-11-22 01:32:53,944","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"06f05cd8cb05","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=55, selection_form=multi_token, kind=expression"}
+{"ts":"2026-11-22 01:33:13,394","level":"INFO","logger":"reader.services.word_analysis.deepseek","request_id":"1c80b54524d7","user_id":"-","msg":"DeepSeek text analysis completed: user_id=1, translation_id=56, selection_form=multi_token, kind=sentence"}
