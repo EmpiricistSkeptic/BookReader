@@ -20,7 +20,7 @@ whitenoise
 psycopg2-binary
 gunicorn
 python-dotenv
-sentry-sdk
+sentry-sdk==2.76.0
 django-redis
 defusedxml>=0.7.1,<1
 pydantic>=2.0,<3.0
