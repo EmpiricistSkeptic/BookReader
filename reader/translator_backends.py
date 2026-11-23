@@ -199,7 +199,13 @@ class DeepSeekTranslator(BaseTranslator):
             target_language=target_language.upper(),
         )
         
-        user_content = f"{text}\n\n{context}" if context else text
+        user_content = json.dumps(
+            {
+                "selected_text": text,
+                "surrounding_context": context or "",
+            },
+            ensure_ascii=False,
+        )
 
         messages = [
             {"role": "system", "content": system_prompt},

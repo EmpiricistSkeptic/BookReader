@@ -70,6 +70,13 @@ class TextAnalysisService:
         analysis.save(update_fields=update_fields)
         return analysis
 
+    def get_cached(self, translation):
+        try:
+            existing = translation.word_analysis
+        except WordAnalysis.DoesNotExist:
+            return None
+        return None if self._is_stale(existing) else existing
+
     def get_or_generate(self, translation: object) -> WordAnalysis:
         try:
             existing = translation.word_analysis

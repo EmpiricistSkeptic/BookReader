@@ -116,6 +116,7 @@ REST_FRAMEWORK = {
         "translation": "100/hour",
         "auth": "5/min",
         "word_analysis": "50/hour",
+        "word_analysis_burst": "10/min",
     },
 }
 
@@ -142,12 +143,7 @@ if os.getenv("REDIS_URL"):
             },
         }
     }
-else:
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-        }
-    }
+
 
 
 SIMPLE_JWT = {

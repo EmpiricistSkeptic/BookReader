@@ -519,6 +519,16 @@ class TranslationRequestSerializer(serializers.Serializer):
         choices=TRANSLATION_SERVICES, help_text=_("Сервис для перевода")
     )
 
+    def get_fields(self):
+        fields = super().get_fields()
+        request = self.context.get("request")
+        fields["book"].queryset = (
+            Book.objects.filter(user=request.user)
+            if request is not None
+            else Book.objects.none()
+        )
+        return fields
+
     def validate_text(self, value):
         """Дополнительная валидация текста"""
         value = value.strip()

@@ -73,19 +73,8 @@ class DeepSeekTextAnalyzer:
         return content.strip()
 
     def _build_word_user_prompt(self, translation: Translation) -> str:
-        selected_text = self._get_value(translation, "original_text", "") or ""
-        translated_text = self._get_value(translation, "translated_text", "") or ""
-        source_language = self._get_value(translation, "source_language", "") or "unknown"
-        target_language = self._get_value(translation, "target_language", "") or "unknown"
-
-        return (
-            WORD_USER_PROMPT.format(
-                word=selected_text,
-                translated=translated_text,
-                source_language=source_language,
-                target_language=target_language,
-            )
-            + WORD_SECURITY_SUFFIX
+        return WORD_USER_PROMPT.format(
+            user_data_json=self._build_user_data_json(translation),
         )
 
     def _build_user_data_json(self, translation: Translation) -> str:
@@ -128,6 +117,7 @@ class DeepSeekTextAnalyzer:
         system_prompt: str,
         user_prompt: str,
         max_tokens: int,
+        read_timeout: int = 30,
     ) -> str:
         if not self.api_key:
             raise ValueError("DeepSeek API key is not configured")
@@ -156,11 +146,14 @@ class DeepSeekTextAnalyzer:
                 self.base_url,
                 json=payload,
                 headers=headers,
-                timeout=(5, 30),
+                timeout=(5, read_timeout),
             )
             response.raise_for_status()
             raw_response = response.json()
-            content = raw_response["choices"][0]["message"]["content"]
+            choice = raw_response["choices"][0]
+            content = choice["message"]["content"]
+            finish_reason = choice.get("finish_reason")
+            usage = raw_response.get("usage") or {}
         except requests.exceptions.Timeout:
             logger.error(
                 "DeepSeek API timeout: user_id=%s, translation_id=%s",
@@ -182,6 +175,24 @@ class DeepSeekTextAnalyzer:
                 translation_id,
             )
             raise ValueError("Unexpected DeepSeek response format")
+
+        logger.info(
+            "DeepSeek usage: user_id=%s, translation_id=%s, prompt_tokens=%s, completion_tokens=%s, finish_reason=%s",
+            user_id,
+            translation_id,
+            usage.get("prompt_tokens"),
+            usage.get("completion_tokens"),
+            finish_reason,
+        )
+
+        if finish_reason == "length":
+            logger.warning(
+                "DeepSeek response truncated: user_id=%s, translation_id=%s, max_tokens=%s",
+                user_id,
+                translation_id,
+                max_tokens,
+            )
+            raise ValueError("DeepSeek response was truncated")
 
         if not isinstance(content, str) or not content.strip():
             raise ValueError("DeepSeek returned empty content")
@@ -266,6 +277,7 @@ class DeepSeekTextAnalyzer:
                     selection_form,
                 ),
                 max_tokens=self.MULTI_TOKEN_MAX_TOKENS,
+                read_timeout=15,
             )
             result = self._validate_multi_token(content)
 

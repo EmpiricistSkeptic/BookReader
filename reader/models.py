@@ -90,6 +90,7 @@ class UserProfile(models.Model):
         ("light", "Светлая"),
         ("sepia", "Сепия"),
         ("dark", "Темная"),
+        ("black", "Черная"),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
@@ -209,7 +210,7 @@ class Translation(models.Model):
         max_length=20, choices=TRANSLATOR_CHOICES, verbose_name=_("Сервис перевода")
     )
     context = models.TextField(
-        blank=True, null=True, max_length=1000, verbose_name=_("Контекст")
+        blank=True, default="", max_length=1000, verbose_name=_("Контекст")
     )
     confidence = models.FloatField(
         null=True,
@@ -238,6 +239,7 @@ class Translation(models.Model):
             "source_language",
             "target_language",
             "translator_service",
+            "context",
         ]
 
     def __str__(self):

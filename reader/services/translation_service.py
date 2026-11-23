@@ -70,7 +70,7 @@ class TranslationService:
 
         # ИЗМЕНЕНО: Поиск в БД также будет возвращать объект с альтернативами, если они сохранены
         db_result = self._get_from_database(
-            text, target_language, source_language, service
+            text, target_language, source_language, service, context
         )
         if db_result:
             result = self._format_db_result(db_result, start_time)
@@ -156,7 +156,7 @@ class TranslationService:
         key_string = f"{text}_{target_lang}_{source_lang}_{service}"
         return f"translation:{hashlib.md5(key_string.encode()).hexdigest()}"
 
-    def _get_from_database(self, text, target_language, source_language, service):
+    def _get_from_database(self, text, target_language, source_language, service, context=""):
         try:
             return Translation.objects.filter(
                 user=self.user,
@@ -164,6 +164,7 @@ class TranslationService:
                 target_language=target_language,
                 source_language=source_language,
                 translator_service=service,
+                context=context or "",
             ).first()
         except Exception:
             return None
@@ -181,7 +182,7 @@ class TranslationService:
         translation_result,
         source_language,
         target_language,
-        context=None,
+        context="",
         alternatives=None,
     ):
         return Translation.objects.create(
@@ -191,7 +192,7 @@ class TranslationService:
             source_language=source_language,
             target_language=target_language,
             translator_service=translation_result["service"],
-            context=context,
+            context=context or "",
             confidence=translation_result.get("confidence"),
             processing_time_ms=translation_result.get("processing_time_ms"),
             alternatives=alternatives or [],  # Сохраняем альтернативы

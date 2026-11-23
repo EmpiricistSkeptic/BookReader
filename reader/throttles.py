@@ -9,3 +9,7 @@ class AuthThrottle(AnonRateThrottle):
 
 class WordAnalysisThrottle(UserRateThrottle):
     scope = "word_analysis"
+
+class WordAnalysisBurstThrottle(UserRateThrottle):
+    scope = "word_analysis_burst"
+

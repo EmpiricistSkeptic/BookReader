@@ -54,7 +54,7 @@ from drf_spectacular.types import OpenApiTypes
 from reader.exceptions import TranslationServiceError
 from reader.services.ai_service import AITeacherService
 from reader.services.translation_service import TranslationService
-from reader.throttles import TranslationThrottle, AuthThrottle, WordAnalysisThrottle
+from reader.throttles import TranslationThrottle, AuthThrottle, WordAnalysisThrottle, WordAnalysisBurstThrottle
 from reader.utils.google_auth import GoogleAuthService
 
 from .pagination import MessagesPagination
@@ -358,26 +358,39 @@ class BookViewSet(viewsets.ModelViewSet):
     def chapter_content(self, request, pk=None):
         """Получить содержимое конкретной главы в виде массива параграфов"""
         book = self.get_object()
-        chapter_order = request.query_params.get("chapter", 1)
+        raw_order = request.query_params.get("chapter", 1)
 
         try:
-            chapter = book.chapters.get(order=chapter_order)
-            serializer = ChapterDetailSerializer(chapter)
+            chapter_order = int(raw_order)
+        except (TypeError, ValueError):
+            return Response(
+                {"error": "Некорректный номер главы"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
-            data = serializer.data
+        chapter = book.chapters.filter(order=chapter_order).order_by("pk").first()
 
-            original_content = data.get("content", "")
+        if chapter is None:
+            return Response(
+                {"error": "Глава не найдена"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
-            paragraphs = [
-                p.strip() for p in re.split(r"\n\s*\n", original_content) if p.strip()
-            ]
+        data = ChapterDetailSerializer(chapter).data
+        original_content = data.get("content") or ""
 
-            data["content"] = paragraphs
-            data["book_language"] = book.language
+        paragraphs = [
+            p.strip()
+            for p in re.split(r"\n\s*\n", original_content)
+            if p.strip()
+        ]
 
-            return Response({"chapter": data, "total_chapters": book.chapters.count()})
-        except Chapter.DoesNotExist:
-            return Response({"error": "Глава не найдена"}, status=404)
+        data["content"] = paragraphs
+        data["book_language"] = book.language
+
+        return Response(
+            {"chapter": data, "total_chapters": book.chapters.count()}
+        )
 
     @action(detail=True, methods=["post"])
     def update_progress(self, request, pk=None):
@@ -617,13 +630,6 @@ class TranslationViewSet(mixins.CreateModelMixin,
                 TranslationThrottle,
                 UserRateThrottle,
             ]
-
-        elif self.action == "word_analysis":
-            throttle_classes = [
-                WordAnalysisThrottle,
-                UserRateThrottle,
-            ]
-
         else:
             throttle_classes = []
 
@@ -668,7 +674,7 @@ class TranslationViewSet(mixins.CreateModelMixin,
             )
         serializer_class = self.get_serializer_class()
         serializer = serializer_class(
-            data=request.data, context={"target_language": target_language}
+            data=request.data, context={"target_language": target_language, "request": request}
         )
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data
@@ -692,12 +698,26 @@ class TranslationViewSet(mixins.CreateModelMixin,
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
+    def _check_analysis_throttles(self, request):
+        for cls in (WordAnalysisThrottle, WordAnalysisBurstThrottle, UserRateThrottle):
+            throttle = cls()
+            if not throttle.allow_request(request, self):
+                self.throttled(request, throttle.wait())
+
     @action(detail=True, methods=["post"], url_path="word-analysis")
     def word_analysis(self, request, pk=None):
         translation = self.get_object()
+        service = TextAnalysisService()
+
+        cached = service.get_cached(translation)
+
+        if cached is not None:
+            return Response(WordAnalysisSerializer(cached).data)
+
+        self._check_analysis_throttles(request)
 
         try:
-            analysis = TextAnalysisService().get_or_generate(
+            analysis = service.get_or_generate(
                 translation=translation
             )
 
@@ -808,4 +828,21 @@ class TranslationViewSet(mixins.CreateModelMixin,
 
         words = {w for t in raw_texts if (w := normalize_word(t))}
         return Response(sorted(words))
+
+    @action(detail=False, methods=["get"], url_path="dictionary-stats")
+    def dictionary_stats(self, request):
+        total_count = Translation.objects.filter(
+            user=request.user
+        ).count()
+
+        filtered_count = self.filter_queryset(
+            self.get_queryset()
+        ).count()
+
+        return Response(
+            {
+                "total_count": total_count,
+                "filtered_count": filtered_count,
+            }
+        )
 
